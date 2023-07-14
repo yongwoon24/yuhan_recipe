@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="ImportExportAction">
+		<item key="ImportExportPage.STORE_SELECTED_IMPORT_WIZARD_ID" value="org.eclipse.e4.ui.importer.wizard"/>
+		<list key="ImportExportPage.STORE_EXPANDED_IMPORT_CATEGORIES">
+			<item value="org.eclipse.ui.Basic"/>
+		</list>
+	</section>
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+	<section name="ZipFileImportWizard">
+	</section>
+>>>>>>> fea3978be54c6708ee74b6e851f6250684e7162d
+=======
+	<section name="ZipFileImportWizard">
+	</section>
+=======
+>>>>>>> 02452c94e2f4346398474d3960f135b3d271e126
+>>>>>>> sj
+</section>
