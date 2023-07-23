@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.dao.RecipeDAO">
+
+        <!-- 레시피 조회 -->
+        <select id="listRecipe" resultType="com.example.vo.RecipeEntity">
+            select recipe_id, title, main_photo, created_date, user_id from recipe
+        </select>
+</mapper>
