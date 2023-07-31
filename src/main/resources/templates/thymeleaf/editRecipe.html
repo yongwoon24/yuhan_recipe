@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Recipe</title>
+</head>
+<body>
+    <h1>Edit Recipe</h1>
+    <form th:action="@{/editRecipe/{recipe_id}(recipe_id=${recipe.recipe_id})}" th:object="${recipe}" method="post">
+        <input type="hidden" th:field="*{recipe_id}" />
+        <label>title: <input type="text" th:field="*{title}" /></label><br/>
+        <label>main_photo: <input type="text" th:field="*{main_photo}" /></label><br/>
+        <label>created_date: <input type="date" th:field="*{created_date}" /></label><br/>
+
+        <input type="submit" value="Update" />
+    </form>
+</body>
+</html>
