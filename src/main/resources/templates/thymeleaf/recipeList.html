@@ -20,7 +20,10 @@
             <td th:text="${recipe.main_photo}"></td>
             <td th:text="${recipe.created_date}"></td>
             <td th:text="${recipe.user_id}"></td>
+            <td><a th:href="@{/editRecipe/{recipe_id}(recipe_id=${recipe.recipe_id})}">Edit</a></td>
+            <td><a th:href="@{/deleteRecipe/{recipe_id}(recipe_id=${recipe.recipe_id})}">Delete</a></td>
         </tr>
     </table>
+       <a href="/createRecipe">Create New Recipe</a>
 </body>
 </html>

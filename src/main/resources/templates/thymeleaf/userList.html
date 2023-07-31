@@ -22,10 +22,10 @@
             <td th:text="${user.email}"></td>
             <td th:text="${user.birthdate}"></td>
             <td th:text="${user.phone_number}"></td>
-            <td><a th:href="@{/edit/{user_id}(user_id=${user.user_id})}">Edit</a></td>
-            <td><a th:href="@{/delete/{user_id}(user_id=${user.user_id})}">Delete</a></td>
+            <td><a th:href="@{/editUser/{user_id}(user_id=${user.user_id})}">Edit</a></td>
+            <td><a th:href="@{/deleteUser/{user_id}(user_id=${user.user_id})}">Delete</a></td>
         </tr>
     </table>
-    <a href="/create">Create New User</a>
+    <a href="/createUser">Create New User</a>
 </body>
 </html>

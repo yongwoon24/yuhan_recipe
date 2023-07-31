@@ -6,12 +6,12 @@
 </head>
 <body>
     <h1>Edit User</h1>
-    <form th:action="@{/edit/{user_id}(user_id=${user.user_id})}" th:object="${user}" method="post">
+    <form th:action="@{/editUser/{user_id}(user_id=${user.user_id})}" th:object="${user}" method="post">
         <input type="hidden" th:field="*{user_id}" />
         <label>Name: <input type="text" th:field="*{name}" /></label><br/>
         <label>Email: <input type="text" th:field="*{email}" /></label><br/>
         <label>Password: <input type="password" th:field="*{password}" /></label><br/>
-        <label>Birthdate: <input type="text" th:field="*{birthdate}" /></label><br/>
+        <label>Birthdate: <input type="date" th:field="*{birthdate}" /></label><br/>
         <label>Phone Number: <input type="text" th:field="*{phone_number}" /></label><br/>
         <input type="submit" value="Update" />
     </form>

@@ -18,41 +18,41 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
     
-    @GetMapping("/")
+    @GetMapping("/user")
     public String listUsers(Model model) {
         List<User> users = userRepository.findAll();
         model.addAttribute("users", users);
-        return "list";
+        return "/userList";
     }
     
-    @GetMapping("/create")
+    @GetMapping("/createUser")
     public String createUserForm(Model model) {
         model.addAttribute("user", new User());
-        return "create";
+        return "/createUser";
     }
     
-    @PostMapping("/create")
+    @PostMapping("/createUser")
     public String createUser(@ModelAttribute User user) {
         userRepository.save(user);
-        return "redirect:/";
+        return "redirect:/user";
     }
     
-    @GetMapping("/edit/{user_id}")
+    @GetMapping("/editUser/{user_id}")
     public String editUserForm(@PathVariable String user_id, Model model) {
         User user = userRepository.findById(user_id).orElseThrow(() -> new IllegalArgumentException("Invalid User ID: " + user_id));
         model.addAttribute("user", user);
-        return "edit";
+        return "/editUser";
     }
     
-    @PostMapping("/edit/{user_id}")
+    @PostMapping("/editUser/{user_id}")
     public String editUser(@PathVariable String user_id, @ModelAttribute User user) {
         userRepository.save(user);
-        return "redirect:/";
+        return "redirect:/user";
     }
     
-    @GetMapping("/delete/{user_id}")
+    @GetMapping("/deleteUser/{user_id}")
     public String deleteUser(@PathVariable String user_id) {
         userRepository.deleteById(user_id);
-        return "redirect:/";
+        return "redirect:/user";
     }
 }
