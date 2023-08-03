@@ -200,3 +200,19 @@ CREATE TABLE Love (
     FOREIGN KEY (user_id) REFERENCES User(user_id),
     FOREIGN KEY (post_id) REFERENCES Board(post_id)
 );
+
+CREATE TABLE Category (
+    category_name VARCHAR(255) PRIMARY KEY
+    );
+
+ALTER TABLE Recipe
+ADD category_name VARCHAR(255),
+ADD CONSTRAINT fk_category
+    FOREIGN KEY (category_name) REFERENCES Category(category_name);
+
+INSERT INTO `yuhan_db`.`category` (`category_name`) VALUES ('피크닉');
+INSERT INTO `yuhan_db`.`category` (`category_name`) VALUES ('혼밥');
+INSERT INTO `yuhan_db`.`category` (`category_name`) VALUES ('파티');
+INSERT INTO `yuhan_db`.`category` (`category_name`) VALUES ('가정');
+INSERT INTO `yuhan_db`.`category` (`category_name`) VALUES ('디저트');
+INSERT INTO `yuhan_db`.`category` (`category_name`) VALUES ('야식/안주');
