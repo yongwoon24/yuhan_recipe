@@ -11,6 +11,7 @@ public class Recipe {
 	private String main_photo;
 	private String created_date;
 	private String user_id;
+	private String category_name;
 	
 	public int getRecipe_id() {
 		return recipe_id;
@@ -42,11 +43,17 @@ public class Recipe {
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
+	public String getCategory_name() {
+		return category_name;
+	}
+	public void setCategory_name(String category_name) {
+		this.category_name = category_name;
+	}
 	
 	@Override
 	public String toString() {
-		return "RecipeEntity [recipe_id=" + recipe_id + ", title=" + title + ", main_photo=" + main_photo
-				+ ", created_date=" + created_date + ", user_id=" + user_id + "]";
+		return "Recipe [recipe_id=" + recipe_id + ", title=" + title + ", main_photo=" + main_photo + ", created_date="
+				+ created_date + ", user_id=" + user_id + ", category_name=" + category_name + "]";
 	}
 	
 	
