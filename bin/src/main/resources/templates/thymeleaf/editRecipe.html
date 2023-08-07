@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Recipe</title>
+</head>
+<body>
+    <h1>Edit Recipe</h1>
+    <form th:action="@{/editRecipe/{recipe_id}(recipe_id=${recipe.recipe_id})}" th:object="${recipe}" method="post">
+        <input type="hidden" th:field="*{recipe_id}" />
+        <label>title: <input type="text" th:field="*{title}" /></label><br/>
+        <label>main_photo: <input type="text" th:field="*{main_photo}" /></label><br/>
+        <label>created_date: <input type="date" th:field="*{created_date}" /></label><br/>
+        <label>user_id: <input type="text" th:field="*{user_id}" readonly/></label><br/>
+         <label>Category Name:
+            <select name="category_name">
+                <option value="파티">파티</option>
+                <option value="가정">가정</option>
+                <option value="디저트">디저트</option>
+                <option value="혼밥">혼밥</option>
+                <option value="야식/안주">야식/안주</option>
+                <option value="피크닉">피크닉</option>
+            </select>
+        </label><br/>
+        <input type="submit" value="Update" />
+    </form>
+</body>
+</html>
