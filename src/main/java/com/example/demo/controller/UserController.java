@@ -76,11 +76,29 @@ public class UserController {
         }
     }
     
+   /*
+    * @GetMapping("/checkDuplicateId")
+    * 
+    * @ResponseBody public String checkDuplicateId(@RequestParam String user_id) {
+    * User existingUser = userRepository.findById(user_id).orElse(null); if
+    * (existingUser != null) { return "duplicate"; } else { return "available"; } }
+    */
+    
     @GetMapping("/checkUserIdAvailability")
     @ResponseBody
     public boolean checkUserIdAvailability(@RequestParam String user_id) {
         // 데이터베이스에서 해당 사용자 이름을 검색하여 결과 확인
        List<User> existingUser = userRepository.findByUser_id(user_id);
+        
+        // 중복 여부에 따라 결과 반환
+        return existingUser.isEmpty(); // true는 중복이 아님, false는 중복임
+    }
+    
+    @GetMapping("/checkUseremailAvailability")
+    @ResponseBody
+    public boolean checkUseremailAvailability(@RequestParam String email) {
+        // 데이터베이스에서 해당 사용자 이름을 검색하여 결과 확인
+       List<User> existingUser = userRepository.findByemailList(email);
         
         // 중복 여부에 따라 결과 반환
         return existingUser.isEmpty(); // true는 중복이 아님, false는 중복임
