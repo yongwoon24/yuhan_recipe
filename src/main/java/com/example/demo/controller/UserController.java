@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.User;
 import com.example.demo.repository.UserRepository;
@@ -54,5 +55,23 @@ public class UserController {
     public String deleteUser(@PathVariable String user_id) {
         userRepository.deleteById(user_id);
         return "redirect:/user";
+    }
+    
+    @GetMapping("/login")
+    public String showLoginForm(Model model) {
+        model.addAttribute("user", new User());
+        return "login";
+    }
+    
+    @PostMapping("/login")
+    public String processLogin(@RequestParam String user_id, @RequestParam String password) {
+        User user = userRepository.findByUser_idAndPassword(user_id, password);
+        if (user != null) {
+            // 로그인 성공 처리
+            return "redirect:/home"; // 로그인 후 이동할 페이지 지정
+        } else {
+            // 로그인 실패 처리
+            return "redirect:/login?error=true";
+        }
     }
 }
