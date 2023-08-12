@@ -22,22 +22,25 @@
         <tr>
             <th>Recipe_ID</th>
             <th>Title</th>
+            <th>Recipe_Introduce</th>
             <th>Main_Photo</th>
             <th>Created_Date</th>
             <th>User_ID</th>
             <th>Category_Name</th>
+            <th>View</th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
         <tr th:each="recipe : ${recipes}">
             <td th:text="${recipe.recipe_id}"></td>
             <td th:text="${recipe.title}"></td>
+            <td th:text="${recipe.recipe_introduce}"></td>
             <td th:text="${recipe.main_photo}"></td>
             <td th:text="${recipe.created_date}"></td>
             <td th:text="${recipe.user_id}"></td>
             <td th:text="${recipe.category_name}"></td>
             
-            
+            <td><a th:href="@{/viewRecipe/{recipe_id}(recipe_id=${recipe.recipe_id})}">View</a></td>
             <td><a th:href="@{/editRecipe/{recipe_id}(recipe_id=${recipe.recipe_id})}">Edit</a></td>
             <td><a th:href="@{/deleteRecipe/{recipe_id}(recipe_id=${recipe.recipe_id})}">Delete</a></td>
         </tr>

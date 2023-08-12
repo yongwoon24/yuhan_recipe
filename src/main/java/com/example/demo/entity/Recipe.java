@@ -8,6 +8,7 @@ public class Recipe {
 	@Id
 	private int recipe_id;
 	private String title;
+	private String recipe_introduce;
 	private String main_photo;
 	private String created_date;
 	private String user_id;
@@ -49,12 +50,18 @@ public class Recipe {
 	public void setCategory_name(String category_name) {
 		this.category_name = category_name;
 	}
+	public String getRecipe_introduce() {
+		return recipe_introduce;
+	}
+	public void setRecipe_introduce(String recipe_introduce) {
+		this.recipe_introduce = recipe_introduce;
+	}
 	
 	@Override
 	public String toString() {
-		return "Recipe [recipe_id=" + recipe_id + ", title=" + title + ", main_photo=" + main_photo + ", created_date="
-				+ created_date + ", user_id=" + user_id + ", category_name=" + category_name + "]";
+		return "Recipe [recipe_id=" + recipe_id + ", title=" + title + ", recipe_introduce=" + recipe_introduce
+				+ ", main_photo=" + main_photo + ", created_date=" + created_date + ", user_id=" + user_id
+				+ ", category_name=" + category_name + "]";
 	}
-	
 	
 }

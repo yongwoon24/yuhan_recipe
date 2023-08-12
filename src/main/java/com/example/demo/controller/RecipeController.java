@@ -54,5 +54,8 @@ public class RecipeController {
             recipeRepository.deleteById(recipe_id);
             return "redirect:/recipe";
         }
+        
+        
+        
 	}
 
