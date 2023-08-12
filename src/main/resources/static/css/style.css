@@ -62,11 +62,12 @@ li > img{
 	font-family: 'Jua', sans-serif;	
 }
 .menubar { 
+	box-shadow: #949494 5px 5px 10px;
 	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
 	width:100%;
 	height:128px;
 	position:absolute;
-	left:7px;
+	left:0px;
 	top:115px;
 }
 .menu4 { 
@@ -164,6 +165,7 @@ li > img{
 	left:50%;
 	top:32px;
 	transform: translate(-50%,0%);
+	
 }
 .searchradius { 
 	background-color:rgba(244.3749949336052, 244.3749949336052, 244.3749949336052, 1);
@@ -176,6 +178,7 @@ li > img{
 	border-top-right-radius:20px;
 	border-bottom-left-radius:20px;
 	border-bottom-right-radius:20px;
+	box-shadow: #949494 5px 5px 10px;
 }
 .searchicon { 
 	color:rgba(153.00000607967377, 153.00000607967377, 153.00000607967377, 1);
