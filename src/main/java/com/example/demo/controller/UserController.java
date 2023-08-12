@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.entity.User;
 import com.example.demo.repository.UserRepository;
@@ -25,16 +27,16 @@ public class UserController {
         return "userList";
     }
     
-    @GetMapping("/createUser")
+    @GetMapping("/signup")
     public String createUserForm(Model model) {
         model.addAttribute("user", new User());
-        return "createUser";
+        return "signup";
     }
     
-    @PostMapping("/createUser")
+    @PostMapping("/signup")
     public String createUser(@ModelAttribute User user) {
         userRepository.save(user);
-        return "redirect:/user";
+        return "redirect:/login";
     }
     
     @GetMapping("/editUser/{user_id}")
@@ -54,5 +56,51 @@ public class UserController {
     public String deleteUser(@PathVariable String user_id) {
         userRepository.deleteById(user_id);
         return "redirect:/user";
+    }
+    
+    @GetMapping("/login")
+    public String showLoginForm(Model model) {
+        model.addAttribute("user", new User());
+        return "login";
+    }
+    
+    @PostMapping("/login")
+    public String processLogin(@RequestParam String user_id, @RequestParam String password) {
+        User user = userRepository.findByUserIdAndPassword(user_id, password);
+        if (user != null) {
+            // 로그인 성공 처리
+            return "redirect:/"; // 로그인 후 이동할 페이지 지정
+        } else {
+            // 로그인 실패 처리
+            return "redirect:/login?error=true";
+        }
+    }
+    
+   /*
+    * @GetMapping("/checkDuplicateId")
+    * 
+    * @ResponseBody public String checkDuplicateId(@RequestParam String user_id) {
+    * User existingUser = userRepository.findById(user_id).orElse(null); if
+    * (existingUser != null) { return "duplicate"; } else { return "available"; } }
+    */
+    
+    @GetMapping("/checkUserIdAvailability")
+    @ResponseBody
+    public boolean checkUserIdAvailability(@RequestParam String user_id) {
+        // 데이터베이스에서 해당 사용자 이름을 검색하여 결과 확인
+       List<User> existingUser = userRepository.findByUser_id(user_id);
+        
+        // 중복 여부에 따라 결과 반환
+        return existingUser.isEmpty(); // true는 중복이 아님, false는 중복임
+    }
+    
+    @GetMapping("/checkUseremailAvailability")
+    @ResponseBody
+    public boolean checkUseremailAvailability(@RequestParam String email) {
+        // 데이터베이스에서 해당 사용자 이름을 검색하여 결과 확인
+       List<User> existingUser = userRepository.findByemailList(email);
+        
+        // 중복 여부에 따라 결과 반환
+        return existingUser.isEmpty(); // true는 중복이 아님, false는 중복임
     }
 }

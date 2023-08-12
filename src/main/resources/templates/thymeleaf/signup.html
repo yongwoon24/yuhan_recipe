@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+
+   </style>
+     <script>
+         function psCheck() {
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("confirmPassword").value;
+        var checkMsg = document.getElementById("checkMsg");
+        
+        if (password === confirmPassword) {
+            checkMsg.style.color = "green";
+            checkMsg.innerHTML = "비밀번호가 일치합니다.";
+        } else {
+            checkMsg.style.color = "red";
+            checkMsg.innerHTML = "비밀번호가 일치하지 않습니다.";
+        }
+    }
+    
+      function validateForm() {
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("confirmPassword").value;
+        
+        if (password !== confirmPassword) {
+            alert("비밀번호가 일치하지 않습니다!!");
+            return false;
+    }
+    
+    }
+        $(document).ready(function() {
+            $("#user_id").on("input", function() {
+                var user_id = $(this).val();
+                
+                $.ajax({
+                    type: "GET",
+                    url: "/checkUserIdAvailability?user_id=" + user_id,
+                    success: function(response) {
+                        if (response === true) {
+                            $("#duplicationMessage").text("아이디 사용 가능");
+                            
+
+                        } else {
+                            $("#duplicationMessage").text("아이디 중복");
+                        
+                        }
+                    },
+                    error: function() {
+                        $("#duplicationMessage").text("에러");
+                    }
+                });
+            });
+        });
+        
+        
+          $(document).ready(function() {
+            $("#email").on("input", function() {
+                var email = $(this).val();
+                
+                $.ajax({
+                    type: "GET",
+                    url: "/checkUseremailAvailability?email=" + email,
+                    success: function(response) {
+                        if (response === true) {
+                            $("#duplicationMessageemail").text("이메일 사용 가능");
+                           $("#signupButton").prop("disabled", false);
+
+                        } else {
+                            $("#duplicationMessageemail").text("이메일 중복");
+                           $("#signupButton").prop("disabled", true);
+                        }
+                    },
+                    error: function() {
+                        $("#duplicationMessageemail").text("에러");
+                    }
+                });
+            });
+        });
+
+
+    </script>
+</head>
+<body>
+
+    <h1>모두의 레시피 회원가입</h1>
+   <form th:action="@{/signup}" th:object="${user}" method="post" onsubmit="return validateForm()">
+      <label>이름 : <input type="text" th:field="*{name}" required/></label><br/>
+       <label for="user_id">아이디 : <input type="text" th:field="*{user_id}" id="user_id" placeholder="4자이상" minlength="4" maxlength="15" required/></label>
+       <span id="duplicationMessage"></span><br>
+       <label>비밀번호 : <input type="password" th:field="*{password}" required/></label><br/>
+       <label>비밀번호 확인 : <input type="password" id="confirmPassword" onkeyup="psCheck()" required/></label>
+       <span id="checkMsg"></span><br/>
+       <label>생년월일 : <input type="date" th:field="*{birthdate}" required/></label><br/>
+        <label>이메일 : <input type="text" th:field="*{email}" required/></label>
+        <span id="duplicationMessageemail"></span><br><br/>
+       <label>핸드폰 번호 : <input type="text" th:field="*{phone_number}"  required/></label><br/>
+       <input type="submit" id="signupButton" value="회원가입" disabled  /> <!-- 버튼 비활성화 상태로 초기화 -->
+   </br>
+</body>
+</html>
