@@ -170,9 +170,7 @@ CREATE TABLE CookingStep (
 
 CREATE TABLE Ingredient (
     ingredient_id INT AUTO_INCREMENT PRIMARY KEY,
-    recipe_id INT,
     ingredient_name VARCHAR(255),
-    FOREIGN KEY (recipe_id) REFERENCES Recipe(recipe_id)
 );
 
 
@@ -208,6 +206,14 @@ CREATE TABLE Category (
     category_name VARCHAR(255) PRIMARY KEY
     );
 
+CREATE TABLE RecipeIngredient (
+    r_id INT AUTO_INCREMENT PRIMARY KEY,
+    recipe_id INT,
+    ingredient_id INT,
+    FOREIGN KEY (recipe_id) REFERENCES Recipe(recipe_id),
+    FOREIGN KEY (ingredient_id) REFERENCES Ingredient(ingredient_id)
+);
+
 INSERT INTO `yuhan_db`.`category` (`category_name`) VALUES ('피크닉');
 INSERT INTO `yuhan_db`.`category` (`category_name`) VALUES ('혼밥');
 INSERT INTO `yuhan_db`.`category` (`category_name`) VALUES ('파티');
@@ -219,10 +225,10 @@ INSERT INTO `yuhan_db`.`category` (`category_name`) VALUES ('야식/안주');
 ALTER TABLE Recipe
 ADD view_count INT DEFAULT 0;
 
-SELECT COUNT(*) AS like_count
+SELECT COUNT(*) AS like_count // 좋아요 수 가져오기
 FROM Love
 WHERE recipe_id = <레시피아이디>;
 
-UPDATE Recipe
+UPDATE Recipe // 조회수 가져오기
 SET view_count = view_count + 1
 WHERE recipe_id = <레시피아이디>;
