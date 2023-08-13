@@ -145,6 +145,9 @@ CREATE TABLE Board (
     FOREIGN KEY (user_id) REFERENCES User(user_id)
 );
 
+CREATE TABLE Category (
+    category_name VARCHAR(255) PRIMARY KEY
+);
 
 CREATE TABLE Recipe (
     recipe_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -202,9 +205,6 @@ CREATE TABLE Love (
     FOREIGN KEY (recipe_id) REFERENCES Recipe(recipe_id),
 );
 
-CREATE TABLE Category (
-    category_name VARCHAR(255) PRIMARY KEY
-    );
 
 CREATE TABLE RecipeIngredient (
     r_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -220,10 +220,6 @@ INSERT INTO `yuhan_db`.`category` (`category_name`) VALUES ('파티');
 INSERT INTO `yuhan_db`.`category` (`category_name`) VALUES ('가정');
 INSERT INTO `yuhan_db`.`category` (`category_name`) VALUES ('디저트');
 INSERT INTO `yuhan_db`.`category` (`category_name`) VALUES ('야식/안주');
-
-
-ALTER TABLE Recipe
-ADD view_count INT DEFAULT 0;
 
 SELECT COUNT(*) AS like_count // 좋아요 수 가져오기
 FROM Love
