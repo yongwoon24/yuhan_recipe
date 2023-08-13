@@ -1,5 +1,8 @@
 package com.example.demo.entity;
 
+import java.time.LocalDate;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 @Entity
@@ -7,8 +10,9 @@ public class Board {
 	@Id
 	private int post_id;
 	private String title;
+	@Column(name = "content", columnDefinition = "TEXT")
 	private String content;
-	private String created_date;
+	private LocalDate created_date;
 	private String user_id;
 	
 	public int getPost_id() {
@@ -29,10 +33,10 @@ public class Board {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getCreated_date() {
+	public LocalDate getCreated_date() {
 		return created_date;
 	}
-	public void setCreated_date(String created_date) {
+	public void setCreated_date(LocalDate created_date) {
 		this.created_date = created_date;
 	}
 	public String getUser_id() {
