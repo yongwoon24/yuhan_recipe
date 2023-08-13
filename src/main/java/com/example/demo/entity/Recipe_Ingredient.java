@@ -4,7 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 @Entity
-public class RecipeIngredient {
+public class Recipe_Ingredient {
 	@Id
 	private int r_id;
 	private int recipe_id;
