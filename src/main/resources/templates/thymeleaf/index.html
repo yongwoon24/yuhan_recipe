@@ -40,16 +40,10 @@
 		<!-- 여기부터 body에 추가할 코드 입력 -->
 		<div class="slide_wrapper">
 			<ul class="img_slide">
-				<li><img th:src="@{/../img/1.jpg}"><ol>백종원 오이무침 새콤달콤 맛있게~</ol></li>
-				<li><img src="https://placehold.it/400x400"><ol>맛있는 밑반찬 백종원 가지볶음</ol></li>
-				<li><img src="https://placehold.it/400x400"><ol>닭볶음탕 닭도리탕 황금레시피 짱짱맛 칼칼함이 남달라</ol></li>
-				<li><img src="https://placehold.it/400x400"><ol>오징어 볶음, 향과 맛이 일품! 백종원 오징어 볶음</ol></li>
-				<li><img src="https://placehold.it/400x400"><ol>돼지고기 김치찌개 맛내는 비법</ol></li>
-				<li><img src="https://placehold.it/400x400"><ol>백종원레시피로 만든 콩나물무침으로 밥 한 끼 뚝딱 ~</ol></li>
-				<li><img src="https://placehold.it/400x400"><ol>밥도둑 깻잎김치 만들기 어렵지 않아요^^</ol></li>
-				<li><img src="https://placehold.it/400x400"><ol>제육볶음 만드는법 # 기사식당st 레시피</ol></li>
-				<li><img src="https://placehold.it/400x400"><ol>양념장이 참 맛있는 두부조림</ol></li>
-				<li><img src="https://placehold.it/400x400"><ol>국물이 너무 개운해요~맑은콩나물국 맛있게 끓이는법(김진옥요리가좋다)</ol></li>				
+				<li th:each="entry : ${top10RecipeLikeCounts}">
+					<img th:src="@{/__${recipeImages[entry.key]}__.jpg}">
+					<ol th:text="${recipeTitles[entry.key]}">asd</ol >
+					<ol th:text="'Likes : ' + ${entry.value}"></ol></li>	
 			</ul>	
 			<div class="slide_control">
 			<p>

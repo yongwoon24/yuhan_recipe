@@ -28,7 +28,7 @@ public class LoveController {
         this.recipeRepository = recipeRepository;
     }
 
-    @GetMapping("/top-recipes")
+    @GetMapping("/")
     public String getTopRecipes(Model model) {
         // Get the list of top 10 liked recipes
         List<Love> topLove = loveRepository.findByOrderByLoveId();
@@ -76,7 +76,7 @@ public class LoveController {
         model.addAttribute("recipeTitles", recipeTitles);
         model.addAttribute("recipeImages", recipeImages);
 
-        return "test"; // return the name of your HTML template
+        return "index"; // return the name of your HTML template
         
         
     }    
