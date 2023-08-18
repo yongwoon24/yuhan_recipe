@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.example.demo.entity.Love;
 import com.example.demo.entity.Recipe;
 import com.example.demo.repository.LoveRepository;
+import com.example.demo.repository.RecipeRepository;
 
 import java.util.Comparator;
 import java.util.LinkedHashMap;
@@ -19,10 +20,12 @@ import java.util.stream.Collectors;
 public class LoveController {
 
     private final LoveRepository loveRepository;
+	private final RecipeRepository recipeRepository;
 
     @Autowired
-    public LoveController(LoveRepository loveRepository) {
+    public LoveController(LoveRepository loveRepository, RecipeRepository recipeRepository) {
         this.loveRepository = loveRepository;
+        this.recipeRepository = recipeRepository;
     }
 
     @GetMapping("/top-recipes")
@@ -57,9 +60,24 @@ public class LoveController {
                         LinkedHashMap::new
                 ));
         
-        model.addAttribute("recipeLikeCounts", recipeLikeCounts);
-        model.addAttribute("sortedRecipeLikeCounts", sortedRecipeLikeCounts);
+        Map<Long, String> recipeTitles = top10RecipeLikeCounts.entrySet().stream()
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        entry -> recipeRepository.findTitleByRecipeId(entry.getKey())
+                ));
+        Map<Long, String> recipeImages = top10RecipeLikeCounts.entrySet().stream()
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        entry -> "img/" + entry.getKey() // Assuming image file names are based on recipe IDs
+                ));
+        //model.addAttribute("recipeLikeCounts", recipeLikeCounts);
+        //model.addAttribute("sortedRecipeLikeCounts", sortedRecipeLikeCounts);
         model.addAttribute("top10RecipeLikeCounts", top10RecipeLikeCounts);
+        model.addAttribute("recipeTitles", recipeTitles);
+        model.addAttribute("recipeImages", recipeImages);
+
         return "test"; // return the name of your HTML template
-    }
+        
+        
+    }    
 }

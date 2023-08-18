@@ -1,17 +1,9 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top 10 Recipes</title>
-</head>
-<body>
-    <h1>Top 10 Recipes</h1>
-    <ul>
-        <li th:each="entry : ${top10RecipeLikeCounts}">
-            <span th:text="${entry.key}"></span> <!-- Recipe ID -->
-            <span> - Likes: <span th:text="${entry.value}"></span></span> <!-- Like Count -->
-        </li> 
-    </ul>
-</body>
-</html>
+<h1>Top 10 Recipes</h1>
+<ul>
+    <li th:each="entry : ${top10RecipeLikeCounts}">
+        <span th:text="${entry.key}"></span> <!-- Recipe ID -->
+        <span> - Likes: <span th:text="${entry.value}"></span></span> <!-- Like Count -->
+        <span> - Title: <span th:text="${recipeTitles[entry.key]}"></span></span> <!-- Recipe Title -->
+        <img th:src="@{/__${recipeImages[entry.key]}__.jpg}" alt="Recipe Image"/>
+    </li> 
+</ul>
