@@ -68,7 +68,7 @@ public class LoveController {
         Map<Long, String> recipeImages = top10RecipeLikeCounts.entrySet().stream()
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
-                        entry -> "img/" + entry.getKey() // Assuming image file names are based on recipe IDs
+                        entry -> "img/" + recipeRepository.findMainPhotoByRecipeId(entry.getKey()) // Assuming image file names are based on recipe IDs
                 ));
         //model.addAttribute("recipeLikeCounts", recipeLikeCounts);
         //model.addAttribute("sortedRecipeLikeCounts", sortedRecipeLikeCounts);

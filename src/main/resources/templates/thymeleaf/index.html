@@ -20,7 +20,7 @@
 		<span class="menu3"><a href="user">메뉴3</a></span>
 		<span class="menu2"><a href="user">메뉴2</a></span>
 		<span class="menu1"><a href="user">메뉴1</a></span>
-		<span class="mainicon">모두의레시피</span>
+		<span><a class="mainicon" href="/">모두의레시피</a></span>
 		<!-- 마이페이지 주소 입력 --> 
 		<div class="usericon"><a href="마이페이지.html"><i class="fa-solid fa-user"></i></a></div>
 		<!-- 로그아웃 주소 입력 --> 
@@ -43,7 +43,12 @@
 				<li th:each="entry : ${top10RecipeLikeCounts}">
 					<img th:src="@{/__${recipeImages[entry.key]}__.jpg}">
 					<ol th:text="${recipeTitles[entry.key]}">asd</ol >
-					<ol th:text="'Likes : ' + ${entry.value}"></ol></li>	
+					<ol class="likes">
+    					<li>
+							<i class="fas fa-heart"></i>
+        					<span th:text="${entry.value}"></span>
+    					</li>
+					</ol>	
 			</ul>	
 			<div class="slide_control">
 			<p>
