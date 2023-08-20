@@ -16,7 +16,7 @@
 <div class="body_wrapper">
 	<div class="body_content">
 		<div class="menubar"></div>
-		<span class="menu4"><a href="user">메뉴4</a></span>
+		<span class="menu4"><a href="recipe">메뉴4</a></span>
 		<span class="menu3"><a href="user">메뉴3</a></span>
 		<span class="menu2"><a href="user">메뉴2</a></span>
 		<span class="menu1"><a href="user">메뉴1</a></span>
@@ -41,14 +41,15 @@
 		<div class="slide_wrapper">
 			<ul class="img_slide">
 				<li th:each="entry : ${top10RecipeLikeCounts}">
-					<img th:src="@{/__${recipeImages[entry.key]}__.jpg}">
-					<ol th:text="${recipeTitles[entry.key]}">asd</ol >
+					<a href="recipe"><img th:src="@{/__${recipeImages[entry.key]}__.jpg}"></a>
+					<a href="recipe"><ol th:text="${recipeTitles[entry.key]}">asd</ol></a>
 					<ol class="likes">
     					<li>
 							<i class="fas fa-heart"></i>
         					<span th:text="${entry.value}"></span>
     					</li>
 					</ol>	
+				</li>
 			</ul>	
 			<div class="slide_control">
 			<p>
