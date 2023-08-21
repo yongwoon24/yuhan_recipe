@@ -15,7 +15,7 @@ var img_slide = document.querySelector('.img_slide'),
 	}
 	
 	nextBtn.addEventListener('click', function(){
-		if(currentIdx<slideCount - 6){
+		if(currentIdx<slideCount - 15){
 			moveSlide(currentIdx + 1);
 		}else{
 			moveSlide(0);
@@ -25,7 +25,7 @@ var img_slide = document.querySelector('.img_slide'),
 		if(currentIdx>0){
 			moveSlide(currentIdx - 1);
 		}else{
-			moveSlide(slideCount - 6);
+			moveSlide(slideCount - 15);
 		}
 		
 	});

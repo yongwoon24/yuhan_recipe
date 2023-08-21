@@ -16,11 +16,16 @@
 <div class="body_wrapper">
 	<div class="body_content">
 		<div class="menubar"></div>
-		<span class="menu4"><a href="user">메뉴4</a></span>
+		<span class="menu4"><a href="recipe">메뉴4</a></span>
 		<span class="menu3"><a href="user">메뉴3</a></span>
 		<span class="menu2"><a href="user">메뉴2</a></span>
+
 		<span class="menu1"><a href="recipeList2">메뉴1</a></span>
 		<span class="mainicon">모두의레시피</span>
+
+		<span class="menu1"><a href="user">메뉴1</a></span>
+		<span><a class="mainicon" href="/">모두의레시피</a></span>
+
 		<!-- 마이페이지 주소 입력 --> 
 		<div class="usericon"><a href="마이페이지.html"><i class="fa-solid fa-user"></i></a></div>
 		<!-- 로그아웃 주소 입력 --> 
@@ -40,27 +45,27 @@
 		<!-- 여기부터 body에 추가할 코드 입력 -->
 		<div class="slide_wrapper">
 			<ul class="img_slide">
-				<li><img th:src="@{/../img/a.jpg}"><ol>백종원 오이무침 새콤달콤 맛있게~</ol></li>
-				<li><img src="https://placehold.it/400x400"><ol>맛있는 밑반찬 백종원 가지볶음</ol></li>
-				<li><img src="https://placehold.it/400x400"><ol>닭볶음탕 닭도리탕 황금레시피 짱짱맛 칼칼함이 남달라</ol></li>
-				<li><img src="https://placehold.it/400x400"><ol>오징어 볶음, 향과 맛이 일품! 백종원 오징어 볶음</ol></li>
-				<li><img src="https://placehold.it/400x400"><ol>돼지고기 김치찌개 맛내는 비법</ol></li>
-				<li><img src="https://placehold.it/400x400"><ol>백종원레시피로 만든 콩나물무침으로 밥 한 끼 뚝딱 ~</ol></li>
-				<li><img src="https://placehold.it/400x400"><ol>밥도둑 깻잎김치 만들기 어렵지 않아요^^</ol></li>
-				<li><img src="https://placehold.it/400x400"><ol>제육볶음 만드는법 # 기사식당st 레시피</ol></li>
-				<li><img src="https://placehold.it/400x400"><ol>양념장이 참 맛있는 두부조림</ol></li>
-				<li><img src="https://placehold.it/400x400"><ol>국물이 너무 개운해요~맑은콩나물국 맛있게 끓이는법(김진옥요리가좋다)</ol></li>				
+				<li th:each="entry : ${top10RecipeLikeCounts}">
+					<a href="recipe"><img th:src="@{/__${recipeImages[entry.key]}__.jpg}"></a>
+					<a href="recipe"><ol th:text="${recipeTitles[entry.key]}">asd</ol></a>
+					<ol class="likes">
+    					<li>
+							<i class="fas fa-heart"></li>
+        					<span th:text="${entry.value}"> </span>
+    					</li>
+					</ol>	
+				</li>
 			</ul>	
 			<div class="slide_control">
 			<p>
-				<span class="prev"><i class="fa-solid fa-arrow-left"></i></span>
-				<span class="next"><i class="fa-solid fa-arrow-right"></i></span>
+				<span class="prev"> <i class="fa-solid fa-arrow-left"> </i></span>
+				<span class="next"> <i class="fa-solid fa-arrow-right"> </i></span>
 			</p>
 			
 			</div>
 			
 			
-		<script th:src="@{/../js/main.js}"></script>
+		<scriptt th:src="@{/../js/main.js}"></script>
 		</div>
 		
 		
