@@ -2,6 +2,7 @@ package com.example.demo.entity;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
@@ -10,11 +11,41 @@ public class Recipe {
 	@Id
 	private int recipe_id;
 	private String title;
+	
+	@Column(nullable = false)
 	private String main_photo;
 	private LocalDate created_date;
 	private String user_id;
 	private String category_name;
 	private Integer view_count = 0;
+	public String getMain_photo_oriname() {
+		return main_photo_oriname;
+	}
+	public void recipeRepository(String main_photo_oriname) {
+		this.main_photo_oriname = main_photo_oriname;
+	}
+	public void setMain_photo_oriname(String main_photo_oriname) {
+		this.main_photo_oriname = main_photo_oriname;
+	}
+	public int getMain_photo_no() {
+		return main_photo_no;
+	}
+	public void setMain_photo_no(int main_photo_no) {
+		this.main_photo_no = main_photo_no;
+	}
+	public String getMain_photo_url() {
+		return main_photo_url;
+	}
+	public void setMain_photo_url(String main_photo_url) {
+		this.main_photo_url = main_photo_url;
+	}
+
+	@Column(nullable = false)
+	private String main_photo_oriname;
+	@Column(nullable = false)
+	private int main_photo_no;
+	@Column(nullable = false)
+	private String main_photo_url;
 	
 	public int getRecipe_id() {
 		return recipe_id;
@@ -63,7 +94,8 @@ public class Recipe {
 	public String toString() {
 		return "Recipe [recipe_id=" + recipe_id + ", title=" + title + ", main_photo=" + main_photo + ", created_date="
 				+ created_date + ", user_id=" + user_id + ", category_name=" + category_name + ", view_count="
-				+ view_count + "]";
+				+ view_count + ", main_photo_oriname=" + main_photo_oriname + ", main_photo_no=" + main_photo_no
+				+ ", main_photo_url=" + main_photo_url + "]";
 	}
 	
 	
