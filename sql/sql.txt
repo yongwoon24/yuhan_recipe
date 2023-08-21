@@ -145,6 +145,9 @@ CREATE TABLE Board (
     FOREIGN KEY (user_id) REFERENCES User(user_id)
 );
 
+CREATE TABLE Category (
+    category_name VARCHAR(255) PRIMARY KEY
+    );
 
 CREATE TABLE Recipe (
     recipe_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -201,10 +204,6 @@ CREATE TABLE Love (
     FOREIGN KEY (user_id) REFERENCES User(user_id),
     FOREIGN KEY (recipe_id) REFERENCES Recipe(recipe_id)
 );
-
-CREATE TABLE Category (
-    category_name VARCHAR(255) PRIMARY KEY
-    );
 
 CREATE TABLE Recipe_Ingredient (
     r_id INT AUTO_INCREMENT PRIMARY KEY,
