@@ -2,12 +2,14 @@ package com.example.demo.entity;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 @Entity
 public class Recipe {
 	@Id
+	@Column(name = "recipe_id") // Column 매핑 추가
 	private int recipe_id;
 	private String title;
 	private String main_photo;
