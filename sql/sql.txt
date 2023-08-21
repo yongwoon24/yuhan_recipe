@@ -157,6 +157,7 @@ CREATE TABLE Recipe (
     created_date DATE NOT NULL,
     user_id VARCHAR(255),
     view_count INT DEFAULT 0,
+    total_love INT DEFAULT 0,
     FOREIGN KEY (user_id) REFERENCES User(user_id),
     FOREIGN KEY (category_name) REFERENCES Category(category_name)
 );
