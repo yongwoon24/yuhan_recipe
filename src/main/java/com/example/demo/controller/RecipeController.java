@@ -57,5 +57,17 @@ public class RecipeController {
         
         
         
+        @GetMapping("/recipeList2")
+        public String recipeList2() {
+    		return "recipeList2";
+        }
+        
+        @PostMapping("/formAction")
+        public String recipeList2(Model model) {
+        	return "";
+        }
+        
+        
+        
 	}
 

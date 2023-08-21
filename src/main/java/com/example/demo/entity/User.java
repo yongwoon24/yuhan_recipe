@@ -1,5 +1,7 @@
 package com.example.demo.entity;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
@@ -10,7 +12,7 @@ public class User {
 	private String name;
 	private String email;
 	private String password;
-	private String birthdate;
+	private LocalDate birthdate;
 	private String phone_number;
 	
 	public String getUser_id() {
@@ -37,10 +39,10 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getBirthdate() {
+	public LocalDate getBirthdate() {
 		return birthdate;
 	}
-	public void setBirthdate(String birthdate) {
+	public void setBirthdate(LocalDate birthdate) {
 		this.birthdate = birthdate;
 	}
 	public String getPhone_number() {

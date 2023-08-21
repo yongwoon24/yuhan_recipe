@@ -5,21 +5,21 @@ import jakarta.persistence.Id;
 @Entity
 public class Love {
 	@Id
-	private int like_id;
-	private int post_id;
+	private int love_id;
+	private int recipe_id;
 	private String user_id;
 	
-	public int getLike_id() {
-		return like_id;
+	public int getLove_id() {
+		return love_id;
 	}
-	public void setLike_id(int like_id) {
-		this.like_id = like_id;
+	public void setLove_id(int love_id) {
+		this.love_id = love_id;
 	}
-	public int getPost_id() {
-		return post_id;
+	public int getRecipe_id() {
+		return recipe_id;
 	}
-	public void setPost_id(int post_id) {
-		this.post_id = post_id;
+	public void setRecipe_id(int recipe_id) {
+		this.recipe_id = recipe_id;
 	}
 	public String getUser_id() {
 		return user_id;
@@ -30,8 +30,9 @@ public class Love {
 	
 	@Override
 	public String toString() {
-		return "Scrap [like_id=" + like_id + ", post_id=" + post_id + ", user_id=" + user_id + "]";
+		return "Love [love_id=" + love_id + ", recipe_id=" + recipe_id + ", user_id=" + user_id + "]";
 	}
+	
 	
 	
 	

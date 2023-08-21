@@ -1,5 +1,7 @@
 package com.example.demo.entity;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
@@ -8,11 +10,11 @@ public class Recipe {
 	@Id
 	private int recipe_id;
 	private String title;
-	private String recipe_introduce;
 	private String main_photo;
-	private String created_date;
+	private LocalDate created_date;
 	private String user_id;
 	private String category_name;
+	private Integer view_count = 0;
 	
 	public int getRecipe_id() {
 		return recipe_id;
@@ -32,10 +34,10 @@ public class Recipe {
 	public void setMain_photo(String main_photo) {
 		this.main_photo = main_photo;
 	}
-	public String getCreated_date() {
+	public LocalDate getCreated_date() {
 		return created_date;
 	}
-	public void setCreated_date(String created_date) {
+	public void setCreated_date(LocalDate created_date) {
 		this.created_date = created_date;
 	}
 	public String getUser_id() {
@@ -50,18 +52,26 @@ public class Recipe {
 	public void setCategory_name(String category_name) {
 		this.category_name = category_name;
 	}
-	public String getRecipe_introduce() {
-		return recipe_introduce;
+
+	
+	public Integer getView_count() {
+		return view_count;
 	}
-	public void setRecipe_introduce(String recipe_introduce) {
-		this.recipe_introduce = recipe_introduce;
+	public void setView_count(Integer view_count) {
+		this.view_count = view_count;
+
 	}
 	
 	@Override
 	public String toString() {
-		return "Recipe [recipe_id=" + recipe_id + ", title=" + title + ", recipe_introduce=" + recipe_introduce
-				+ ", main_photo=" + main_photo + ", created_date=" + created_date + ", user_id=" + user_id
-				+ ", category_name=" + category_name + "]";
+
+		return "Recipe [recipe_id=" + recipe_id + ", title=" + title + ", main_photo=" + main_photo + ", created_date="
+				+ created_date + ", user_id=" + user_id + ", category_name=" + category_name + ", view_count="
+				+ view_count + "]";
 	}
 	
+	
+	
+	
+
 }

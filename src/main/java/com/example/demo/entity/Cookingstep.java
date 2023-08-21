@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 @Entity
@@ -7,6 +8,7 @@ public class Cookingstep {
 	@Id
 	private int step_id;
 	private int recipe_id;
+	@Column(name = "step_content", columnDefinition = "TEXT")
 	private String step_content;
 	private String step_photo;
 	
