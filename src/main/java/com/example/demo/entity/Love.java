@@ -1,39 +1,49 @@
 package com.example.demo.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 @Entity
+@Table(name = "Love")
 public class Love {
-	@Id
-	private int love_id;
-	private int recipe_id;
-	private String user_id;
-	
-	public int getLove_id() {
-		return love_id;
-	}
-	public void setLove_id(int love_id) {
-		this.love_id = love_id;
-	}
-	public int getRecipe_id() {
-		return recipe_id;
-	}
-	public void setRecipe_id(int recipe_id) {
-		this.recipe_id = recipe_id;
-	}
-	public String getUser_id() {
-		return user_id;
-	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
-	}
-	
-	@Override
-	public String toString() {
-		return "Love [love_id=" + love_id + ", recipe_id=" + recipe_id + ", user_id=" + user_id + "]";
-	}
-	
-	
-	
-	
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long loveId;
+
+    private String userId;
+
+    @ManyToOne
+    @JoinColumn(name = "recipe_id")
+    private Recipe recipe;
+
+    // Getter and Setter methods
+
+    public Long getLoveId() {
+        return loveId;
+    }
+
+    public void setLoveId(Long loveId) {
+        this.loveId = loveId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public Recipe getRecipe() {
+        return recipe;
+    }
+
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
+    }
 }

@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 @Entity
 public class Recipe {
 	@Id
+	@Column(name = "recipe_id") // Column 매핑 추가
 	private int recipe_id;
 	private String title;
 	

@@ -32,9 +32,9 @@
     }
     
     }
-        $(document).ready(function() {
-            $("#user_id").on("input", function() {
-                var user_id = $(this).val();
+       $(document).ready(function() {
+        					 $("#user_id").on("input", function() {
+           						var user_id = $(this).val();
                 
                 $.ajax({
                     type: "GET",
@@ -42,11 +42,11 @@
                     success: function(response) {
                         if (response === true) {
                             $("#duplicationMessage").text("아이디 사용 가능");
-                            
+                           $("#user_id").prop("disabled", true);
 
                         } else {
                             $("#duplicationMessage").text("아이디 중복");
-                        
+                        	
                         }
                     },
                     error: function() {
@@ -55,7 +55,7 @@
                 });
             });
         });
-        
+       
         
           $(document).ready(function() {
             $("#email").on("input", function() {
@@ -67,7 +67,9 @@
                     success: function(response) {
                         if (response === true) {
                             $("#duplicationMessageemail").text("이메일 사용 가능");
-                           $("#signupButton").prop("disabled", false);
+                            
+                           
+                          
 
                         } else {
                             $("#duplicationMessageemail").text("이메일 중복");
