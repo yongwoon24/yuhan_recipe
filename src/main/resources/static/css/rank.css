@@ -53,6 +53,15 @@ select {
 	max-width: 350px;
 }
 
+/*.slide_item{
+	transition: opacity 0.5s ease-in-out;
+	opacity: 0;
+}
+
+.slide-item.active {
+    opacity: 1;
+}*/
+
 .slide_control{
 	position: absolute;
 	width: 100%;
