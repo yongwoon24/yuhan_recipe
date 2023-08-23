@@ -15,8 +15,9 @@ public class Recipe {
 	private String main_photo;
 	private LocalDate created_date;
 	private String user_id;
-	private String category_name;
+	private String categoryName;
 	private Integer view_count = 0;
+	private Integer totalLove;
 	
 	public int getRecipe_id() {
 		return recipe_id;
@@ -48,11 +49,11 @@ public class Recipe {
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
-	public String getCategory_name() {
-		return category_name;
+	public String getCategoryName() {
+		return categoryName;
 	}
-	public void setCategory_name(String category_name) {
-		this.category_name = category_name;
+	public void setCategory_name(String categoryName) {
+		this.categoryName = categoryName;
 	}
 	public Integer getView_count() {
 		return view_count;
@@ -61,10 +62,16 @@ public class Recipe {
 		this.view_count = view_count;
 	}
 	
+	public Integer getTotalLove() {
+		return totalLove;
+	}
+	public void setTotalLove(Integer totalLove) {
+		this.totalLove = totalLove;
+	}
 	@Override
 	public String toString() {
 		return "Recipe [recipe_id=" + recipe_id + ", title=" + title + ", main_photo=" + main_photo + ", created_date="
-				+ created_date + ", user_id=" + user_id + ", category_name=" + category_name + ", view_count="
+				+ created_date + ", user_id=" + user_id + ", category_name=" + categoryName + ", view_count="
 				+ view_count + "]";
 	}
 	
