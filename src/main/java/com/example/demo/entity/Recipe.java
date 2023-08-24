@@ -30,9 +30,9 @@ public class Recipe {
 	@Column(nullable = false)
 	private LocalDate created_date;
 	private String user_id;
-	private String category_name;
+	private String categoryName;
 	private Integer view_count = 0;
-	private Integer total_love = 0;
+	private Integer total_love;
 	
 	
 
@@ -41,10 +41,20 @@ public class Recipe {
 		this.title=recipeFormDto.getTitle();
 		this.created_date=recipeFormDto.getCreated_date();
 		this.user_id=recipeFormDto.getUser_id();
-		this.category_name=recipeFormDto.getCategory_name();
+		this.categoryName=recipeFormDto.getCategory_name();
 		this.view_count=recipeFormDto.getView_count();
 		this.total_love=recipeFormDto.getTotal_love();
 	}
+
+
+
+	@Override
+	public String toString() {
+		return "Recipe [recipe_id=" + recipe_id + ", title=" + title + ", created_date=" + created_date + ", user_id="
+				+ user_id + ", categoryName=" + categoryName + ", view_count=" + view_count + ", total_love="
+				+ total_love + "]";
+	}
+
 
 
 	public int getRecipe_id() {
@@ -52,9 +62,11 @@ public class Recipe {
 	}
 
 
+
 	public void setRecipe_id(int recipe_id) {
 		this.recipe_id = recipe_id;
 	}
+
 
 
 	public String getTitle() {
@@ -62,9 +74,11 @@ public class Recipe {
 	}
 
 
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 
 
 	public LocalDate getCreated_date() {
@@ -72,9 +86,11 @@ public class Recipe {
 	}
 
 
+
 	public void setCreated_date(LocalDate created_date) {
 		this.created_date = created_date;
 	}
+
 
 
 	public String getUser_id() {
@@ -82,19 +98,23 @@ public class Recipe {
 	}
 
 
+
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
 
 
-	public String getCategory_name() {
-		return category_name;
+
+	public String getCategoryName() {
+		return categoryName;
 	}
 
 
-	public void setCategory_name(String category_name) {
-		this.category_name = category_name;
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
+
 
 
 	public Integer getView_count() {
@@ -102,9 +122,11 @@ public class Recipe {
 	}
 
 
+
 	public void setView_count(Integer view_count) {
 		this.view_count = view_count;
 	}
+
 
 
 	public Integer getTotal_love() {
@@ -112,17 +134,12 @@ public class Recipe {
 	}
 
 
+
 	public void setTotal_love(Integer total_love) {
 		this.total_love = total_love;
 	}
 
 
-	@Override
-	public String toString() {
-		return "Recipe [recipe_id=" + recipe_id + ", title=" + title + ", created_date=" + created_date + ", user_id="
-				+ user_id + ", category_name=" + category_name + ", view_count=" + view_count + ", total_love="
-				+ total_love + "]";
-	}
 	
 	
 	
