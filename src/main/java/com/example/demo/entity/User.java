@@ -2,6 +2,7 @@ package com.example.demo.entity;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
@@ -15,6 +16,24 @@ public class User {
 	private LocalDate birthdate;
 	private String phone_number;
 	
+	
+	@Column(length = 36, name = "verification_token")
+    private String verificationToken;
+
+    private boolean emailVerified;
+
+
+    public String getVerificationToken() {
+        return verificationToken;
+    }
+
+    public void setVerificationToken(String verificationToken) {
+        this.verificationToken = verificationToken;
+    }
+
+  
+    
+
 	public String getUser_id() {
 		return user_id;
 	}
@@ -51,13 +70,21 @@ public class User {
 	public void setPhone_number(String phone_number) {
 		this.phone_number = phone_number;
 	}
-	
+	public boolean isEmailVerified() {
+		return emailVerified;
+	}
+	public void setEmailVerified(boolean emailVerified) {
+		this.emailVerified = emailVerified;
+	}
 	@Override
 	public String toString() {
 		return "User [user_id=" + user_id + ", name=" + name + ", email=" + email + ", password=" + password
-				+ ", birthdate=" + birthdate + ", phone_number=" + phone_number + "]";
+				+ ", birthdate=" + birthdate + ", phone_number=" + phone_number + ", emailVerified=" + emailVerified
+				+ "]";
 	}
-	
+
+	    
+		
 	
 	
 }
