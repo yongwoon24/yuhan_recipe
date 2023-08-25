@@ -22,7 +22,7 @@ public class Recipe {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "recipe_id") // Column 매핑 추가
-	private int recipe_id;
+	private Integer recipe_id;
 	
 	@Column(nullable = false)
 	private String title;
@@ -30,29 +30,45 @@ public class Recipe {
 	@Column(nullable = false)
 	private LocalDate created_date;
 	private String user_id;
-	private String categoryName;
+	
+	@Column(name = "category_name")
+	private String category_name;
 	private Integer view_count = 0;
-	private Integer total_love;
+	private Integer totalLove;
+	private String main_photo;
+	private String main_photo_path;
 	
 	
-
-	public void updateRecipe(RecipeFormDto recipeFormDto) {
-		this.recipe_id=recipeFormDto.getRecipe_id();
-		this.title=recipeFormDto.getTitle();
-		this.created_date=recipeFormDto.getCreated_date();
-		this.user_id=recipeFormDto.getUser_id();
-		this.categoryName=recipeFormDto.getCategory_name();
-		this.view_count=recipeFormDto.getView_count();
-		this.total_love=recipeFormDto.getTotal_love();
-	}
-
-
 
 	@Override
 	public String toString() {
 		return "Recipe [recipe_id=" + recipe_id + ", title=" + title + ", created_date=" + created_date + ", user_id="
-				+ user_id + ", categoryName=" + categoryName + ", view_count=" + view_count + ", total_love="
-				+ total_love + "]";
+				+ user_id + ", category_name=" + category_name + ", view_count=" + view_count + ", totalLove="
+				+ totalLove + ", main_photo=" + main_photo + ", main_photo_path=" + main_photo_path + "]";
+	}
+
+
+
+	public String getMain_photo() {
+		return main_photo;
+	}
+
+
+
+	public void setMain_photo(String main_photo) {
+		this.main_photo = main_photo;
+	}
+
+
+
+	public String getMain_photo_path() {
+		return main_photo_path;
+	}
+
+
+
+	public void setMain_photo_path(String main_photo_path) {
+		this.main_photo_path = main_photo_path;
 	}
 
 
@@ -105,14 +121,17 @@ public class Recipe {
 
 
 
-	public String getCategoryName() {
-		return categoryName;
+
+
+
+	public String getCategory_name() {
+		return category_name;
 	}
 
 
 
-	public void setCategoryName(String categoryName) {
-		this.categoryName = categoryName;
+	public void setCategory_name(String category_name) {
+		this.category_name = category_name;
 	}
 
 
@@ -129,15 +148,30 @@ public class Recipe {
 
 
 
-	public Integer getTotal_love() {
-		return total_love;
+	public Integer getTotalLove() {
+		return totalLove;
 	}
 
 
 
-	public void setTotal_love(Integer total_love) {
-		this.total_love = total_love;
+	public void setTotalLove(Integer totalLove) {
+		this.totalLove = totalLove;
 	}
+
+
+
+	public void updateRecipe(RecipeFormDto recipeFormDto) {
+		this.recipe_id=recipeFormDto.getRecipe_id();
+		this.title=recipeFormDto.getTitle();
+		this.created_date=recipeFormDto.getCreated_date();
+		this.user_id=recipeFormDto.getUser_id();
+		this.category_name=recipeFormDto.getCategory_name();
+		this.view_count=recipeFormDto.getView_count();
+		this.totalLove=recipeFormDto.getTotalLove();
+	}
+
+
+
 
 
 	

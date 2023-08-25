@@ -27,8 +27,26 @@ public class RecipeFormDto {
 	private String user_id;
 	private String category_name;
 	private Integer view_count;
-	private Integer total_love;
+	private Integer totalLove;
+	private String main_photo;
+	private String main_photo_path;
 	
+	public String getMain_photo() {
+		return main_photo;
+	}
+
+	public void setMain_photo(String main_photo) {
+		this.main_photo = main_photo;
+	}
+
+	public String getMain_photo_path() {
+		return main_photo_path;
+	}
+
+	public void setMain_photo_path(String main_photo_path) {
+		this.main_photo_path = main_photo_path;
+	}
+
 	public int getRecipe_id() {
 		return recipe_id;
 	}
@@ -77,12 +95,28 @@ public class RecipeFormDto {
 		this.view_count = view_count;
 	}
 
-	public Integer getTotal_love() {
-		return total_love;
+	public Integer getTotalLove() {
+		return totalLove;
 	}
 
-	public void setTotal_love(Integer total_love) {
-		this.total_love = total_love;
+	public void setTotalLove(Integer totalLove) {
+		this.totalLove = totalLove;
+	}
+
+	public List<Long> getRecipeImgIds() {
+		return recipeImgIds;
+	}
+
+	public void setRecipeImgIds(List<Long> recipeImgIds) {
+		this.recipeImgIds = recipeImgIds;
+	}
+
+	public static ModelMapper getModelmapper() {
+		return modelmapper;
+	}
+
+	public static void setModelmapper(ModelMapper modelmapper) {
+		RecipeFormDto.modelmapper = modelmapper;
 	}
 
 	//private List<RecipeImgDto> recipeImgDtoList = new ArrayList<>();

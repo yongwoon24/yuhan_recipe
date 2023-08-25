@@ -35,7 +35,8 @@ import jakarta.validation.Valid;
 @Controller
 public class RecipeController {
 	@Autowired
-	 private RecipeRepository recipeRepository;
+	private RecipeRepository recipeRepository;
+	@Autowired
 	private RecipeService recipeservice;
 	
 	@GetMapping("/recipe")
@@ -57,19 +58,14 @@ public class RecipeController {
 	    }
 	    
 	    @PostMapping("/createRecipe")
-	    public String createRecipe(@Valid RecipeFormDto recipeFormDto, BindingResult bindingResult, Model model,
-	    		                   @RequestParam(name = "main_photo") List<MultipartFile> file) {
-	    	if (bindingResult.hasErrors()) {
-	            return "redirect:/recipe";
-	        }
+	    public String createRecipe(@ModelAttribute Recipe recipe,  Model model, MultipartFile file) throws Exception{
 	    	
-	    	try {
-	            //recipeservice.saveRecipe(recipeFormDto, file);
-	        } catch (Exception e) {
-	            model.addAttribute("errorMessage", "상품 등록 중 에러가 발생하였습니다.");
-	            return "redirect:/recipe";
+	    	recipeservice.write(recipe, file);
+	    	recipeRepository.save(recipe);
+	    	//model.addAttribute("message", "글작성이 완료되었습니다.");
+	    	//model.addAttribute("searchUrl", "redirect:/recipe");
+	        return "redirect:/recipe";
 	        }
-	        return "redirect:/recipe";}
 	    
 	    
 	    
@@ -78,7 +74,7 @@ public class RecipeController {
 	    
 	    
 	    @GetMapping("/editRecipe/{recipe_id}")
-        public String editRecipeForm(@PathVariable Long recipe_id, Model model) {
+        public String editRecipeForm(@PathVariable Integer recipe_id, Model model) {
             Recipe recipe = recipeRepository.findById(recipe_id).orElseThrow(() -> new IllegalArgumentException("Invalid Recipe ID: " + recipe_id));
             model.addAttribute("recipe", recipe);
             return "editRecipe";
@@ -91,7 +87,7 @@ public class RecipeController {
         }
         
         @GetMapping("/deleteRecipe/{recipe_id}")
-        public String deleteRecipe(@PathVariable Long recipe_id) {
+        public String deleteRecipe(@PathVariable Integer recipe_id) {
             recipeRepository.deleteById(recipe_id);
             return "redirect:/recipe";
         }
