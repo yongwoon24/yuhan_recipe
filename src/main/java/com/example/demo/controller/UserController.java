@@ -57,7 +57,6 @@ public class UserController {
             String verificationLink = "http://localhost:8080/verifyEmail/" + verificationToken;
 
             // 이메일 전송 메소드 호출
-            //sendEmail(user.getEmail(), "모두의 레시피 이메일 인증입니다!", "아래의 링크를 눌러 회원가입을 완료하세요!\n" + verificationLink);
             sendButtonEmail(user.getEmail(), "모두의 레시피 이메일 인증입니다!", "인증하기", verificationLink);
 
             return "redirect:/login";
@@ -175,14 +174,6 @@ public class UserController {
      * @param subject 이메일 제목
      * @param text 이메일 내용
      */
-    private void sendEmail(String recipientEmail, String subject, String text) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(recipientEmail);
-        message.setSubject(subject);
-        message.setText(text);
-        javaMailSender.send(message); // 이메일 전송
-    }
-    
     private void sendButtonEmail(String recipientEmail, String subject, String buttonText, String buttonLink) {
         String htmlContent = "<html><body>" +
         		"<p>인증하기 버튼을 누르고 모두의 레시피 가입을 진행하세요..</p>" +
