@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,9 +16,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
 import com.example.demo.entity.User;
 import com.example.demo.repository.UserRepository;
+
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
 
 @Controller
 public class UserController {
@@ -54,7 +57,8 @@ public class UserController {
             String verificationLink = "http://localhost:8080/verifyEmail/" + verificationToken;
 
             // 이메일 전송 메소드 호출
-            sendEmail(user.getEmail(), "모두의 레시피 이메일 인증입니다!", "아래의 링크를 눌러 회원가입을 완료하세요!\n" + verificationLink);
+            //sendEmail(user.getEmail(), "모두의 레시피 이메일 인증입니다!", "아래의 링크를 눌러 회원가입을 완료하세요!\n" + verificationLink);
+            sendButtonEmail(user.getEmail(), "모두의 레시피 이메일 인증입니다!", "인증하기", verificationLink);
 
             return "redirect:/login";
         } catch (Exception e) {
@@ -178,6 +182,26 @@ public class UserController {
         message.setText(text);
         javaMailSender.send(message); // 이메일 전송
     }
+    
+    private void sendButtonEmail(String recipientEmail, String subject, String buttonText, String buttonLink) {
+        String htmlContent = "<html><body>" +
+        		"<p>인증하기 버튼을 누르고 모두의 레시피 가입을 진행하세요..</p>" +
+                "<a href=\"" + buttonLink + "\" style=\"display: inline-block; background-color: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;\">"
+                + buttonText + "</a>" +
+                "</body></html>";
+
+        MimeMessage message = javaMailSender.createMimeMessage();
+        try {
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+            helper.setTo(recipientEmail);
+            helper.setSubject(subject);
+            helper.setText(htmlContent, true); // true indicates HTML content
+            javaMailSender.send(message);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
+
     //여기까지 수정!!!!!!!!!!!!!!!!!!!!!!
     
 }
