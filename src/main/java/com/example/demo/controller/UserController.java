@@ -45,7 +45,7 @@ public class UserController {
    
     @PostMapping("/signup")
     public String createUser(@ModelAttribute User user) {
-       try {
+    	try {
             // 사용자가 존재하지 않을 때만 토큰 생성 및 저장, 이메일 전송
             UUID uuid = UUID.randomUUID();
             String verificationToken = uuid.toString();
@@ -152,7 +152,7 @@ public class UserController {
      */
     @GetMapping("/verifyEmail/{token}")
     public String verifyEmail(@PathVariable String token) {
-       User user = userRepository.findByVerificationToken(token);
+    	User user = userRepository.findByVerificationToken(token);
 
         if (user != null) {
             // 사용자의 이메일을 인증된 상태로 표시합니다.
@@ -176,7 +176,7 @@ public class UserController {
      */
     private void sendButtonEmail(String recipientEmail, String subject, String buttonText, String buttonLink) {
         String htmlContent = "<html><body>" +
-              "<p>인증하기 버튼을 누르고 모두의 레시피 가입을 진행하세요..</p>" +
+        		"<p>인증하기 버튼을 누르고 모두의 레시피 가입을 진행하세요..</p>" +
                 "<a href=\"" + buttonLink + "\" style=\"display: inline-block; background-color: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;\">"
                 + buttonText + "</a>" +
                 "</body></html>";
@@ -201,7 +201,7 @@ public class UserController {
      */
     private void sendButtonEmail2(String recipientEmail, String subject, String buttonText, String buttonLink) {
         String htmlContent = "<html><body>" +
-              "<p>비밀번호 재설정 버튼을 누르고 모두의 레시피 비밀번호 재설정을 진행하세요..</p>" +
+        		"<p>비밀번호 재설정 버튼을 누르고 모두의 레시피 비밀번호 재설정을 진행하세요..</p>" +
                 "<a href=\"" + buttonLink + "\" style=\"display: inline-block; background-color: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;\">"
                 + buttonText + "</a>" +
                 "</body></html>";
@@ -243,10 +243,10 @@ public class UserController {
     
     @PostMapping("/findid")
     public String findUserId(@RequestParam String email, Model model) {
-       // 데이터베이스에서 해당 이메일을 가진 사용자의 아이디를 찾아옵니다.
-       List<User> users = userRepository.findByemailList(email);
-       
-       if (!users.isEmpty()) {
+    	// 데이터베이스에서 해당 이메일을 가진 사용자의 아이디를 찾아옵니다.
+    	List<User> users = userRepository.findByemailList(email);
+    	
+    	if (!users.isEmpty()) {
             User user = users.get(0); // 첫 번째 사용자를 선택합니다.
             // 이 부분에서 해당 사용자의 아이디를 이메일로 보내는 로직을 구현하면 됩니다.
             sendEmail(user.getEmail(), "모두의 레시피 아이디 인증입니다!","당신의 아이디는 " + user.getUser_id() + " 입니다!");
@@ -261,20 +261,20 @@ public class UserController {
         }
     }
     // 아이디 찾기 기능 끝!!
-       
+    	
     // 비밀번호찾기 구현!!!
     @GetMapping("/findps")
    public String showFindPsForm(Model model) {
-      model.addAttribute("email", "");
-      return "findps";
+	   model.addAttribute("email", "");
+	   return "findps";
     }
     
     @PostMapping("/findps")
     public String findUserPs(@RequestParam String email, Model model) {
-       // 데이터베이스에서 해당 이메일을 가진 사용자의 아이디를 찾아옵니다.
-       List<User> users = userRepository.findByemailList(email);
-       
-       if (!users.isEmpty()) {
+    	// 데이터베이스에서 해당 이메일을 가진 사용자의 아이디를 찾아옵니다.
+    	List<User> users = userRepository.findByemailList(email);
+    	
+    	if (!users.isEmpty()) {
             User user = users.get(0); // 첫 번째 사용자를 선택합니다.
             UUID uuid = UUID.randomUUID();
             String verificationToken = uuid.toString();
@@ -299,7 +299,7 @@ public class UserController {
     
     @GetMapping("/resetPasswd/{token}")
     public String resetPasswd(@PathVariable String token, Model model) {
-       model.addAttribute("token", token);
+    	model.addAttribute("token", token);
         return "resetpasswd";
     }
      
@@ -322,4 +322,5 @@ public class UserController {
             return "resetpasswd";
         }
     }
+    // 비밀번호 찾기 구현 끝!!!!!!!!!!!!!!!!!!!!!!
 }
