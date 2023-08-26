@@ -26,6 +26,7 @@
             <th>Created_Date</th>
             <th>User_ID</th>
             <th>Category_Name</th>
+            <th>Total_Likes</th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
@@ -35,7 +36,8 @@
             <td th:text="${recipe.main_photo}"></td>
             <td th:text="${recipe.created_date}"></td>
             <td th:text="${recipe.user_id}"></td>
-            <td th:text="${recipe.category_name}"></td>
+            <td th:text="${recipe.categoryName}"></td>
+            <td th:text="${recipe.totalLove}"></td>
             
             
             <td><a th:href="@{/editRecipe/{recipe_id}(recipe_id=${recipe.recipe_id})}">Edit</a></td>

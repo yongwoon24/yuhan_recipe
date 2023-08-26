@@ -132,7 +132,9 @@ CREATE TABLE User (
     email VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
     birthdate DATE,
-    phone_number VARCHAR(255)
+    phone_number VARCHAR(255),
+    email_verified BIT NOT NULL DEFAULT 0,
+    verification_token VARCHAR(36)
 );
 
 
@@ -145,6 +147,9 @@ CREATE TABLE Board (
     FOREIGN KEY (user_id) REFERENCES User(user_id)
 );
 
+CREATE TABLE Category (
+    category_name VARCHAR(255) PRIMARY KEY
+    );
 
 CREATE TABLE Recipe (
     recipe_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -202,14 +207,11 @@ CREATE TABLE Love (
     FOREIGN KEY (recipe_id) REFERENCES Recipe(recipe_id)
 );
 
-CREATE TABLE Category (
-    category_name VARCHAR(255) PRIMARY KEY
-    );
-
 CREATE TABLE Recipe_Ingredient (
     r_id INT AUTO_INCREMENT PRIMARY KEY,
     recipe_id INT,
     ingredient_id INT,
+    mount VARCHAR(255),
     FOREIGN KEY (recipe_id) REFERENCES Recipe(recipe_id),
     FOREIGN KEY (ingredient_id) REFERENCES Ingredient(ingredient_id)
 );
