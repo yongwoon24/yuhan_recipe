@@ -3,23 +3,29 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.entity.User;
 import com.example.demo.repository.UserRepository;
 
+
 @Controller
 public class UserController {
-    @Autowired
+  
+
+	@Autowired
     private UserRepository userRepository;
-    
+	
+
     @GetMapping("/user")
     public String listUsers(Model model) {
         List<User> users = userRepository.findAll();
@@ -33,11 +39,13 @@ public class UserController {
         return "signup";
     }
     
+    
     @PostMapping("/signup")
     public String createUser(@ModelAttribute User user) {
-        userRepository.save(user);
-        return "redirect:/login";
+      userRepository.save(user);
+      return "redirect:/login";
     }
+    
     
     @GetMapping("/editUser/{user_id}")
     public String editUserForm(@PathVariable String user_id, Model model) {
@@ -103,4 +111,5 @@ public class UserController {
         // 중복 여부에 따라 결과 반환
         return existingUser.isEmpty(); // true는 중복이 아님, false는 중복임
     }
+
 }

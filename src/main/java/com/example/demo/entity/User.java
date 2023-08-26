@@ -14,6 +14,7 @@ public class User {
 	private String password;
 	private LocalDate birthdate;
 	private String phone_number;
+	private String verificationCode;
 	
 	public String getUser_id() {
 		return user_id;
@@ -52,6 +53,14 @@ public class User {
 		this.phone_number = phone_number;
 	}
 	
+	
+
+	public String getVerificationCode() {
+		return verificationCode;
+	}
+	public void setVerificationCode(String verificationCode) {
+		this.verificationCode = verificationCode;
+	}
 	@Override
 	public String toString() {
 		return "User [user_id=" + user_id + ", name=" + name + ", email=" + email + ", password=" + password
