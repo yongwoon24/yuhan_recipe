@@ -17,5 +17,6 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
     String findMainPhotoByRecipeId(Long recipeId);
 	List<Recipe> findByCategoryNameOrderByTotalLoveDesc(String categoryName);
 	List<Recipe> findTop10ByOrderByTotalLoveDesc();
+	List<Recipe> findByOrderByTotalLoveDesc();
 }
 	

@@ -3,6 +3,7 @@
 <head>
 <meta content="text/html; charset=euc-kr">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>모두의레시피</title>
 <style type="text/css">	
 	
@@ -61,25 +62,29 @@
 			    </form>
 			</div>
 			<ul class="img_slide">
-				<li class="slide-item" th:each="recipe : ${topLove}">
-					<a href="recipe"><img th:src="@{/img/__${recipe.main_photo}__.jpg}"></a>
-					<a href="recipe"><ol th:text="${recipe.title}">asd</ol></a>
-					<ol class="likes">
-    					<li>
-							<i class="fas fa-heart"></i>
-        					<span th:text="${recipe.totalLove}"></span>
-    					</li>
-					</ol>	
-				</li>
-			</ul>	
-			<div class="slide_control">
-			<p>
-				<span class="prev"><i class="fa-solid fa-arrow-left"></i></span>
-				<span class="next"><i class="fa-solid fa-arrow-right"></i></span>
-			</p>
+			    <li class="recipe-item" th:each="recipe, recipeIndex : ${topLove}">
+					<div class="recipe-container">
+						<div class="ranking">
+                			<span class="rank-number" th:text="${(currentPage * 20) + recipeIndex.index + 1}+'위'"></span>
+            			</div>
+				        <a href="recipe"><img th:src="@{/img/__${recipe.main_photo}__.jpg}"></a>
+				        <a href="recipe"><span th:text="${recipe.title}">asd</span></a>
+				        <div class="likes">
+				            <i class="fas fa-heart"></i>
+				            <span th:text="${recipe.totalLove}"></span>
+				        </div>
+			        </div>  
+			    </li>
 			
+			</ul>
+			<div class="pagination">
+		    	<a th:if="${currentPage > 0}" th:href="@{|/rank?page=${currentPage - 1}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}">&laquo;</a>
+		    	<span th:text="${currentPage + 1}"></span>
+				<a th:if="${topLove.size() > (currentPage * 20)}" th:href="@{|/rank?page=${currentPage + 1}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}">&raquo;</a>
 			</div>
 			
+			
+						
 			
 			
 		<script th:src="@{/../js/rank.js}"></script>
