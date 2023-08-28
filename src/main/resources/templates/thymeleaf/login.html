@@ -10,7 +10,7 @@
 </head>
 <body>
     <h2>모두의 레시피 로그인</h2>
-     
+
     <form action="#" th:action="@{/login}" th:object="${user}" method="post">
         <label for="user_id">아이디:</label>
         <input type="text" id="user_id" name="user_id" required autofocus><br>
@@ -23,8 +23,8 @@
     <table>
 		<tr>
 	     <td><p><a href="/signup">회원가입 / </a></p></td>
-	     <td><p><a href="/user">아이디 찾기 / </a></p></td>
-	     <td><p><a href="/user">비밀번호 찾기</a></p></td>
+	     <td><p><a href="/findid">아이디 찾기 / </a></p></td>
+	     <td><p><a href="/findps">비밀번호 찾기</a></p></td>
 	     </tr>
     </table>
 </body>

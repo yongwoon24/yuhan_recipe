@@ -4,35 +4,57 @@ a{
 }
 .likes{
 	position: absolute;
-	float:right;
-	text-align: right;
-	color: rgb(255, 128, 255);
-	font-size: 20px;
+    top: 0px;
+    right: 5px;
+    display: flex;
+    align-items: center;
+    font-size: 50px;
+    color: rgb(255, 128, 255);
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 3px;
+    box-shadow: rgb(94, 94, 94) 5px 5px 10px;
+    width: 50px;
+    height: 35px;
 }
 li{
 	list-style: none;
 }
+
 li > a > img{
 	width: 400px;
 	height: 400px;
 	border-radius: 20px;
 }
+
+select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 25px;
+}
+
+
 .slide_wrapper{
 	top: 250px;
 	position: relative;
 	margin:0 auto;
-	height: 600px;
+	height: 100%;
 	overflow: hidden;
 	align-items: center;
 	box-shadow: #949494 5px 5px 10px;
 }
 
 .img_slide{
-	position: absolute;
-	left: 0; top: 0;
-	height: 500px;
-	transition: left 0.5s ease-out;
-	font-size: 30px;
+	display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4열 그리드, 1fr은 동일한 너비로 설정 */
+    /*justify-content: center; /* 가운데 정렬 */
+    gap: 20px; /* 열 간격 */
+    max-width: 1800px;
+    margin: 0 auto; /* 가운데 정렬 */
 }
 .img_slide li{
 	float: left;
@@ -41,6 +63,29 @@ li > a > img{
 .img_slide ol{
 	max-width: 350px;
 }
+
+
+@media (max-width: 768px) {
+    .img_slide {
+        grid-template-columns: repeat(2, 1fr); /* 화면이 작을 때 2열로 변경 */
+        gap: 10px; /* 작은 화면에서의 아이템 간격 */
+    }
+}
+@media (max-width: 1500px) {
+    .img_slide {
+        grid-template-columns: repeat(3, 1fr); /* 화면이 작을 때 2열로 변경 */
+        gap: 10px; /* 작은 화면에서의 아이템 간격 */
+    }
+}
+
+/*.slide_item{
+	transition: opacity 0.5s ease-in-out;
+	opacity: 0;
+}
+
+.slide-item.active {
+    opacity: 1;
+}*/
 
 .slide_control{
 	position: absolute;
@@ -249,4 +294,63 @@ li > a > img{
 	padding-bottom: 150px;
 	
 }
+.category-buttons{
+	font-size: 30px;
+	position: relative;
+	padding: 20px 10px 10px 100px;
+}
 
+.recipe-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.recipe-item img {
+    width: 400px; /* 이미지의 가로 너비를 일정한 크기로 설정 */
+    height: 400px; /* 세로 높이를 자동으로 조절하여 비율 유지 */
+}
+
+.recipe-item span {
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.recipe-item .likes {
+    margin-top: 5px;
+    font-size: 20px;
+    color: rgb(255, 128, 255);
+}
+.recipe-container {
+    position: relative;
+}
+.likes i {
+    margin-right: 5px;
+}
+.ranking {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 30%;
+    width: 60px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    box-shadow: #949494 5px 5px 10px;
+}
+.ranking > span{
+	position: relative;
+	top: -2px;
+}
+.pagination{
+	text-align: center;
+	position: relative;
+	font-size: 100px;
+	justify-content: center;
+}

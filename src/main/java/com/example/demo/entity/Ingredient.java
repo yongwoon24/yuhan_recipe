@@ -6,7 +6,6 @@ import jakarta.persistence.Id;
 public class Ingredient {
 	@Id
 	private int ingredient_id;
-	private int recipe_id;
 	private String ingredient_name;
 	
 	public int getIngredient_id() {
@@ -14,12 +13,6 @@ public class Ingredient {
 	}
 	public void setIngredient_id(int ingredient_id) {
 		this.ingredient_id = ingredient_id;
-	}
-	public int getRecipe_id() {
-		return recipe_id;
-	}
-	public void setRecipe_id(int recipe_id) {
-		this.recipe_id = recipe_id;
 	}
 	public String getIngredient_name() {
 		return ingredient_name;
@@ -30,9 +23,9 @@ public class Ingredient {
 	
 	@Override
 	public String toString() {
-		return "Ingredient [ingredient_id=" + ingredient_id + ", recipe_id=" + recipe_id + ", ingredient_name="
-				+ ingredient_name + "]";
+		return "Ingredient [ingredient_id=" + ingredient_id + ", ingredient_name=" + ingredient_name + "]";
 	}
+	
 	
 	
 	

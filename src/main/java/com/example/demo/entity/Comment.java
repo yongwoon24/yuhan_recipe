@@ -1,5 +1,8 @@
 package com.example.demo.entity;
 
+import java.time.LocalDateTime;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 @Entity
@@ -8,8 +11,9 @@ public class Comment {
 	private int comment_id;
 	private int post_id;
 	private String user_id;
+	@Column(name = "content", columnDefinition = "TEXT")
 	private String content;
-	private String created_date;
+	private LocalDateTime created_date;
 	
 	public int getComment_id() {
 		return comment_id;
@@ -35,10 +39,10 @@ public class Comment {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getCreated_date() {
+	public LocalDateTime getCreated_date() {
 		return created_date;
 	}
-	public void setCreated_date(String created_date) {
+	public void setCreated_date(LocalDateTime created_date) {
 		this.created_date = created_date;
 	}
 	

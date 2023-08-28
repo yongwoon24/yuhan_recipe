@@ -1,38 +1,76 @@
 package com.example.demo.entity;
 
+import java.sql.Date;
+import java.time.LocalDate;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
 @Entity
+@Table(name = "useractivity")
 public class Love {
-	@Id
-	private int like_id;
-	private int post_id;
-	private String user_id;
-	
-	public int getLike_id() {
-		return like_id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="activity_id")
+    private Long activityId;
+    @Column(name="user_id")
+    private String userId;
+    
+    @Column(name="activity")
+    private String activity;
+    
+    @Column(name="date")
+    private LocalDate date;
+
+    @ManyToOne
+    @JoinColumn(name = "recipe_id")
+    private Recipe recipe;
+
+	public Long getActivityId() {
+		return activityId;
 	}
-	public void setLike_id(int like_id) {
-		this.like_id = like_id;
+
+	public void setActivityId(Long activityId) {
+		this.activityId = activityId;
 	}
-	public int getPost_id() {
-		return post_id;
+
+	public String getUserId() {
+		return userId;
 	}
-	public void setPost_id(int post_id) {
-		this.post_id = post_id;
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
-	public String getUser_id() {
-		return user_id;
+
+	public String getActivity() {
+		return activity;
 	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+
+	public void setActivity(String activity) {
+		this.activity = activity;
 	}
-	
-	@Override
-	public String toString() {
-		return "Scrap [like_id=" + like_id + ", post_id=" + post_id + ", user_id=" + user_id + "]";
+
+	public LocalDate getDate() {
+		return date;
 	}
-	
-	
-	
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
+	public Recipe getRecipe() {
+		return recipe;
+	}
+
+	public void setRecipe(Recipe recipe) {
+		this.recipe = recipe;
+	}
+
+    
 }

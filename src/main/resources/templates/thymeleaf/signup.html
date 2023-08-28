@@ -32,56 +32,38 @@
     }
     
     }
-        $(document).ready(function() {
-            $("#user_id").on("input", function() {
-                var user_id = $(this).val();
-                
-                $.ajax({
-                    type: "GET",
-                    url: "/checkUserIdAvailability?user_id=" + user_id,
-                    success: function(response) {
-                        if (response === true) {
-                            $("#duplicationMessage").text("아이디 사용 가능");
-                            
-
-                        } else {
-                            $("#duplicationMessage").text("아이디 중복");
-                        
-                        }
-                    },
-                    error: function() {
-                        $("#duplicationMessage").text("에러");
+       $(document).ready(function() {
+    function checkAvailability(url, inputElementId, messageElementId, buttonElementId) {
+        $(inputElementId).on("input", function() {
+            var inputValue = $(this).val();
+            
+            $.ajax({
+                type: "GET",
+                url: url + inputValue,
+                success: function(response) {
+                    var messageElement = $(messageElementId);
+                    var buttonElement = $(buttonElementId);
+                    
+                    if (response === true) {
+                        messageElement.text("사용 가능");
+                        buttonElement.prop("disabled", false);
+                    } else {
+                        messageElement.text("중복");
+                        buttonElement.prop("disabled", true);
                     }
-                });
+                },
+                error: function() {
+                    $(messageElementId).text("에러");
+                }
             });
         });
-        
-        
-          $(document).ready(function() {
-            $("#email").on("input", function() {
-                var email = $(this).val();
-                
-                $.ajax({
-                    type: "GET",
-                    url: "/checkUseremailAvailability?email=" + email,
-                    success: function(response) {
-                        if (response === true) {
-                            $("#duplicationMessageemail").text("이메일 사용 가능");
-                           $("#signupButton").prop("disabled", false);
+    }
+    
+    checkAvailability("/checkUserIdAvailability?user_id=", "#user_id", "#duplicationMessage", "#signupButton");
+    checkAvailability("/checkUseremailAvailability?email=", "#email", "#duplicationMessageemail", "#signupButton");
+});
 
-                        } else {
-                            $("#duplicationMessageemail").text("이메일 중복");
-                           $("#signupButton").prop("disabled", true);
-                        }
-                    },
-                    error: function() {
-                        $("#duplicationMessageemail").text("에러");
-                    }
-                });
-            });
-        });
-
-
+	  
     </script>
 </head>
 <body>
