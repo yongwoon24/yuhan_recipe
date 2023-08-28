@@ -199,10 +199,12 @@ CREATE TABLE Scrap (
 );
 
 
-CREATE TABLE Love (
-    love_id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE UserActivity (
+    activity_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id VARCHAR(255),
     recipe_id INT,
+    activity VARCHAR(45),
+    date DATE(255)
     FOREIGN KEY (user_id) REFERENCES User(user_id),
     FOREIGN KEY (recipe_id) REFERENCES Recipe(recipe_id)
 );
