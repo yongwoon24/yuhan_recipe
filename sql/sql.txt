@@ -207,6 +207,11 @@ CREATE TABLE Love (
     FOREIGN KEY (recipe_id) REFERENCES Recipe(recipe_id)
 );
 
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> e2db5c884523330d4b6a0ef14b34be6f0a75cf9e
 CREATE TABLE Recipe_Ingredient (
     r_id INT AUTO_INCREMENT PRIMARY KEY,
     recipe_id INT,

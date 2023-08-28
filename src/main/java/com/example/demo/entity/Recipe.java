@@ -2,6 +2,8 @@ package com.example.demo.entity;
 
 import java.time.LocalDate;
 
+import com.example.demo.formdto.RecipeFormDto;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -15,6 +17,7 @@ public class Recipe {
 	private String main_photo;
 	private LocalDate created_date;
 	private String user_id;
+	@Column(name = "category_name")
 	private String categoryName;
 	private Integer view_count = 0;
 	private Integer totalLove;
@@ -83,7 +86,25 @@ public class Recipe {
 				+ view_count + ", totalLove=" + totalLove + "]";
 	}
 	
-	
-	
-	
+	public void updateRecipe(RecipeFormDto recipeFormDto) {
+		this.recipe_id=recipeFormDto.getRecipe_id();
+		this.title=recipeFormDto.getTitle();
+		this.created_date=recipeFormDto.getCreated_date();
+		this.user_id=recipeFormDto.getUser_id();
+		this.categoryName=recipeFormDto.getCategory_name();
+		this.view_count=recipeFormDto.getView_count();
+		this.totalLove=recipeFormDto.getTotalLove();
+
+	}
+
 }
+	
+
+
+
+
+	
+	
+	
+	
+

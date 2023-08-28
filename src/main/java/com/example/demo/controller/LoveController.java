@@ -41,7 +41,7 @@ public class LoveController {
     	/*
         // Create a map to store recipe IDs and their corresponding like counts
         Map<Long, Long> recipeLikeCounts = topLove.stream()
-                .collect(Collectors.groupingBy(
+        s        .collect(Collectors.groupingBy(
                         love -> (long)love.getRecipe().getRecipe_id(),
                         Collectors.counting()
                 ));
