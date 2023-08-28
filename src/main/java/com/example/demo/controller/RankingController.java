@@ -40,7 +40,7 @@ public class RankingController {
         	model.addAttribute("topLove", topLove);
         	return "rank";
         } else {
-            List<Recipe>topLove = recipeRepository.findBycategory_nameOrderByTotalLoveDesc(categoryName);
+            List<Recipe>topLove = recipeRepository.findByCategoryNameOrderByTotalLoveDesc(categoryName);
             model.addAttribute("topLove", topLove);
             model.addAttribute("selectedCategory", categoryName);
             return "rank";

@@ -22,9 +22,9 @@
 		<span class="menu3"><a href="user">메뉴3</a></span>
 		<span class="menu2"><a href="user">메뉴2</a></span>
 
-		<span class="menu1"><a href="recipe">메뉴1</a></span>
+		
 		<span class="mainicon">모두의레시피</span>
-		<span class="menu1"><a href="user">메뉴1</a></span>
+		
 
 		<span class="menu1"><a href="rank">랭킹</a></span>
 
@@ -50,7 +50,7 @@
 		<div class="slide_wrapper">
 			<ul class="img_slide">
 				<li th:each="recipe : ${topLove}">
-					<a href="recipe"><img th:src="@{/img/__${recipe.main_photo}__.jpg}"></a>
+					<a href="recipe"><img th:src="@{__${recipe.main_photo_path}__}" width="300px" height="300px"></a>
 					<a href="recipe"><ol th:text="${recipe.title}">asd</ol></a>
 					<ol class="likes">
     					<li>

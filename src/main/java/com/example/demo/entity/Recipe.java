@@ -32,7 +32,8 @@ public class Recipe {
 	private String user_id;
 	
 	@Column(name = "category_name")
-	private String category_name;
+	private String categoryName;
+	
 	private Integer view_count = 0;
 	private Integer totalLove;
 	private String main_photo;
@@ -43,7 +44,7 @@ public class Recipe {
 	@Override
 	public String toString() {
 		return "Recipe [recipe_id=" + recipe_id + ", title=" + title + ", created_date=" + created_date + ", user_id="
-				+ user_id + ", category_name=" + category_name + ", view_count=" + view_count + ", totalLove="
+				+ user_id + ", category_name=" + categoryName + ", view_count=" + view_count + ", totalLove="
 				+ totalLove + ", main_photo=" + main_photo + ", main_photo_path=" + main_photo_path + "]";
 	}
 
@@ -124,14 +125,17 @@ public class Recipe {
 
 
 
-	public String getCategory_name() {
-		return category_name;
+
+
+
+	public String getCategoryName() {
+		return categoryName;
 	}
 
 
 
-	public void setCategory_name(String category_name) {
-		this.category_name = category_name;
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 
 
@@ -165,7 +169,7 @@ public class Recipe {
 		this.title=recipeFormDto.getTitle();
 		this.created_date=recipeFormDto.getCreated_date();
 		this.user_id=recipeFormDto.getUser_id();
-		this.category_name=recipeFormDto.getCategory_name();
+		this.categoryName=recipeFormDto.getCategory_name();
 		this.view_count=recipeFormDto.getView_count();
 		this.totalLove=recipeFormDto.getTotalLove();
 	}

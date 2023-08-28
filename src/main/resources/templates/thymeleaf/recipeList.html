@@ -33,10 +33,10 @@
         <tr th:each="recipe : ${recipes}">
             <td th:text="${recipe.recipe_id}"></td>
             <td th:text="${recipe.title}"></td>
-            <td th:src="${recipe.main_photo}"></td>
+            <td><a th:href="@{${recipe.main_photo_path}}">다운</a></td>
             <td th:text="${recipe.created_date}"></td>
             <td th:text="${recipe.user_id}"></td>
-            <td th:text="${recipe.category_name}"></td>
+            <td th:text="${recipe.categoryName}"></td>
             <td th:text="${recipe.totalLove}"></td>
             
             

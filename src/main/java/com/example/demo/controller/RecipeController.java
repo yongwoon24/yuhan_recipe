@@ -39,17 +39,17 @@ public class RecipeController {
 	@Autowired
 	private RecipeService recipeservice;
 	
-	@GetMapping("/recipe")
-	public String listRecipes(Model model) {
+	@GetMapping("/recipe1")
+	public String listRecipes(Model model, @RequestParam(required = false) String title) {
 		List<Recipe> recipes = recipeRepository.findAll();
 		model.addAttribute("recipes", recipes);
 		return "recipeList2";
 	}
-	@GetMapping("/recipe1")
+	@GetMapping("/recipe")
 	public String listRecipes1(Model model) {
 		List<Recipe> recipes = recipeRepository.findAll();
 		model.addAttribute("recipes", recipes);
-		return "recipeList";
+		return "recipeList2";
 	}
 	 @GetMapping("/createRecipe")
 	    public String createRecipeForm(Model model) {
@@ -58,7 +58,7 @@ public class RecipeController {
 	    }
 	    
 	    @PostMapping("/createRecipe")
-	    public String createRecipe(@ModelAttribute Recipe recipe,  Model model, MultipartFile file) throws Exception{
+	    public String createRecipe(@ModelAttribute Recipe recipe, MultipartFile file) throws Exception{
 	    	
 	    	recipeservice.write(recipe, file);
 	    	recipeRepository.save(recipe);

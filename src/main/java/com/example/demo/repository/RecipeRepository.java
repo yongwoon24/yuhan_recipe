@@ -17,8 +17,10 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
 	@Query("SELECT r.main_photo FROM Recipe r WHERE r.recipe_id = :recipeId")
     String findMainPhotoByRecipeId(Long recipeId);
 
-	List<Recipe> findBycategory_nameOrderByTotalLoveDesc(String category_name);
+	List<Recipe> findByCategoryNameOrderByTotalLoveDesc(String categoryName);
 	List<Recipe> findTop10ByOrderByTotalLoveDesc();
+	//List<Recipe> findByTitleDesc(String title);
+	//List<Recipe> findTop10ByOrderByCreate_DateDesc();
 
 }
 	

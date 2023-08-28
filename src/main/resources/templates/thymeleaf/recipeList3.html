@@ -35,7 +35,7 @@
             <td th:src="${recipe.main_photo}"></td>
             <td th:text="${recipe.created_date}"></td>
             <td th:text="${recipe.user_id}"></td>
-            <td th:text="${recipe.category_name}"></td>
+            <td th:text="${recipe.categoryName}"></td>
             
             
             <td><a th:href="@{/editRecipe/{recipe_id}(recipe_id=${recipe.recipe_id})}">Edit</a></td>
