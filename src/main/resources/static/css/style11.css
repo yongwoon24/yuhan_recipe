@@ -1,0 +1,57 @@
+.check{
+  float:left;
+   width: 64px;
+   height: 55px;
+   right: 95%;
+   top: 300px;
+   font-size:15px;
+   letter-spacing:0;
+}
+.body_wrapper2 { 
+   background-color:rgba(255, 255, 255, 1);
+   width:80%;
+   height:50%;
+  top:250px;
+   position:absolute;
+   font-family: 'Jua', sans-serif;   
+}
+
+.body_wrapper4 { 
+   background-color:rgba(255, 255, 255, 1);
+   width:100%;
+   height:100%;
+    top:700px;
+   position:absolute;
+   font-family: 'Jua', sans-serif;   
+}
+
+
+
+.classification_wrap {
+	width:1325px;
+	height: 3000px;
+	border: 1px solid black;
+	margin: 0 auto;
+	overflow: hidden;
+	padding-top: 20px;
+	position:relative;
+	top: 300px;
+}
+.recipe_list {
+	float: left;
+	margin-left: 25px;
+	padding-bottom: 75px;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+
+
+.array_list {
+	position:relative;
+	top: 280px;
+	float: right;
+	}
