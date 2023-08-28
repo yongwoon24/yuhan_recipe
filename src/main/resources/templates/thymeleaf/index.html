@@ -21,12 +21,8 @@
 		<span class="menu4"><a href="recipe">메뉴4</a></span>
 		<span class="menu3"><a href="user">메뉴3</a></span>
 		<span class="menu2"><a href="user">메뉴2</a></span>
-		<span class="menu1"><a href="recipeList2">메뉴1</a></span>
-		<span class="mainicon">모두의레시피</span>
-		<span class="menu1"><a href="user">메뉴1</a></span>
 		<span class="menu1"><a href="rank">랭킹</a></span>
 		<span><a class="mainicon" href="/">모두의레시피</a></span>
-
 		<!-- 마이페이지 주소 입력 --> 
 		<div class="usericon"><a href="마이페이지.html"><i class="fa-solid fa-user"></i></a></div>
 		<!-- 로그아웃 주소 입력 --> 
@@ -51,8 +47,6 @@
 					<a href="recipe"><ol th:text="${recipe.title}">asd</ol></a>
 					<ol class="likes">
     					<li>
-							<i class="fas fa-heart"></li>
-        					<span th:text="${entry.value}"> </span>
 							<i class="fas fa-heart"></i>
         					<span th:text="${recipe.totalLove}"></span>
     					</li>
@@ -61,16 +55,21 @@
 			</ul>	
 			<div class="slide_control">
 			<p>
-				<span class="prev"> <i class="fa-solid fa-arrow-left"> </i></span>
-				<span class="next"> <i class="fa-solid fa-arrow-right"> </i></span>
+				<span class="prev"><i class="fa-solid fa-arrow-left"></i></span>
+				<span class="next"><i class="fa-solid fa-arrow-right"></i></span>
 			</p>
 			
 			</div>
 			
 			
-		<scriptt th:src="@{/../js/main.js}"></script>
+		<script th:src="@{/../js/main.js}"></script>
 		</div>
-
+		
+		
+		
+			
+		
+		
 	</div>
 	<div class="footer">
 			<div class="footer_comment">@Yuhan University Group 3's Project</div>

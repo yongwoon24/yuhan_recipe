@@ -16,7 +16,7 @@ import com.example.demo.repository.RecipeRepository;
 @Controller
 public class RecipeController {
 	@Autowired
-	 private RecipeRepository recipeRepository;
+	private RecipeRepository recipeRepository;
 	
 	@GetMapping("/recipe")
 	public String listRecipes(Model model) {
@@ -61,13 +61,6 @@ public class RecipeController {
         public String recipeList2() {
     		return "recipeList2";
         }
-        
-        @PostMapping("/formAction")
-        public String recipeList2(Model model) {
-        	return "";
-        }
-        
-        
-        
+
 	}
 

@@ -81,11 +81,11 @@ public class Recipe {
 	}
 	@Override
 	public String toString() {
-
 		return "Recipe [recipe_id=" + recipe_id + ", title=" + title + ", main_photo=" + main_photo + ", created_date="
 				+ created_date + ", user_id=" + user_id + ", categoryName=" + categoryName + ", view_count="
-				+ view_count + ", totalLove=" + totalLove + "]";
+				+ view_count + ", totalLove=" + totalLove + ", main_photo_path=" + main_photo_path + "]";
 	}
+	
 	
 	
 	
