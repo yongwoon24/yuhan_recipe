@@ -79,7 +79,7 @@
 			</ul>
 			<div class="pagination">
 		    	<a th:if="${currentPage > 0}" th:href="@{|/rank?page=${currentPage - 1}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}">&laquo;</a>
-		    	<span th:text="${currentPage + 1}"></span>
+		    	<!--<span th:text="${currentPage + 1}"></span>-->
 				<a th:if="${topLove.size() > (currentPage * 20)}" th:href="@{|/rank?page=${currentPage + 1}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}">&raquo;</a>
 			</div>
 			
