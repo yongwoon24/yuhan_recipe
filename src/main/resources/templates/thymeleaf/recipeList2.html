@@ -104,11 +104,11 @@
         <div class="col-md-4" th:each="recipe : ${recipes}">
             <div class="recipe_item">
                 <a href="recipe">
-                    <img th:src="@{__${recipe.main_photo_path}__}" width="300px" height="300px"><br>
-                    <h2 th:text="${recipe.title}"></h2>
-                    <p th:text="${recipe.user_id}"></p>
-                    <p th:text="${recipe.totalLove}"></p>
-                    <p th:text="${recipe.view_count}"></p> 
+                    <img th:src="@{${recipe.main_photo_path}}" width="300px" height="300px"><br>
+                    <h2 th:text="${recipe.title}">제목</h2>
+                    <p th:text="${recipe.user_id}">작성자</p>
+                    <p th:text="${recipe.totalLove}">좋아요 수</p>
+                    <p th:text="${recipe.view_count}">조회수</p> 
                 </a>
             </div>
         </div>

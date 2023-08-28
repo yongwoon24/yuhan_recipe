@@ -46,10 +46,12 @@ public class RecipeController {
 		return "recipeList2";
 	}
 	@GetMapping("/recipe")
-	public String listRecipes1(Model model) {
+	public String listRecipes1(Model model, @RequestParam(required = false, defaultValue = "0") int page) {
+		int pageSize = 20; // 페이지당 레시피 수
 		List<Recipe> recipes = recipeRepository.findAll();
 		model.addAttribute("recipes", recipes);
-		return "recipeList2";
+		model.addAttribute("currentPage", page);
+		return "recipeList3";
 	}
 	 @GetMapping("/createRecipe")
 	    public String createRecipeForm(Model model) {

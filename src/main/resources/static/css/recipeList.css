@@ -27,11 +27,10 @@ li > img{
 	top: 250px;
 	position: relative;
 	margin:0 auto;
-	height: 600px;
+	height: 100%;
 	overflow: hidden;
 	align-items: center;
 	box-shadow: #949494 5px 5px 10px;
-
 }
 
 .img_slide{
@@ -258,12 +257,36 @@ li > img{
 }
 
 .check{
-  width: 64px;
+  width: 100%;
     height: 55px;
     font-size: 15px;
     letter-spacing: 0;
     position: relative;
+    display: inline-block;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 255px;
 }
+.checklist {
+	width : 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px; /* Adjust the spacing between checkboxes as needed */
+    margin-bottom: 20px;
+}
+
+.btn1{
+	width : 87%;
+	height: 30px;
+	position: relative;
+	display: inline-block;
+	
+	text-align: right;
+	align-items: center; /* 수직 가운데 정렬을 설정합니다 */
+	}
+	
+
 .body_wrapper2 {
     background-color: rgba(255, 255, 255, 1);
     width: 80%;
@@ -345,4 +368,69 @@ li > img{
 /* 레시피 아이템의 작성자, 좋아요, 조회수 스타일을 조정합니다. */
 .recipe_item p {
     margin-bottom: 5px;
+}
+
+.img_slide1{
+	display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4열 그리드, 1fr은 동일한 너비로 설정 */
+    /*justify-content: center; /* 가운데 정렬 */
+    gap: 20px; /* 열 간격 */
+    max-width: 1800px;
+    margin: 0 auto; /* 가운데 정렬 */
+    margin-top: 50px;
+}
+
+.img_slide1 li{
+	float: left;
+	margin-right: 30px;
+}
+.img_slide1 ol{
+	max-width: 350px;
+}
+
+.recipe-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.recipe-item img {
+    width: 400px; /* 이미지의 가로 너비를 일정한 크기로 설정 */
+    height: 400px; /* 세로 높이를 자동으로 조절하여 비율 유지 */
+}
+
+.recipe-item span {
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.recipe-item .likes {
+    margin-top: 5px;
+    font-size: 20px;
+    color: rgb(255, 128, 255);
+}
+.recipe-container {
+    position: relative;
+}
+
+.ranking {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 30%;
+    width: 60px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    box-shadow: #949494 5px 5px 10px;
+}
+.ranking > span{
+	position: relative;
+	top: -2px;
 }
