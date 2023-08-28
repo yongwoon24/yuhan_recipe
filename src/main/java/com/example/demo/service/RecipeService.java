@@ -55,7 +55,7 @@ public class RecipeService {
 	private RecipeRepository reciperepository;
 	
 	public void write(Recipe recipe, MultipartFile file) throws Exception{
-		String proijectpath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\files";
+		String proijectpath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\img";
 		UUID uuid = UUID.randomUUID();
 		String fileName = uuid + "_" + file.getOriginalFilename();
  		File savefile = new File(proijectpath, fileName);

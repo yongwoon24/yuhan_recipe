@@ -18,7 +18,7 @@ li > img{
    height: 400px;
 }
 
-.li > a > img{
+li > a > img{
 	width: 400px;
 	height: 400px;
 	border-radius: 20px;
