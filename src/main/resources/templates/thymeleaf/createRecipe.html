@@ -7,11 +7,12 @@
 </head>
 <body>
     <h1>Create New Recipe</h1>
-    <form action="/createRecipe" method="post">
-        <label>Title : <input type="text" name="title" style="width:700px;height:30px;font-size:20px;"/></label><br><br>
-        <label>Recipe Introduce : <input type="text" name="recipe_introduce" style="width:700px;height:100px;font-size:20px;"/></label><br><br>
-        <label>Main Photo : <input type="text" name="main_photo" accept="image/*"/></label><br><br>
-        <label>Category Name :
+    <form action="/createRecipe" method="post" enctype="multipart/form-data">
+        <label>Title: <input type="text" name="title" /></label><br/>
+        <label>Main Photo: <input multiple type="file" name="file" /></label><br/>
+        <label>Created Date: <input type="date" name="created_date" /></label><br/>
+        <label>User ID: <input type="text" name="user_id" /></label><br/>
+        <label>Category Name:
             <select name="category_name">
                 <option value="파티">파티</option>
                 <option value="가정">가정</option>
@@ -20,29 +21,7 @@
                 <option value="야식/안주">야식/안주</option>
                 <option value="피크닉">피크닉</option>
             </select>
-        </label><br><br>
-        
-        
-<!--  
-        <h3>ingredients</h3>
-        
-        <h3>steps</h3>
-        
-        <h4>Step 1</h4>
-			
-		<input type="text" placeholder="요리 방법을 적어주세요." style="width:700px;height:125px;font-size:17px;">		
-		<h4>이미지 추가 <input type="file" accept="image/*"></h4>
-		
-			
-		
-
-		<button type="button">순서추가</button></form><br><br>
--->
-
-        
-        <label>Created Date: <input type="date" name="created_date" /></label><br/>
-        <label>User ID: <input type="text" name="user_id" /></label><br/>
-        
+        </label><br/>
         <input type="submit" value="Create" />
     </form>
 </body>

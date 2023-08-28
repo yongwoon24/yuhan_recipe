@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
@@ -7,6 +8,7 @@ import jakarta.persistence.Id;
 public class Category {
 	
 	@Id
+	@Column(name = "category_name;")
 	private String category_name;
 
 	public String getCategory_name() {
