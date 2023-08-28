@@ -15,6 +15,7 @@ li{
 li > a > img{
 	width: 400px;
 	height: 400px;
+	border-radius: 20px;
 }
 .slide_wrapper{
 	top: 250px;

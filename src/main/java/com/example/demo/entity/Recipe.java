@@ -18,6 +18,8 @@ public class Recipe {
 	private String categoryName;
 	private Integer view_count = 0;
 	private Integer totalLove;
+	private String main_photo_path;
+
 	
 	public int getRecipe_id() {
 		return recipe_id;
@@ -67,6 +69,12 @@ public class Recipe {
 	}
 	public void setTotalLove(Integer totalLove) {
 		this.totalLove = totalLove;
+	}
+	public String getMain_photo_path() {
+		return main_photo_path;
+	}
+	public void setMain_photo_path(String main_photo_path) {
+		this.main_photo_path = main_photo_path;
 	}
 	@Override
 	public String toString() {

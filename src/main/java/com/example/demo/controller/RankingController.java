@@ -27,27 +27,25 @@ public class RankingController {
     }
 
     @GetMapping("/rank")
-    public String getTopRecipes(Model model, @RequestParam(required = false) String categoryName) {
-        //List<Love> topLove; // = loveRepository.findByOrderByLoveId();
+    public String getTopRecipes(Model model, @RequestParam(required = false, defaultValue = "0") int page,
+                                @RequestParam(required = false) String categoryName) {
+        int pageSize = 20; // 페이지당 레시피 수
+
+        List<Recipe> topLove;
         if (categoryName == null || categoryName.isEmpty()) {
-        	List<Recipe> topLove = recipeRepository.findTop10ByOrderByTotalLoveDesc();
-        	/*for (Recipe recipe : topLove) {
-                System.out.println("Recipe ID: " + recipe.getRecipe_id());
-                System.out.println("Recipe Title: " + recipe.getTitle());
-                System.out.println("Total Love: " + recipe.getTotalLove());
-            }
-            */
-        	model.addAttribute("topLove", topLove);
-        	return "rank";
+            topLove = recipeRepository.findByOrderByTotalLoveDesc();
         } else {
-            List<Recipe>topLove = recipeRepository.findByCategoryNameOrderByTotalLoveDesc(categoryName);
-            model.addAttribute("topLove", topLove);
+            topLove = recipeRepository.findByCategoryNameOrderByTotalLoveDesc(categoryName);
             model.addAttribute("selectedCategory", categoryName);
-            return "rank";
         }
 
-        
+        int startIndex = page * pageSize;
+        int endIndex = Math.min(startIndex + pageSize, topLove.size());
 
-        
+        List<Recipe> pagedRecipes = topLove.subList(startIndex, endIndex);
+        model.addAttribute("topLove", pagedRecipes);
+        model.addAttribute("currentPage", page);
+
+        return "rank";
     }
 }
