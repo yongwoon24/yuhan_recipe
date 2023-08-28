@@ -19,8 +19,12 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
 
 	List<Recipe> findByCategoryNameOrderByTotalLoveDesc(String categoryName);
 	List<Recipe> findTop10ByOrderByTotalLoveDesc();
+
 	//List<Recipe> findByTitleDesc(String title);
 	//List<Recipe> findTop10ByOrderByCreate_DateDesc();
+
+
+	List<Recipe> findByOrderByTotalLoveDesc();
 
 }
 	

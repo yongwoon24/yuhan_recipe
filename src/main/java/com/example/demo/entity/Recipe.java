@@ -36,8 +36,11 @@ public class Recipe {
 	
 	private Integer view_count = 0;
 	private Integer totalLove;
+
 	private String main_photo;
 	private String main_photo_path;
+
+
 	
 	
 
@@ -162,8 +165,6 @@ public class Recipe {
 		this.totalLove = totalLove;
 	}
 
-
-
 	public void updateRecipe(RecipeFormDto recipeFormDto) {
 		this.recipe_id=recipeFormDto.getRecipe_id();
 		this.title=recipeFormDto.getTitle();
@@ -172,6 +173,7 @@ public class Recipe {
 		this.categoryName=recipeFormDto.getCategory_name();
 		this.view_count=recipeFormDto.getView_count();
 		this.totalLove=recipeFormDto.getTotalLove();
+
 	}
 
 
