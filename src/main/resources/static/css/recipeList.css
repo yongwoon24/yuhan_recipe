@@ -9,7 +9,7 @@ a{
 	color: rgb(255, 128, 255);
 	font-size: 20px;
 }
-li{
+/*li{
    list-style: none;
 }
 
@@ -18,11 +18,10 @@ li > img{
    height: 400px;
 }
 
-li > a > img{
+.li > a > img{
 	width: 400px;
 	height: 400px;
-	border-radius: 20px;
-}
+}*/
 
 .slide_wrapper{
 	top: 250px;
@@ -254,26 +253,27 @@ li > a > img{
 .body_content{
    height: 9999px;
    position: relative;
-   padding-bottom: 150px;
+   padding-bottom: 400px;
    
 }
 
 .check{
-  float:left;
-   width: 64px;
-   height: 55px;
-   right: 95%;
-   top: 300px;
-   font-size:15px;
-   letter-spacing:0;
+  width: 64px;
+    height: 55px;
+    font-size: 15px;
+    letter-spacing: 0;
+    position: relative;
 }
-.body_wrapper2 { 
-   background-color:rgba(255, 255, 255, 1);
-   width:80%;
-   height:50%;
-  top:250px;
-   position:absolute;
-   font-family: 'Jua', sans-serif;   
+.body_wrapper2 {
+    background-color: rgba(255, 255, 255, 1);
+    width: 80%;
+    height: 95%;
+    top: 50%; /* 수직 가운데 위치 */
+    left: 50%; /* 수평 가운데 위치 */
+    transform: translate(-50%, -50%); /* 가운데 정렬 */
+    position: absolute;
+    font-family: 'Jua', sans-serif;
+    /* 여기에 추가로 스타일을 적용해보세요 */
 }
 
 .body_wrapper4 { 
@@ -313,4 +313,36 @@ li > a > img{
    position:relative;
    top: 280px;
    float: right;
+}
+
+.recipe-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+        
+/* 그리드 칼럼의 간격을 조정합니다. */
+.recipe_list .col-md-4 {
+  margin-bottom: 20px;
+}
+
+/* 레시피 아이템에 박스 쉐도우 효과를 추가합니다. */
+.recipe_item {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    background-color: #fff;
+}
+
+/* 레시피 아이템의 제목 스타일을 조정합니다. */
+.recipe_item h2 {
+   font-size: 1.25rem;
+   margin-top: 10px;
+}
+
+/* 레시피 아이템의 작성자, 좋아요, 조회수 스타일을 조정합니다. */
+.recipe_item p {
+    margin-bottom: 5px;
 }
