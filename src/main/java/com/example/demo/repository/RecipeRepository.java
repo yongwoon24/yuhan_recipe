@@ -18,6 +18,9 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
     String findMainPhotoByRecipeId(Long recipeId);
 
 	List<Recipe> findByCategoryNameOrderByTotalLoveDesc(String categoryName);
+	List<Recipe> findByCategoryNameOrderByDailyLoveDesc(String categoryName);
+	List<Recipe> findByCategoryNameOrderByWeeklyLoveDesc(String categoryName);
+	List<Recipe> findByCategoryNameOrderByMonthlyLoveDesc(String categoryName);
 	List<Recipe> findTop10ByOrderByTotalLoveDesc();
 
 	//List<Recipe> findByTitleDesc(String title);
@@ -25,6 +28,8 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
 
 
 	List<Recipe> findByOrderByTotalLoveDesc();
-
+	List<Recipe> findByOrderByDailyLoveDesc();
+	List<Recipe> findByOrderByWeeklyLoveDesc();
+	List<Recipe> findByOrderByMonthlyLoveDesc();
 }
 	

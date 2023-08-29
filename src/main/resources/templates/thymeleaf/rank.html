@@ -57,9 +57,33 @@
 			            <option value="디저트">디저트용</option>
 			            <option value="야식안주">야식/안주용</option>
 			        </select>
+			        <select id="period" name="period">
+			            <option value="">전체</option>
+			            <option value="d">일간</option>
+			            <option value="w">주간</option>
+			            <option value="m">월간</option>
+			        </select>
 			        <button id="submitBtn" type="submit" hidden>선택</button>
 
 			    </form>
+			    <div class="option-buttons">
+				    <table class="whole-table">
+				        <tr>
+				            <td>
+				                <a href="#" class="table-button" data-period="all">전체</a>
+				            </td>
+				            <td>
+				                <a href="#" class="table-button" data-period="daily">일간</a>
+				            </td>
+				            <td>
+				                <a href="#" class="table-button" data-period="weekly">주간</a>
+				            </td>
+				            <td>
+				                <a href="#" class="table-button" data-period="monthly">월간</a>
+				            </td>
+				        </tr>
+				    </table>
+				</div>
 			</div>
 			<ul class="img_slide">
 			    <li class="recipe-item" th:each="recipe, recipeIndex : ${topLove}">
