@@ -73,7 +73,17 @@ public class RecipeController {
 	    
 	    
 	    
-	    
+	    @GetMapping("/recipe/{recipe_id}")
+        public String userRecipeview(@PathVariable("recipe_id") int recipe_id, Model model) {
+            Recipe recipe = recipeRepository.findById(recipe_id);
+            if (recipe != null) {
+                recipeRepository.incrementViewCount(recipe_id); // 조회수 업데이트
+                model.addAttribute("recipe", recipe);
+                return "userRecipe"; // 레시피 페이지 템플릿
+            }
+            
+            return "userRecipe";
+        }
 	    
 	    @GetMapping("/editRecipe/{recipe_id}")
         public String editRecipeForm(@PathVariable Integer recipe_id, Model model) {

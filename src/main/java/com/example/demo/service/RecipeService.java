@@ -64,4 +64,13 @@ public class RecipeService {
 		recipe.setMain_photo_path("/files/"+fileName);
 		//reciperepository.save(recipe);
 	}
+	
+	public List<Recipe> getAllRecipes() {
+        return reciperepository.findAll();
+    }
+
+    public Recipe getRecipeById(int id) {
+        Optional<Recipe> optionalRecipe = Optional.ofNullable(reciperepository.findById(id));
+        return optionalRecipe.orElse(null);
+    }
 }

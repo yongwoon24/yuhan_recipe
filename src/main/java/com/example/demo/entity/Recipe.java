@@ -19,11 +19,18 @@ public class Recipe {
 	private String user_id;
 	@Column(name = "category_name")
 	private String categoryName;
-	private Integer view_count = 0;
+	private Integer view_count;
 	private Integer totalLove;
 	private String main_photo_path;
-
+	@Column(name = "recipe_subtext")
+	private String recipesubtxt;
 	
+	public String getRecipesubtxt() {
+		return recipesubtxt;
+	}
+	public void setRecipesubtxt(String recipesubtxt) {
+		this.recipesubtxt = recipesubtxt;
+	}
 	public int getRecipe_id() {
 		return recipe_id;
 	}
@@ -83,7 +90,8 @@ public class Recipe {
 	public String toString() {
 		return "Recipe [recipe_id=" + recipe_id + ", title=" + title + ", main_photo=" + main_photo + ", created_date="
 				+ created_date + ", user_id=" + user_id + ", categoryName=" + categoryName + ", view_count="
-				+ view_count + ", totalLove=" + totalLove + "]";
+				+ view_count + ", totalLove=" + totalLove + ", main_photo_path=" + main_photo_path + ", recipesubtxt="
+				+ recipesubtxt + "]";
 	}
 	
 	public void updateRecipe(RecipeFormDto recipeFormDto) {

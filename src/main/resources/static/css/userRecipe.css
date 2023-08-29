@@ -84,7 +84,7 @@ li > img{
    position:absolute;
    left:0px;
    top:115px;
-   
+   display: flex;
 }
 .menu4 { 
    color:rgba(0, 0, 0, 1);
@@ -436,4 +436,28 @@ li > img{
 .ranking > span{
 	position: relative;
 	top: -2px;
+}
+
+.main_img{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 20px;
+	margin-bottom: 50px;
+}
+
+h1{
+	font-size: 50px;
+	text-align: center;
+}
+h2{
+	font-weight: lighter; /* 얇게 설정 */
+	text-align: center;
+}
+
+.like_quer_zone{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 20px;
 }
