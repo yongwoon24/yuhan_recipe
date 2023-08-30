@@ -82,7 +82,8 @@ public class RecipeController {
 	    
 	    @PostMapping("/like")
 	    public String like(@RequestParam int recipe_id, @RequestParam String user_id) {
-	        Recipe recipe = new Recipe();
+	        String activity = "좋아요";
+	    	Recipe recipe = new Recipe();
 	        recipe.setRecipe_id(recipe_id);
 	    	
 	        User user = new User();
@@ -91,6 +92,7 @@ public class RecipeController {
 	    	Love love = new Love();
 	        love.setUser(user);
 	        love.setRecipe(recipe);
+	        love.setActivity(activity);
 	        
 	    	loveservice.saveLove(love);
 	        
