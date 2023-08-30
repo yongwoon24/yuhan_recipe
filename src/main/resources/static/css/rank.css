@@ -289,15 +289,31 @@ select {
 	transform: translateY(-50%);
 }
 .body_content{
-	height: 9999px;
+	height: 3000px;
 	position: relative;
 	padding-bottom: 150px;
 	
 }
 .category-buttons{
+	display: flex;
 	font-size: 30px;
 	position: relative;
 	padding: 20px 10px 10px 100px;
+	justify-content: space-between;
+}
+.option-buttons{
+	display: flex;
+	margin-left: auto;
+	margin-right: 100px;
+	gap: 10px;
+}
+.table-button {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    margin: 0;
+    background-color: rgb(192, 192, 192);
 }
 
 .recipe-item {
