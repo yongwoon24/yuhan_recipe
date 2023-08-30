@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.entity.User;
 import com.example.demo.repository.UserRepository;
@@ -44,8 +45,8 @@ public class UserController {
     }
    
     @PostMapping("/signup")
-    public String createUser(@ModelAttribute User user) {
-    	try {
+    public String createUser(@ModelAttribute User user, RedirectAttributes redirectAttributes) {
+       try {
             // 사용자가 존재하지 않을 때만 토큰 생성 및 저장, 이메일 전송
             UUID uuid = UUID.randomUUID();
             String verificationToken = uuid.toString();
@@ -58,7 +59,10 @@ public class UserController {
 
             // 이메일 전송 메소드 호출
             sendButtonEmail(user.getEmail(), "모두의 레시피 이메일 인증입니다!", "인증하기", verificationLink);
-
+            
+            // 성공 시 메시지 설정
+            redirectAttributes.addFlashAttribute("successMessage", "회원가입이 완료되었습니다. 이메일을 확인하세요!");
+            
             return "redirect:/login";
         } catch (Exception e) {
             throw new RuntimeException("회원가입 중 오류 발생", e);
@@ -92,35 +96,35 @@ public class UserController {
     }
     
     @PostMapping("/login")
-    public String loginUser(@RequestParam String user_id, @RequestParam String password, Model model) {
+    public String loginUser(@RequestParam String user_id, @RequestParam String password, RedirectAttributes redirectAttributes) {
         // 사용자 정보를 데이터베이스에서 조회합니다.
         List<User> users = userRepository.findByUser_id(user_id);
 
         if (!users.isEmpty()) {
             User user = users.get(0); // 첫 번째 사용자를 선택합니다.
 
-            if (user.isEmailVerified() && password.equals(user.getPassword())) {
-                // 이메일이 인증되었고 비밀번호가 일치하는 경우 로그인 성공
+            if (!user.isEmailVerified()) {
+                // 이메일 인증이 완료되지 않은 상태일 때 처리
+                redirectAttributes.addFlashAttribute("errorMessage", "이메일 인증이 완료되지 않았습니다!");
+                return "redirect:/login"; // 이메일 인증 실패 시 표시할 페이지
+            }
+
+            if (password.equals(user.getPassword())) {
+                // 비밀번호가 일치하는 경우 로그인 성공 처리
                 // 로그인 성공 처리를 수행하고 리다이렉트 또는 페이지 이동을 설정하세요.
-                // 예: 로그인 세션 생성, 로그인 상태로 리다이렉트 등
                 return "redirect:/"; // 로그인 후 이동할 페이지
             }
         }
 
         // 로그인 실패 처리를 수행하고 리다이렉트 또는 페이지 이동을 설정하세요.
         // 예: 에러 메시지 표시, 로그인 실패 페이지 이동 등
-        model.addAttribute("loginError", true);
-        return "login"; // 로그인 실패 시 표시할 페이지
+        redirectAttributes.addFlashAttribute("errorMessage", "아이디(로그인 전용 아이디) 또는 비밀번호를 잘못 입력했습니다.\r\n"
+              + "입력하신 내용을 다시 확인해주세요.");
+        return "redirect:/login"; // 로그인 실패 시 표시할 페이지
     }
 
     
-   /*
-    * @GetMapping("/checkDuplicateId")
-    * 
-    * @ResponseBody public String checkDuplicateId(@RequestParam String user_id) {
-    * User existingUser = userRepository.findById(user_id).orElse(null); if
-    * (existingUser != null) { return "duplicate"; } else { return "available"; } }
-    */
+   
     
     @GetMapping("/checkUserIdAvailability")
     @ResponseBody
@@ -152,7 +156,7 @@ public class UserController {
      */
     @GetMapping("/verifyEmail/{token}")
     public String verifyEmail(@PathVariable String token) {
-    	User user = userRepository.findByVerificationToken(token);
+       User user = userRepository.findByVerificationToken(token);
 
         if (user != null) {
             // 사용자의 이메일을 인증된 상태로 표시합니다.
@@ -176,7 +180,7 @@ public class UserController {
      */
     private void sendButtonEmail(String recipientEmail, String subject, String buttonText, String buttonLink) {
         String htmlContent = "<html><body>" +
-        		"<p>인증하기 버튼을 누르고 모두의 레시피 가입을 진행하세요..</p>" +
+              "<p>인증하기 버튼을 누르고 모두의 레시피 가입을 진행하세요..</p>" +
                 "<a href=\"" + buttonLink + "\" style=\"display: inline-block; background-color: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;\">"
                 + buttonText + "</a>" +
                 "</body></html>";
@@ -201,7 +205,7 @@ public class UserController {
      */
     private void sendButtonEmail2(String recipientEmail, String subject, String buttonText, String buttonLink) {
         String htmlContent = "<html><body>" +
-        		"<p>비밀번호 재설정 버튼을 누르고 모두의 레시피 비밀번호 재설정을 진행하세요..</p>" +
+              "<p>비밀번호 재설정 버튼을 누르고 모두의 레시피 비밀번호 재설정을 진행하세요..</p>" +
                 "<a href=\"" + buttonLink + "\" style=\"display: inline-block; background-color: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;\">"
                 + buttonText + "</a>" +
                 "</body></html>";
@@ -242,39 +246,40 @@ public class UserController {
     }
     
     @PostMapping("/findid")
-    public String findUserId(@RequestParam String email, Model model) {
-    	// 데이터베이스에서 해당 이메일을 가진 사용자의 아이디를 찾아옵니다.
-    	List<User> users = userRepository.findByemailList(email);
-    	
-    	if (!users.isEmpty()) {
+    public String findUserId(@RequestParam String email, Model model, RedirectAttributes redirectAttributes) {
+       // 데이터베이스에서 해당 이메일을 가진 사용자의 아이디를 찾아옵니다.
+       List<User> users = userRepository.findByemailList(email);
+       
+       if (!users.isEmpty()) {
             User user = users.get(0); // 첫 번째 사용자를 선택합니다.
             // 이 부분에서 해당 사용자의 아이디를 이메일로 보내는 로직을 구현하면 됩니다.
             sendEmail(user.getEmail(), "모두의 레시피 아이디 인증입니다!","당신의 아이디는 " + user.getUser_id() + " 입니다!");
-
+            
+            redirectAttributes.addFlashAttribute("sendMessage", "이메일을 전송했습니다. 이메일을 확인해주세요!");
             // 아이디 찾기 성공 페이지로 리다이렉트합니다.
             return "redirect:/login";
         } else {
             // 아이디를 찾을 수 없는 경우 에러 메시지를 표시하고 폼을 다시 보여줍니다.
             model.addAttribute("email", email);
-            model.addAttribute("errorMessage", "해당 이메일로 등록된 아이디가 없습니다.");
+            model.addAttribute("errorMessage", "해당 이메일로 등록된 계정이 없습니다.");
             return "findid";
         }
     }
     // 아이디 찾기 기능 끝!!
-    	
+       
     // 비밀번호찾기 구현!!!
     @GetMapping("/findps")
    public String showFindPsForm(Model model) {
-	   model.addAttribute("email", "");
-	   return "findps";
+      model.addAttribute("email", "");
+      return "findps";
     }
     
     @PostMapping("/findps")
-    public String findUserPs(@RequestParam String email, Model model) {
-    	// 데이터베이스에서 해당 이메일을 가진 사용자의 아이디를 찾아옵니다.
-    	List<User> users = userRepository.findByemailList(email);
-    	
-    	if (!users.isEmpty()) {
+    public String findUserPs(@RequestParam String email, Model model, RedirectAttributes redirectAttributes) {
+       // 데이터베이스에서 해당 이메일을 가진 사용자의 아이디를 찾아옵니다.
+       List<User> users = userRepository.findByemailList(email);
+       
+       if (!users.isEmpty()) {
             User user = users.get(0); // 첫 번째 사용자를 선택합니다.
             UUID uuid = UUID.randomUUID();
             String verificationToken = uuid.toString();
@@ -286,25 +291,26 @@ public class UserController {
             String verificationLink = "http://localhost:8080/resetPasswd/" + verificationToken;
             // 이 부분에서 해당 사용자의 비밀번호 재설정 버튼을 이메일로 보내는 로직을 구현하면 됩니다.
             sendButtonEmail2(user.getEmail(), "모두의 레시피 비밀번호 재설정 안내 이메일 입니다!", "비밀번호 재설정", verificationLink);
-
+            
+            redirectAttributes.addFlashAttribute("sendMessage", "이메일을 전송했습니다. 이메일을 확인해주세요!");
             // 아이디 찾기 성공 페이지로 리다이렉트합니다.
             return "redirect:/login";
         } else {
             // 아이디를 찾을 수 없는 경우 에러 메시지를 표시하고 폼을 다시 보여줍니다.
             model.addAttribute("email", email);
-            model.addAttribute("errorMessage", "해당 이메일로 등록된 아이디가 없습니다.");
+            model.addAttribute("errorMessage", "해당 이메일로 등록된 계정이 없습니다.");
             return "findid";
         }
     }
     
     @GetMapping("/resetPasswd/{token}")
     public String resetPasswd(@PathVariable String token, Model model) {
-    	model.addAttribute("token", token);
+       model.addAttribute("token", token);
         return "resetpasswd";
     }
      
     @PostMapping("/resetpasswd")
-    public String resetPassword(@RequestParam String token, @RequestParam String newPassword, @RequestParam String confirmPassword, Model model) {
+    public String resetPassword(@RequestParam String token, @RequestParam String newPassword, @RequestParam String confirmPassword, Model model , RedirectAttributes redirectAttributes) {
         User user = userRepository.findByVerificationToken(token);
 
         if (user != null && newPassword.equals(confirmPassword)) {
@@ -313,6 +319,7 @@ public class UserController {
             user.setVerificationToken(null);
             userRepository.save(user);
             
+            redirectAttributes.addFlashAttribute("errorMessage", "비밀번호 변경이 완료되었습니다!");
             // 비밀번호 재설정 성공 페이지로 리다이렉트합니다.
             return "redirect:/login";
         } else {
