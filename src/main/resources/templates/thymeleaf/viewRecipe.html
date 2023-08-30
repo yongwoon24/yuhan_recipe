@@ -1,118 +1,89 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>레시피 제목</title>
-
-	<style>
-		#stepDiv1, #stepDiv2, #stepDiv3{
-			
-			margin: 10px auto;
-		}
-
-		#stepdescr1, #stepdescr2, #stepdescr3{
-			float: left;
-		}
-		#stepimg1, #stepimg2, #stepimg3{
-			margin-left: 50%;
-		}
-
-	</style>
-
+<meta content="text/html; charset=euc-kr">
+<title>모두의레시피</title>
+<style type="text/css">   
+</style>
+<script src="https://kit.fontawesome.com/2636adf573.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" th:href="@{/../css/recipeList.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/../css/viewRecipe.css}" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 </head>
 <body>
-	<h1>Recipe</h1>
-	
-	<table>
-        <tr>
-            <th>Recipe</th>
-            
-        </tr>
-        <tr th:each="recipe : ${recipes}">
-            <td th:text="${recipe.recipe_id}"></td>
-            <td th:text="${recipe.title}"></td>
-            <td th:text="${recipe.recipe_introduce}"></td>
-            <td th:text="${recipe.main_photo}"></td>
-            <td th:text="${recipe.created_date}"></td>
-            <td th:text="${recipe.user_id}"></td>
-            <td th:text="${recipe.category_name}"></td>
-            
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-    </table>
-	
-	
-
-	<h3>레시피 등록일 : </h3>
-	<div>
-		<img src="image1.jpg" width=550 height=475></img><br>
-	</div>
-	<div>
-		<h3>작성자 : </h3>
-		<br>
-	</div>
-	<div>
-		<h3>카테고리 : th:text="${recipe.category_name}</h3>
-		<h3>제목 : </h3>
-		<h3>설명 : </h3>
-	</div>
-
-	<div class="view_ingredients">
-		<h1>재료</h1>
-		<h3>[ 재료 ]</h3>
-		<ul>
-			<li>청경채</li>
-			<li>쪽파</li>
-		</ul>
-		<h3>[ 양념 ]</h3>
-		<ul>
-			<li>들기름</li>
-			<li>쌈장</li>
-			<li>설탕</li>
-		</ul>
-	</div>
-	<div class="view_step">
-		<h1>조리순서</h1>
-		<div id="stepDiv1">
-			<h2>첫 번째</h2>
-			<div id="stepdescr1">
-				<h2>청경채는 한 잎 한 잎 떼어서 씻어주세요</h2>
+<div class="body_wrapper">
+   <div class="body_content">
+      <div class="menubar"></div>
+      <span class="menu4"><a href="user">마이페이지</a></span>
+      <span class="menu3"><a href="user">게시판</a></span>
+      <span class="menu2"><a href="recipe">분류</a></span>
+      <span class="menu1"><a href="rank">랭킹</a></span>
+      <span class="mainicon">모두의레시피</span>
+      <!-- 마이페이지 주소 입력 --> 
+      <div class="usericon"><a href="마이페이지.html"><i class="fa-solid fa-user"></i></a></div>
+      <!-- 로그아웃 주소 입력 --> 
+      <div class="logout_icon"><a href="로그아웃.html"><i class="fa-solid fa-right-from-bracket"></i></a></div>
+      <div class="searchbar">   
+         <div class="searchradius">
+            <form action="" method=""> <!-- 검색창 주소 입력 --> 
+               <input type="text" class="search_txt">
+               <button type="submit" class="search_btn">
+                  <span class="searchicon">
+                     <i class="fa-solid fa-magnifying-glass"></i>
+                  </span>
+               </button>
+            </form>
+         </div>   
+      </div>
+      <!-- 여기부터 body에 추가할 코드 입력 -->
+      
+		<div class="view_body_wrapper">
+			<div class="view_title">
+				<h3>제목 : </h3> 
 			</div>
-			<div id="stepimg1">
-				<img src="image1.jpg" width=275 height=225></img>
+			
+			<div class="view_write">
+				<h3>작성자 : </h3>
+				<h3>작성일 : </h3>
+				<h3>조회수 : </h3>
 			</div>
-			<br>
-		</div>
-
-		<div id="stepDiv2">
-			<h2>두 번째</h2>
-			<div id="stepdescr2">
-				<h2>끓는 물에 소금을 넣고 30초 ~1분 미만으로 데쳐주세요</h2>
+			
+			<div class="view_image">
+				<h3>이미지 </h3>
 			</div>
-			<div id="stepimg2">
-				<img src="image1.jpg" width=275 height=225></img>
+			
+			<div class="view_introduce">
+				<h3>소개</h3>
 			</div>
-			<br>
-		</div>
-
-		<div id="stepDiv3">
-			<h2>세 번째</h2>
-			<div id="stepdescr3">
-				<h2>데친 청경채를 찬물에 헹궈서 물기를 빼주세요</h2>
+			
+			<div class="view_ingredient">
+				<h3>재료</h3>
 			</div>
-			<div id="stepimg3">
-				<img src="image1.jpg" width=275 height=225></img>
+			
+			<div class="view_step">
+				<h3>요리 단계 </h3><br>
+				<div class="step">
+					<div class="explain">
+						<h2>이곳은 요리 설명 부분</h2>
+					</div>
+					<span class="step_image">
+						<h2>이미지</h2>
+					</span>
+				</div>
 			</div>
-		</div>
-
-	</div>	
-		
-	<br><br><br><hr>
-	<div class="view_comment">
-		<h1>댓글</h1>
-		<br>
-	</div>
+			
+			<div class="view_love">
+				<div class="likes">
+					<i class="fas fa-heart"></i>&nbsp;
+					<span clsass="text_love">좋아요</span>
+					<!--<span th:text="${recipe.totalLove}"></span>-->
+				</div>
+			</div>
+		</div>       
+   </div>
+   <script th:src="@{/../js/main.js}"></script>
+</div>
 </body>
 </html>

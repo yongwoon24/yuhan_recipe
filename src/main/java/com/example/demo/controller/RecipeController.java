@@ -93,4 +93,18 @@ public class RecipeController {
         }
         
        
+        
+        
+        
+        
+        
+        
+        
+        @GetMapping("/viewRecipe")
+    	public String viewRecipe(Model model) {
+    		List<Recipe> recipes = recipeRepository.findAll();
+    		model.addAttribute("recipes", recipes);
+    		return "viewRecipe";
+    	}
+        
 	}
