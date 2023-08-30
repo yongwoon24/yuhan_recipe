@@ -125,7 +125,7 @@
 		    	<!--<span th:text="${currentPage + 1}"></span>-->
 				<a th:if="${recipes.size() > (currentPage * 20)}" th:href="@{|/rank?page=${currentPage + 1}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}">&raquo;</a>
 			</div>
-			     
+			 <a th:href="@{/createRecipe}">작성</a></td>    
         </div>
        
    

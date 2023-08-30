@@ -61,7 +61,7 @@ public class RecipeService {
  		File savefile = new File(proijectpath, fileName);
 		file.transferTo(savefile);
 		recipe.setMain_photo(fileName);
-		recipe.setMain_photo_path("/files/"+fileName);
+		recipe.setMain_photo_path("/img/"+fileName);
 		//reciperepository.save(recipe);
 	}
 	

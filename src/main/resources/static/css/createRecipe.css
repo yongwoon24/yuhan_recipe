@@ -461,10 +461,185 @@ h2{
 	justify-content: center;
 	gap: 20px;
 }
-button[name="lovebtn"] {
-	width: 100px;
-	height: 100px;
+.createRecipe_zone_1{
+	width: 80%;
+	height: 1000px;
+	background-color: #663333;
+	position: relative;
+    top: 550px; /* 화면의 수직 중앙 위치에서부터 반 이동 */
+    left: 50%; /* 화면의 수평 중앙 위치에서부터 반 이동 */
+    transform: translate(-50%, -50%); /* 실제 요소를 정중앙으로 이동 */
+	display: flex;
+	justify-content: flex-start; /* 왼쪽 정렬 */
+	align-items: center; /* 수직 가운데 정렬 */
+	
+	}
+.createRecipe_zone_2{
+	width: 60%;
+	height: 600px;
+	background-color: rgb(255, 255, 128);
+	position: absolute;
+    top: 32%; /* 화면의 수직 중앙 위치에서부터 반 이동 */
+    left: 32%; /* 화면의 수평 중앙 위치에서부터 반 이동 */
+    transform: translate(-50%, -50%); /* 실제 요소를 정중앙으로 이동 */
+}
+
+.createRecipe_zone_3{
+	width: 35%;
+	height: 600px;
+	background-color: rgb(128, 255, 128);
+	position: absolute;
+    top: 32%; /* 화면의 수직 중앙 위치에서부터 반 이동 */
+    left: 81%; /* 화면의 수평 중앙 위치에서부터 반 이동 */
+    transform: translate(-50%, -50%); /* 실제 요소를 정중앙으로 이동 */
+}
+.createRecipe_category{
+	width: 96.5%;
+	height: 350px;
+	background-color: rgb(128, 255, 255);
+	position: absolute;
+	top: 82%; /* 화면의 수직 중앙 위치에서부터 반 이동 */
+    left: 50.3%; /* 화면의 수평 중앙 위치에서부터 반 이동 */
+    transform: translate(-50%, -50%); /* 실제 요소를 정중앙으로 이동 */
+}
+
+.r10_2 { 
+	overflow:hidden;
+}
+.e10_2 { 
+	background-color:rgba(255, 255, 255, 1);
+	width:1368px;
+	height:790px;
+	position:absolute;
+}
+.e10_3 { 
+	width:885px;
+	height:531px;
+	position:absolute;
+	left:13px;
+	top:23px;
+}
+.e10_7 { 
+	color:rgba(0, 0, 0, 1);
+	width:64px;
+	height:71px;
+	position:absolute;
+	left:29px;
+	top:15px;
+	font-family:Inter;
+	text-align:left;
+	font-size:12px;
+	letter-spacing:0;
+}
+.e10_8 { 
+	color:rgba(0, 0, 0, 1);
+	width:64px;
+	height:71px;
+	position:absolute;
+	left:29px;
+	top:110px;
+	font-family:Inter;
+	text-align:left;
+	font-size:12px;
+	letter-spacing:0;
+}
+.e10_10 { 
+	color:rgba(0, 0, 0, 1);
+	width:729px;
+	height:60px;
+	position:absolute;
+	left:140px;
+	top:18px;
+	font-family:Inter;
+	text-align:left;
+	font-size:12px;
+	letter-spacing:0;
+}
+.e10_11 { 
+	color:rgba(0, 0, 0, 1);
+	width:702px;
+	height:368px;
+	position:absolute;
+	left:141px;
+	top:139px;
+	font-family:Inter;
+	text-align:left;
+	font-size:12px;
+	letter-spacing:0;
+}
+.e10_4 { 
+	width:456px;
+	height:531px;
+	position:absolute;
+	left:898px;
+	top:23px;
+}
+.e10_15 { 
+	color:rgba(0, 0, 0, 1);
+	width:367px;
+	height:257px;
+	position:absolute;
+	left:51px;
+	top:46px;
+	font-family:Inter;
+	text-align:left;
+	font-size:12px;
+	letter-spacing:0;
+}
+.e10_5 { 
+	width:1346px;
+	height:204px;
+	position:absolute;
+	left:13px;
+	top:563px;
+}
+.e10_9 { 
+	color:rgba(0, 0, 0, 1);
+	width:64px;
+	height:71px;
+	position:absolute;
+	left:30px;
+	top:66px;
+	font-family:Inter;
+	text-align:left;
+	font-size:12px;
+	letter-spacing:0;
+}
+.e10_13 { 
+	color:rgba(0, 0, 0, 1);
+	width:1155px;
+	height:83px;
+	position:absolute;
+	left:140px;
+	top:56px;
+	font-family:Inter;
+	text-align:left;
+	font-size:12px;
+	letter-spacing:0;
+}
+
+textarea[name="title"] {
+    width: 740px; /* 원하는 너비로 조정 */
+    height: 100px;
+    resize: none;
+}
+textarea[name="recipesubtxt"] {
+    width: 740px; /* 원하는 너비로 조정 */
+    height: 400px; /* 원하는 높이로 조정 */
+    resize: none;
+}
+
+select[name="categoryName"] {
+	width: 740px;
+	text-align:center;
+}
+
+button[name="uploadButton"] {
 	border: #ffffff;
 	background-color: #ffffff;
-	gap: 0px;
+}
+
+div[name="preview"] {
+	width: 400px;
+	height: 400px;
 }

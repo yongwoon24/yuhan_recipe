@@ -24,11 +24,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.demo.entity.Love;
 import com.example.demo.entity.Recipe;
+import com.example.demo.entity.User;
 import com.example.demo.formdto.RecipeFormDto;
+import com.example.demo.repository.LoveRepository;
 import com.example.demo.repository.RecipeRepository;
+import com.example.demo.service.LoveService;
 import com.example.demo.service.RecipeService;
-
 
 import jakarta.validation.Valid;
 
@@ -38,6 +41,11 @@ public class RecipeController {
 	private RecipeRepository recipeRepository;
 	@Autowired
 	private RecipeService recipeservice;
+	@Autowired
+	private LoveRepository loverepository;
+	@Autowired
+	private LoveService loveservice;
+	
 	
 	@GetMapping("/recipe1")
 	public String listRecipes(Model model, @RequestParam(required = false) String title) {
@@ -56,7 +64,7 @@ public class RecipeController {
 	 @GetMapping("/createRecipe")
 	    public String createRecipeForm(Model model) {
 	        model.addAttribute("recipe", new Recipe());
-	        return "createRecipe";
+	        return "createRecipe3";
 	    }
 	    
 	    @PostMapping("/createRecipe")
@@ -69,6 +77,22 @@ public class RecipeController {
 	        return "redirect:/recipe";
 	        }
 	    
+	    @PostMapping("/like")
+	    public String like(@RequestParam int recipe_id, @RequestParam String user_id) {
+	        Recipe recipe = new Recipe();
+	        recipe.setRecipe_id(recipe_id);
+	    	
+	        User user = new User();
+	        user.setUser_id(user_id);
+	        
+	    	Love love = new Love();
+	        love.setUser(user);
+	        love.setRecipe(recipe);
+	        
+	    	loveservice.saveLove(love);
+	        
+	        return "redirect:/recipe/"+recipe_id;
+	    }
 	    
 	    
 	    
