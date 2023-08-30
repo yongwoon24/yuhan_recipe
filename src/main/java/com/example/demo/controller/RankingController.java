@@ -30,11 +30,11 @@ public class RankingController {
 
         List<Recipe> topLove;
         if (categoryName == null || categoryName.isEmpty()) {
-            if ("daily".equals(period)) {
+            if ("d".equals(period)) {
                 topLove = recipeRepository.findByOrderByDailyLoveDesc(); // Use appropriate method names
-            } else if ("weekly".equals(period)) {
+            } else if ("w".equals(period)) {
                 topLove = recipeRepository.findByOrderByWeeklyLoveDesc();
-            } else if ("monthly".equals(period)) {
+            } else if ("m".equals(period)) {
                 topLove = recipeRepository.findByOrderByMonthlyLoveDesc();
             } else {
                 topLove = recipeRepository.findByOrderByTotalLoveDesc();

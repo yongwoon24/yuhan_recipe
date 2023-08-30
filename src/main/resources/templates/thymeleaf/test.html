@@ -1,20 +1,42 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
-    <!-- 여기에 필요한 CSS 및 JavaScript 라이브러리 등을 추가하세요 -->
+    <title>Recipe Like Test</title>
 </head>
 <body>
-    <div id="category-buttons">
-        <button class="category-button" data-category="전체">전체</button>
-        <button class="category-button" data-category="파티">파티</button>
-        <button class="category-button" data-category="혼밥">혼밥</button>
-        <!-- 필요한 다른 카테고리 버튼들을 추가하세요 -->
-    </div>
+    <h1>Recipe Like Test</h1>
     
-    <ul id="recipe-list">
-        <!-- 여기에 동적으로 로드할 레시피 목록을 추가할 예정입니다 -->
-    </ul>
+    <form id="likeForm">
+        <label for="recipeId">Recipe ID:</label>
+        <input type="text" id="recipeId" name="recipeId" required>
+        <button type="button" id="likeButton">Like</button>
+    </form>
     
-    <script src="main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var likeForm = document.getElementById("likeForm");
+            var recipeIdInput = document.getElementById("recipeId");
+            var likeButton = document.getElementById("likeButton");
+            
+            likeButton.addEventListener("click", function() {
+                var recipeId = recipeIdInput.value;
+                console.log("Liked Recipe ID:", recipeId);
+                
+                // Simulate sending data to server and receiving response
+                var response = { success: true };
+                
+                if (response.success) {
+                    // Simulate updating like count on the page
+                    var likeCountElement = document.getElementById("likeCount");
+                    var currentLikeCount = parseInt(likeCountElement.textContent);
+                    likeCountElement.textContent = currentLikeCount + 1;
+                    
+                    console.log("Like count updated successfully!");
+                } else {
+                    console.log("Failed to update like count.");
+                }
+            });
+        });
+    </script>
 </body>
 </html>
