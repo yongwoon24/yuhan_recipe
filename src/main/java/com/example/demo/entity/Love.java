@@ -19,13 +19,16 @@ public class Love {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="activity_id")
     private Long activityId;
-    @Column(name="user_id")
-    private String userId;
+    
+    
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    User user;
     
     @Column(name="activity")
     private String activity;
     
-    @Column(name="date")
+    @Column(name="date" , insertable = false, updatable = false)
     private LocalDate date;
 
     @ManyToOne
@@ -40,12 +43,13 @@ public class Love {
 		this.activityId = activityId;
 	}
 
-	public String getUserId() {
-		return userId;
+
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public String getActivity() {
@@ -72,5 +76,7 @@ public class Love {
 		this.recipe = recipe;
 	}
 
-    
+	protected void onCreate() {
+        date = LocalDate.now();
+    }
 }

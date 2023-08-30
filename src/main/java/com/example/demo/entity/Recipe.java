@@ -1,12 +1,19 @@
 package com.example.demo.entity;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.example.demo.formdto.RecipeFormDto;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
 
 @Entity
 public class Recipe {
@@ -19,11 +26,24 @@ public class Recipe {
 	private String user_id;
 	@Column(name = "category_name")
 	private String categoryName;
-	private Integer view_count = 0;
-	private Integer totalLove;
+	private Integer view_count=0;
+	@Column(name = "total_love")
+	private Integer totalLove=0;
 	private String main_photo_path;
-
+	@Column(name = "recipe_subtext")
+	private String recipesubtxt;
 	
+	//@OneToMany(mappedBy = "love", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany
+	@JoinColumn(name = "recipe_id")
+	private List<Love> loves = new ArrayList<>();
+	
+	public String getRecipesubtxt() {
+		return recipesubtxt;
+	}
+	public void setRecipesubtxt(String recipesubtxt) {
+		this.recipesubtxt = recipesubtxt;
+	}
 	public int getRecipe_id() {
 		return recipe_id;
 	}
@@ -86,7 +106,8 @@ public class Recipe {
 	public String toString() {
 		return "Recipe [recipe_id=" + recipe_id + ", title=" + title + ", main_photo=" + main_photo + ", created_date="
 				+ created_date + ", user_id=" + user_id + ", categoryName=" + categoryName + ", view_count="
-				+ view_count + ", totalLove=" + totalLove + ", main_photo_path=" + main_photo_path + "]";
+				+ view_count + ", totalLove=" + totalLove + ", main_photo_path=" + main_photo_path + ", recipesubtxt="
+				+ recipesubtxt + "]";
 	}
 	
 
@@ -98,8 +119,13 @@ public class Recipe {
 		this.categoryName=recipeFormDto.getCategory_name();
 		this.view_count=recipeFormDto.getView_count();
 		this.totalLove=recipeFormDto.getTotalLove();
-
 	}
+	
+	@PrePersist
+    protected void onCreate() {
+        created_date = LocalDate.now();
+    }
+	
 
 
 }

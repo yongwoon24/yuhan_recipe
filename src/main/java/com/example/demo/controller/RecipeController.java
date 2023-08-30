@@ -24,11 +24,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.demo.entity.Love;
 import com.example.demo.entity.Recipe;
+import com.example.demo.entity.User;
 import com.example.demo.formdto.RecipeFormDto;
+import com.example.demo.repository.LoveRepository;
 import com.example.demo.repository.RecipeRepository;
+import com.example.demo.service.LoveService;
 import com.example.demo.service.RecipeService;
-
 
 import jakarta.validation.Valid;
 
@@ -38,6 +41,11 @@ public class RecipeController {
 	private RecipeRepository recipeRepository;
 	@Autowired
 	private RecipeService recipeservice;
+	@Autowired
+	private LoveRepository loveRepository;
+	@Autowired
+	private LoveService loveservice;
+	
 	
 	@GetMapping("/recipe1")
 	public String listRecipes(Model model, @RequestParam(required = false) String title) {
@@ -46,15 +54,17 @@ public class RecipeController {
 		return "recipeList2";
 	}
 	@GetMapping("/recipe")
-	public String listRecipes1(Model model) {
+	public String listRecipes1(Model model, @RequestParam(required = false, defaultValue = "0") int page) {
+		int pageSize = 20; // 페이지당 레시피 수
 		List<Recipe> recipes = recipeRepository.findAll();
 		model.addAttribute("recipes", recipes);
-		return "recipeList2";
+		model.addAttribute("currentPage", page);
+		return "recipeList3";
 	}
 	 @GetMapping("/createRecipe")
 	    public String createRecipeForm(Model model) {
 	        model.addAttribute("recipe", new Recipe());
-	        return "createRecipe";
+	        return "createRecipe3";
 	    }
 	    
 	    @PostMapping("/createRecipe")
@@ -67,11 +77,37 @@ public class RecipeController {
 	        return "redirect:/recipe";
 	        }
 	    
+	    @PostMapping("/like")
+	    public String like(@RequestParam int recipe_id, @RequestParam String user_id) {
+	        Recipe recipe = new Recipe();
+	        recipe.setRecipe_id(recipe_id);
+	    	
+	        User user = new User();
+	        user.setUser_id(user_id);
+	        
+	    	Love love = new Love();
+	        love.setUser(user);
+	        love.setRecipe(recipe);
+	        
+	    	loveservice.saveLove(love);
+	        
+	        return "redirect:/recipe/"+recipe_id;
+	    }
 	    
 	    
 	    
 	    
-	    
+	    @GetMapping("/recipe/{recipe_id}")
+        public String userRecipeview(@PathVariable("recipe_id") int recipe_id, Model model) {
+            Recipe recipe = recipeRepository.findById(recipe_id);
+            if (recipe != null) {
+                recipeRepository.incrementViewCount(recipe_id); // 조회수 업데이트
+                model.addAttribute("recipe", recipe);
+                return "userRecipe"; // 레시피 페이지 템플릿
+            }
+            
+            return "userRecipe";
+        }
 	    
 	    @GetMapping("/editRecipe/{recipe_id}")
         public String editRecipeForm(@PathVariable Integer recipe_id, Model model) {
