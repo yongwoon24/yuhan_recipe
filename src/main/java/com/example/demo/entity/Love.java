@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,8 +20,11 @@ public class Love {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="activity_id")
     private Long activityId;
-    @Column(name="user_id")
-    private String userId;
+    
+    
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    User user;
     
     @Column(name="activity")
     private String activity;
@@ -40,12 +44,13 @@ public class Love {
 		this.activityId = activityId;
 	}
 
-	public String getUserId() {
-		return userId;
+
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public String getActivity() {
@@ -71,6 +76,9 @@ public class Love {
 	public void setRecipe(Recipe recipe) {
 		this.recipe = recipe;
 	}
-
-    
+	
+	@PrePersist
+	protected void onCreate1() {
+        date = LocalDate.now();
+    }
 }

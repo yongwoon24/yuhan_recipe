@@ -5,6 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+
+import com.example.demo.entity.Love;
+
 import com.example.demo.entity.Recipe;
 import com.example.demo.repository.LoveRepository;
 import com.example.demo.repository.RecipeRepository;
