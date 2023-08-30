@@ -21,6 +21,10 @@ public class Recipe {
 	private String categoryName;
 	private Integer view_count = 0;
 	private Integer totalLove;
+	private Integer dailyLove;
+	private Integer weeklyLove;
+	private Integer monthlyLove;
+	
 	private String main_photo_path;
 
 	
@@ -78,6 +82,25 @@ public class Recipe {
 	}
 	public void setMain_photo_path(String main_photo_path) {
 		this.main_photo_path = main_photo_path;
+	}
+	
+	public Integer getDailyLove() {
+		return dailyLove;
+	}
+	public void setDailyLove(Integer dailyLove) {
+		this.dailyLove = dailyLove;
+	}
+	public Integer getWeeklyLove() {
+		return weeklyLove;
+	}
+	public void setWeeklyLove(Integer weeklyLove) {
+		this.weeklyLove = weeklyLove;
+	}
+	public Integer getMonthlyLove() {
+		return monthlyLove;
+	}
+	public void setMonthlyLove(Integer monthlyLove) {
+		this.monthlyLove = monthlyLove;
 	}
 	@Override
 	public String toString() {
