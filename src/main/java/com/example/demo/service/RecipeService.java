@@ -73,4 +73,28 @@ public class RecipeService {
         Optional<Recipe> optionalRecipe = Optional.ofNullable(reciperepository.findById(id));
         return optionalRecipe.orElse(null);
     }
+    
+    @Transactional
+    public void deletePostWithImage(int recipe_id) {
+        // 1. 게시물 정보 조회
+        Recipe recipe = reciperepository.findById(recipe_id);
+
+        if (recipe != null) {
+            // 2. 이미지 파일 삭제
+            String imagePath = recipe.getMain_photo_path();
+            if (imagePath != null) {
+            	deleteImage(imagePath);
+                }
+            }
+
+            // 3. 게시물 및 이미지 정보 삭제
+            reciperepository.delete(recipe);
+        }
+    
+    private void deleteImage(String imagePath) {
+        File imageFile = new File(imagePath);
+        if (imageFile.exists()) {
+            imageFile.delete();
+        }
+    }
 }

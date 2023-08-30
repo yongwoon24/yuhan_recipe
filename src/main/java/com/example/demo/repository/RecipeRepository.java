@@ -37,8 +37,13 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
 	
 	@Transactional
 	@Modifying
-    @Query("UPDATE Recipe r SET r.total_love = :totalLove WHERE r.recipe_id = :recipe_id")
+    @Query("UPDATE Recipe r SET r.totalLove = :totalLove WHERE r.recipe_id = :recipe_id")
 	void updateTotalLoves(@Param("recipe_id") int recipe_id, @Param("totalLove") int totalLove);
-
+	
+	@Transactional
+    @Modifying
+    @Query("UPDATE Recipe r SET r.totalLove = (SELECT COUNT(u.activityId) FROM Love u)")
+    void updateTotalFromActivity();
+	
 }
 	

@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.entity.Love;
@@ -45,6 +46,8 @@ public class RecipeController {
 	private LoveRepository loverepository;
 	@Autowired
 	private LoveService loveservice;
+	
+	private int likesCount=0;
 	
 	
 	@GetMapping("/recipe1")
@@ -94,6 +97,14 @@ public class RecipeController {
 	        return "redirect:/recipe/"+recipe_id;
 	    }
 	    
+	    @PostMapping("/increase_likes")
+	    @ResponseBody
+	    public int increaseLoves(@RequestParam("recipe_id") String recipe_id) {
+	        // 게시물 ID에 해당하는 좋아요 수 증가 로직
+	        likesCount++;
+	        return likesCount;
+	    }
+	    
 	    
 	    
 	    
@@ -103,6 +114,8 @@ public class RecipeController {
             if (recipe != null) {
                 recipeRepository.incrementViewCount(recipe_id); // 조회수 업데이트
                 model.addAttribute("recipe", recipe);
+                model.addAttribute("likesCount",likesCount);
+                //model.addAttribute("recipe", new Recipe());
                 return "userRecipe"; // 레시피 페이지 템플릿
             }
             
@@ -123,8 +136,8 @@ public class RecipeController {
         }
         
         @GetMapping("/deleteRecipe/{recipe_id}")
-        public String deleteRecipe(@PathVariable Integer recipe_id) {
-            recipeRepository.deleteById(recipe_id);
+        public String deleteRecipe(@PathVariable int recipe_id) {
+            recipeservice.deletePostWithImage(recipe_id);
             return "redirect:/recipe";
         }
         

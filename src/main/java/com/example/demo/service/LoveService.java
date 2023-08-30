@@ -48,7 +48,7 @@ public class LoveService {
 	}
 	
 	private void updateTotalLikes(int recipeId) {
-        int totalLikes = loverepository.countLovesByRecipe_id(recipeId);
+        int totalLikes = loverepository.countLovesByRecipeId(recipeId);
         reciperepository.updateTotalLoves(recipeId, totalLikes);
     }
 

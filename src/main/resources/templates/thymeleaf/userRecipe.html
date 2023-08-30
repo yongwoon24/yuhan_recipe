@@ -94,9 +94,11 @@
 			<div class="like_quer_zone">
 			<form id="loveform" th:action="@{/like}" method="post">
 			<input type="hidden" id="recipe_id" name="recipe_id" th:value="@{{recipeId}(recipeId=${recipe.recipe_id})}">
-			<input type="submit" name="lovebtn" value="좋아요">
+			<input type="submit" th:onclick="'javascript:increaseLoves(\''+${recipe_id}+'\')'" name="lovebtn" value="좋아요">
+			<input type="text" name="user_id">
 			</form>
 			<span id="like-count" th:text="${recipe.totalLove}"></span></a>
+			
 			<h4 th:text="'조회수 : '+${recipe.view_count}"></h4>
 			<a th:href="@{/deleteRecipe/{recipe_id}(recipe_id=${recipe.recipe_id})}">Delete</a></td>
 			</div>
