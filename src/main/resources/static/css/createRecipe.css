@@ -663,6 +663,11 @@ button[id="addButton"] {
 	height: 50px;
 	margin-bottom: 20px;
 }
+button[id="addButton1"] {
+	width: 150px;
+	height: 50px;
+	margin-bottom: 20px;
+}
 text[name='ingd'] {
 	width: 150px;
 	height: 50px;
@@ -757,11 +762,28 @@ text[name='ingd'] {
     resize: none;
     left: 500px;
   }
+  
+  .text4 {
+	width: 470px;
+	height: 50px;
+    border: 1px solid #ccc;
+    margin-right: 4px;
+    margin-bottom: 10px;
+    resize: none;
+    left: 500px;
+  }
  .carrot {
 	   width: 25px;
 	   height:25px;
 	   margin-top: 5px;
 	   left: 500px;
+   }
+    .carrot1 {
+	   width: 25px;
+	   height:25px;
+	   margin-top: 5px;
+	   left: 500px;
+	   vertical-align: top;
    }
    
 .step { 
@@ -771,4 +793,20 @@ text[name='ingd'] {
 }
 .textRow {
 	position: relative;
+	opacity: 1;
+    transition: opacity 0.3s ease;
 }
+.textRow1 {
+	position: relative;
+	opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+
+.remove-button1 {
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }

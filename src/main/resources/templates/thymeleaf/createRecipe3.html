@@ -121,7 +121,7 @@
 						<span class="e16_84">재료</span>
 						<div id="container">
 							<button id="addButton" onclick="handleClick(event)" width="150px" height="50px"
-								cursor="pointer">추가</button>
+								cursor="pointer">재료 추가</button>
 							<div class='textRow' id="t1">
 								<input type="text" class='text1' placeholder="예 ) 간 장">
 								<input type="text" class='text1' placeholder="예 ) 한 큰 술">
@@ -147,17 +147,17 @@
 						<span class="e12_5">요리의 맛이 좌우될 수 있는 중요한 부분은 빠짐없이 적어주세요.</span>
 						<div id="container1">
 							<button id="addButton1" onclick="handleClick(event)" width="150px" height="50px"
-								cursor="pointer">추가</button>
+								cursor="pointer">스텝 추가</button>
 							<div class='textRow1' id="r1">
 								<label class="step">STEP 1</label><br>
 								<textarea class='text2' placeholder='예 ) 김치 반 포기를 잘게 썰어주세요.'></textarea>
-								<input multiple type="file" id="file" name="file" style="display: none;">
-								<button id="uploadButton" name="uploadButton1" onclick="handleClick(event)">
-									<div id="preview" name="preview1">
+								<input multiple type="file" id="file1" name="file1" style="display: none;">
+								<button id="uploadButton1" name="uploadButton1" onclick="handleClick(event); handleUploadClick(1)">
+									<div id="preview1" name="preview1">
 										<img src="/img/대표이미지.PNG" width="200px" height="200px">
 									</div>
 								</button>
-								<input type="button" onclick="removeStep1('r1')" value="삭제"><br>
+								<input type="button" class="remove-button1" onclick="removeStep1('r1')" value="삭제"><br>
 								<img src="/img/carrot.png" class="carrot">
 								<input type="text" class="text3"
 									placeholder="재료에 대해 적어주세요! 예 ) 감자 1개, 소금 2큰술, 물 2컵"><br>
@@ -166,8 +166,8 @@
 								<img src="/img/불.png" class="carrot">
 								<input type="text" class="text3"
 									placeholder="불 세기나 도구 사용시간에 대해 적어주세요! 예 ) 약불, 전자레인지 2분"><br>
-								<img src="/img/전구.png" class="carrot">
-								<input type="text" class="text3" placeholder="팁이 있다면 적어주세요! 예 ) 삶은 감자를 2분 정도 식혀주세요">
+								<img src="/img/전구.png" class="carrot1">
+								<textarea class="text4" placeholder="팁이 있다면 적어주세요! 예 ) 삶은 감자를 2분 정도 식혀주세요"></textarea>
 							</div>
 						</div>
 					</div>
@@ -272,13 +272,13 @@
 			let stepCount = 1;
 			let steptxtindex = 1;
 			const steptext = ['예 ) 다 볶았으면 접시에 옮겨 담고 마지막으로 참깨가루를 뿌려주세요.',
-							  '예 ) 김치 반 포기를 잘게 썰어주세요.',
-							  '예 ) 양파, 대파을 썰고, 마늘은 다져주세요.',
-							  '예 ) 프라이팬에 식용유를 2스푼정도 두르고 중불로 달궈주세요.',
-							  '예 ) 김치와 양파를 넣고 5분정도 볶아주세요.',
-							  '예 ) 볶았으면 밥 한 공기와, 다시다 1큰술, 물엿 2큰술을 넣고 5분정도 볶아주세요.',
-							  '예 ) 볶은 뒤 참기름을 반큰술 넣고 1분만 볶아주세요.']
-							  
+				'예 ) 김치 반 포기를 잘게 썰어주세요.',
+				'예 ) 양파, 대파을 썰고, 마늘은 다져주세요.',
+				'예 ) 프라이팬에 식용유를 2스푼정도 두르고 중불로 달궈주세요.',
+				'예 ) 김치와 양파를 넣고 5분정도 볶아주세요.',
+				'예 ) 볶았으면 밥 한 공기와, 다시다 1큰술, 물엿 2큰술을 넣고 5분정도 볶아주세요.',
+				'예 ) 볶은 뒤 참기름을 반큰술 넣고 1분만 볶아주세요.']
+
 			const addButton1 = document.getElementById("addButton1");
 			const container1 = document.getElementById("container1");
 
@@ -287,8 +287,8 @@
 			function addStep() {
 				stepCount++;
 				steptxtindex++;
-				if(steptxtindex == 7){
-					steptxtindex=0;
+				if (steptxtindex == 7) {
+					steptxtindex = 0;
 				}
 
 				const newStep = document.createElement("div");
@@ -298,21 +298,21 @@
 				newStep.innerHTML = `
                 <label class="step">STEP ${stepCount}</label><br>
 								<textarea class='text2' placeholder="${steptext[steptxtindex]}"></textarea>
-								<input multiple type="file" id="file" name="file" style="display: none;">
-								<button id="uploadButton" name="uploadButton1" onclick="handleClick(event)">
-									<div id="preview" name="preview1">
+								<input multiple type="file" id="file${stepCount}" name="file1" style="display: none;">
+								<button id="uploadButton${stepCount}" name="uploadButton1" onclick="handleClick(event); handleUploadClick(${stepCount})">
+									<div id="preview${stepCount}" name="preview1">
 										<img src="/img/대표이미지.PNG" width="200px" height="200px">
 										</div>
 								</button>
-								<input type="button"value="삭제" onclick="removeStep1('r${stepCount}')"><br>
+								<input type="button" class="remove-button1" value="삭제" onclick="removeStep1('r${stepCount}')"><br>
 								<img src="/img/carrot.png" class="carrot">
 								<input type="text" class="text3" placeholder="재료에 대해 적어주세요! 예 ) 감자 1개, 소금 2큰술, 물 2컵"><br>
 								<img src="/img/냄비.png" class="carrot">
 								<input type="text" class="text3" placeholder="재료도구에 대해 적어주세요! 예 ) 냄비, 프라이팬, 국자"><br>
 								<img src="/img/불.png" class="carrot">
 								<input type="text" class="text3" placeholder="불 세기나 도구 사용시간에 대해 적어주세요! 예 ) 약불, 전자레인지 2분"><br>
-								<img src="/img/전구.png" class="carrot">
-								<input type="text" class="text3" placeholder="팁이 있다면 적어주세요! 예 ) 삶은 감자를 2분 정도 식혀주세요">
+								<img src="/img/전구.png" class="carrot1">
+								<textarea class="text4" placeholder="팁이 있다면 적어주세요! 예 ) 삶은 감자를 2분 정도 식혀주세요"></textarea>
             `;
 
 				container1.appendChild(newStep);
@@ -327,15 +327,46 @@
 					reorganizeStepLabels();
 				}
 			}
-			
-			
+
+
 			function reorganizeStepLabels() {
-            const stepLabels = document.querySelectorAll(".step");
-            stepLabels.forEach((label, index) => {
-                label.textContent = `STEP ${index + 1}`;
+				const stepLabels = document.querySelectorAll(".step");
+				stepLabels.forEach((label, index) => {
+					label.textContent = `STEP ${index + 1}`;
+				});
+			}
+
+		
+			function handleUploadClick(stepNumber) {
+            const imageInput1 = document.getElementById(`file${stepNumber}`);
+            const uploadButton1 = document.getElementById(`uploadButton${stepNumber}`);
+            const preview1 = document.getElementById(`preview${stepNumber}`);
+            
+            uploadButton1.addEventListener('click', () => {
+                imageInput1.click();
             });
+
+            imageInput1.addEventListener('change', (event) => {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    
+                    reader.onload = (e) => {
+                        const image = new Image();
+                        image.src = e.target.result;
+                        image.style.maxWidth = '100%';
+                        image.style.maxHeight = '100%';
+                        preview1.innerHTML = '';
+                        preview1.appendChild(image);
+                    };
+                    
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // 업로드 버튼을 클릭하여 이미지 선택 창을 띄우기
+            imageInput.click();
         }
-					
 		</script>
 </body>
 
