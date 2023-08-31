@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,12 +47,22 @@ public class LoveService {
 	public void saveLove(Love love) {
 		loverepository.save(love);
 		updateTotalLikes(love.getRecipe().getRecipe_id());
-		updatePeriodLikes(love.getRecipe().getRecipe_id(), love.getDate());
+		updateAllPeriodLikes(love.getDate());
 	}
 	
 	private void updateTotalLikes(int recipeId) {
         int totalLikes = loverepository.countLovesByRecipeId(recipeId);
         reciperepository.updateTotalLoves(recipeId, totalLikes);
+    }
+	
+	//모든 레시피의 모든 좋아요 항목 업데이트
+	private void updateAllPeriodLikes(LocalDate date) {
+        List<Recipe> recipes = reciperepository.findAll();
+
+        for (Recipe recipe : recipes) {
+            int recipeId = recipe.getRecipe_id();
+            updatePeriodLikes(recipeId, date);
+        }
     }
 	
 	private void updatePeriodLikes(int recipeId, LocalDate date) {
@@ -65,5 +76,4 @@ public class LoveService {
 
         reciperepository.updatePeriodLikes(recipeId, dailyLikes, weeklyLikes, monthlyLikes);
     }
-
 }
