@@ -11,6 +11,7 @@
 <link rel="stylesheet" type="text/css" th:href="@{/../css/style.css}" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" type="text/css" th:href="@{/../css/board.css}">
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 </head>
 
@@ -40,36 +41,46 @@
 			</div>	
 		</div>
 		<!-- 여기부터 body에 추가할 코드 입력 -->
-		<div class="slide_wrapper">
-			<ul class="img_slide">
-				<li th:each="recipe : ${topLove}">
-					<a href="recipe"><img th:src="@{/img/__${recipe.main_photo}__.jpg}"></a>
-					<a href="recipe"><ol th:text="${recipe.title}">asd</ol></a>
-					<ol class="likes">
-    					<li>
-							<i class="fas fa-heart"></i>
-        					<span th:text="${recipe.totalLove}"></span>
-    					</li>
-					</ol>	
-				</li>
-			</ul>	
-			<div class="slide_control">
-			<p>
-				<span class="prev"><i class="fa-solid fa-arrow-left"></i></span>
-				<span class="next"><i class="fa-solid fa-arrow-right"></i></span>
-			</p>
-			
-			</div>
-			
-			
-		<script th:src="@{/../js/main.js}"></script>
-		</div>
-		
-		
-		
-			
-		
-		
+		 <div class="content">
+			 <table>
+				 <tr>
+					 <th>번호</th>
+					 <th>제목</th>
+					 <th>작성자</th>
+					 <th>등록일</th>
+				 </tr>
+			 </table>
+					 
+        	<li><a href="#">공지 1 제목</a></li>
+            <li><a href="#">공지 2 제목</a></li>
+            <li><a href="#">공지 3 제목</a></li>
+   	 	</div>
+
+    <!-- 게시판 목록 -->
+    <div class="board">
+        <ul>
+            <li><a href="#">게시물 1 제목</a></li>
+            <li><a href="#">게시물 2 제목</a></li>
+            <li><a href="#">게시물 3 제목</a></li>
+            <!-- 게시판 목록을 동적으로 생성할 때 백엔드에서 데이터를 가져와서 출력합니다. -->
+        </ul>
+    </div>
+
+    <!-- 검색 기능 -->
+    <div class="search">
+        <h2>게시물 검색</h2>
+        <form>
+            <input type="text" placeholder="제목 검색">
+            <input type="text" placeholder="내용 검색">
+            <input type="submit" value="검색">
+        </form>
+    </div>
+
+    <!-- 글 작성 버튼 -->
+    <div class="write">
+        <h2>글 작성</h2>
+        <a href="#">글 작성하기</a>
+    </div>
 	</div>
 	<div class="footer">
 			<div class="footer_comment">@Yuhan University Group 3's Project</div>
