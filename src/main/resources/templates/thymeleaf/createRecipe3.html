@@ -74,31 +74,7 @@
 
 
 								<script>
-									const imageInput = document.getElementById('file');
-									const uploadButton = document.getElementById('uploadButton');
-									const preview = document.getElementById('preview');
-
-									uploadButton.addEventListener('click', () => {
-										imageInput.click();
-									});
-
-									imageInput.addEventListener('change', (event) => {
-										const file = event.target.files[0];
-										if (file) {
-											const reader = new FileReader();
-
-											reader.onload = (e) => {
-												const image = new Image();
-												image.src = e.target.result;
-												image.style.maxWidth = '100%';
-												image.style.maxHeight = '100%';
-												preview.innerHTML = '';
-												preview.appendChild(image);
-											};
-
-											reader.readAsDataURL(file);
-										}
-									});
+									
 								</script>
 							</span>
 						</div>
@@ -151,7 +127,7 @@
 							<div class='textRow1' id="r1">
 								<label class="step">STEP 1</label><br>
 								<textarea class='text2' placeholder='예 ) 김치 반 포기를 잘게 썰어주세요.'></textarea>
-								<input multiple type="file" id="file1" name="file1" style="display: none;">
+								<input multiple type="file" id="file1" name="file" style="display: none;">
 								<button id="uploadButton1" name="uploadButton1" onclick="handleClick(event); handleUploadClick(1)">
 									<div id="preview1" name="preview1">
 										<img src="/img/대표이미지.PNG" width="200px" height="200px">
@@ -298,7 +274,7 @@
 				newStep.innerHTML = `
                 <label class="step">STEP ${stepCount}</label><br>
 								<textarea class='text2' placeholder="${steptext[steptxtindex]}"></textarea>
-								<input multiple type="file" id="file${stepCount}" name="file1" style="display: none;">
+								<input multiple type="file" id="file${stepCount}" name="file" style="display: none;">
 								<button id="uploadButton${stepCount}" name="uploadButton1" onclick="handleClick(event); handleUploadClick(${stepCount})">
 									<div id="preview${stepCount}" name="preview1">
 										<img src="/img/대표이미지.PNG" width="200px" height="200px">
@@ -352,12 +328,12 @@
                     const reader = new FileReader();
                     
                     reader.onload = (e) => {
-                        const image = new Image();
-                        image.src = e.target.result;
-                        image.style.maxWidth = '100%';
-                        image.style.maxHeight = '100%';
+                        const image1 = new Image();
+                        image1.src = e.target.result;
+                        image1.style.maxWidth = '100%';
+                        image1.style.maxHeight = '100%';
                         preview1.innerHTML = '';
-                        preview1.appendChild(image);
+                        preview1.appendChild(image1);
                     };
                     
                     reader.readAsDataURL(file);
@@ -367,6 +343,36 @@
             // 업로드 버튼을 클릭하여 이미지 선택 창을 띄우기
             imageInput.click();
         }
+        
+        const imageInput = document.getElementById('file');
+									const uploadButton = document.getElementById('uploadButton');
+									const preview = document.getElementById('preview');
+
+									uploadButton.addEventListener('click', () => {
+										imageInput.click();
+									});
+
+									imageInput.addEventListener('change', (event) => {
+										let stepCount1 = stepCount;
+										if(stepCount == 1){
+											stepCount1 = 0;
+										}
+										const file = event.target.files[stepCount1];
+										if (file) {
+											const reader = new FileReader();
+
+											reader.onload = (e) => {
+												const image = new Image();
+												image.src = e.target.result;
+												image.style.maxWidth = '100%';
+												image.style.maxHeight = '100%';
+												preview.innerHTML = '';
+												preview.appendChild(image);
+											};
+
+											reader.readAsDataURL(file);
+										}
+									});
 		</script>
 </body>
 
