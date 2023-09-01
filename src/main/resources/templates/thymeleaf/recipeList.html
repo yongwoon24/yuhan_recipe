@@ -1,49 +1,139 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE HTML>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Recipe List</title>
-     <style>
-        /* CSS 스타일 추가 */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: center; /* 가운데 정렬 */
-        }
-    </style>
+<meta content="text/html; charset=euc-kr">
+<title>모두의레시피</title>
+<style type="text/css">   
+</style>
+<script src="https://kit.fontawesome.com/2636adf573.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" th:href="@{/../css/recipeList.css}" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+
+<script>
+	var ing = new Array();
+            var cat = new Array();
+            function init(){
+   
+                var tags = document.getElementById("t1");
+                var btns=document.createElement("input");
+                btns.type="button";
+                btns.value=tags.value+"      X  ";
+                
+                btns.id=tags.value;
+                ing.push(tags.value);
+                alert(ing);
+                tags.value="";
+                btns.style.cursor="hand";
+                btns.style.width="80px";
+                btns.width="120px";          
+                btns.color="white";
+                btns.style.cursor="hand";
+                btns.style.width = "auto";
+                btns.onclick=function(){hideInfo(this)};
+
+                var clas = document.getElementById("body_wrapper4");
+                clas.appendChild(btns);
+                
+            }
+
+            function hideInfo(e){
+                alert("삭제됨");
+                var i = 0;
+                for (i = 0; i < ing.length-1; i++) {
+                    if(ing[i]==e.id){
+                        break;
+                    }
+                }
+                ing.splice(i,1);
+                alert(ing);
+                e.remove();    
+            }</script>
+
+
+
+
 </head>
 <body>
-    <h1>Recipe List</h1>
-    <table>
-        <tr>
-            <th>Recipe_ID</th>
-            <th>Title</th>
-            <th>Main_Photo</th>
-            <th>Created_Date</th>
-            <th>User_ID</th>
-            <th>Category_Name</th>
-            <th>Total_Likes</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </tr>
-        <tr th:each="recipe : ${recipes}">
-            <td th:text="${recipe.recipe_id}"></td>
-            <td th:text="${recipe.title}"></td>
-            <td><a th:href="@{${recipe.main_photo_path}}">다운</a></td>
-            <td th:text="${recipe.created_date}"></td>
-            <td th:text="${recipe.user_id}"></td>
-            <td th:text="${recipe.categoryName}"></td>
-            <td th:text="${recipe.totalLove}"></td>
-            
-            
-            <td><a th:href="@{/editRecipe/{recipe_id}(recipe_id=${recipe.recipe_id})}">Edit</a></td>
-            <td><a th:href="@{/deleteRecipe/{recipe_id}(recipe_id=${recipe.recipe_id})}">Delete</a></td>
-        </tr>
-    </table>
-    <a href="/createRecipe">Create New Recipe</a>
+<div class="body_wrapper">
+   <div class="body_content">
+      <div class="menubar"></div>
+        <span class="menu4"><a href="recipe">분류</a></span>
+		<span class="menu3"><a href="rank">랭크</a></span>
+		<span class="menu2"><a href="board">게시판</a></span>
+		<span class="menu1"><a href="rank">랭킹</a></span>
+		<span><a class="mainicon" href="/">모두의레시피</a></span>
+      
+      <!-- 마이페이지 주소 입력 --> 
+      <div class="usericon"><a href="마이페이지.html"><i class="fa-solid fa-user"></i></a></div>
+      <!-- 로그아웃 주소 입력 --> 
+      <div class="logout_icon"><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></div>
+       <div class="searchbar">   
+         <div class="searchradius">
+            <form action="" method=""> <!-- 검색창 주소 입력 --> 
+               <input type="text" class="search_txt">
+               <button type="submit" class="search_btn">
+                  <span class="searchicon">
+                     <i class="fa-solid fa-magnifying-glass"></i>
+                  </span>
+               </button>
+            </form>
+         </div>   
+      </div>
+      <!-- 여기부터 body에 추가할 코드 입력 -->
+        
+    	<div class="slide_wrapper">
+		<div class="check">
+			<div class="checklist">
+            		<form method="post" action="/formAction">
+               			<p>용도</p>
+              			 <label><input type="checkbox" id="picnic" name="type" value="피크닉">피크닉</label>
+              			 <label><input type="checkbox" id="eating_alone" name="type" value="혼밥">혼밥</label>
+               <label><input type="checkbox" id="home_meal" name="type" value="가정">가정</label>
+               <label><input type="checkbox" id="party" name="type" value="파티">파티</label>
+               <label><input type="checkbox" id="dessert" name="type" value="디저트">디저트</label>
+               <label><input type="checkbox" id="late_night_meal" name="type" value="야식/안주">야식/안주</label>
+               </div> 
+               <p>재료</p>
+              <input type="text" id="t1" class="t11" value="">
+              <input type="button" onclick="init()" id="btn" value="생성"><br>
+              <div id="body_wrapper4"></div><br>
+               <p><input type="submit" value="검색"> <input type="reset" value="초기화"></p>
+          </form>
+        </div>
+        <div class="btn1">
+			<input type="button" id="recentbtn" value="최신순">
+			<input type="button" id="querybtn" value="조회수순">
+		</div> 
+			<ul class="img_slide1">
+			    <li class="recipe-item" th:each="recipe, recipeIndex : ${recipes}">
+					<div class="recipe-container">						
+				        <a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}">
+                    <img th:src="@{${recipe.main_photo_path}}" width="300px" height="300px"><br>
+                    <h2 th:text="'제목  :  '+${recipe.title}"></h2>
+                    <p th:text="'작성자  :  '+${recipe.user_id}"></p>
+                    <p th:text="'좋아요  :  '+${recipe.totalLove}"></p>
+                    <p th:text="'조회  :  '+${recipe.view_count}"></p> 
+                </a>
+			        </div>  
+			    </li>
+			
+			</ul>
+			<div class="pagination">
+		    	<a th:if="${currentPage > 0}" th:href="@{|/rank?page=${currentPage - 1}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}">&laquo;</a>
+		    	<!--<span th:text="${currentPage + 1}"></span>-->
+				<a th:if="${recipes.size() > (currentPage * 20)}" th:href="@{|/rank?page=${currentPage + 1}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}">&raquo;</a>
+			</div>
+			 <a th:href="@{/createRecipe}">작성</a></td>    
+        </div>
+       
+   
+   <script th:src="@{/../js/main.js}"></script>
+   
+</div>
+<div class="footer">
+			<div class="footer_comment">@Yuhan University Group 3's Project</div>
+	</div>
 </body>
 </html>
