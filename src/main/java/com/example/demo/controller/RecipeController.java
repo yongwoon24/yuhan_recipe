@@ -54,7 +54,7 @@ public class RecipeController {
 	public String listRecipes(Model model, @RequestParam(required = false) String title) {
 		List<Recipe> recipes = recipeRepository.findAll();
 		model.addAttribute("recipes", recipes);
-		return "recipeList2";
+		return "recipeList";
 	}
 	@GetMapping("/recipe")
 	public String listRecipes1(Model model, @RequestParam(required = false, defaultValue = "0") int page) {
@@ -62,12 +62,12 @@ public class RecipeController {
 		List<Recipe> recipes = recipeRepository.findAll();
 		model.addAttribute("recipes", recipes);
 		model.addAttribute("currentPage", page);
-		return "recipeList3";
+		return "recipeList";
 	}
 	 @GetMapping("/createRecipe")
 	    public String createRecipeForm(Model model) {
 	        model.addAttribute("recipe", new Recipe());
-	        return "createRecipe3";
+	        return "createRecipe";
 	    }
 	    
 	    @PostMapping("/createRecipe")
