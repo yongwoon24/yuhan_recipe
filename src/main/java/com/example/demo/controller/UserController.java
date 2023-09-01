@@ -22,6 +22,7 @@ import com.example.demo.repository.UserRepository;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class UserController {
@@ -96,7 +97,7 @@ public class UserController {
     }
     
     @PostMapping("/login")
-    public String loginUser(@RequestParam String user_id, @RequestParam String password, RedirectAttributes redirectAttributes) {
+    public String loginUser(@RequestParam String user_id, @RequestParam String password, RedirectAttributes redirectAttributes, HttpSession session) {
         // 사용자 정보를 데이터베이스에서 조회합니다.
         List<User> users = userRepository.findByUser_id(user_id);
 
@@ -112,6 +113,9 @@ public class UserController {
             if (password.equals(user.getPassword())) {
                 // 비밀번호가 일치하는 경우 로그인 성공 처리
                 // 로그인 성공 처리를 수행하고 리다이렉트 또는 페이지 이동을 설정하세요.
+            	
+            	// 로그인 성공 시 세션에 사용자 정보 저장
+                session.setAttribute("loggedInUserId", user.getUser_id());
                 return "redirect:/"; // 로그인 후 이동할 페이지
             }
         }
@@ -123,7 +127,22 @@ public class UserController {
         return "redirect:/login"; // 로그인 실패 시 표시할 페이지
     }
 
-    
+    @GetMapping("/logout")
+    public String logout(HttpSession session, RedirectAttributes redirectAttributes) {
+        // 세션에서 사용자 정보 가져오기
+        String loggedInUserId = (String) session.getAttribute("loggedInUserId");
+
+        // 세션에 loggedInUserId가 있는지 확인
+        if (loggedInUserId != null) {
+            // 세션에 로그인 정보가 있을 경우, 세션 삭제 후 로그인 페이지로 이동
+            session.removeAttribute("loggedInUserId");
+            return "redirect:/";
+        } else {
+            // 세션에 로그인 정보가 없을 경우, signup 페이지로 이동
+        	redirectAttributes.addFlashAttribute("loginMessage", "로그인 상태가 아닙니다!");
+            return "redirect:/login";
+        }
+    }
    
     
     @GetMapping("/checkUserIdAvailability")

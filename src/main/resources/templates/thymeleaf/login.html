@@ -44,5 +44,12 @@
             alert(sendMessage);
         }
     </script>
+    
+    <script th:inline="javascript">
+        var sendMessage = /*[[${loginMessage}]]*/ "";
+        if (sendMessage) {
+            alert(sendMessage);
+        }
+    </script>
 </body>
 </html>
