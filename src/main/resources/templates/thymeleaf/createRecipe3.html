@@ -26,6 +26,7 @@
 </head>
 
 <body>
+
 	<div class="body_wrapper">
 		<div class="body_content">
 			<div class="menubar"></div>
@@ -34,6 +35,53 @@
 			<span class="menu2"><a href="user">게시판</a></span>
 			<span class="menu1"><a href="rank">랭킹</a></span>
 			<span><a class="mainicon" href="/">모두의레시피</a></span>
+
+    <div class="body_wrapper">
+   <div class="body_content">
+      <div class="menubar"></div>
+        <span class="menu4"><a href="recipe">분류</a></span>
+		<span class="menu3"><a href="rank">랭크</a></span>
+		<span class="menu2"><a href="board">게시판</a></span>
+		<span class="menu1"><a href="rank">랭킹</a></span>
+		<span><a class="mainicon" href="/">모두의레시피</a></span>
+      
+      <!-- 마이페이지 주소 입력 --> 
+      <div class="usericon"><a href="마이페이지.html"><i class="fa-solid fa-user"></i></a></div>
+      <!-- 로그아웃 주소 입력 --> 
+      <div class="logout_icon"><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></div>
+       <div class="searchbar">   
+         <div class="searchradius">
+            <form action="" method=""> <!-- 검색창 주소 입력 --> 
+               <input type="text" class="search_txt">
+               <button type="submit" class="search_btn">
+                  <span class="searchicon">
+                     <i class="fa-solid fa-magnifying-glass"></i>
+                  </span>
+               </button>
+            </form>
+         </div>   
+      </div>
+      <!-- 여기부터 body에 추가할 코드 입력 -->
+        
+    	<div class="slide_wrapper">
+			<form action="/createRecipe" method="post" enctype="multipart/form-data">
+			<div class=e10_2>
+  				<div class=e10_3>
+					  <span  class="e10_7">레시피제목</span>
+					  <span  class="e10_8">요리 소개</span>
+					  <span  class="e10_10"><textarea name="title"></textarea></span>
+					  <span  class="e10_11"><textarea name="recipesubtxt"></textarea></span>
+				</div>
+  				<div class=e10_4>
+					  <span  class="e10_15">
+						  <input multiple type="file" id="file" name="file" style="display: none;">
+    					  <button id="uploadButton" name="uploadButton" onclick="handleClick(event)">
+							  <div id="preview" name="preview" width="400px" height="400px">
+								  <img src="/img/대표이미지.PNG" width="400px" height="400px">
+							  </div>
+						  </button>
+    					  
+
 
 			<!-- 마이페이지 주소 입력 -->
 			<div class="usericon"><a href="마이페이지.html"><i class="fa-solid fa-user"></i></a></div>

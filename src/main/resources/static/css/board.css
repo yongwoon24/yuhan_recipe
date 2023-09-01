@@ -1,0 +1,16 @@
+.content {
+    width: 100%; /* 필요한 너비 설정 */
+    margin: 500px auto; /* 위아래 여백을 조절하여 아래로 내립니다. */
+    text-align: center; /* 내용의 가운데 정렬을 위한 텍스트 정렬 설정 */
+    padding: 20px; /* 필요한 여백 설정 */
+    background-color: #f2f2f2;
+}
+.content table {
+    margin: 0 auto; /* 테이블을 가로 중앙 정렬합니다. */
+}
+.board, .search, .write {
+    width: 80%; /* 필요한 너비 설정 */
+    margin: 50px auto; /* 위아래 여백을 조절하여 아래로 내립니다. */
+    text-align: center; /* 내용의 가운데 정렬을 위한 텍스트 정렬 설정 */
+    padding: 20px; /* 필요한 여백 설정 */
+}

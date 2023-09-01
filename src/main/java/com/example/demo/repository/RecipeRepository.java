@@ -26,10 +26,6 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
 	List<Recipe> findByCategoryNameOrderByMonthlyLoveDesc(String categoryName);
 	List<Recipe> findTop10ByOrderByTotalLoveDesc();
 
-	//List<Recipe> findByTitleDesc(String title);
-	//List<Recipe> findTop10ByOrderByCreate_DateDesc();
-
-
 	List<Recipe> findByOrderByTotalLoveDesc();
 
 	Recipe findById(int recipe_id);
@@ -49,6 +45,10 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
     @Query("UPDATE Recipe r SET r.totalLove = (SELECT COUNT(u.activityId) FROM Love u)")
     void updateTotalFromActivity();
 	
+	@Transactional
+    @Modifying
+    @Query("UPDATE Recipe r SET r.dailyLove = :dailyLove, r.weeklyLove = :weeklyLove, r.monthlyLove = :monthlyLove WHERE r.recipe_id = :recipe_id")
+    void updatePeriodLikes(@Param("recipe_id") int recipe_id, @Param("dailyLove") int dailyLove, @Param("weeklyLove") int weeklyLove, @Param("monthlyLove") int monthlyLove);
 
 	List<Recipe> findByOrderByDailyLoveDesc();
 	List<Recipe> findByOrderByWeeklyLoveDesc();
