@@ -1,16 +1,111 @@
-.content {
-    width: 100%; /* 필요한 너비 설정 */
-    margin: 500px auto; /* 위아래 여백을 조절하여 아래로 내립니다. */
-    text-align: center; /* 내용의 가운데 정렬을 위한 텍스트 정렬 설정 */
-    padding: 20px; /* 필요한 여백 설정 */
-    background-color: #f2f2f2;
+
+.table-container {
+  max-width: 1100px; /* 최대 너비 지정 (조정 가능) */
+  margin: 0 auto; /* 가운데 정렬을 위해 좌우 여백을 자동으로 설정 */
+  padding: 0 20px; /* 좌우 여백 설정 (조정 가능) */
 }
-.content table {
-    margin: 0 auto; /* 테이블을 가로 중앙 정렬합니다. */
+
+body {
+  color: #000000;
+  font: 16px/24px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif;
 }
-.board, .search, .write {
-    width: 80%; /* 필요한 너비 설정 */
-    margin: 50px auto; /* 위아래 여백을 조절하여 아래로 내립니다. */
-    text-align: center; /* 내용의 가운데 정렬을 위한 텍스트 정렬 설정 */
-    padding: 20px; /* 필요한 여백 설정 */
+table {
+  margin: 300px auto;   
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+}
+th{
+	padding: 6px 15px;
+}
+td {
+  padding: 0 10px;
+}
+th {
+  background: #c6c9cc;
+  color: #000000;
+  text-align: center;
+}
+tr:first-child th:first-child {
+  border-top-left-radius: 6px;
+}
+tr:first-child th:last-child {
+  border-top-right-radius: 6px;
+}
+td {
+  border-right: 1px solid #c6c9cc;
+  border-bottom: 1px solid #c6c9cc;
+}
+td:first-child {
+  border-left: 1px solid #c6c9cc;
+}
+/*tr:nth-child(even) td {
+  background: #eaeaed;
+}*/
+tr:last-child td:first-child {
+  border-bottom-left-radius: 6px;
+}
+tr:last-child td:last-child {
+  border-bottom-right-radius: 6px;
+}
+tr:hover{
+   background-color: aquamarine;
+}
+
+
+/* 페이지 버튼 */
+.text-center {
+  text-align: center;
+}
+
+
+.pagination {
+  list-style-type: none; /* 목록 스타일 제거 */
+  padding: 0;
+  text-align: center; 
+}
+
+.pagination li {
+  display: inline-block;
+  margin-right: 5px; 
+}
+
+.pagination li a {
+  text-decoration: none; /* 하이퍼링크 밑줄 제거 */
+  padding: 5px 10px; /* 페이지 번호 패딩 설정 */
+  background-color: #f0f0f0; /* 페이지 번호 배경색 */
+  border: 1px solid #ccc; /* 페이지 번호 테두리 스타일 */
+  color: #333; /* 페이지 번호 텍스트 색상 */
+}
+
+.pagination li a:hover {
+  background-color: #333; /* 호버 시 배경색 변경 */
+  color: #fff; /* 호버 시 텍스트 색상 변경 */
+}
+
+/*글쓰기 버튼*/
+
+.button-container {
+  display: flex;
+  justify-content: flex-end; /* 자식 요소를 오른쪽으로 정렬 */
+}
+
+a.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* 버튼 호버 효과 */
+a.button:hover {
+  background-color: #333;
+  color: #fff;
 }
