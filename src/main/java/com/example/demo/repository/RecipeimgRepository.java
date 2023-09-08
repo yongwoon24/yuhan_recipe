@@ -2,7 +2,9 @@ package com.example.demo.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.example.demo.entity.Recipeimg;
 
-public class RecipeimgRepository extends JpaRepository<RecipeImg, Long>{
+
+public interface RecipeimgRepository extends JpaRepository<Recipeimg, Long>{
 
 }
