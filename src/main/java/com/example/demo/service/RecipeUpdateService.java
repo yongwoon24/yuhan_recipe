@@ -20,7 +20,7 @@ public class RecipeUpdateService {
     @Autowired
     private LoveRepository loveRepository;
 
-    @Scheduled(cron = "0 * * * * *") // 매일 자정에 실행
+    @Scheduled(cron = "0 0 0 * * *") // 매일 자정에 실행
     public void updateRecipeStats() {
         LocalDate currentDate = LocalDate.now();
         LocalDate weekStart = currentDate.with(TemporalAdjusters.previousOrSame(java.time.DayOfWeek.MONDAY));

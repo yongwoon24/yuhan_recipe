@@ -364,9 +364,21 @@ select {
 	position: relative;
 	top: -2px;
 }
-.pagination{
-	text-align: center;
-	position: relative;
-	font-size: 100px;
-	justify-content: center;
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination a {
+    padding: 5px 10px;
+    margin: 0 5px;
+    text-decoration: none;
+    color: #007bff;
+}
+
+.pagination a.active {
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 50%;
 }

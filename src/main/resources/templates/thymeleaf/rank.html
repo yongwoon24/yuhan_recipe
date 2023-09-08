@@ -86,10 +86,15 @@
 			
 			</ul>
 			<div class="pagination">
-		    	<a th:if="${currentPage > 0}" th:href="@{|/rank?page=${currentPage - 1}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}">&laquo;</a>
-		    	<!--<span th:text="${currentPage + 1}"></span>-->
-				<a th:if="${topLove.size() > (currentPage * 20)}" th:href="@{|/rank?page=${currentPage + 1}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}">&raquo;</a>
+			    <a th:if="${currentPage > firstPage}" th:href="@{|/rank?page=${currentPage - 1}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}">&laquo; 이전</a>
+			    <span th:each="pageNumber : ${#numbers.sequence(firstPage, lastPage)}">
+			        <a th:href="@{|/rank?page=${pageNumber}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}"
+			           th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber + 1}"></a>
+			    </span>
+			    <a th:if="${currentPage < lastPage}" th:href="@{|/rank?page=${currentPage + 1}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}">다음 &raquo;</a>
 			</div>
+
+
 			
 			
 						
