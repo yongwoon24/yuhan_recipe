@@ -45,7 +45,7 @@ public class LoginController {
 	                 // 로그인 성공 처리를 수행하고 리다이렉트 또는 페이지 이동을 설정하세요.
 	                
 	                // 로그인 성공 시 세션에 사용자 정보 저장
-	                 session.setAttribute("loggedInUserId", user.getUser_id());
+	                 session.setAttribute("loggedInNickname", user.getNickname());
 	                 return "redirect:/"; // 로그인 후 이동할 페이지
 	             }
 	         }
@@ -60,12 +60,12 @@ public class LoginController {
 	     @GetMapping("/logout")
 	     public String logout(HttpSession session, RedirectAttributes redirectAttributes) {
 	         // 세션에서 사용자 정보 가져오기
-	         String loggedInUserId = (String) session.getAttribute("loggedInUserId");
+	         String loggedInNickname = (String) session.getAttribute("loggedInNickname");
 	
-	         // 세션에 loggedInUserId가 있는지 확인
-	         if (loggedInUserId != null) {
+	         // 세션에 loggedInNickname가 있는지 확인
+	         if (loggedInNickname != null) {
 	             // 세션에 로그인 정보가 있을 경우, 세션 삭제 후 로그인 페이지로 이동
-	             session.removeAttribute("loggedInUserId");
+	             session.removeAttribute("loggedInNickname");
 	             return "redirect:/";
 	         } else {
 	             // 세션에 로그인 정보가 없을 경우, signup 페이지로 이동
