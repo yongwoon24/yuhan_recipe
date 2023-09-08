@@ -70,7 +70,6 @@ public class UserController {
         }
     }
     
-
     @GetMapping("/editUser/{user_id}")
     public String editUserForm(@PathVariable String user_id, Model model) {
         User user = userRepository.findById(user_id).orElseThrow(() -> new IllegalArgumentException("Invalid User ID: " + user_id));
@@ -106,6 +105,16 @@ public class UserController {
     public boolean checkUseremailAvailability(@RequestParam String email) {
         // 데이터베이스에서 해당 사용자 이름을 검색하여 결과 확인
        List<User> existingUser = userRepository.findByemailList(email);
+        
+        // 중복 여부에 따라 결과 반환
+        return existingUser.isEmpty(); // true는 중복이 아님, false는 중복임
+    }
+    
+    @GetMapping("/checkUsernicknameAvailability")
+    @ResponseBody
+    public boolean checkUsernicknameAvailability(@RequestParam String nickname) {
+        // 데이터베이스에서 해당 사용자 이름을 검색하여 결과 확인
+       List<User> existingUser = userRepository.findBynicknameList(nickname);
         
         // 중복 여부에 따라 결과 반환
         return existingUser.isEmpty(); // true는 중복이 아님, false는 중복임
