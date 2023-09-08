@@ -67,24 +67,7 @@
 			        <button id="submitBtn" type="submit" hidden>선택</button>
 
 			    </form>
-			    <div class="option-buttons">
-				    <table class="whole-table">
-				        <tr>
-				            <td>
-				                <a href="#" class="table-button" data-period="all">전체</a>
-				            </td>
-				            <td>
-				                <a href="#" class="table-button" data-period="daily">일간</a>
-				            </td>
-				            <td>
-				                <a href="#" class="table-button" data-period="weekly">주간</a>
-				            </td>
-				            <td>
-				                <a href="#" class="table-button" data-period="monthly">월간</a>
-				            </td>
-				        </tr>
-				    </table>
-				</div>
+			    
 			</div>
 			<ul class="img_slide">
 			    <li class="recipe-item" th:each="recipe, recipeIndex : ${topLove}">
@@ -103,10 +86,16 @@
 			
 			</ul>
 			<div class="pagination">
-		    	<a th:if="${currentPage > 0}" th:href="@{|/rank?page=${currentPage - 1}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}">&laquo;</a>
-		    	<!--<span th:text="${currentPage + 1}"></span>-->
-				<a th:if="${topLove.size() > (currentPage * 20)}" th:href="@{|/rank?page=${currentPage + 1}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}">&raquo;</a>
-			</div>
+    <a th:if="${currentPage > firstPage}" th:href="@{|/rank?page=${currentPage - 1}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}">&laquo; 이전</a>
+    <span th:each="pageNumber : ${#numbers.sequence(currentPage - 5, currentPage + 4)}" th:if="${pageNumber >= firstPage && pageNumber <= lastPage}">
+        <a th:href="@{|/rank?page=${pageNumber}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}"
+           th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber + 1}"></a>
+    </span>
+    <a th:if="${currentPage < lastPage}" th:href="@{|/rank?page=${currentPage + 1}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}">다음 &raquo;</a>
+</div>
+
+
+
 			
 			
 						

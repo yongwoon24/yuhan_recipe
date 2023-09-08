@@ -1,6 +1,6 @@
 package com.example.demo.entity;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,7 +12,7 @@ public class Board {
 	private String title;
 	@Column(name = "content", columnDefinition = "TEXT")
 	private String content;
-	private LocalDate created_date;
+	private LocalDateTime created_date;
 	private String user_id;
 	
 	public int getPost_id() {
@@ -33,10 +33,10 @@ public class Board {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public LocalDate getCreated_date() {
+	public LocalDateTime getCreated_date() {
 		return created_date;
 	}
-	public void setCreated_date(LocalDate created_date) {
+	public void setCreated_date(LocalDateTime created_date) {
 		this.created_date = created_date;
 	}
 	public String getUser_id() {
