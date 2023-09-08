@@ -14,6 +14,7 @@ public class Comment {
 	@Column(name = "content", columnDefinition = "TEXT")
 	private String content;
 	private LocalDateTime created_date;
+	private String nickname;
 	
 	public int getComment_id() {
 		return comment_id;
@@ -45,11 +46,17 @@ public class Comment {
 	public void setCreated_date(LocalDateTime created_date) {
 		this.created_date = created_date;
 	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 	
 	@Override
 	public String toString() {
 		return "Comment [comment_id=" + comment_id + ", post_id=" + post_id + ", user_id=" + user_id + ", content="
-				+ content + ", created_date=" + created_date + "]";
+				+ content + ", created_date=" + created_date + ", nickname=" + nickname + "]";
 	}
 	
 	

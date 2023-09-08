@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -51,9 +52,11 @@ public class BoardController {
 		
 	    // 현재 로그인한 사용자 정보 가져오기 (세션 활용)
 	    String loggedInNickname = (String) session.getAttribute("loggedInNickname");
+	    String loggedInUserId = (String) session.getAttribute("loggedInUserId");
 
 	    // 사용자 정보를 이용하여 작성자 정보 설정
 	    board.setNickname(loggedInNickname);
+	    board.setUser_id(loggedInUserId);
 	    
 	    // 글을 작성한 날짜와 시간을 현재 시간으로 설정
 	    LocalDateTime now = LocalDateTime.now().withNano(0);
@@ -63,5 +66,18 @@ public class BoardController {
 	    boardRepository.save(board);
 
 	    return "redirect:/board"; // 글쓰기 성공 후 게시판 목록 페이지로 리다이렉트
+	}
+	
+	@GetMapping("/board/{postId}")
+	public String showBoardContent(@PathVariable int postId, Model model) {
+	    Board board = boardRepository.findByPostId(postId);
+
+	    if (board == null) {
+	        // 게시물이 존재하지 않을 경우 에러 처리
+	        return "error"; // 에러 페이지로 이동하도록 변경하실 수 있습니다.
+	    }
+
+	    model.addAttribute("board", board);
+	    return "boardcontent"; // boardcontent.html로 이동
 	}
 }

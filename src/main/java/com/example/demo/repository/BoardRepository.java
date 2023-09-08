@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import com.example.demo.entity.Board;
 
 public interface BoardRepository extends JpaRepository<Board, Long>{
-	@Query(value = "SELECT * FROM your_table_name WHERE post_id = :postId", nativeQuery = true)
-	List<Board> findByPostId(@Param("postId") int postId);
+	@Query(value = "SELECT * FROM board WHERE post_id = :postId", nativeQuery = true)
+    Board findByPostId(@Param("postId") int postId);
 
 }
