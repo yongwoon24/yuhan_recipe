@@ -25,9 +25,10 @@ public class Recipe {
 	private String main_photo;
 	private LocalDate created_date;
 	
-	@OneToMany
-	@JoinColumn(name = "user_id")
-	private List<User> users = new ArrayList<>();
+	private String user_id;
+//	@OneToMany
+//	@JoinColumn(name = "user_id")
+//	private List<User> users = new ArrayList<>();
 	
 	@Column(name = "category_name")
 	private String categoryName;
@@ -82,21 +83,21 @@ public class Recipe {
 	public void setCreated_date(LocalDate created_date) {
 		this.created_date = created_date;
 	}
-//	public String getUser_id() {
-//		return user_id;
-//	}
-//	public void setUser_id(String user_id) {
-//		this.user_id = user_id;
-//	}
+	public String getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
 	public String getCategoryName() {
 		return categoryName;
 	}
-	public List<User> getUser() {
-		return users;
-	}
-	public void setUser(List<User> users) {
-		this.users = users;
-	}
+//	public List<User> getUser() {
+//		return users;
+//	}
+//	public void setUser(List<User> users) {
+//		this.users = users;
+//	}
 	public List<Love> getLoves() {
 		return loves;
 	}

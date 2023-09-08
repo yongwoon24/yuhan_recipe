@@ -34,6 +34,7 @@ import com.example.demo.repository.RecipeRepository;
 import com.example.demo.service.LoveService;
 import com.example.demo.service.RecipeService;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
 @Controller
@@ -71,8 +72,9 @@ public class RecipeController {
 	    }
 	    
 	    @PostMapping("/createRecipe")
-	    public String createRecipe(@ModelAttribute Recipe recipe, MultipartFile file) throws Exception{
-	    	
+	    public String createRecipe(@ModelAttribute Recipe recipe, MultipartFile file, HttpSession session) throws Exception{
+	    	String loggedInUserId = (String) session.getAttribute("loggedInUserId");
+	    	recipe.setUser_id(loggedInUserId);
 	    	recipeservice.write(recipe, file);
 	    	recipeRepository.save(recipe);
 	    	//model.addAttribute("message", "글작성이 완료되었습니다.");
