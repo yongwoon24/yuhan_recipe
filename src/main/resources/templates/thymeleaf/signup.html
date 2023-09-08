@@ -7,7 +7,65 @@
     <style>
 
    </style>
-     <script th:src="@{/../js/signup.js}"></script>
+     <script>
+         function psCheck() {
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("confirmPassword").value;
+        var checkMsg = document.getElementById("checkMsg");
+        
+        if (password === confirmPassword) {
+            checkMsg.style.color = "green";
+            checkMsg.innerHTML = "비밀번호가 일치합니다.";
+        } else {
+            checkMsg.style.color = "red";
+            checkMsg.innerHTML = "비밀번호가 일치하지 않습니다.";
+        }
+    }
+    
+      function validateForm() {
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("confirmPassword").value;
+        
+        if (password !== confirmPassword) {
+            alert("비밀번호가 일치하지 않습니다!!");
+            return false;
+    }
+    
+    }
+       $(document).ready(function() {
+    function checkAvailability(url, inputElementId, messageElementId, buttonElementId) {
+        $(inputElementId).on("input", function() {
+            var inputValue = $(this).val();
+            
+            $.ajax({
+                type: "GET",
+                url: url + inputValue,
+                success: function(response) {
+                    var messageElement = $(messageElementId);
+                    var buttonElement = $(buttonElementId);
+                    
+                    if (response === true) {
+                        messageElement.text("사용 가능");
+                        buttonElement.prop("disabled", false);
+                    } else {
+                        messageElement.text("중복");
+                        buttonElement.prop("disabled", true);
+                    }
+                },
+                error: function() {
+                    $(messageElementId).text("에러");
+                }
+            });
+        });
+    }
+    
+    checkAvailability("/checkUserIdAvailability?user_id=", "#user_id", "#duplicationMessage", "#signupButton");
+    checkAvailability("/checkUseremailAvailability?email=", "#email", "#duplicationMessageemail", "#signupButton");
+    checkAvailability("/checkUsernicknameAvailability?nickname=", "#nickname", "#duplicationMessagenickname", "#signupButton");
+});
+
+     
+    </script>
 </head>
 <body>
 
@@ -19,9 +77,11 @@
        <label>비밀번호 : <input type="password" th:field="*{password}" required/></label><br/>
        <label>비밀번호 확인 : <input type="password" id="confirmPassword" onkeyup="psCheck()" required/></label>
        <span id="checkMsg"></span><br/>
+       <label>닉네임 : <input type="text" th:field="*{nickname}" id="nickname" required maxlength="8"/></label>
+       <span id="duplicationMessagenickname"></span><br/>
        <label>생년월일 : <input type="date" th:field="*{birthdate}" required/></label><br/>
-        <label>이메일 : <input type="text" th:field="*{email}" required/></label>
-        <span id="duplicationMessageemail"></span><br><br/>
+       <label>이메일 : <input type="email" th:field="*{email}" required/></label>
+       <span id="duplicationMessageemail"></span><br/>
        <label>핸드폰 번호 : <input type="text" th:field="*{phone_number}"  required/></label><br/>
        <input type="submit" id="signupButton" value="회원가입" disabled  /> <!-- 버튼 비활성화 상태로 초기화 -->
    </br>

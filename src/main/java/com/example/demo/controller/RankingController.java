@@ -29,13 +29,13 @@ public class RankingController {
     @GetMapping("/rank")
     public String getTopRecipes(Model model, @RequestParam(required = false, defaultValue = "0") int page,
                                 @RequestParam(required = false) String categoryName,
-                                @RequestParam(required = false) String period) { // Add period parameter
+                                @RequestParam(required = false) String period) {
         int pageSize = 20; // 페이지당 레시피 수
 
         List<Recipe> topLove;
         if (categoryName == null || categoryName.isEmpty()) {
             if ("d".equals(period)) {
-                topLove = recipeRepository.findByOrderByDailyLoveDesc(); // Use appropriate method names
+                topLove = recipeRepository.findByOrderByDailyLoveDesc();
             } else if ("w".equals(period)) {
                 topLove = recipeRepository.findByOrderByWeeklyLoveDesc();
             } else if ("m".equals(period)) {
@@ -63,6 +63,17 @@ public class RankingController {
         model.addAttribute("topLove", pagedRecipes);
         model.addAttribute("currentPage", page);
 
+        // 전체 페이지 수 계산
+        int totalPageCount = (int) Math.ceil((double) topLove.size() / pageSize);
+        model.addAttribute("totalPageCount", totalPageCount);
+
+        // 첫 페이지 번호와 끝 페이지 번호 계산
+        int firstPage = 0;
+        int lastPage = totalPageCount - 1;
+        model.addAttribute("firstPage", firstPage);
+        model.addAttribute("lastPage", lastPage);
+
         return "rank";
     }
+
 }

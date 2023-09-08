@@ -8,18 +8,19 @@ import jakarta.persistence.Id;
 @Entity
 public class Board {
    @Id
-   private int post_id;
+   private int postId;
    private String title;
    @Column(name = "content", columnDefinition = "TEXT")
    private String content;
    private LocalDateTime created_date;
    private String user_id;
+   private String nickname;
    
-   public int getPost_id() {
-      return post_id;
+   public int getPostId() {
+      return postId;
    }
-   public void setPost_id(int post_id) {
-      this.post_id = post_id;
+   public void setPostId(int PostId) {
+      postId = PostId;
    }
    public String getTitle() {
       return title;
@@ -45,12 +46,22 @@ public class Board {
    public void setUser_id(String user_id) {
       this.user_id = user_id;
    }
+   public String getNickname() {
+      return nickname;
+   }
+   public void setNickname(String nickname) {
+      this.nickname = nickname;
+   }
    
    @Override
    public String toString() {
-      return "Board [post_id=" + post_id + ", title=" + title + ", content=" + content + ", created_date="
-            + created_date + ", user_id=" + user_id + "]";
+      return "Board [PostId=" + postId + ", title=" + title + ", content=" + content + ", created_date="
+            + created_date + ", user_id=" + user_id + ", nickname=" + nickname + "]";
    }
+   
+   
+   
+   
    
    
    
