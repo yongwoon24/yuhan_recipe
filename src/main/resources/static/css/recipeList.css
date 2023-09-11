@@ -437,3 +437,10 @@ li > img{
 	position: relative;
 	top: -2px;
 }
+
+.pagination{
+	text-align: center;
+	position: relative;
+	font-size: 100px;
+	justify-content: center;
+}

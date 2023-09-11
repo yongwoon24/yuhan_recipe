@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 
 @Entity
@@ -28,7 +29,7 @@ public class Love {
     @Column(name="activity")
     private String activity;
     
-    @Column(name="date" , insertable = false, updatable = false)
+    @Column(name="date")
     private LocalDate date;
 
     @ManyToOne
@@ -75,8 +76,9 @@ public class Love {
 	public void setRecipe(Recipe recipe) {
 		this.recipe = recipe;
 	}
-
-	protected void onCreate() {
+	
+	@PrePersist
+	protected void onCreate1() {
         date = LocalDate.now();
     }
 }
