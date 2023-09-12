@@ -42,32 +42,24 @@
       </div>
       
       <!-- 여기부터 body에 추가할 코드 입력 -->
+
+
 <!--<div class="content">-->
    <div class="table-container">
-          <table class="table">
+           <table class="table">
             <thead>
                <tr>
-                    <th style="width: 50px;">번호</th>
-                  <th style="width: 300px;">제목</th>
-                  <th style="width: 100px;">작성자</th>
-                  <th style="width: 100px;">작성일</th>
+             
+                  <th style="width: 100px;" th:text="${board.nickname}"></th>
+                  <th style="width: 100px;" th:text="${#temporals.format(board.created_date, 'yyyy-MM-dd HH:mm')}"></th>
                </tr>
             </thead>
-            <tbody>
-              <tr th:each="board : ${boardList}">
-               <td style=text-align:center; th:text="${board.postId}"></td>
-               <td><a th:href="@{'/boardcontent/' + ${board.postId}}" th:text="${board.title}"</td>
-               <td style=text-align:center; th:text="${board.nickname}"></td>
-               <td style=text-align:center; >
-                <p th:if="${#temporals.format(board.created_date, 'yyyy-MM-dd') == #temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}"
-                   th:text="${#temporals.format(board.created_date, 'HH:mm')}"></p>
-                <p th:if="${#temporals.format(board.created_date, 'yyyy-MM-dd') != #temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}"
-                   th:text="${#temporals.format(board.created_date, 'MM-dd')}"></p>
-            </td>
-              </tr>
-               
-            </tbody>    
+           
          </table>
+        
+         <h1 th:text="${board.title}"></h1>
+       	 <p th:text="${board.content}"</p>
+         
          <hr/>
          <div class="button-container">
          <a href="/createboard" class="button">글쓰기</a>
