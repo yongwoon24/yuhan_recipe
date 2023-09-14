@@ -3,15 +3,17 @@ package com.example.demo.controller;
 import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.entity.Comment;
 import com.example.demo.repository.CommentRepository;
 
 import jakarta.servlet.http.HttpSession;
-
+@Controller
 public class CommentController {
     private final CommentRepository commentRepository;
 
@@ -21,12 +23,12 @@ public class CommentController {
     }
 
     @PostMapping("/addComment")
-    public String addComment(@ModelAttribute Comment comment, @RequestParam("postId") int postId, @RequestParam("content") String content, HttpSession session) {
-    	System.out.println(postId);
+    public String addComment(@ModelAttribute Comment comment, @RequestParam("postId") int postId, @RequestParam("content") String content, HttpSession session, RedirectAttributes redirectAttributes) {
         // 현재 로그인한 사용자 정보 가져오기 (세션 활용)
         String loggedInNickname = (String) session.getAttribute("loggedInNickname");
         String loggedInUserId = (String) session.getAttribute("loggedInUserId");
-
+        
+        if (loggedInNickname != null) {
         // 사용자 정보를 이용하여 작성자 정보 설정
         comment.setNickname(loggedInNickname);
         comment.setUser_id(loggedInUserId);
@@ -36,16 +38,19 @@ public class CommentController {
         comment.setCreated_date(now);
 
         // 게시글 ID를 설정
-        comment.setPost_id(postId);
+        comment.setPostId(postId);
         
         comment.setContent(content);
 
         // 댓글 저장
         commentRepository.save(comment);
-        
-        
 
-        return "redirect:/board" + postId; // 글쓰기 성공 후 게시판 목록 페이지로 리다이렉트
+        return "redirect:/board/" + postId; // 글쓰기 성공 후 게시판 목록 페이지로 리다이렉트
+        
+        }else {
+        	redirectAttributes.addFlashAttribute("loginMessage", "로그인 상태가 아닙니다!");
+			 return "redirect:/login";
+        }
     }
 }
 

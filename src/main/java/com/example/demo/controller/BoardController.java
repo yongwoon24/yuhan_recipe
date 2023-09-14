@@ -14,17 +14,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.entity.Board;
+import com.example.demo.entity.Comment;
 import com.example.demo.repository.BoardRepository;
+import com.example.demo.repository.CommentRepository;
 
 import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class BoardController {
 	 private final BoardRepository boardRepository; // final 키워드 추가
+	 private final CommentRepository commentRepository;
 
 	@Autowired
-	public BoardController(BoardRepository boardRepository) {
+	public BoardController(BoardRepository boardRepository, CommentRepository commentRepository) {
 	    this.boardRepository = boardRepository;
+	    this.commentRepository = commentRepository;
 	}
 	    
 	 @GetMapping("/board")
@@ -71,6 +75,7 @@ public class BoardController {
 	@GetMapping("/board/{postId}")
 	public String showBoardContent(@PathVariable int postId, Model model) {
 	    Board board = boardRepository.findByPostId(postId);
+	    List<Comment> comment = commentRepository.findByPostId(postId);
 
 	    if (board == null) {
 	        // 게시물이 존재하지 않을 경우 에러 처리
@@ -78,6 +83,7 @@ public class BoardController {
 	    }
 
 	    model.addAttribute("board", board);
+	    model.addAttribute("comment", comment);
 	    return "boardcontent"; // boardcontent.html로 이동
 	}
 }
