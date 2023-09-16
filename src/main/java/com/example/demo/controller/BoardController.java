@@ -33,12 +33,26 @@ public class BoardController {
    }
        
    @GetMapping("/board")
-   public String showBoard(Model model,@RequestParam(required = false, defaultValue = "0") int page) {
+   public String showBoard(Model model,@RequestParam(required = false, defaultValue = "0") int page, @RequestParam(required = false) String keyword,
+		    @RequestParam(required = false, defaultValue = "title") String searchBy) {
 	int pageSize = 10; // 페이지당 레시피 수  
 	
 	// 게시글 목록을 가져와서 모델에 추가
    List<Board> boardList = boardRepository.findAll(Sort.by(Sort.Order.desc("postId")));
       model.addAttribute("boardList", boardList);
+      
+      if (keyword != null && !keyword.isEmpty()) {
+          // 검색어와 검색 조건에 따라 게시물 검색
+          if ("title".equals(searchBy)) {
+              boardList = boardRepository.findByTitleContaining(keyword, Sort.by(Sort.Order.desc("postId")));
+          } else if ("nickname".equals(searchBy)) {
+              boardList = boardRepository.findByNicknameContaining(keyword, Sort.by(Sort.Order.desc("postId")));
+          } else {
+              boardList = boardRepository.findAll(Sort.by(Sort.Order.desc("postId")));
+          }
+      } else {
+          boardList = boardRepository.findAll(Sort.by(Sort.Order.desc("postId")));
+      }
       
       int startIndex = page * pageSize;
       int endIndex = Math.min(startIndex + pageSize, boardList.size());
