@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.entity.Board;
@@ -31,13 +32,35 @@ public class BoardController {
        this.commentRepository = commentRepository;
    }
        
-    @GetMapping("/board")
-       public String showBoard(Model model) {
-           // 게시글 목록을 가져와서 모델에 추가
-       List<Board> boardList = boardRepository.findAll(Sort.by(Sort.Order.desc("postId")));
-          model.addAttribute("boardList", boardList);
-           return "board"; // board.html 파일을 보여줄 뷰 이름
-       }
+   @GetMapping("/board")
+   public String showBoard(Model model,@RequestParam(required = false, defaultValue = "0") int page) {
+	int pageSize = 10; // 페이지당 레시피 수  
+	
+	// 게시글 목록을 가져와서 모델에 추가
+   List<Board> boardList = boardRepository.findAll(Sort.by(Sort.Order.desc("postId")));
+      model.addAttribute("boardList", boardList);
+      
+      int startIndex = page * pageSize;
+      int endIndex = Math.min(startIndex + pageSize, boardList.size());
+
+      List<Board> pagedBoards = boardList.subList(startIndex, endIndex);
+      model.addAttribute("boardList", pagedBoards);
+      model.addAttribute("currentPage", page);
+
+      // 전체 페이지 수 계산
+      int totalPageCount = (int) Math.ceil((double) boardList.size() / pageSize);
+      model.addAttribute("totalPageCount", totalPageCount);
+
+      // 첫 페이지 번호와 끝 페이지 번호 계산
+      int firstPage = 0;
+      int lastPage = totalPageCount - 1;
+      model.addAttribute("firstPage", firstPage);
+      model.addAttribute("lastPage", lastPage);
+
+      
+      
+       return "board"; // board.html 파일을 보여줄 뷰 이름
+   }
    
    @GetMapping("/createboard")
     public String showCreateBoardPage(HttpSession session, RedirectAttributes redirectAttributes) {
@@ -86,4 +109,6 @@ public class BoardController {
        model.addAttribute("comment", comment);
        return "boardcontent"; // boardcontent.html로 이동
    }
+   
+   
 }

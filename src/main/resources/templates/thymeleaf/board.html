@@ -77,12 +77,15 @@
          <a href="/createboard" class="button">글쓰기</a>
          </div>
          <div class="text-center">
-            <ul class="pagination">
-               <li><a href = "">1</a></li>
-               <li><a href = "">2</a></li>
-               <li><a href = "">3</a></li>
-               <li><a href = "">4</a></li>
-            </ul>
+            <div class="pagination">
+    <a th:if="${currentPage > firstPage}" th:href="@{|/board?page=${currentPage - 1}|}">&laquo; 이전</a>
+    <span th:each="pageNumber : ${#numbers.sequence(currentPage - 5, currentPage + 4)}" th:if="${pageNumber >= firstPage && pageNumber <= lastPage}">
+        <a th:href="@{|/board?page=${pageNumber}|}"
+           th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber + 1}"></a>
+    </span>
+    <a th:if="${currentPage < lastPage}" th:href="@{|/board?page=${currentPage + 1}|}">다음 &raquo;</a>
+</div>
+<script th:src="@{/../js/rank.js}"></script>
          </div>
    </div>
    </div>
