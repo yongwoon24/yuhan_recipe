@@ -14,7 +14,9 @@ public interface BoardRepository extends JpaRepository<Board, Long>{
     Board findByPostId(@Param("postId") int postId);
    
    List<Board> findByTitleContaining(String title, Sort sort);
-   
    List<Board> findByNicknameContaining(String nickname, Sort sort);
-
+   
+	void deleteByPostId(int postId);
 }
+
+

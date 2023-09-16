@@ -11,4 +11,9 @@ import com.example.demo.entity.Comment;
 public interface CommentRepository extends JpaRepository<Comment, Long>{
 	@Query(value = "SELECT * FROM comment WHERE post_id = :postId", nativeQuery = true)
     List<Comment> findByPostId(@Param("postId") int postId);
+	@Query(value = "SELECT * FROM comment WHERE comment_id = :commentId", nativeQuery = true)
+    List<Comment> findByCommentId(@Param("commentId") int commentId);
+	
+	void deleteByPostId(int postId);
+	void deleteByCommentId(int commentId);
 }

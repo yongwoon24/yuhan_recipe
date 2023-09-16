@@ -20,6 +20,7 @@ import com.example.demo.repository.BoardRepository;
 import com.example.demo.repository.CommentRepository;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.transaction.Transactional;
 
 @Controller
 public class BoardController {
@@ -124,5 +125,33 @@ public class BoardController {
        return "boardcontent"; // boardcontent.html로 이동
    }
    
-   
+	@GetMapping("/delete/{postId}")
+	@Transactional // 트랜잭션 설정
+	public String deleteBoard(@PathVariable int postId, RedirectAttributes redirectAttributes) {
+		commentRepository.deleteByPostId(postId);
+		boardRepository.deleteByPostId(postId);
+		
+		redirectAttributes.addFlashAttribute("boarddeleteMessage", "게시물 삭제가 완료되었습니다!");
+	    return "redirect:/board"; // 글쓰기 성공 후 게시판 목록 페이지로 리다이렉트
+	}
+	
+	@GetMapping("/edit/{postId}")
+    public String showeditBoard(@PathVariable int postId, Model model) {
+        // 게시글 목록을 가져와서 모델에 추가
+		Board board = boardRepository.findByPostId(postId);
+	    model.addAttribute("board", board);
+        return "editboard";
+    }
+	
+	@PostMapping("/edit/{postId}")
+    public String editBoard(@PathVariable int postId, @ModelAttribute Board board2 ,RedirectAttributes redirectAttributes) {
+	    Board board = boardRepository.findByPostId(postId);
+	    board2.setCreated_date(board.getCreated_date());
+	    board2.setUser_id(board.getUser_id());
+	    board2.setNickname(board.getNickname());
+	    boardRepository.save(board2);
+	    redirectAttributes.addFlashAttribute("boardeditMessage", "게시물 수정이 완료되었습니다!");
+	    return "redirect:/board/" + postId; // 글쓰기 성공 후 게시판 목록 페이지로 리다이렉트
+    }
 }
+

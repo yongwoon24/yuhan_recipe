@@ -1,18 +1,24 @@
 package com.example.demo.controller;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.demo.entity.Board;
 import com.example.demo.entity.Comment;
 import com.example.demo.repository.CommentRepository;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.transaction.Transactional;
 @Controller
 public class CommentController {
     private final CommentRepository commentRepository;
@@ -52,5 +58,17 @@ public class CommentController {
 			 return "redirect:/login";
         }
     }
+    
+    @GetMapping("/deletecomment/{commentId}/{postId}")
+    @Transactional // 트랜잭션 설정
+    public String deleteComment(@PathVariable int commentId, @PathVariable int postId, RedirectAttributes redirectAttributes) {
+      
+        commentRepository.deleteByCommentId(commentId);
+        redirectAttributes.addFlashAttribute("commentdeleteMessage", "댓글 삭제가 완료되었습니다!");
+
+        return "redirect:/board/" + postId; // 댓글 삭제 후 해당 게시물 페이지로 리다이렉트
+    }
+	
+   
 }
 
