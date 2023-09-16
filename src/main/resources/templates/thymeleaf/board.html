@@ -94,5 +94,13 @@
          <div class="footer_comment">@Yuhan University Group 3's Project</div>
    </div>
 </div>
+
+	<script th:inline="javascript">
+	        var boarddeleteMessage = /*[[${boarddeleteMessage}]]*/ "";
+	        if (boarddeleteMessage) {
+	            alert(boarddeleteMessage);
+	        }
+    </script>
+   
 </body>
 </html>

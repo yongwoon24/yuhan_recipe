@@ -11,5 +11,6 @@ import com.example.demo.entity.Board;
 public interface BoardRepository extends JpaRepository<Board, Long>{
    @Query(value = "SELECT * FROM board WHERE post_id = :postId", nativeQuery = true)
     Board findByPostId(@Param("postId") int postId);
-
+	void deleteByPostId(int postId);
 }
+
