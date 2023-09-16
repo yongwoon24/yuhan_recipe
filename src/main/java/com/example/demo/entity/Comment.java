@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 @Entity
 public class Comment {
 	@Id
-	private int comment_id;
+	private int commentId;
 	private int postId;
 	private String user_id;
 	@Column(name = "content", columnDefinition = "TEXT")
@@ -16,11 +16,11 @@ public class Comment {
 	private LocalDateTime created_date;
 	private String nickname;
 	
-	public int getComment_id() {
-		return comment_id;
+	public int getCommentId() {
+		return commentId;
 	}
-	public void setComment_id(int comment_id) {
-		this.comment_id = comment_id;
+	public void setCommentId(int commentId) {
+		this.commentId = commentId;
 	}
 	public int getPostId() {
 		return postId;
@@ -55,7 +55,7 @@ public class Comment {
 	
 	@Override
 	public String toString() {
-		return "Comment [comment_id=" + comment_id + ", postId=" + postId + ", user_id=" + user_id + ", content="
+		return "Comment [commentId=" + commentId + ", postId=" + postId + ", user_id=" + user_id + ", content="
 				+ content + ", created_date=" + created_date + ", nickname=" + nickname + "]";
 	}
 	

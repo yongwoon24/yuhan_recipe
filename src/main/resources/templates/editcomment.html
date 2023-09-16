@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판 글쓰기</title>
+</head>
+<body>
+    <h1>게시글 수정</h1>
+    
+    <form th:action="@{'/editcomment/' + ${postId}}" th:object="${comment}" method="POST">
+		<input type="hidden" th:field="*{postId}" />
+		<label>내용: <input type="text" th:field="*{content}"/></label>
+		<br>
+		
+        <button type="submit">수정하기</button>
+    </form>
+</body>
+</html>
