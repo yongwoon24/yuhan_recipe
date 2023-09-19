@@ -85,7 +85,7 @@
       <!-- 여기부터 body에 추가할 코드 입력 -->
         
     	<div class="slide_wrapper">
-			<h th:text="'작성자  :  '+${recipe.user_id}"></h>
+			<h th:text="'작성자  :  '+${recipe.nickname}"></h>
 			<div class="main_img">
 				<img th:src="@{${recipe.main_photo_path}}" width="700px" height="500px"><br>
 			</div> 
@@ -95,7 +95,6 @@
 			<form id="loveform" th:action="@{/like}" method="post">
 			<input type="hidden" id="recipe_id" name="recipe_id" th:value="@{{recipeId}(recipeId=${recipe.recipe_id})}">
 			<input type="submit" th:onclick="'javascript:increaseLoves(\''+${recipe_id}+'\')'" name="lovebtn" value="좋아요">
-			<input type="text" name="user_id">
 			</form>
 			<span id="like-count" th:text="${recipe.totalLove}"></span></a>
 			

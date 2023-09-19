@@ -46,6 +46,7 @@ public class LoginController {
 	                
 	                // 로그인 성공 시 세션에 사용자 정보 저장
 	                 session.setAttribute("loggedInNickname", user.getNickname());
+	                 session.setAttribute("loggedInUserId", user.getUser_id());
 	                 return "redirect:/"; // 로그인 후 이동할 페이지
 	             }
 	         }

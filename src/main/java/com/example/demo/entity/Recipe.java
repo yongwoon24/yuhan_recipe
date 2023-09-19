@@ -25,11 +25,18 @@ public class Recipe {
 	private String main_photo;
 	private LocalDate created_date;
 	
-	private String user_id;
-//	@OneToMany
-//	@JoinColumn(name = "user_id")
-//	private List<User> users = new ArrayList<>();
+	//private String user_id;
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	User user;
 	
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@Column(name = "category_name")
 	private String categoryName;
 
@@ -43,6 +50,15 @@ public class Recipe {
 	private Integer weeklyLove;
 	private Integer monthlyLove;
 	
+	private String nickname;
+	
+
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 
 	private String main_photo_path;
 	@Column(name = "recipe_subtext")
@@ -83,12 +99,12 @@ public class Recipe {
 	public void setCreated_date(LocalDate created_date) {
 		this.created_date = created_date;
 	}
-	public String getUser_id() {
-		return user_id;
-	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
-	}
+//	public String getUser_id() {
+//		return user_id;
+//	}
+//	public void setUser_id(String user_id) {
+//		this.user_id = user_id;
+//	}
 	public String getCategoryName() {
 		return categoryName;
 	}

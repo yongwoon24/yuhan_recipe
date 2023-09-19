@@ -114,7 +114,7 @@
 							<a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}">
 								<img th:src="@{${recipe.main_photo_path}}" width="300px" height="300px"><br>
 								<h2 th:text="'제목  :  '+${recipe.title}"></h2>
-								<p th:text="'작성자  :  '+${recipe.user_id}"></p>
+								<p th:text="'작성자  :  '+${recipe.nickname}"></p>
 								<p th:text="'좋아요  :  '+${recipe.totalLove}"></p>
 								<p th:text="'조회  :  '+${recipe.view_count}"></p>
 							</a>
