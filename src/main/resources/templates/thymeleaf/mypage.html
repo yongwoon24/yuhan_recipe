@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta content="text/html; charset=euc-kr">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>모두의레시피</title>
+<style type="text/css">   
+   
+</style>
+<script src="https://kit.fontawesome.com/2636adf573.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" th:href="@{/../css/style.css}" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" type="text/css" th:href="@{/../css/board.css}">
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<div class="body_wrapper">
+   <div class="body_content">
+      <div class="menubar"></div>
+      <span class="menu4"><a href="/recipe">분류</a></span>
+      <span class="menu3"><a href="/rank">랭크</a></span>
+      <span class="menu2"><a href="/board">게시판</a></span>
+      <span class="menu1"><a href="/rank">랭킹</a></span>
+      <span><a class="mainicon" href="/">모두의레시피</a></span>
+      <!-- 마이페이지 주소 입력 --> 
+      <div class="usericon"><a href="마이페이지.html"><i class="fa-solid fa-user"></i></a></div>
+      <!-- 로그아웃 주소 입력 --> 
+      <div class="logout_icon"><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></div>
+        <div class="searchbar">   
+         <div class="searchradius">
+            <form action="" method=""> <!-- 검색창 주소 입력 --> 
+               <input type="text" class="search_txt">
+               <button type="submit" class="search_btn">
+                  <span class="searchicon">
+                     <i class="fa-solid fa-magnifying-glass"></i>
+                  </span>
+               </button>
+            </form>
+         </div>   
+      </div>
+      
+      <!-- 여기부터 body에 추가할 코드 입력 -->
+<!--<div class="content">-->
+   <div class="table-container">
+          <table class="table">
+            <thead>
+               <tr>
+                    <th style="width: 50px;">번호</th>
+                  <th style="width: 300px;">제목</th>
+                  <th style="width: 100px;">작성자</th>
+                  <th style="width: 100px;">작성일</th>
+               </tr>
+            </thead>
+            <tbody>
+              <tr th:each="board : ${board}">
+               <td style=text-align:center; th:text="${board.postId}"></td>
+               <td>
+                <a th:href="@{'/board/' + ${board.postId}}">
+                    <span th:text="${board.title}"></span>
+                </a>
+            </td>
+            	<td style=text-align:center;>
+					<a th:href="@{'/userpage/' + ${board.nickname}}">
+	                <span th:text="${board.nickname}"></span>
+                </a>
+				</td>
+               <td style=text-align:center; >
+                <p th:if="${#temporals.format(board.created_date, 'yyyy-MM-dd') == #temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}"
+                   th:text="${#temporals.format(board.created_date, 'HH:mm')}"></p>
+                <p th:if="${#temporals.format(board.created_date, 'yyyy-MM-dd') != #temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}"
+                   th:text="${#temporals.format(board.created_date, 'MM-dd')}"></p>
+            </td>
+              </tr>
+               
+            </tbody>    
+         </table>
+         <hr/>
+
+
+         
+   </div>
+   </div>
+       <!--</div>-->
+   <div class="footer">
+         <div class="footer_comment">@Yuhan University Group 3's Project</div>
+   </div>
+</div>
+
+	<script th:inline="javascript">
+	        var boarddeleteMessage = /*[[${boarddeleteMessage}]]*/ "";
+	        if (boarddeleteMessage) {
+	            alert(boarddeleteMessage);
+	        }
+    </script>
+   
+</body>
+</html>

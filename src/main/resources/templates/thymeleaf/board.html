@@ -25,7 +25,7 @@
       <span class="menu1"><a href="rank">랭킹</a></span>
       <span><a class="mainicon" href="/">모두의레시피</a></span>
       <!-- 마이페이지 주소 입력 --> 
-      <div class="usericon"><a href="마이페이지.html"><i class="fa-solid fa-user"></i></a></div>
+      <div class="usericon"><a href="/mypage"><i class="fa-solid fa-user"></i></a></div>
       <!-- 로그아웃 주소 입력 --> 
       <div class="logout_icon"><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></div>
         <div class="searchbar">   
@@ -61,7 +61,11 @@
                     <span th:text="${board.title}"></span>
                 </a>
             </td>
-               <td style=text-align:center; th:text="${board.nickname}"></td>
+            	<td style=text-align:center;>
+					<a th:href="@{'/userpage/' + ${board.nickname}}">
+	                <span th:text="${board.nickname}"></span>
+                </a>
+				</td>
                <td style=text-align:center; >
                 <p th:if="${#temporals.format(board.created_date, 'yyyy-MM-dd') == #temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}"
                    th:text="${#temporals.format(board.created_date, 'HH:mm')}"></p>

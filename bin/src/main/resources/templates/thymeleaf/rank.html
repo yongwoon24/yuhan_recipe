@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta content="text/html; charset=euc-kr">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>모두의레시피</title>
+<style type="text/css">	
+	
+</style>
+<script src="https://kit.fontawesome.com/2636adf573.js" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" th:href="@{/../css/rank.css}" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+<div class="body_wrapper">
+	<div class="body_content">
+		<div class="menubar"></div>
+		<span class="menu4"><a href="recipe">분류</a></span>
+		<span class="menu3"><a href="rank">랭크</a></span>
+		<span class="menu2"><a href="board">게시판</a></span>
+		<span class="menu1"><a href="rank">랭킹</a></span>
+		<span><a class="mainicon" href="/">모두의레시피</a></span>
+		
+		<!-- 마이페이지 주소 입력 --> 
+		<div class="usericon"><a href="마이페이지.html"><i class="fa-solid fa-user"></i></a></div>
+		<!-- 로그아웃 주소 입력 --> 
+		<div class="logout_icon"><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></div>
+  		<div class="searchbar">	
+			<div class="searchradius">
+				<form action="" method=""> <!-- 검색창 주소 입력 --> 
+					<input id="search" type="text" class="search_txt">
+					<button type="submit" class="search_btn">
+						<span class="searchicon">
+							<i class="fa-solid fa-magnifying-glass"></i>
+						</span>
+					</button>
+				</form>
+			</div>	
+		</div>
+		<!-- 여기부터 body에 추가할 코드 입력 -->
+		
+		<div class="slide_wrapper">
+			<div class="category-buttons">
+			    <form id="myForm" th:action="@{/rank}" method="get">
+			        <label for="categoryName">카테고리 선택:</label>
+			        <select id="categoryName" name="categoryName">
+			            <option value="">전체</option>
+			            <option value="파티">파티용</option>
+			            <option value="혼밥">혼밥용</option>
+			            <option value="피크닉">피크닉용</option>
+			            <option value="가정">가정용</option>
+			            <option value="디저트">디저트용</option>
+			            <option value="야식안주">야식/안주용</option>
+			        </select>
+			        <select id="period" name="period">
+			            <option value="">전체</option>
+			            <option value="d">일간</option>
+			            <option value="w">주간</option>
+			            <option value="m">월간</option>
+			        </select>
+			        <button id="submitBtn" type="submit" hidden>선택</button>
+
+			    </form>
+			    
+			</div>
+			<ul class="img_slide">
+			    <li class="recipe-item" th:each="recipe, recipeIndex : ${topLove}">
+					<div class="recipe-container">
+						<div class="ranking">
+                			<span class="rank-number" th:text="${(currentPage * 20) + recipeIndex.index + 1}+'위'"></span>
+            			</div>
+				        <a href="recipe"><img th:src="@{/img/__${recipe.main_photo}__.jpg}"></a>
+				        <a href="recipe"><span th:text="${recipe.title}">asd</span></a>
+				        <div class="likes">
+				            <i class="fas fa-heart"></i>
+				            <span th:text="${recipe.totalLove}"></span>
+				        </div>
+			        </div>  
+			    </li>
+			
+			</ul>
+			<div class="pagination">
+    <a th:if="${currentPage > firstPage}" th:href="@{|/rank?page=${currentPage - 1}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}">&laquo; 이전</a>
+    <span th:each="pageNumber : ${#numbers.sequence(currentPage - 5, currentPage + 4)}" th:if="${pageNumber >= firstPage && pageNumber <= lastPage}">
+        <a th:href="@{|/rank?page=${pageNumber}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}"
+           th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber + 1}"></a>
+    </span>
+    <a th:if="${currentPage < lastPage}" th:href="@{|/rank?page=${currentPage + 1}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}">다음 &raquo;</a>
+</div>
+
+
+
+			
+			
+						
+			
+			
+		<script th:src="@{/../js/rank.js}"></script>
+		</div>
+		
+		
+		
+			
+		
+		
+	</div>
+	<div class="footer">
+			<div class="footer_comment">@Yuhan University Group 3's Project</div>
+	</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+</html>
