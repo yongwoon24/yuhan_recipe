@@ -14,14 +14,17 @@ import com.example.demo.entity.Board;
 import com.example.demo.entity.Comment;
 import com.example.demo.repository.BoardRepository;
 import com.example.demo.repository.CommentRepository;
+import com.example.demo.repository.RecipeRepository;
 
 @Controller
 public class UserPageController {
 	 private final BoardRepository boardRepository; // final 키워드 추가
+	 private final RecipeRepository recipeRepository;
 	 
 	 @Autowired
-	 public UserPageController(BoardRepository boardRepository) {
+	 public UserPageController(BoardRepository boardRepository, RecipeRepository recipeRepository) {
 	       this.boardRepository = boardRepository;
+	       this.recipeRepository = recipeRepository;
 	   }
 	   
 	
