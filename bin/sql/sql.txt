@@ -1,0 +1,243 @@
+1. 회원테이블
+- 사용자 id 프라이
+- 이름
+- 이메일
+- 비밀번호
+- 생년월일
+- 전화번호
+
+2. 게시판 테이블
+- 게시물 id 프라이
+- 제목
+- 내용
+- 작성 날짜
+- 작성자 아이디 포린키 회원테이블 사용자 아이디와 연결
+
+3. 레시피 테이블
+- 레시피 id 프라이
+- 제목
+- 대표 사진 경로
+- 작성 날짜
+- 작성자 id 포린키 회원테이블 사용자 아이디와 연결
+
+4. 요리순서 테이블
+- 순서 id 프라이
+- 레시피 아이디 포린키 레시피 테이블 레시피아디 연결
+- 요리 순서 내용
+- 순서 사진 경로
+
+5. 재료 테이블
+- 재료 아이디 프라이
+- 레시피 아이디 포린키 레시피 테이블 레시피아디 연결
+- 재료명
+
+6. 댓글 테이블
+- 댓글 id 프라이
+- 게시물 id 포린키 게시판 테이블 게시판 아이디 연결
+- 작성자 id 포린키 회원 테이블 사용자 아이디 연결
+- 내용
+- 작성일시
+
+7. 스크랩 테이블
+스크랩 ID (Primary Key)
+사용자 ID (Foreign Key, 회원 테이블의 사용자 ID와 연결)
+게시물 ID (Foreign Key, 게시판 테이블의 게시물 ID와 연결)
+
+8. 좋아요 테이블
+좋아요 ID (Primary Key)
+사용자 ID (Foreign Key, 회원 테이블의 사용자 ID와 연결)
+게시물 ID (Foreign Key, 게시판 테이블의 게시물 ID와 연결)
+
+-------------------------------------------------------------------------------------------------
+회원 테이블 (User Table):
+CREATE TABLE User (
+    user_id VARCHAR(255) PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    birthdate DATE,
+    phone_number VARCHAR(255)
+);
+
+게시판 테이블 (Board Table):
+CREATE TABLE Board (
+    post_id INT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    content TEXT,
+    created_date DATE NOT NULL,
+    user_id VARCHAR(255),
+    FOREIGN KEY (user_id) REFERENCES User(user_id)
+);
+
+레시피 테이블 (Recipe Table):
+CREATE TABLE Recipe (
+    recipe_id INT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    main_photo VARCHAR(255),
+    created_date DATE NOT NULL,
+    user_id VARCHAR(255),
+    FOREIGN KEY (user_id) REFERENCES User(user_id)
+);
+
+요리 순서 테이블 (CookingStep Table):
+CREATE TABLE CookingStep (
+    step_id INT PRIMARY KEY,
+    recipe_id INT,
+    step_content TEXT,
+    step_photo VARCHAR(255),
+    FOREIGN KEY (recipe_id) REFERENCES Recipe(recipe_id)
+);
+
+재료 테이블 (Ingredient Table):
+CREATE TABLE Ingredient (
+    ingredient_id INT PRIMARY KEY,
+    recipe_id INT,
+    ingredient_name VARCHAR(255),
+    FOREIGN KEY (recipe_id) REFERENCES Recipe(recipe_id)
+);
+
+댓글 테이블 (Comment Table):
+CREATE TABLE Comment (
+    comment_id INT PRIMARY KEY,
+    post_id INT,
+    user_id VARCHAR(255),
+    content TEXT,
+    created_date DATETIME,
+    FOREIGN KEY (post_id) REFERENCES Board(post_id),
+    FOREIGN KEY (user_id) REFERENCES User(user_id)
+);
+
+스크랩 테이블 (Scrap Table):
+CREATE TABLE Scrap (
+    scrap_id INT PRIMARY KEY,
+    user_id VARCHAR(255),
+    post_id INT,
+    FOREIGN KEY (user_id) REFERENCES User(user_id),
+    FOREIGN KEY (post_id) REFERENCES Board(post_id)
+);
+
+좋아요 테이블 (Love Table):
+CREATE TABLE Love (
+    like_id INT PRIMARY KEY,
+    user_id VARCHAR(255),
+    post_id INT,
+    FOREIGN KEY (user_id) REFERENCES User(user_id),
+    FOREIGN KEY (post_id) REFERENCES Board(post_id)
+);
+
+--------------------------------------------------------------------
+CREATE TABLE User (
+    user_id VARCHAR(255) PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    birthdate DATE,
+    phone_number VARCHAR(255),
+    email_verified BIT NOT NULL DEFAULT 0,
+    verification_token VARCHAR(36)
+);
+
+
+CREATE TABLE Board (
+    post_id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    content TEXT,
+    created_date DATE NOT NULL,
+    user_id VARCHAR(255),
+    FOREIGN KEY (user_id) REFERENCES User(user_id)
+);
+
+CREATE TABLE Category (
+    category_name VARCHAR(255) PRIMARY KEY
+    );
+
+CREATE TABLE Recipe (
+    recipe_id INT AUTO_INCREMENT PRIMARY KEY,
+    category_name VARCHAR(255),
+    title VARCHAR(255) NOT NULL,
+    main_photo VARCHAR(255),
+    created_date DATE NOT NULL,
+    user_id VARCHAR(255),
+    view_count INT DEFAULT 0,
+    FOREIGN KEY (user_id) REFERENCES User(user_id),
+    FOREIGN KEY (category_name) REFERENCES Category(category_name)
+);
+
+
+CREATE TABLE CookingStep (
+    step_id INT AUTO_INCREMENT PRIMARY KEY,
+    recipe_id INT,
+    step_content TEXT,
+    step_photo VARCHAR(255),
+    FOREIGN KEY (recipe_id) REFERENCES Recipe(recipe_id)
+);
+
+
+CREATE TABLE Ingredient (
+    ingredient_id INT AUTO_INCREMENT PRIMARY KEY,
+    ingredient_name VARCHAR(255)
+);
+
+
+CREATE TABLE Comment (
+    comment_id INT AUTO_INCREMENT PRIMARY KEY,
+    post_id INT,
+    user_id VARCHAR(255),
+    content TEXT,
+    created_date DATETIME,
+    FOREIGN KEY (post_id) REFERENCES Board(post_id),
+    FOREIGN KEY (user_id) REFERENCES User(user_id)
+);
+
+
+CREATE TABLE Scrap (
+    scrap_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id VARCHAR(255),
+    post_id INT,
+    FOREIGN KEY (user_id) REFERENCES User(user_id),
+    FOREIGN KEY (post_id) REFERENCES Board(post_id)
+);
+
+
+CREATE TABLE UserActivity (
+    activity_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id VARCHAR(255),
+    recipe_id INT,
+    activity VARCHAR(45),
+    date DATE(255)
+    FOREIGN KEY (user_id) REFERENCES User(user_id),
+    FOREIGN KEY (recipe_id) REFERENCES Recipe(recipe_id)
+);
+
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> e2db5c884523330d4b6a0ef14b34be6f0a75cf9e
+CREATE TABLE Recipe_Ingredient (
+    r_id INT AUTO_INCREMENT PRIMARY KEY,
+    recipe_id INT,
+    ingredient_id INT,
+    mount VARCHAR(255),
+    FOREIGN KEY (recipe_id) REFERENCES Recipe(recipe_id),
+    FOREIGN KEY (ingredient_id) REFERENCES Ingredient(ingredient_id)
+);
+
+INSERT INTO `yuhan_db`.`category` (`category_name`) VALUES ('피크닉');
+INSERT INTO `yuhan_db`.`category` (`category_name`) VALUES ('혼밥');
+INSERT INTO `yuhan_db`.`category` (`category_name`) VALUES ('파티');
+INSERT INTO `yuhan_db`.`category` (`category_name`) VALUES ('가정');
+INSERT INTO `yuhan_db`.`category` (`category_name`) VALUES ('디저트');
+INSERT INTO `yuhan_db`.`category` (`category_name`) VALUES ('야식/안주');
+
+
+ALTER TABLE Recipe
+ADD view_count INT DEFAULT 0;
+
+SELECT COUNT(*) AS like_count // 좋아요 수 가져오기
+FROM Love
+WHERE recipe_id = <레시피아이디>;
+
+UPDATE Recipe // 조회수 가져오기
+SET view_count = view_count + 1
+WHERE recipe_id = <레시피아이디>;

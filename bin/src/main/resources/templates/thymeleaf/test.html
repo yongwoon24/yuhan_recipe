@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recipe Like Test</title>
+</head>
+<body>
+    <h1>Recipe Like Test</h1>
+    
+    <form id="likeForm">
+        <label for="recipeId">Recipe ID:</label>
+        <input type="text" id="recipeId" name="recipeId" required>
+        <button type="button" id="likeButton">Like</button>
+    </form>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var likeForm = document.getElementById("likeForm");
+            var recipeIdInput = document.getElementById("recipeId");
+            var likeButton = document.getElementById("likeButton");
+            
+            likeButton.addEventListener("click", function() {
+                var recipeId = recipeIdInput.value;
+                console.log("Liked Recipe ID:", recipeId);
+                
+                // Simulate sending data to server and receiving response
+                var response = { success: true };
+                
+                if (response.success) {
+                    // Simulate updating like count on the page
+                    var likeCountElement = document.getElementById("likeCount");
+                    var currentLikeCount = parseInt(likeCountElement.textContent);
+                    likeCountElement.textContent = currentLikeCount + 1;
+                    
+                    console.log("Like count updated successfully!");
+                } else {
+                    console.log("Failed to update like count.");
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -57,7 +57,8 @@ public class RecipeController {
 		return "recipeList";
 	}
 	@GetMapping("/recipe")
-	public String listRecipes1(Model model, @RequestParam(required = false, defaultValue = "0") int page) {
+	public String listRecipes1(Model model, @RequestParam(required = false, defaultValue = "0") int page,
+								@RequestParam(required = false) String CategorName) {
 		int pageSize = 20; // 페이지당 레시피 수
 		List<Recipe> recipes = recipeRepository.findAll();
 		model.addAttribute("recipes", recipes);
@@ -79,6 +80,9 @@ public class RecipeController {
 	    	//model.addAttribute("searchUrl", "redirect:/recipe");
 	        return "redirect:/recipe";
 	        }
+	    
+//	    @PostMapping("/SearchRecipe")
+//	    public String search(@RequestParam String category,)
 	    
 	    @PostMapping("/like")
 	    public String like(@RequestParam int recipe_id, @RequestParam String user_id) {
