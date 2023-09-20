@@ -88,11 +88,7 @@
 			<div class="slide_wrapper">
 				<div class="check">
 					<div class="checklist">
-<<<<<<< HEAD
-						<form action="/SearchRecipe" method="post" action="/formAction">
-=======
-						<form method="post" action="/formAction">
->>>>>>> db3da4482794427616eb07d914fa4f4a69fa7282
+						<form action="/SearchRecipe" method="post">
 							<p>용도</p>
 							<label><input type="checkbox" id="picnic" name="type" value="피크닉">피크닉</label>
 							<label><input type="checkbox" id="eating_alone" name="type" value="혼밥">혼밥</label>
@@ -118,11 +114,7 @@
 							<a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}">
 								<img th:src="@{${recipe.main_photo_path}}" width="300px" height="300px"><br>
 								<h2 th:text="'제목  :  '+${recipe.title}"></h2>
-<<<<<<< HEAD
-								<p th:text="'작성자  :  '+${recipe.user_id}"></p>
-=======
 								<p th:text="'작성자  :  '+${recipe.nickname}"></p>
->>>>>>> db3da4482794427616eb07d914fa4f4a69fa7282
 								<p th:text="'좋아요  :  '+${recipe.totalLove}"></p>
 								<p th:text="'조회  :  '+${recipe.view_count}"></p>
 							</a>
