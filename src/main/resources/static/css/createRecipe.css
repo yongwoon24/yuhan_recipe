@@ -630,6 +630,12 @@ textarea[name="recipesubtxt"] {
     resize: none;
 }
 
+textarea[name="recipetip"] {
+    width: 740px; /* 원하는 너비로 조정 */
+    height: 200px; /* 원하는 높이로 조정 */
+    resize: none;
+}
+
 select[name="categoryName"] {
 	width: 740px;
 	text-align:center;
@@ -687,6 +693,14 @@ text[name='ingd'] {
 	height:1500px;
 	position:absolute;
 	top: 1200px;
+}
+
+.e10_2_3 { 
+	background-color:rgba(255, 255, 255, 1);
+	width:100%;
+	height:1500px;
+	position:absolute;
+	top: 1900px;
 }
 
 .e12_5 { 
