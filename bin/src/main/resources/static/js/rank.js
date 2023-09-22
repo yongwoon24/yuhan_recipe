@@ -50,3 +50,48 @@ document.addEventListener('DOMContentLoaded', function() {
         sessionStorage.setItem("previousPeriod", selectedPeriodValue);
     });
 });
+<<<<<<< HEAD
+=======
+
+// 페이지 변수 가져오기
+var paginationDiv = document.getElementById(".pagination");
+var totalPages = parseInt(paginationDiv.getAttribute("data-total-pages"));
+var currentPage = parseInt(paginationDiv.getAttribute("data-current-page"));
+
+// 페이지 번호를 동적으로 생성하는 함수
+function generatePagination() {
+    paginationDiv.innerHTML = ""; // 기존 내용 초기화
+
+    // 최대 7개의 페이지 번호를 생성
+    for (var i = Math.max(0, currentPage - 3); i <= Math.min(totalPages - 1, currentPage + 3); i++) {
+        var pageLink = document.createElement("a");
+        pageLink.href = "/rank?page=" + i;
+
+        if (i === currentPage) {
+            pageLink.classList.add("active");
+            pageLink.innerText = (i + 1) + "위";
+        } else {
+            pageLink.innerText = (i + 1);
+        }
+
+        paginationDiv.appendChild(pageLink);
+    }
+
+    // "..." 추가
+    if (currentPage > 3) {
+        var ellipsis1 = document.createElement("span");
+        ellipsis1.innerText = "...";
+        paginationDiv.insertBefore(ellipsis1, paginationDiv.children[1]);
+    }
+
+    if (currentPage < totalPages - 4) {
+        var ellipsis2 = document.createElement("span");
+        ellipsis2.innerText = "...";
+        paginationDiv.insertBefore(ellipsis2, paginationDiv.children[paginationDiv.children.length - 1]);
+    }
+}
+
+// 페이지 번호 생성 함수 호출
+generatePagination();
+
+>>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331

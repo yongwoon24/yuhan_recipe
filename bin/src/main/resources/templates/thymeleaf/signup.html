@@ -61,9 +61,16 @@
     
     checkAvailability("/checkUserIdAvailability?user_id=", "#user_id", "#duplicationMessage", "#signupButton");
     checkAvailability("/checkUseremailAvailability?email=", "#email", "#duplicationMessageemail", "#signupButton");
+<<<<<<< HEAD
 });
 
 	  
+=======
+    checkAvailability("/checkUsernicknameAvailability?nickname=", "#nickname", "#duplicationMessagenickname", "#signupButton");
+});
+
+     
+>>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
     </script>
 </head>
 <body>
@@ -76,9 +83,17 @@
        <label>비밀번호 : <input type="password" th:field="*{password}" required/></label><br/>
        <label>비밀번호 확인 : <input type="password" id="confirmPassword" onkeyup="psCheck()" required/></label>
        <span id="checkMsg"></span><br/>
+<<<<<<< HEAD
        <label>생년월일 : <input type="date" th:field="*{birthdate}" required/></label><br/>
         <label>이메일 : <input type="text" th:field="*{email}" required/></label>
         <span id="duplicationMessageemail"></span><br><br/>
+=======
+       <label>닉네임 : <input type="text" th:field="*{nickname}" id="nickname" required maxlength="8"/></label>
+       <span id="duplicationMessagenickname"></span><br/>
+       <label>생년월일 : <input type="date" th:field="*{birthdate}" required/></label><br/>
+       <label>이메일 : <input type="email" th:field="*{email}" required/></label>
+       <span id="duplicationMessageemail"></span><br/>
+>>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
        <label>핸드폰 번호 : <input type="text" th:field="*{phone_number}"  required/></label><br/>
        <input type="submit" id="signupButton" value="회원가입" disabled  /> <!-- 버튼 비활성화 상태로 초기화 -->
    </br>
