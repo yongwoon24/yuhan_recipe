@@ -98,7 +98,7 @@
 			</form>
 			<span id="like-count" th:text="${recipe.totalLove}"></span></a>
 			
-			<h4 th:text="'조회수 : '+${recipe.view_count}"></h4>
+			<h4 th:text="'조회수 : '+${recipe.view_count+1}"></h4>
 			<a th:href="@{/deleteRecipe/{recipe_id}(recipe_id=${recipe.recipe_id})}">Delete</a></td>
 			</div>
         </div>
