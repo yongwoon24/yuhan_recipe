@@ -57,17 +57,38 @@ public class RecipeController {
 		model.addAttribute("recipes", recipes);
 		return "recipeList";
 	}
+	
+	
+	
 	@GetMapping("/recipe")
-
 	public String listRecipes1(Model model, @RequestParam(required = false, defaultValue = "0") int page,
-								@RequestParam(required = false) String CategorName) {
-
+								@RequestParam(required = false) String categorName) {
+		//List<Recipe> categoryName;
 		int pageSize = 20; // 페이지당 레시피 수
+		 //if(ca)
+		
 		List<Recipe> recipes = recipeRepository.findAll();
 		model.addAttribute("recipes", recipes);
 		model.addAttribute("currentPage", page);
 		return "recipeList";
 	}
+	
+	@PostMapping("/SearchRecipe")
+    public String searchRecipes(Model model, @RequestParam(name = "categoryName", required = false) List<String> categories) {
+
+        if (categories != null && !categories.isEmpty()) {
+            // 선택된 용도 (categories)에 따라 레시피를 검색하고 모델에 추가
+            List<Recipe> recipes = recipeRepository.findByCategoryNameIn(categories);
+            model.addAttribute("recipes", recipes);
+        } else {
+            // 선택된 용도가 없으면 모든 레시피를 검색
+            List<Recipe> recipes = recipeRepository.findAll();
+            model.addAttribute("recipes", recipes);
+        }
+
+        return "recipeList"; // 검색 결과를 표시할 뷰 이름
+    }
+	
 	 @GetMapping("/createRecipe")
 	    public String createRecipeForm(Model model) {
 	        model.addAttribute("recipe", new Recipe());
@@ -117,7 +138,7 @@ public class RecipeController {
 	    }
 	    
 	    
-	    
+
 	    
 	    @GetMapping("/recipe/{recipe_id}")
 	    public String userRecipeview(@PathVariable("recipe_id") int recipe_id, Model model, HttpSession session) {
@@ -127,24 +148,24 @@ public class RecipeController {
 
                 String activity = "조회";
                 Recipe recipe1 = new Recipe();
-                recipe.setRecipe_id(recipe_id);
-
-                User user = new User();
-                String loggedInUserId = (String) session.getAttribute("loggedInUserId");
-                if (loggedInUserId == null) {
-                    // 사용자가 로그인하지 않은 경우 로그인 페이지로 리다이렉트하거나 다른 처리를 수행합니다.
-                    return "redirect:/login"; // 로그인 페이지로 리다이렉트하는 예시
-                }
-                else {
-                user.setUser_id(loggedInUserId);
-
-                Love love = new Love();
-                love.setUser(user);
-                love.setRecipe(recipe);
-                love.setActivity(activity);
-
-                loveservice.saveLove(love);
-
+    	        recipe.setRecipe_id(recipe_id);
+                
+    	        User user = new User();
+    	        String loggedInUserId = (String) session.getAttribute("loggedInUserId");
+    	        if (loggedInUserId == null) {
+    	            // 사용자가 로그인하지 않은 경우 로그인 페이지로 리다이렉트하거나 다른 처리를 수행합니다.
+    	            return "redirect:/login"; // 로그인 페이지로 리다이렉트하는 예시
+    	        }
+    	        else {
+    	        user.setUser_id(loggedInUserId);
+    	        
+    	        Love love = new Love();
+    	        love.setUser(user);
+    	        love.setRecipe(recipe);
+    	        love.setActivity(activity);
+    	        
+    	    	loveservice.saveLove(love);
+    	    	
                 model.addAttribute("recipe", recipe);
                 model.addAttribute("likesCount",likesCount);
                 //model.addAttribute("recipe", new Recipe());
