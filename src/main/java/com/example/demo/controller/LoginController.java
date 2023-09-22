@@ -67,6 +67,7 @@ public class LoginController {
 	         if (loggedInNickname != null) {
 	             // 세션에 로그인 정보가 있을 경우, 세션 삭제 후 로그인 페이지로 이동
 	             session.removeAttribute("loggedInNickname");
+	             session.removeAttribute("loggedInUserId");
 	             return "redirect:/";
 	         } else {
 	             // 세션에 로그인 정보가 없을 경우, signup 페이지로 이동

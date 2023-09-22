@@ -120,32 +120,37 @@ public class RecipeController {
 	    
 	    
 	    @GetMapping("/recipe/{recipe_id}")
-        public String userRecipeview(@PathVariable("recipe_id") int recipe_id, Model model, HttpSession session) {
+	    public String userRecipeview(@PathVariable("recipe_id") int recipe_id, Model model, HttpSession session) {
             Recipe recipe = recipeRepository.findById(recipe_id);
             if (recipe != null) {
                 recipeRepository.incrementViewCount(recipe_id); // 조회수 업데이트
-                
+
                 String activity = "조회";
                 Recipe recipe1 = new Recipe();
-    	        recipe.setRecipe_id(recipe_id);
-                
-    	        User user = new User();
-    	        String loggedInUserId = (String) session.getAttribute("loggedInUserId");
-    	        user.setUser_id(loggedInUserId);
-    	        
-    	        Love love = new Love();
-    	        love.setUser(user);
-    	        love.setRecipe(recipe);
-    	        love.setActivity(activity);
-    	        
-    	    	loveservice.saveLove(love);
-    	    	
+                recipe.setRecipe_id(recipe_id);
+
+                User user = new User();
+                String loggedInUserId = (String) session.getAttribute("loggedInUserId");
+                if (loggedInUserId == null) {
+                    // 사용자가 로그인하지 않은 경우 로그인 페이지로 리다이렉트하거나 다른 처리를 수행합니다.
+                    return "redirect:/login"; // 로그인 페이지로 리다이렉트하는 예시
+                }
+                else {
+                user.setUser_id(loggedInUserId);
+
+                Love love = new Love();
+                love.setUser(user);
+                love.setRecipe(recipe);
+                love.setActivity(activity);
+
+                loveservice.saveLove(love);
+
                 model.addAttribute("recipe", recipe);
                 model.addAttribute("likesCount",likesCount);
                 //model.addAttribute("recipe", new Recipe());
                 return "userRecipe"; // 레시피 페이지 템플릿
             }
-            
+            }
             return "userRecipe";
         }
 	    
