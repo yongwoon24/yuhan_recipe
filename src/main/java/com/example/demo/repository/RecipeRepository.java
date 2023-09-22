@@ -61,6 +61,8 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
 	List<Recipe> findByOrderByWeeklyLoveDesc();
 	List<Recipe> findByOrderByMonthlyLoveDesc();
 	
+	List<Recipe> findByCategoryNameIn(List<String> categori);
+	
 
 	List<Recipe> findByNickname(String nickname);
 }
