@@ -544,6 +544,19 @@ h2{
 	font-size:12px;
 	letter-spacing:0;
 }
+
+.e10_8_1 { 
+	color:rgba(0, 0, 0, 1);
+	width:64px;
+	height:71px;
+	position:absolute;
+	left:29px;
+	top:400px;
+	font-family:Inter;
+	text-align:left;
+	font-size:12px;
+	letter-spacing:0;
+}
 .e10_10 { 
 	color:rgba(0, 0, 0, 1);
 	width:729px;
@@ -563,6 +576,18 @@ h2{
 	position:absolute;
 	left:141px;
 	top:139px;
+	font-family:Inter;
+	text-align:left;
+	font-size:12px;
+	letter-spacing:0;
+}
+.e10_11_1 { 
+	color:rgba(0, 0, 0, 1);
+	width:702px;
+	height:368px;
+	position:absolute;
+	left:141px;
+	top:400px;
 	font-family:Inter;
 	text-align:left;
 	font-size:12px;
@@ -655,12 +680,12 @@ button[name="uploadButton1"] {
 }
 
 div[name="preview"] {
-	width: 400px;
-	height: 400px;
+	max-width: 400px;
+	max-height: 400px;
 }
 div[name="preview1"] {
-	width: 200px;
-	height: 200px;
+	max-width: 200px;
+	max-height: 200px;
 }
 
 
@@ -761,7 +786,7 @@ text[name='ingd'] {
   
   .text2 {
 	width: 500px;
-	height: 190px;
+	height: 200px;
     border: 1px solid #ccc;
     margin-right: 4px;
     resize: none;
@@ -824,3 +849,15 @@ text[name='ingd'] {
     padding: 5px 10px;
     cursor: pointer;
   }
+  
+.Rsubmit {
+	position:absolute;
+	width: 150px;
+	height: 50px;
+	top: 700px;
+	left: 900px;
+}
+
+.cn {
+	width: 745px;
+}

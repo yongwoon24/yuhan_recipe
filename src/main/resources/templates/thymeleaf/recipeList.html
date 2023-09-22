@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<meta content="text/html; charset=euc-kr">
+	<meta content="text/html" charset="utf-8">
 	<title>모두의레시피</title>
 	<style type="text/css">
 	</style>
@@ -12,46 +12,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 
-	<script>
-		var ing = new Array();
-		var cat = new Array();
-		function init() {
-
-			var tags = document.getElementById("t1");
-			var btns = document.createElement("input");
-			btns.type = "button";
-			btns.value = tags.value + "      X  ";
-
-			btns.id = tags.value;
-			ing.push(tags.value);
-			alert(ing);
-			tags.value = "";
-			btns.style.cursor = "hand";
-			btns.style.width = "80px";
-			btns.width = "120px";
-			btns.color = "white";
-			btns.style.cursor = "hand";
-			btns.style.width = "auto";
-			btns.onclick = function () {hideInfo(this)};
-
-			var clas = document.getElementById("body_wrapper4");
-			clas.appendChild(btns);
-
-		}
-
-		function hideInfo(e) {
-			alert("삭제됨");
-			var i = 0;
-			for (i = 0; i < ing.length - 1; i++) {
-				if (ing[i] == e.id) {
-					break;
-				}
-			}
-			ing.splice(i, 1);
-			alert(ing);
-			e.remove();
-		}</script>
-
+	
 
 
 
@@ -86,27 +47,34 @@
 			<!-- 여기부터 body에 추가할 코드 입력 -->
 
 			<div class="slide_wrapper">
-				<div class="check">
-					<div class="checklist">
-						<form action="/SearchRecipe" method="post">
-							<p>용도</p>
+				<form action="/SearchRecipe" method="post">
+					<div class="check">
+						<div class="checklist">
+
+							<p>용도</p><br>
 							<label><input type="checkbox" id="picnic" name="categoryName" value="피크닉">피크닉</label>
 							<label><input type="checkbox" id="eating_alone" name="categoryName" value="혼밥">혼밥</label>
 							<label><input type="checkbox" id="home_meal" name="categoryName" value="가정">가정</label>
 							<label><input type="checkbox" id="party" name="categoryName" value="파티">파티</label>
 							<label><input type="checkbox" id="dessert" name="categoryName" value="디저트">디저트</label>
-							<label><input type="checkbox" id="late_night_meal" name="categoryName" value="야식/안주">야식/안주</label>
+							<label><input type="checkbox" id="late_night_meal" name="categoryName"
+									value="야식/안주">야식/안주</label>
+						</div>
+						<p>재료</p>
+						<input type="text" id="t1" class="t11" value="">
+						<input type="button" onclick="init()" id="btn" value="생성"><br>
+						<div id="body_wrapper4"></div><br>
+						<p><input type="submit" value="검색"><input type="reset" value="초기화">
+						</p>
+
+
 					</div>
-					<p>재료</p>
-					<input type="text" id="t1" class="t11" value="">
-					<input type="button" onclick="init()" id="btn" value="생성"><br>
-					<div id="body_wrapper4"></div><br>
-					<p><input type="submit" value="검색"> <input type="reset" value="초기화"></p>
-					</form>
-				</div>
+				</form>
 				<div class="btn1">
-					<input type="button" id="recentbtn" value="최신순">
-					<input type="button" id="querybtn" value="조회수순">
+					<form action="/desc" method="post">
+					<input type="submit" id="recentbtn" value="최신순"></form>
+					<form action="/VC" method="post">
+					<input type="submit" id="querybtn" value="조회수순"></form>
 				</div>
 				<ul class="img_slide1">
 					<li class="recipe-item" th:each="recipe, recipeIndex : ${recipes}">
@@ -122,7 +90,7 @@
 					</li>
 
 				</ul>
-				
+
 				<a th:href="@{/createRecipe}">작성</a></td>
 			</div>
 
@@ -133,6 +101,52 @@
 		<div class="footer">
 			<div class="footer_comment">@Yuhan University Group 3's Project</div>
 		</div>
+		<script>
+		var ing = new Array();
+		var cat = new Array();
+		function init() {
+
+			var tags = document.getElementById("t1");
+			var btns = document.createElement("input");
+			btns.type = "button";
+			btns.name = "ingredientName";
+			btns.value = tags.value;
+
+			btns.id = tags.value;
+			ing.push(tags.value);
+			alert(ing);
+			tags.value = "";
+			btns.style.cursor = "hand";
+			btns.style.width = "80px";
+			btns.width = "120px";
+			btns.color = "white";
+			btns.style.cursor = "hand";
+			btns.style.width = "auto";
+			btns.style.marginRight = "5px";
+			btns.onclick = function () {hideInfo(this)};
+
+			var clas = document.getElementById("body_wrapper4");
+			clas.appendChild(btns);
+
+		}
+
+
+
+		function hideInfo(e) {
+			alert("삭제됨");
+			var i = 0;
+			for (i = 0; i < ing.length - 1; i++) {
+				if (ing[i] == e.id) {
+					break;
+				}
+			}
+			ing.splice(i, 1);
+			alert(ing);
+			e.remove();
+		}
+
+	</script>
+
 </body>
 
 </html>

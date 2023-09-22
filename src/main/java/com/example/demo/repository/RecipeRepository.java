@@ -33,7 +33,7 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
 	
 	@Transactional
 	@Modifying
-    @Query("UPDATE Recipe r SET r.view_count = r.view_count + 1 WHERE r.recipe_id = :recipe_id")
+    @Query("UPDATE Recipe r SET r.viewcount = r.viewcount + 1 WHERE r.recipe_id = :recipe_id")
     void incrementViewCount(@Param("recipe_id") int recipe_id);
 	
 	@Transactional
@@ -65,5 +65,11 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
 	
 
 	List<Recipe> findByNickname(String nickname);
+	List<Recipe> findByRecipeIngredientsIngredientIngredientNameIn(List<String> ingredientNames);
+	 List<Recipe> findByCategoryNameInAndRecipeIngredientsIngredientIngredientNameIn(
+		        List<String> categName, List<String> ingredientName);
+	 
+	 List<Recipe> findAllByOrderByCreateddateDesc();
+	 List<Recipe> findAllByOrderByViewcountDesc();
 }
 	
