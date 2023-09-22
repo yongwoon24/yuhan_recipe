@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.demo.entity.Board;
 import com.example.demo.entity.Recipe;
 
 @Repository
@@ -61,6 +62,6 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
 	List<Recipe> findByOrderByMonthlyLoveDesc();
 	
 
-
+	List<Recipe> findByNickname(String nickname);
 }
 	
