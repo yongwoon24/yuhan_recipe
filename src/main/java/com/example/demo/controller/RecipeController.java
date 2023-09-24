@@ -72,11 +72,11 @@ public class RecipeController {
 
 	@GetMapping("/recipe")
 	public String listRecipes1(Model model, @RequestParam(required = false, defaultValue = "0") int page,
-			@RequestParam(required = false) String categorName) {
+			@RequestParam(required = false) String categiryname1, @RequestParam(required = false) String viewcount1) {
 		// List<Recipe> categoryName;
 		int pageSize = 20; // 페이지당 레시피 수
-		// if(ca)
-
+		
+		
 		List<Recipe> recipes = recipeRepository.findAll();
 		model.addAttribute("recipes", recipes);
 		model.addAttribute("currentPage", page);
@@ -85,20 +85,33 @@ public class RecipeController {
 
 	@PostMapping("/SearchRecipe")
 	public String searchRecipes(Model model,
-			@RequestParam(name = "categoryName", required = false) List<String> categories) {
+			@RequestParam(name = "categoryName", required = false) List<String> categories,
+			@RequestParam(name = "ingredientNames", required = false) List<String> ingredientNames) {
 		List<Recipe> recipes;
-		if (categories != null && !categories.isEmpty()) {
-			recipes = recipeRepository.findByCategoryNameIn(categories);
-			recipes1 = recipes;
-		} else {
 
-			recipes = recipeRepository.findAll();
+	    if ((categories == null || categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty())) {
+	        // 카테고리와 재료 이름이 모두 제공되지 않은 경우 모든 레시피를 가져옵니다.
+	        recipes = recipeRepository.findAll();
+	    } else {
+	        // 카테고리와 재료 이름 중 하나라도 제공된 경우 검색을 수행합니다.
+	        if (categories != null && !categories.isEmpty() && ingredientNames != null && !ingredientNames.isEmpty()) {
+	            // 카테고리와 재료 이름 모두 제공된 경우
+	            recipes = recipeRepository.findByCategoryNameInAndRecipeIngredientsIngredientIngredientNameIn(categories, ingredientNames);
+	        } else if (categories != null && !categories.isEmpty()) {
+	            // 카테고리만 제공된 경우
+	            recipes = recipeRepository.findByCategoryNameIn(categories);
+	        } else {
+	            // 재료 이름만 제공된 경우
+	            recipes = recipeRepository.findByRecipeIngredientsIngredientIngredientNameIn(ingredientNames);
+	        }
+//			for(String item:categories) {
+//        	System.out.println(item);
+//        }
+	      
+	    }
 
-		}
-
-		model.addAttribute("recipes", recipes);
-
-		return "recipeList"; // 검색 결과를 표시할 뷰 이름
+	    model.addAttribute("recipes", recipes);
+	    return "recipeList"; // 검색 결과를 표시할 뷰 이름
 	}
 
 	@GetMapping("/createRecipe")
@@ -128,7 +141,7 @@ public class RecipeController {
 //	    @PostMapping("/SearchRecipe")
 //	    public String search(@RequestParam String category,)
 
-	@PostMapping("/desc")
+	@GetMapping("/desc")
 	public String descrecipe(Model model) {
 		List<Recipe> recipes = recipeRepository.findAllByOrderByCreateddateDesc();
 
@@ -136,7 +149,7 @@ public class RecipeController {
 		return "recipeList";
 	}
 	
-	@PostMapping("/VC")
+	@GetMapping("/VC")
 	public String VCrecipe(Model model) {
 		List<Recipe> recipes = recipeRepository.findAllByOrderByViewcountDesc();
 
