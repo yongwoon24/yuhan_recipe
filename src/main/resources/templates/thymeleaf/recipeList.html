@@ -298,68 +298,7 @@
 				document.body.appendChild(form);
 				form.submit();
 			}
-			function VCdescForm() {
-				var form = document.createElement("form");
-				form.action = "/recipe"; // 서버 컨트롤러 주소
-				form.method = "GET"; // HTTP 메서드 (GET 또는 POST)
-				form.name = "VCdescForm";
-
-				// 카테고리 체크박스 값을 폼에 추가
-				var selectedCategories = document.querySelectorAll('input[name="categoryName"]:checked');
-				for (var i = 0; i < selectedCategories.length; i++) {
-					var input = document.createElement("input");
-					input.type = "hidden";
-					input.name = "categoryName";
-					input.value = selectedCategories[i].value;
-					form.appendChild(input);
-				}
-
-				// 재료 이름들을 폼에 추가
-				for (var i = 0; i < ingredientNames.length; i++) {
-					var input = document.createElement("input");
-					input.type = "hidden";
-					input.name = "ingredientNames";
-					input.value = ingredientNames[i];
-					form.appendChild(input);
-				}
-
-				// 폼을 body에 추가하고 전송
-				document.body.appendChild(form);
-				form.submit();
-			}
-
-			function datedescForm() {
-				var form = document.createElement("form");
-				form.action = "/recipe"; // 서버 컨트롤러 주소
-				form.method = "GET"; // HTTP 메서드 (GET 또는 POST)
-				form.name = "datedescForm";
-
-
-
-				// 카테고리 체크박스 값을 폼에 추가
-				var selectedCategories = document.querySelectorAll('input[name="categoryName"]:checked');
-				for (var i = 0; i < selectedCategories.length; i++) {
-					var input = document.createElement("input");
-					input.type = "hidden";
-					input.name = "categoryName";
-					input.value = selectedCategories[i].value;
-					form.appendChild(input);
-				}
-
-				// 재료 이름들을 폼에 추가
-				for (var i = 0; i < ingredientNames.length; i++) {
-					var input = document.createElement("input");
-					input.type = "hidden";
-					input.name = "ingredientNames";
-					input.value = ingredientNames[i];
-					form.appendChild(input);
-				}
-
-				// 폼을 body에 추가하고 전송
-				document.body.appendChild(form);
-				form.submit();
-			}
-
+			
 		</script>
 
 </body>
