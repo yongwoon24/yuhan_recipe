@@ -64,15 +64,25 @@
 					</div>
 				</form>
 				<div class="btn1">
-					<form action="/desc" method="post">
-						<input type="submit" id="recentbtn" value="최신순">
-					</form>
-					<form action="/VC" method="get">
-						<input type="submit" id="recentbtn" value="조회">
-					</form>
-					<form action="/SearchRecipe" method="get">
-						<button type="submit" name="orderByViewCount" value="true">조회수순</button>
-					</form>
+					<p>
+						<a th:if="${(categories != null && !categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty())}"
+							th:href="@{|/recipe?&amp;categoryName=${categories}&amp;ingredientNames=${ingredientNames}&amp;sort=latest|}">최신순</a>
+						<a th:if="${(categories == null || categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty())}"
+							th:href="@{|/recipe?&amp;ingredientNames=${ingredientNames}&amp;sort=latest|}">최신순</a>
+						<a th:if="${(categories != null && !categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty())}"
+							th:href="@{|/recipe?&amp;categoryName=${categories}&amp;sort=latest|}">최신순</a>
+						<a th:if="${(categories == null || categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty())}"
+							th:href="@{|/recipe?&amp;sort=latest|}">최신순</a>
+
+						<a th:if="${(categories != null && !categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty())}"
+							th:href="@{|/recipe?&amp;categoryName=${categories}&amp;ingredientNames=${ingredientNames}&amp;sort=views|}">조회수순</a>
+						<a th:if="${(categories == null || categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty())}"
+							th:href="@{|/recipe?&amp;ingredientNames=${ingredientNames}&amp;sort=views|}">조회수순</a>
+						<a th:if="${(categories != null && !categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty())}"
+							th:href="@{|/recipe?&amp;categoryName=${categories}&amp;sort=views|}">조회수순</a>
+						<a th:if="${(categories == null || categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty())}"
+							th:href="@{|/recipe?&amp;sort=views|}">조회수순</a>
+					</p>
 				</div>
 				<ul class="img_slide1">
 					<li class="recipe-item" th:each="recipe, recipeIndex : ${recipes}">
@@ -89,54 +99,110 @@
 
 				</ul>
 				<!-- 페이지네이션을 추가한 부분 -->
+
 				<div class="pagination">
-    <a th:if="${hasPreviousPage && (categories != null && !categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty())}"
-        th:href="@{|/recipe?page=${currentPage - 1}&amp;categoryName=${categories}&amp;ingredientNames=${ingredientNames}|}">
-        &laquo; 이전
-    </a>
-    <a th:if="${hasPreviousPage && (categories == null || categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty())}"
-        th:href="@{|/recipe?page=${currentPage - 1}&amp;ingredientNames=${ingredientNames}|}">
-        &laquo; 이전
-    </a>
-    <a th:if="${hasPreviousPage && (categories != null && !categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty())}"
-        th:href="@{|/recipe?page=${currentPage - 1}&amp;categoryName=${categories}|}">
-        &laquo; 이전
-    </a>
-    <a th:if="${hasPreviousPage && (categories == null || categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty())}"
-        th:href="@{|/recipe?page=${currentPage - 1}|}">
-        &laquo; 이전
-    </a>
-    <span th:each="pageNumber : ${#numbers.sequence(1, totalPages)}">
-        <a th:if="${(categories != null && !categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty())}"
-            th:href="@{|/recipe?page=${pageNumber}&amp;categoryName=${categories}&amp;ingredientNames=${ingredientNames}|}"
-            th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber}"></a>
-        <a th:if="${(categories == null || categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty())}"
-            th:href="@{|/recipe?page=${pageNumber}&amp;ingredientNames=${ingredientNames}|}"
-            th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber}"></a>
-        <a th:if="${(categories != null && !categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty())}"
-            th:href="@{|/recipe?page=${pageNumber}&amp;categoryName=${categories}|}"
-            th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber}"></a>
-        <a th:if="${(categories == null || categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty())}"
-            th:href="@{|/recipe?page=${pageNumber}|}"
-            th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber}"></a>
-    </span>
-    <a th:if="${hasNextPage && (categories != null && !categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty())}"
-        th:href="@{|/recipe?page=${currentPage + 1}&amp;categoryName=${categories}&amp;ingredientNames=${ingredientNames}|}">
-        다음 &raquo;
-    </a>
-    <a th:if="${hasNextPage && (categories == null || categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty())}"
-        th:href="@{|/recipe?page=${currentPage + 1}&amp;ingredientNames=${ingredientNames}|}">
-        다음 &raquo;
-    </a>
-    <a th:if="${hasNextPage && (categories != null && !categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty())}"
-        th:href="@{|/recipe?page=${currentPage + 1}&amp;categoryName=${categories}|}">
-        다음 &raquo;
-    </a>
-    <a th:if="${hasNextPage && (categories == null || categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty())}"
-        th:href="@{|/recipe?page=${currentPage + 1}|}">
-        다음 &raquo;
-    </a>
-</div>
+					<a th:if="${hasPreviousPage && (categories != null && !categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty()) && (sort == null)}"
+						th:href="@{|/recipe?page=${currentPage - 1}&amp;categoryName=${categories}&amp;ingredientNames=${ingredientNames}|}">
+						&laquo; 이전
+					</a>
+
+					<a th:if="${hasPreviousPage && (categories != null && !categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty())&& (sort != null)}"
+						th:href="@{|/recipe?page=${currentPage - 1}&amp;categoryName=${categories}&amp;ingredientNames=${ingredientNames}&amp;sort=${sort}|}">
+						&laquo; 이전
+					</a>
+					<a th:if="${hasPreviousPage && (categories == null || categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty()) && (sort == null)}"
+						th:href="@{|/recipe?page=${currentPage - 1}&amp;ingredientNames=${ingredientNames}|}">
+						&laquo; 이전
+					</a>
+					<a th:if="${hasPreviousPage && (categories == null || categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty())&& (sort != null)}"
+						th:href="@{|/recipe?page=${currentPage - 1}&amp;ingredientNames=${ingredientNames}&amp;sort=${sort}|}">
+						&laquo; 이전
+					</a>
+
+					<a th:if="${hasPreviousPage && (categories != null && !categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty()) && (sort == null)}"
+						th:href="@{|/recipe?page=${currentPage - 1}&amp;categoryName=${categories}|}">
+						&laquo; 이전
+					</a>
+					<a th:if="${hasPreviousPage && (categories != null && !categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty()) && (sort != null)}"
+						th:href="@{|/recipe?page=${currentPage - 1}&amp;categoryName=${categories}&amp;sort=${sort}|}">
+						&laquo; 이전
+					</a>
+					<a th:if="${hasPreviousPage && (categories == null || categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty()) && (sort == null)}"
+						th:href="@{|/recipe?page=${currentPage - 1}|}">
+						&laquo; 이전
+					</a>
+
+					<a th:if="${hasPreviousPage && (categories == null || categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty())&& (sort != null)}"
+						th:href="@{|/recipe?page=${currentPage - 1}&amp;sort=${sort}|}">
+						&laquo; 이전
+					</a>
+					<span th:each="pageNumber : ${#numbers.sequence(1, totalPages)}">
+						<a th:if="${(categories != null && !categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty()) && (sort == null)}"
+							th:href="@{|/recipe?page=${pageNumber}&amp;categoryName=${categories}&amp;ingredientNames=${ingredientNames}|}"
+							th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber}"></a>
+
+						<a th:if="${(categories != null && !categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty())&& (sort != null)}"
+							th:href="@{|/recipe?page=${pageNumber}&amp;categoryName=${categories}&amp;ingredientNames=${ingredientNames}&amp;sort=${sort}|}"
+							th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber}"></a>
+						<a th:if="${(categories == null || categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty()) && (sort == null)}"
+							th:href="@{|/recipe?page=${pageNumber}&amp;ingredientNames=${ingredientNames}|}"
+							th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber}"></a>
+
+						<a th:if="${(categories == null || categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty())&& (sort != null)}"
+							th:href="@{|/recipe?page=${pageNumber}&amp;ingredientNames=${ingredientNames}&amp;sort=${sort}|}"
+							th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber}"></a>
+						<a th:if="${(categories != null && !categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty()) && (sort == null)}"
+							th:href="@{|/recipe?page=${pageNumber}&amp;categoryName=${categories}|}"
+							th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber}"></a>
+
+						<a th:if="${(categories != null && !categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty())&& (sort != null)}"
+							th:href="@{|/recipe?page=${pageNumber}&amp;categoryName=${categories}&amp;sort=${sort}|}"
+							th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber}"></a>
+						<a th:if="${(categories == null || categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty()) && (sort == null)}"
+							th:href="@{|/recipe?page=${pageNumber}|}"
+							th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber}"></a>
+
+						<a th:if="${(categories == null || categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty())&& (sort != null)}"
+							th:href="@{|/recipe?page=${pageNumber}&amp;sort=${sort}|}"
+							th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber}"></a>
+					</span>
+					<a th:if="${hasNextPage && (categories != null && !categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty()) && (sort == null)}"
+						th:href="@{|/recipe?page=${currentPage + 1}&amp;categoryName=${categories}&amp;ingredientNames=${ingredientNames}|}">
+						다음 &raquo;
+					</a>
+
+					<a th:if="${hasNextPage && (categories != null && !categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty())&& (sort != null)}"
+						th:href="@{|/recipe?page=${currentPage + 1}&amp;categoryName=${categories}&amp;ingredientNames=${ingredientNames}&amp;sort=${sort}|}">
+						다음 &raquo;
+					</a>
+					<a th:if="${hasNextPage && (categories == null || categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty()) && (sort == null)}"
+						th:href="@{|/recipe?page=${currentPage + 1}&amp;ingredientNames=${ingredientNames}|}">
+						다음 &raquo;
+					</a>
+
+					<a th:if="${hasNextPage && (categories == null || categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty())&& (sort != null)}"
+						th:href="@{|/recipe?page=${currentPage + 1}&amp;ingredientNames=${ingredientNames}&amp;sort=${sort}|}">
+						다음 &raquo;
+					</a>
+					<a th:if="${hasNextPage && (categories != null && !categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty()) && (sort == null)}"
+						th:href="@{|/recipe?page=${currentPage + 1}&amp;categoryName=${categories}|}">
+						다음 &raquo;
+					</a>
+
+					<a th:if="${hasNextPage && (categories != null && !categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty())&& (sort != null)}"
+						th:href="@{|/recipe?page=${currentPage + 1}&amp;categoryName=${categories}&amp;sort=${sort}|}">
+						다음 &raquo;
+					</a>
+					<a th:if="${hasNextPage && (categories == null || categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty()) && (sort == null)}"
+						th:href="@{|/recipe?page=${currentPage + 1}|}">
+						다음 &raquo;
+					</a>
+
+					<a th:if="${hasNextPage && (categories == null || categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty())&& (sort != null)}"
+						th:href="@{|/recipe?page=${currentPage + 1}&amp;sort=${sort}|}">
+						다음 &raquo;
+					</a>
+				</div>
 
 
 			</div>
@@ -207,6 +273,68 @@
 				var form = document.createElement("form");
 				form.action = "/recipe"; // 서버 컨트롤러 주소
 				form.method = "GET"; // HTTP 메서드 (GET 또는 POST)
+				form.name = "submitForm";
+
+				// 카테고리 체크박스 값을 폼에 추가
+				var selectedCategories = document.querySelectorAll('input[name="categoryName"]:checked');
+				for (var i = 0; i < selectedCategories.length; i++) {
+					var input = document.createElement("input");
+					input.type = "hidden";
+					input.name = "categoryName";
+					input.value = selectedCategories[i].value;
+					form.appendChild(input);
+				}
+
+				// 재료 이름들을 폼에 추가
+				for (var i = 0; i < ingredientNames.length; i++) {
+					var input = document.createElement("input");
+					input.type = "hidden";
+					input.name = "ingredientNames";
+					input.value = ingredientNames[i];
+					form.appendChild(input);
+				}
+
+				// 폼을 body에 추가하고 전송
+				document.body.appendChild(form);
+				form.submit();
+			}
+			function VCdescForm() {
+				var form = document.createElement("form");
+				form.action = "/recipe"; // 서버 컨트롤러 주소
+				form.method = "GET"; // HTTP 메서드 (GET 또는 POST)
+				form.name = "VCdescForm";
+
+				// 카테고리 체크박스 값을 폼에 추가
+				var selectedCategories = document.querySelectorAll('input[name="categoryName"]:checked');
+				for (var i = 0; i < selectedCategories.length; i++) {
+					var input = document.createElement("input");
+					input.type = "hidden";
+					input.name = "categoryName";
+					input.value = selectedCategories[i].value;
+					form.appendChild(input);
+				}
+
+				// 재료 이름들을 폼에 추가
+				for (var i = 0; i < ingredientNames.length; i++) {
+					var input = document.createElement("input");
+					input.type = "hidden";
+					input.name = "ingredientNames";
+					input.value = ingredientNames[i];
+					form.appendChild(input);
+				}
+
+				// 폼을 body에 추가하고 전송
+				document.body.appendChild(form);
+				form.submit();
+			}
+
+			function datedescForm() {
+				var form = document.createElement("form");
+				form.action = "/recipe"; // 서버 컨트롤러 주소
+				form.method = "GET"; // HTTP 메서드 (GET 또는 POST)
+				form.name = "datedescForm";
+
+
 
 				// 카테고리 체크박스 값을 폼에 추가
 				var selectedCategories = document.querySelectorAll('input[name="categoryName"]:checked');

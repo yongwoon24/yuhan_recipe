@@ -44,8 +44,8 @@
 		<div class="slide_wrapper">
 			<ul class="img_slide">
 				<li th:each="recipe : ${topLove}">
-					<a href="recipe"><img th:src="@{${recipe.main_photo_path}}"></a>
-					<a href="recipe"><ol th:text="${recipe.title}">asd</ol></a>
+					<a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}"><img th:src="@{${recipe.main_photo_path}}"></a>
+					<a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}"><ol th:text="${recipe.title}">asd</ol></a>
 					<ol class="likes">
     					<li>
 							<i class="fas fa-heart"></i>

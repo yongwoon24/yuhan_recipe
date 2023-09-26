@@ -90,4 +90,5 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
 	List<Recipe> findAllByOrderByViewcountDesc();
 
 	List<Recipe> findByCategoryNameInOrderByCreateddateDesc(List<String> categories);
+	List<Recipe> findByCategoryNameInOrderByViewcountDesc(List<String> categories);
 }

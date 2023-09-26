@@ -6,11 +6,14 @@ import java.net.URLEncoder;
 import java.util.Comparator;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.hibernate.mapping.Array;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -91,6 +94,129 @@ public class RecipeController {
 	
 	@GetMapping("/recipe")
 	public String listRecipes2(Model model,
+	        @RequestParam(name = "categoryName", required = false) List<String> categories,
+	        @RequestParam(required = false, defaultValue = "1") int page, // 페이지 기본값을 1로 설정
+	        @RequestParam(name = "ingredientNames", required = false) List<String> ingredientNames,
+	        @RequestParam(name = "sort", required = false) String sort
+	    ) {
+
+		// categories를 적절하게 인코딩하여 URL에 포함
+	    String encodedCategories = encodeCategories(categories);
+	    String encodedingredientNames = encodeCategories(ingredientNames);
+	    List<Recipe> recipes;
+	    
+	    
+	    
+	 // 식별된 폼에 따라 작업 수행
+        if ("latest".equals(sort)) {
+            // submitForm 폼의 데이터 처리
+        	if ((categories == null || categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty())) {
+    	        // 카테고리와 재료 이름이 모두 제공되지 않은 경우 모든 레시피를 가져옵니다.
+    	        recipes = recipeRepository.findAllByOrderByCreateddateDesc();
+    	    } else {
+    	        // 카테고리와 재료 이름 중 하나라도 제공된 경우 검색을 수행합니다.
+    	        if (categories != null && !categories.isEmpty() && ingredientNames != null && !ingredientNames.isEmpty()) {
+    	            // 카테고리와 재료 이름 모두 제공된 경우
+    	            recipes = recipeRepository.findByCategoryNameInAndRecipeIngredientsIngredientIngredientNameInOrderByCreateddateDesc(categories, ingredientNames);
+    	        } else if (categories != null && !categories.isEmpty()) {
+    	            // 카테고리만 제공된 경우
+    	            recipes = recipeRepository.findByCategoryNameInOrderByCreateddateDesc(categories);
+    	        } else {
+    	            // 재료 이름만 제공된 경우
+    	            recipes = recipeRepository.findByRecipeIngredientsIngredientIngredientNameInOrderByCreateddateDesc(ingredientNames);
+    	        }
+    	    }
+        } else if ("views".equals(sort)) {
+            // VCdescForm 폼의 데이터 처리
+        	if ((categories == null || categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty())) {
+    	        // 카테고리와 재료 이름이 모두 제공되지 않은 경우 모든 레시피를 가져옵니다.
+    	        recipes = recipeRepository.findAllByOrderByViewcountDesc();
+    	    } else {
+    	        // 카테고리와 재료 이름 중 하나라도 제공된 경우 검색을 수행합니다.
+    	        if (categories != null && !categories.isEmpty() && ingredientNames != null && !ingredientNames.isEmpty()) {
+    	            // 카테고리와 재료 이름 모두 제공된 경우
+    	            recipes = recipeRepository.findByCategoryNameInAndRecipeIngredientsIngredientIngredientNameInOrderByViewcountDesc(categories, ingredientNames);
+    	        } else if (categories != null && !categories.isEmpty()) {
+    	            // 카테고리만 제공된 경우
+    	            recipes = recipeRepository.findByCategoryNameInOrderByViewcountDesc(categories);
+    	        } else {
+    	            // 재료 이름만 제공된 경우
+    	            recipes = recipeRepository.findByRecipeIngredientsIngredientIngredientNameInOrderByViewcountDesc(ingredientNames);
+    	        }
+        }
+        }
+        else {
+        	if ((categories == null || categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty())) {
+    	        // 카테고리와 재료 이름이 모두 제공되지 않은 경우 모든 레시피를 가져옵니다.
+    	        recipes = recipeRepository.findAllByOrderByCreateddateDesc();
+    	    } else {
+    	        // 카테고리와 재료 이름 중 하나라도 제공된 경우 검색을 수행합니다.
+    	        if (categories != null && !categories.isEmpty() && ingredientNames != null && !ingredientNames.isEmpty()) {
+    	            // 카테고리와 재료 이름 모두 제공된 경우
+    	            recipes = recipeRepository.findByCategoryNameInAndRecipeIngredientsIngredientIngredientNameInOrderByCreateddateDesc(categories, ingredientNames);
+    	        } else if (categories != null && !categories.isEmpty()) {
+    	            // 카테고리만 제공된 경우
+    	            recipes = recipeRepository.findByCategoryNameInOrderByCreateddateDesc(categories);
+    	        } else {
+    	            // 재료 이름만 제공된 경우
+    	            recipes = recipeRepository.findByRecipeIngredientsIngredientIngredientNameInOrderByCreateddateDesc(ingredientNames);
+    	        }
+    	    }
+        }
+	    
+	    
+	    
+	    int totalRecipes = recipes.size();
+	    int pageSize = 20; // 페이지당 레시피 수
+	    int totalPages = (int) Math.ceil((double) totalRecipes / pageSize);
+	    
+	    // 현재 페이지가 유효한 범위 내에 있는지 확인
+	    if (page < 1) {
+	        page = 1;
+	    } else if (page > totalPages) {
+	        page = totalPages;
+	    }
+
+	    // 시작 인덱스와 끝 인덱스 계산
+	    int startIndex = (page - 1) * pageSize;
+	    int endIndex = Math.min(startIndex + pageSize, totalRecipes);
+	    
+	    // startIndex 및 endIndex 유효성 검사
+	    if (startIndex < 0) {
+	        startIndex = 0;
+	    }
+	    if (endIndex > totalRecipes) {
+	        endIndex = totalRecipes;
+	    }
+	    
+	    System.out.println(startIndex);
+	    System.out.println(endIndex);
+	    System.out.println(totalPages);
+
+	    // 현재 페이지에 해당하는 레시피 목록 추출
+	    List<Recipe> pagedRecipes = recipes.subList(startIndex, endIndex);
+
+	    // 이전 페이지와 다음 페이지가 있는지 여부를 확인하여 모델에 추가
+	    boolean hasPreviousPage = (page > 1);
+	    boolean hasNextPage = (page < totalPages);
+	    
+	    model.addAttribute("recipes", pagedRecipes);
+	    model.addAttribute("currentPage", page);
+	    model.addAttribute("totalPages", totalPages);
+	    model.addAttribute("hasPreviousPage", hasPreviousPage);
+	    model.addAttribute("hasNextPage", hasNextPage);
+	    model.addAttribute("categories", encodedCategories);
+	    model.addAttribute("ingredientNames", encodedingredientNames);
+	    model.addAttribute("sort", sort);
+	    
+	    System.out.println(categories);
+	    System.out.println(encodedCategories);
+	    return "recipeList";
+        }
+	
+	
+	@GetMapping("/recipe2")
+	public String listRecipes3(Model model,
 	        @RequestParam(name = "categoryName", required = false) List<String> categories,
 	        @RequestParam(required = false, defaultValue = "1") int page, // 페이지 기본값을 1로 설정
 	        @RequestParam(name = "ingredientNames", required = false) List<String> ingredientNames
