@@ -1,34 +1,23 @@
 package com.example.demo.controller;
 
-import java.awt.Image;
-import java.awt.PageAttributes.MediaType;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.util.List;
-import java.util.Map;
 
-import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.lang3.RandomStringUtils;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.Comparator;
+import java.util.List;
+
+import org.hibernate.mapping.Array;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.MultiValueMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
+
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -38,7 +27,7 @@ import com.example.demo.entity.Recipe;
 import com.example.demo.entity.Recipe_Ingredient;
 import com.example.demo.entity.Step;
 import com.example.demo.entity.User;
-import com.example.demo.formdto.RecipeFormDto;
+
 import com.example.demo.repository.LoveRepository;
 import com.example.demo.repository.RecipeRepository;
 import com.example.demo.service.LoveService;
@@ -47,7 +36,7 @@ import com.example.demo.service.RecipeService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import jakarta.validation.Valid;
+
 
 @Controller
 public class RecipeController {
@@ -64,60 +53,214 @@ public class RecipeController {
 	private int likesCount = 0;
 
 	@GetMapping("/recipe1")
-	public String listRecipes(Model model, @RequestParam(required = false) String title) {
-		List<Recipe> recipes = recipeRepository.findAll();
-		model.addAttribute("recipes", recipes);
-		return "recipeList";
-	}
+	public String listRecipes1(Model model,
+	        @RequestParam(required = false, defaultValue = "1") int page, // 페이지 기본값을 1로 설정
+	        @RequestParam(name = "size", defaultValue = "20") int size) {
 
+	    List<Recipe> allRecipes = recipeRepository.findAllByOrderByCreateddateDesc();
+	    int totalRecipes = allRecipes.size();
+	    int pageSize = 20; // 페이지당 레시피 수
+	    int totalPages = (int) Math.ceil((double) totalRecipes / pageSize);
+
+	    // 현재 페이지가 유효한 범위 내에 있는지 확인
+	    if (page < 1) {
+	        page = 1;
+	    } else if (page > totalPages) {
+	        page = totalPages;
+	    }
+
+	    // 시작 인덱스와 끝 인덱스 계산
+	    int startIndex = (page - 1) * pageSize;
+	    int endIndex = Math.min(startIndex + pageSize, totalRecipes);
+
+	    // 현재 페이지에 해당하는 레시피 목록 추출
+	    List<Recipe> pagedRecipes = allRecipes.subList(startIndex, endIndex);
+
+	    // 이전 페이지와 다음 페이지가 있는지 여부를 확인하여 모델에 추가
+	    boolean hasPreviousPage = (page > 1);
+	    boolean hasNextPage = (page < totalPages);
+	    
+	    model.addAttribute("recipes", pagedRecipes);
+	    model.addAttribute("currentPage", page);
+	    model.addAttribute("totalPages", totalPages);
+	    model.addAttribute("hasPreviousPage", hasPreviousPage);
+	    model.addAttribute("hasNextPage", hasNextPage);
+	    
+	    return "recipeList";
+	}
+	
 	@GetMapping("/recipe")
-	public String listRecipes1(Model model, @RequestParam(required = false, defaultValue = "0") int page,
-			@RequestParam(required = false) String categiryname1, @RequestParam(required = false) String viewcount1) {
-		// List<Recipe> categoryName;
-		int pageSize = 20; // 페이지당 레시피 수
-		
-		
-		List<Recipe> recipes = recipeRepository.findAll();
-		model.addAttribute("recipes", recipes);
-		model.addAttribute("currentPage", page);
-		return "recipeList";
-	}
+	public String listRecipes2(Model model,
+	        @RequestParam(name = "categoryName", required = false) List<String> categories,
+	        @RequestParam(required = false, defaultValue = "1") int page, // 페이지 기본값을 1로 설정
+	        @RequestParam(name = "ingredientNames", required = false) List<String> ingredientNames
+	    ) {
 
-	@PostMapping("/SearchRecipe")
-	public String searchRecipes(Model model,
-			@RequestParam(name = "categoryName", required = false) List<String> categories,
-			@RequestParam(name = "ingredientNames", required = false) List<String> ingredientNames) {
-		List<Recipe> recipes;
-
+		// categories를 적절하게 인코딩하여 URL에 포함
+	    String encodedCategories = encodeCategories(categories);
+	    String encodedingredientNames = encodeCategories(ingredientNames);
+	    List<Recipe> recipes;
+	    
 	    if ((categories == null || categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty())) {
 	        // 카테고리와 재료 이름이 모두 제공되지 않은 경우 모든 레시피를 가져옵니다.
-	        recipes = recipeRepository.findAll();
+	        recipes = recipeRepository.findAllByOrderByCreateddateDesc();
 	    } else {
 	        // 카테고리와 재료 이름 중 하나라도 제공된 경우 검색을 수행합니다.
 	        if (categories != null && !categories.isEmpty() && ingredientNames != null && !ingredientNames.isEmpty()) {
 	            // 카테고리와 재료 이름 모두 제공된 경우
-	            recipes = recipeRepository.findByCategoryNameInAndRecipeIngredientsIngredientIngredientNameIn(categories, ingredientNames);
+	            recipes = recipeRepository.findByCategoryNameInAndRecipeIngredientsIngredientIngredientNameInOrderByCreateddateDesc(categories, ingredientNames);
 	        } else if (categories != null && !categories.isEmpty()) {
 	            // 카테고리만 제공된 경우
-	            recipes = recipeRepository.findByCategoryNameIn(categories);
+	            recipes = recipeRepository.findByCategoryNameInOrderByCreateddateDesc(categories);
 	        } else {
 	            // 재료 이름만 제공된 경우
-	            recipes = recipeRepository.findByRecipeIngredientsIngredientIngredientNameIn(ingredientNames);
+	            recipes = recipeRepository.findByRecipeIngredientsIngredientIngredientNameInOrderByCreateddateDesc(ingredientNames);
 	        }
-//			for(String item:categories) {
-//        	System.out.println(item);
-//        }
-	      
+	    }
+	    
+	    int totalRecipes = recipes.size();
+	    int pageSize = 20; // 페이지당 레시피 수
+	    int totalPages = (int) Math.ceil((double) totalRecipes / pageSize);
+	    
+	    // 현재 페이지가 유효한 범위 내에 있는지 확인
+	    if (page < 1) {
+	        page = 1;
+	    } else if (page > totalPages) {
+	        page = totalPages;
 	    }
 
-	    model.addAttribute("recipes", recipes);
-	    return "recipeList"; // 검색 결과를 표시할 뷰 이름
+	    // 시작 인덱스와 끝 인덱스 계산
+	    int startIndex = (page - 1) * pageSize;
+	    int endIndex = Math.min(startIndex + pageSize, totalRecipes);
+	    
+	    // startIndex 및 endIndex 유효성 검사
+	    if (startIndex < 0) {
+	        startIndex = 0;
+	    }
+	    if (endIndex > totalRecipes) {
+	        endIndex = totalRecipes;
+	    }
+	    
+	    System.out.println(startIndex);
+	    System.out.println(endIndex);
+	    System.out.println(totalPages);
+
+	    // 현재 페이지에 해당하는 레시피 목록 추출
+	    List<Recipe> pagedRecipes = recipes.subList(startIndex, endIndex);
+
+	    // 이전 페이지와 다음 페이지가 있는지 여부를 확인하여 모델에 추가
+	    boolean hasPreviousPage = (page > 1);
+	    boolean hasNextPage = (page < totalPages);
+	    
+	    model.addAttribute("recipes", pagedRecipes);
+	    model.addAttribute("currentPage", page);
+	    model.addAttribute("totalPages", totalPages);
+	    model.addAttribute("hasPreviousPage", hasPreviousPage);
+	    model.addAttribute("hasNextPage", hasNextPage);
+	    model.addAttribute("categories", encodedCategories);
+	    model.addAttribute("ingredientNames", encodedingredientNames);
+	    
+	    System.out.println(categories);
+	    System.out.println(encodedCategories);
+	    return "recipeList";
+	}
+	
+	private String encodeCategories(List<String> categories) {
+	    if (categories == null || categories.isEmpty()) {
+	        return "";
+	    }
+
+	    try {
+	        StringBuilder encoded = new StringBuilder();
+	        for (String category : categories) {
+	            encoded.append(URLEncoder.encode(category, "UTF-8"));
+	            encoded.append(",");
+	        }
+	        // 마지막 쉼표 제거
+	        encoded.deleteCharAt(encoded.length() - 1);
+	        return encoded.toString();
+	    } catch (UnsupportedEncodingException e) {
+	        // 처리할 수 없는 문자 인코딩 예외 처리
+	        e.printStackTrace();
+	        return "";
+	    }
 	}
 
+
+	@PostMapping("/SearchRecipe")
+	public String searchRecipes(Model model,
+			@RequestParam(name = "categoryName", required = false) List<String> categoriesssss,
+			@RequestParam(required = false, defaultValue = "1") int page,
+			@RequestParam(name = "ingredientNames", required = false) List<String> ingredientNames,
+			@RequestParam(name = "orderByViewCount", required = false) boolean orderByViewCount) {
+		List<Recipe> recipes;
+	
+
+	    if ((categoriesssss == null || categoriesssss.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty())) {
+	        // 카테고리와 재료 이름이 모두 제공되지 않은 경우 모든 레시피를 가져옵니다.
+	        recipes = recipeRepository.findAllByOrderByCreateddateDesc();
+	    } else {
+	        // 카테고리와 재료 이름 중 하나라도 제공된 경우 검색을 수행합니다.
+	        if (categoriesssss != null && !categoriesssss.isEmpty() && ingredientNames != null && !ingredientNames.isEmpty()) {
+	            // 카테고리와 재료 이름 모두 제공된 경우
+	            recipes = recipeRepository.findByCategoryNameInAndRecipeIngredientsIngredientIngredientNameInOrderByCreateddateDesc(categoriesssss, ingredientNames);
+	        } else if (categoriesssss != null && !categoriesssss.isEmpty()) {
+	            // 카테고리만 제공된 경우
+	            recipes = recipeRepository.findByCategoryNameInOrderByCreateddateDesc(categoriesssss);
+	        } else {
+	            // 재료 이름만 제공된 경우
+	            recipes = recipeRepository.findByRecipeIngredientsIngredientIngredientNameInOrderByCreateddateDesc(ingredientNames);
+	        }
+	    }
+	    
+	    if (orderByViewCount) {
+	    	recipes.sort(Comparator.comparingInt(Recipe::getView_count).reversed());
+        }
+	    
+	    int totalRecipes = recipes.size();
+	    int pageSize = 20; // 페이지당 레시피 수
+	    int totalPages = (int) Math.ceil((double) totalRecipes / pageSize);
+
+	    // 현재 페이지가 유효한 범위 내에 있는지 확인
+	    if (page < 1) {
+	        page = 1;
+	    } else if (page > totalPages) {
+	        page = totalPages;
+	    }
+
+	    // 시작 인덱스와 끝 인덱스 계산
+	    int startIndex = (page - 1) * pageSize;
+	    int endIndex = Math.min(startIndex + pageSize, totalRecipes);
+
+	    // 현재 페이지에 해당하는 레시피 목록 추출
+	    List<Recipe> pagedRecipes = recipes.subList(startIndex, endIndex);
+
+	    // 이전 페이지와 다음 페이지가 있는지 여부를 확인하여 모델에 추가
+	    boolean hasPreviousPage = (page > 1);
+	    boolean hasNextPage = (page < totalPages);
+	    
+	    model.addAttribute("recipes", pagedRecipes);
+	    model.addAttribute("currentPage", page);
+	    model.addAttribute("totalPages", totalPages);
+	    model.addAttribute("hasPreviousPage", hasPreviousPage);
+	    model.addAttribute("hasNextPage", hasNextPage);
+	    // 검색 결과를 세션에 저장
+	    String mappingValue = "/SearchRecipe"; // 원하는 매핑값
+        model.addAttribute("mappingValue", mappingValue);
+        model.addAttribute("cn",categoriesssss);
+
+	    return "recipeList"; // 검색 결과를 표시할 뷰 이름
+	}
+	
 	@GetMapping("/createRecipe")
-	public String createRecipeForm(Model model) {
+	public String createRecipeForm(Model model,HttpSession session,RedirectAttributes redirectAttributes) {
+		String loggedInUserId = (String) session.getAttribute("loggedInUserId");
+		if(loggedInUserId==null) {
+			redirectAttributes.addFlashAttribute("errorMessage", "로그인을 해주세요");
+			return "redirect:/login";
+		}else {
 		model.addAttribute("recipe", new Recipe());
-		return "createRecipe";
+		return "createRecipe";}
 	}
 
 	@PostMapping("/createRecipe")
@@ -134,26 +277,102 @@ public class RecipeController {
 		recipeservice.write(recipe, file);
 		recipeservice.createRecipe(recipe, ingredientName, mensuration);
 		recipeservice.createStep(recipe, SContent, Singtxt, Stooltxt, Stip, Scontroltxt);
-		recipeRepository.save(recipe);
+		
+		//레시피 21개 복제 페이지네이션 테스트용
+		for (int i = 0; i < 21; i++) {
+			Recipe clonedRecipe = ctrlCRecipe(recipe,recipe_ingredient,step,ingredientName,mensuration,SContent,Singtxt,Stooltxt,Stip,Scontroltxt); // 레시피 복제
+	        recipeRepository.save(clonedRecipe);
+		}
+		
+		//recipeRepository.save(recipe);
 		return "redirect:/recipe";
 	}
+	//레시피 21개 복제메서드
+	public Recipe ctrlCRecipe(Recipe recipe, Recipe_Ingredient recipe_ingredient,
+			Step step,
+			List<String> ingredientName,
+			List<String> mensuration,List<String> SContent,
+			List<String> Singtxt,List<String> Stooltxt,
+			List<String> Stip,List<String> Scontroltxt) {
+	Recipe clonedRecipe = new Recipe();
+	clonedRecipe.setTitle(recipe.getTitle());
+	clonedRecipe.setCategoryName(recipe.getCategoryName());
+	clonedRecipe.setCreated_date(recipe.getCreated_date());
+	clonedRecipe.setDailyLove(recipe.getDailyLove());
+	clonedRecipe.setLoves(recipe.getLoves());
+	clonedRecipe.setMain_photo(recipe.getMain_photo());
+	clonedRecipe.setMain_photo_path(recipe.getMain_photo_path());
+	clonedRecipe.setMonthlyLove(recipe.getMonthlyLove());
+	clonedRecipe.setNickname(recipe.getNickname());
+	clonedRecipe.setRecipeIngredients(recipe.getRecipeIngredients());
+	clonedRecipe.setRecipesubtxt(recipe.getRecipesubtxt());
+	clonedRecipe.setSteps(recipe.getSteps());
+	clonedRecipe.setTotalLove(recipe.getTotalLove());
+	clonedRecipe.setUser(recipe.getUser());
+	clonedRecipe.setView_count(recipe.getView_count());
+	clonedRecipe.setWeeklyLove(recipe.getWeeklyLove());
+	clonedRecipe.setRecipe_id(recipe.getRecipe_id());
+	recipeservice.createRecipe(clonedRecipe, ingredientName, mensuration);
+	recipeservice.createStep(clonedRecipe, SContent, Singtxt, Stooltxt, Stip, Scontroltxt);
+	
+	
+		//recipeRepository.save(recipe);
+		return clonedRecipe;
+	}
 
-//	    @PostMapping("/SearchRecipe")
-//	    public String search(@RequestParam String category,)
-
-	@GetMapping("/desc")
+	@PostMapping("/desc")
 	public String descrecipe(Model model) {
 		List<Recipe> recipes = recipeRepository.findAllByOrderByCreateddateDesc();
-
 		model.addAttribute("recipes", recipes);
 		return "recipeList";
 	}
 	
 	@GetMapping("/VC")
-	public String VCrecipe(Model model) {
-		List<Recipe> recipes = recipeRepository.findAllByOrderByViewcountDesc();
+	public String VCrecipe(Model model,HttpSession session,@RequestParam(required = false, defaultValue = "1") int page) {
+		
+		// 세션에서 검색 결과를 가져옴
+	    //List<Recipe> recipes = (List<Recipe>) session.getAttribute("searchResults");
+	    List<Recipe> recipes = (List<Recipe>) session.getAttribute("searchResults");
+	    
+	    if (recipes != null) {
+	        // 검색 결과를 사용할 수 있음	    	
+	    	recipes.sort(Comparator.comparingInt(Recipe::getView_count).reversed());
+	        // 다른 로직 수행
+	    }else {
+		recipes = recipeRepository.findAllByOrderByViewcountDesc();
+	
+	    }
+	    int totalRecipes = recipes.size();
+	    int pageSize = 20; // 페이지당 레시피 수
+	    int totalPages = (int) Math.ceil((double) totalRecipes / pageSize);
 
-		model.addAttribute("recipes", recipes);
+	    // 현재 페이지가 유효한 범위 내에 있는지 확인
+	    if (page < 1) {
+	        page = 1;
+	    } else if (page > totalPages) {
+	        page = totalPages;
+	    }
+
+	    // 시작 인덱스와 끝 인덱스 계산
+	    int startIndex = (page - 1) * pageSize;
+	    int endIndex = Math.min(startIndex + pageSize, totalRecipes);
+
+	    // 현재 페이지에 해당하는 레시피 목록 추출
+	    List<Recipe> pagedRecipes = recipes.subList(startIndex, endIndex);
+
+	    // 이전 페이지와 다음 페이지가 있는지 여부를 확인하여 모델에 추가
+	    boolean hasPreviousPage = (page > 1);
+	    boolean hasNextPage = (page < totalPages);
+	    
+	    model.addAttribute("recipes", pagedRecipes);
+	    model.addAttribute("currentPage", page);
+	    model.addAttribute("totalPages", totalPages);
+	    model.addAttribute("hasPreviousPage", hasPreviousPage);
+	    model.addAttribute("hasNextPage", hasNextPage);
+	    // 검색 결과를 세션에 저장
+	    session.setAttribute("searchResults", pagedRecipes);
+
+
 		return "recipeList";
 	}
 
@@ -225,7 +444,6 @@ public class RecipeController {
 			recipeRepository.incrementViewCount(recipe_id); // 조회수 업데이트
 
 			String activity = "조회";
-			Recipe recipe1 = new Recipe();
 			recipe.setRecipe_id(recipe_id);
 
 			User user = new User();
@@ -242,8 +460,6 @@ public class RecipeController {
 				loveservice.saveLove(love);
 
 				model.addAttribute("recipe", recipe);
-				// model.addAttribute("likesCount",likesCount);
-				// model.addAttribute("recipe", new Recipe());
 				return "userRecipe"; // 레시피 페이지 템플릿
 			} else {
 				user.setUser_id(loggedInUserId);
@@ -256,8 +472,6 @@ public class RecipeController {
 				loveservice.saveLove(love);
 
 				model.addAttribute("recipe", recipe);
-				// model.addAttribute("likesCount",likesCount);
-				// model.addAttribute("recipe", new Recipe());
 				return "userRecipe"; // 레시피 페이지 템플릿
 			}
 		}

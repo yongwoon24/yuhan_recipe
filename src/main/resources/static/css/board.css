@@ -12,6 +12,20 @@
   margin-bottom: 20px; /* 테이블 아래 여백 추가 */
 }
 
+.write-icon{
+   color:rgba(0, 0, 0, 1);
+   width:64px;
+   height:55px;
+   position:absolute;
+   right:9%;
+   top:30px;
+   font-family:Font Awesome 5 Free;
+   text-align:center;
+   font-size:40px;
+   letter-spacing:0;
+   
+}
+
 body {
   color: #000000;
   font: 16px/24px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif;

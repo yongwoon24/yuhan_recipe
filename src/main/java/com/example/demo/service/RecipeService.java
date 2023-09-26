@@ -10,6 +10,7 @@ import java.util.function.Function;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuery;
@@ -147,5 +148,12 @@ public class RecipeService {
 			imageFile.delete();
 		}
 	}
+	
+	 public Page<Recipe> getRecipesByPage(int pageNumber, int pageSize) {
+	        PageRequest pageRequest = PageRequest.of(pageNumber - 1, pageSize); // 페이지 번호는 0부터 시작하므로 -1
+	        return reciperepository.findAll(pageRequest);
+	    }
+	 
+	 
 
 }

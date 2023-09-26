@@ -11,27 +11,24 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-
-
-
-
-
 </head>
 
 <body>
 	<div class="body_wrapper">
 		<div class="body_content">
 			<div class="menubar"></div>
-			<span class="menu4"><a href="recipe">분류</a></span>
-			<span class="menu3"><a href="rank">랭크</a></span>
-			<span class="menu2"><a href="board">게시판</a></span>
-			<span class="menu1"><a href="rank">랭킹</a></span>
+			<span class="menu4"><a href="/recipe">분류</a></span>
+			<span class="menu3"><a href="/rank">랭크</a></span>
+			<span class="menu2"><a href="/board">게시판</a></span>
+			<span class="menu1"><a href="/rank">랭킹</a></span>
 			<span><a class="mainicon" href="/">모두의레시피</a></span>
 
 			<!-- 마이페이지 주소 입력 -->
+			<div class="write-icon"><a href="/createRecipe"><i class="fas fa-pencil-alt"></i></a></div>
 			<div class="usericon"><a href="/mypage"><i class="fa-solid fa-user"></i></a></div>
 			<!-- 로그아웃 주소 입력 -->
 			<div class="logout_icon"><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></div>
+
 			<div class="searchbar">
 				<div class="searchradius">
 					<form action="" method=""> <!-- 검색창 주소 입력 -->
@@ -67,11 +64,14 @@
 					</div>
 				</form>
 				<div class="btn1">
-					<form action="/desc" method="get">
-						<input type="submit" id="recentbtn" name="categiryname1" value="최신순">
+					<form action="/desc" method="post">
+						<input type="submit" id="recentbtn" value="최신순">
 					</form>
 					<form action="/VC" method="get">
-						<input type="submit" id="querybtn" name="viewcount1" value="조회수순">
+						<input type="submit" id="recentbtn" value="조회">
+					</form>
+					<form action="/SearchRecipe" method="get">
+						<button type="submit" name="orderByViewCount" value="true">조회수순</button>
 					</form>
 				</div>
 				<ul class="img_slide1">
@@ -88,8 +88,57 @@
 					</li>
 
 				</ul>
+				<!-- 페이지네이션을 추가한 부분 -->
+				<div class="pagination">
+    <a th:if="${hasPreviousPage && (categories != null && !categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty())}"
+        th:href="@{|/recipe?page=${currentPage - 1}&amp;categoryName=${categories}&amp;ingredientNames=${ingredientNames}|}">
+        &laquo; 이전
+    </a>
+    <a th:if="${hasPreviousPage && (categories == null || categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty())}"
+        th:href="@{|/recipe?page=${currentPage - 1}&amp;ingredientNames=${ingredientNames}|}">
+        &laquo; 이전
+    </a>
+    <a th:if="${hasPreviousPage && (categories != null && !categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty())}"
+        th:href="@{|/recipe?page=${currentPage - 1}&amp;categoryName=${categories}|}">
+        &laquo; 이전
+    </a>
+    <a th:if="${hasPreviousPage && (categories == null || categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty())}"
+        th:href="@{|/recipe?page=${currentPage - 1}|}">
+        &laquo; 이전
+    </a>
+    <span th:each="pageNumber : ${#numbers.sequence(1, totalPages)}">
+        <a th:if="${(categories != null && !categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty())}"
+            th:href="@{|/recipe?page=${pageNumber}&amp;categoryName=${categories}&amp;ingredientNames=${ingredientNames}|}"
+            th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber}"></a>
+        <a th:if="${(categories == null || categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty())}"
+            th:href="@{|/recipe?page=${pageNumber}&amp;ingredientNames=${ingredientNames}|}"
+            th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber}"></a>
+        <a th:if="${(categories != null && !categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty())}"
+            th:href="@{|/recipe?page=${pageNumber}&amp;categoryName=${categories}|}"
+            th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber}"></a>
+        <a th:if="${(categories == null || categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty())}"
+            th:href="@{|/recipe?page=${pageNumber}|}"
+            th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber}"></a>
+    </span>
+    <a th:if="${hasNextPage && (categories != null && !categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty())}"
+        th:href="@{|/recipe?page=${currentPage + 1}&amp;categoryName=${categories}&amp;ingredientNames=${ingredientNames}|}">
+        다음 &raquo;
+    </a>
+    <a th:if="${hasNextPage && (categories == null || categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty())}"
+        th:href="@{|/recipe?page=${currentPage + 1}&amp;ingredientNames=${ingredientNames}|}">
+        다음 &raquo;
+    </a>
+    <a th:if="${hasNextPage && (categories != null && !categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty())}"
+        th:href="@{|/recipe?page=${currentPage + 1}&amp;categoryName=${categories}|}">
+        다음 &raquo;
+    </a>
+    <a th:if="${hasNextPage && (categories == null || categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty())}"
+        th:href="@{|/recipe?page=${currentPage + 1}|}">
+        다음 &raquo;
+    </a>
+</div>
 
-				<a th:href="@{/createRecipe}">작성</a></td>
+
 			</div>
 
 
@@ -115,8 +164,8 @@
 				var btns = document.createElement("input");
 				btns.type = "button";
 				btns.name = "ingredientName";
-				btns.value = ingredientName+"    X";
-				btns.id=ingredientName;
+				btns.value = ingredientName + "    X";
+				btns.id = ingredientName;
 				btns.style.cursor = "hand";
 				btns.style.width = "auto";
 				btns.style.marginRight = "5px";
@@ -156,8 +205,8 @@
 
 			function submitForm() {
 				var form = document.createElement("form");
-				form.action = "/SearchRecipe"; // 서버 컨트롤러 주소
-				form.method = "POST"; // HTTP 메서드 (GET 또는 POST)
+				form.action = "/recipe"; // 서버 컨트롤러 주소
+				form.method = "GET"; // HTTP 메서드 (GET 또는 POST)
 
 				// 카테고리 체크박스 값을 폼에 추가
 				var selectedCategories = document.querySelectorAll('input[name="categoryName"]:checked');
@@ -182,6 +231,7 @@
 				document.body.appendChild(form);
 				form.submit();
 			}
+
 		</script>
 
 </body>

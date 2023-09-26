@@ -383,3 +383,16 @@ select {
     color: #fff;
     border-radius: 50%;
 }
+.write-icon{
+   color:rgba(0, 0, 0, 1);
+   width:64px;
+   height:55px;
+   position:absolute;
+   right:9%;
+   top:30px;
+   font-family:Font Awesome 5 Free;
+   text-align:center;
+   font-size:40px;
+   letter-spacing:0;
+   
+}

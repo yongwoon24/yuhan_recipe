@@ -75,8 +75,8 @@
 						<div class="ranking">
                 			<span class="rank-number" th:text="${(currentPage * 20) + recipeIndex.index + 1}+'위'"></span>
             			</div>
-				        <a href="recipe"><img th:src="@{/img/__${recipe.main_photo}__.jpg}"></a>
-				        <a href="recipe"><span th:text="${recipe.title}">asd</span></a>
+				        <a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}"><img th:src="@{/img/__${recipe.main_photo}__.jpg}">
+				        <span th:text="${recipe.title}">asd</span></a>
 				        <div class="likes">
 				            <i class="fas fa-heart"></i>
 				            <span th:text="${recipe.totalLove}"></span>
