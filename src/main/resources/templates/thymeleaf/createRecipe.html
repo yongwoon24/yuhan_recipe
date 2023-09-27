@@ -72,7 +72,7 @@
 								<input multiple type="file" id="file" name="file" style="display: none;">
 								<button id="uploadButton" name="uploadButton" onclick="handleClick(event)">
 									<div id="preview" name="preview" width="400px" height="400px">
-										<img src="/img/대표이미지.PNG" width="400px" height="400px">
+										<img src="/img/대표이미지.PNG?timestamp=<%= System.currentTimeMillis() %>" width="400px" height="400px">
 									</div>
 								</button>
 							</span>
@@ -126,7 +126,7 @@
 							<div class='textRow1' id="r1">
 								<label class="step">STEP 1</label><br>
 								<textarea class='text2' name="SContent" placeholder='예 ) 김치 반 포기를 잘게 썰어주세요.'></textarea>
-								<input multiple type="file" id="file1" name="file" style="display: none;">
+								<input multiple type="file" id="file1" name="file1" style="display: none;">
 								<button id="uploadButton1" name="uploadButton1"
 									onclick="handleClick(event); handleUploadClick(1)">
 									<div id="preview1" name="preview1">

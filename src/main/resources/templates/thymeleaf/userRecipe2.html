@@ -1,0 +1,177 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta content="text/html; charset=euc-kr">
+	<title>모두의레시피</title>
+	<style type="text/css">
+	</style>
+	<script src="/src/main/resources/static/js/userRecipe.js"></script>
+	<script src="https://kit.fontawesome.com/2636adf573.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" th:href="@{/../css/userRecipe.css}" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+
+	<script>
+		var ing = new Array();
+		var cat = new Array();
+		function init() {
+
+			var tags = document.getElementById("t1");
+			var btns = document.createElement("input");
+			btns.type = "button";
+			btns.value = tags.value + "      X  ";
+
+			btns.id = tags.value;
+			ing.push(tags.value);
+			alert(ing);
+			tags.value = "";
+			btns.style.cursor = "hand";
+			btns.style.width = "80px";
+			btns.width = "120px";
+			btns.color = "white";
+			btns.style.cursor = "hand";
+			btns.style.width = "auto";
+			btns.onclick = function () {hideInfo(this)};
+
+			var clas = document.getElementById("body_wrapper4");
+			clas.appendChild(btns);
+
+		}
+
+		function hideInfo(e) {
+			alert("삭제됨");
+			var i = 0;
+			for (i = 0; i < ing.length - 1; i++) {
+				if (ing[i] == e.id) {
+					break;
+				}
+			}
+			ing.splice(i, 1);
+			alert(ing);
+			e.remove();
+		}</script>
+
+
+
+
+</head>
+
+<body>
+	<div class="body_wrapper">
+		<div class="body_content">
+			<div class="menubar"></div>
+			<span class="menu4"><a href="/recipe">분류</a></span>
+			<span class="menu3"><a href="/rank">랭크</a></span>
+			<span class="menu2"><a href="/board">게시판</a></span>
+			<span class="menu1"><a href="/rank">랭킹</a></span>
+			<span><a class="mainicon" href="/">모두의레시피</a></span>
+
+			<!-- 마이페이지 주소 입력 -->
+			<div class="write-icon"><a href="/createRecipe"><i class="fas fa-pencil-alt"></i></a></div>
+			<div class="usericon"><a href="/mypage"><i class="fa-solid fa-user"></i></a></div>
+			<!-- 로그아웃 주소 입력 -->
+			<div class="logout_icon"><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></div>
+			<div class="searchbar">
+				<div class="searchradius">
+					<form action="" method=""> <!-- 검색창 주소 입력 -->
+						<input type="text" class="search_txt">
+						<button type="submit" class="search_btn">
+							<span class="searchicon">
+								<i class="fa-solid fa-magnifying-glass"></i>
+							</span>
+						</button>
+					</form>
+				</div>
+			</div>
+			<!-- 여기부터 body에 추가할 코드 입력 -->
+
+			<div class="slide_wrapper">
+				<h th:text="'작성자  :  '+${recipe.nickname}"></h>
+				<div class=e17_1213>
+					<div class=e17_1214><img th:src="@{${recipe.main_photo_path}}" width="1172px" height="630px">
+						<div class=e17_1216><span class="e17_1218">
+								<h th:text="${recipe.nickname}"></h>
+							</span></div>
+						<div class=e17_1217></div>
+						<div class=e18_1227>
+							<div class=e18_1228><span class="e19_1231">View</span></div>
+							<div class=e18_1229><span class="e19_1230">
+									<h4 th:text="${recipe.view_count+1}"></h4>
+								</span></div>
+						</div>
+					</div><span class="e17_1223">
+						<h2 th:text="${recipe.recipesubtxt}"></h2>
+					</span><span class="e17_1224">
+						<h1 th:text="${recipe.title}"></h1>
+					</span><span class="e17_1225">
+						<form id="loveform" th:action="@{/like}" method="post">
+							<input type="hidden" id="recipe_id" name="recipe_id"
+								th:value="@{{recipeId}(recipeId=${recipe.recipe_id})}">
+							<input type="submit" th:onclick="'javascript:increaseLoves(\''+${recipe_id}+'\')'"
+								name="lovebtn" value="좋아요">
+						</form><span id="like-count" th:text="${recipe.totalLove}"></span>
+					</span><span class="e17_1226">스크랩</span>
+					<a th:href="@{/deleteRecipe/{recipe_id}(recipe_id=${recipe.recipe_id})}">Delete</a>
+				</div>
+				<div class="e17_1213_1">재료
+					<div class="ingredient-grid">
+						<div th:each="ingredient : ${recipeings}"
+							th:if="${(ingredient.ingredient.ingredient_name != '')}" class="ingredient-item">
+							<span th:text="'● 재료 = ' + ${ingredient.ingredient.ingredient_name}"
+								class="ingredient-name"></span>
+							<span th:text="${ingredient.mensuration}" class="ingredient-mensuration"></span>
+						</div>
+					</div>
+				</div>
+				<div class="e17_1213_2">조리단계
+					<div class="step-grid">
+						<div th:each="steps : ${steps}">
+							<div th:if="${(steps.SContent != '')}" class="step-item1">
+							 <img src="/img/연두색화살표.jpg" class="carrot1">
+							 <span th:text="${steps.SContent}" class="Scontent"></span></div><br>
+							<img th:if="${(steps.Sphotopath != null)}"
+							th:src="@{${steps.Sphotopath}}" width="300px" height="300px"><br>
+							<img th:if="${(steps.Sphotopath == null)}"
+							src="/img/흰색.png" width="300px" height="300px"><br>
+							<div th:if="${(steps.Singtxt != '')}" class="step-item">
+							 <img src="/img/carrot.png" class="carrot">
+							 <span th:text="${steps.Singtxt}"></span></div><br>
+							 <div th:if="${(steps.Stooltxt != '')}" class="step-item">
+							 <img src="/img/냄비.png" class="carrot">
+							 <span th:text="${steps.Stooltxt}"></span></div><br>
+							 <div th:if="${(steps.Scontroltxt != '')}" class="step-item">
+							 <img src="/img/불.png" class="carrot">
+							 <span th:text="${steps.Scontroltxt}"></span></div><br>
+							 <div th:if="${(steps.Stip != '')}" class="step-item">
+							 <img src="/img/전구.png" class="carrot">
+							 <span th:text="${steps.Stip}"></span></div><br>	 
+					</div>
+						
+							</div>
+						</div>
+							
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<script th:src="@{/../js/main.js}"></script>
+		<script th:inline="javascript">
+			var errorMessage = /*[[${errorMessage}]]*/ "";
+			if (errorMessage) {
+				alert(errorMessage);
+			}
+		</script>
+
+	</div>
+	<div class="footer">
+		<div class="footer_comment">@Yuhan University Group 3's Project</div>
+	</div>
+</body>
+
+</html>

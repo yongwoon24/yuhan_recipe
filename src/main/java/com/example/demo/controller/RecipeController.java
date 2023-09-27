@@ -3,17 +3,17 @@ package com.example.demo.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.Comparator;
+
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 
-import org.hibernate.mapping.Array;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.ServletRequestUtils;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,6 +32,7 @@ import com.example.demo.entity.Step;
 import com.example.demo.entity.User;
 
 import com.example.demo.repository.LoveRepository;
+import com.example.demo.repository.RecipeIngredientRepository;
 import com.example.demo.repository.RecipeRepository;
 import com.example.demo.service.LoveService;
 import com.example.demo.service.RecipeService;
@@ -51,6 +52,8 @@ public class RecipeController {
 	private LoveRepository loverepository;
 	@Autowired
 	private LoveService loveservice;
+	@Autowired
+	private RecipeIngredientRepository recipeingredientrepository;
 	
 	List<Recipe> recipes1;
 	private int likesCount = 0;
@@ -218,25 +221,26 @@ public class RecipeController {
 	@PostMapping("/createRecipe")
 	@Async
 	public String createRecipe(@ModelAttribute Recipe recipe, @ModelAttribute Recipe_Ingredient recipe_ingredient,
-			@ModelAttribute Step step, MultipartFile file, HttpSession session,
+			@ModelAttribute Step step, @RequestParam("file") MultipartFile file, HttpSession session,
 			@RequestParam("ingredientName") List<String> ingredientName,
 			@RequestParam("mensuration") List<String> mensuration, @RequestParam("SContent") List<String> SContent,
 			@RequestParam("Singtxt") List<String> Singtxt, @RequestParam("Stooltxt") List<String> Stooltxt,
-			@RequestParam("Stip") List<String> Stip, @RequestParam("Scontroltxt") List<String> Scontroltxt)
+			@RequestParam("Stip") List<String> Stip, @RequestParam("Scontroltxt") List<String> Scontroltxt,
+			@RequestParam("file1") List<MultipartFile> file1)
 			throws Exception {
 		String loggedInNickname = (String) session.getAttribute("loggedInNickname");
 		recipe.setNickname(loggedInNickname);
 		recipeservice.write(recipe, file);
 		recipeservice.createRecipe(recipe, ingredientName, mensuration);
-		recipeservice.createStep(recipe, SContent, Singtxt, Stooltxt, Stip, Scontroltxt);
+		recipeservice.createStep(recipe, SContent, Singtxt, Stooltxt, Stip, Scontroltxt,file1);
 		
 		//레시피 21개 복제 페이지네이션 테스트용
-		for (int i = 0; i < 21; i++) {
-			Recipe clonedRecipe = ctrlCRecipe(recipe,recipe_ingredient,step,ingredientName,mensuration,SContent,Singtxt,Stooltxt,Stip,Scontroltxt); // 레시피 복제
-	        recipeRepository.save(clonedRecipe);
-		}
+//		for (int i = 0; i < 21; i++) {
+//			Recipe clonedRecipe = ctrlCRecipe(recipe,recipe_ingredient,step,ingredientName,mensuration,SContent,Singtxt,Stooltxt,Stip,Scontroltxt); // 레시피 복제
+//	        recipeRepository.save(clonedRecipe);
+//		}
 		
-		//recipeRepository.save(recipe);
+		recipeRepository.save(recipe);
 		return "redirect:/recipe";
 	}
 	
@@ -267,7 +271,7 @@ public class RecipeController {
 	clonedRecipe.setWeeklyLove(recipe.getWeeklyLove());
 	clonedRecipe.setRecipe_id(recipe.getRecipe_id());
 	recipeservice.createRecipe(clonedRecipe, ingredientName, mensuration);
-	recipeservice.createStep(clonedRecipe, SContent, Singtxt, Stooltxt, Stip, Scontroltxt);
+	//recipeservice.createStep(clonedRecipe, SContent, Singtxt, Stooltxt, Stip, Scontroltxt,);
 	
 	
 		//recipeRepository.save(recipe);
@@ -339,8 +343,14 @@ public class RecipeController {
 	@GetMapping("/recipe/{recipe_id}")
 	public String userRecipeview(@PathVariable("recipe_id") int recipe_id, Model model, HttpSession session) {
 		Recipe recipe = recipeRepository.findById(recipe_id);
+		
+		
 		if (recipe != null) {
 			recipeRepository.incrementViewCount(recipe_id); // 조회수 업데이트
+			List<Recipe_Ingredient> recipeing = recipe.getRecipeIngredients();
+			List<Step> steps = recipe.getSteps();
+			System.out.println(recipeing.size()+"dsaaaaaaaadasdddddddddddddddddddddddddddasd");
+			System.out.println(recipeing.get(0).getIngredient().getIngredient_name()+"dsaaaaaaaadasdddddddddddddddddddddddddddasd");
 
 			String activity = "조회";
 			recipe.setRecipe_id(recipe_id);
@@ -356,11 +366,14 @@ public class RecipeController {
 				love.setRecipe(recipe);
 				love.setActivity(activity);
 
-				loveservice.saveLove(love);
-
+				//loveservice.saveLove(love);
+				
+				model.addAttribute("recipeings",recipeing);
+				model.addAttribute("steps",steps);
 				model.addAttribute("recipe", recipe);
-				return "userRecipe"; // 레시피 페이지 템플릿
+				return "userRecipe2"; // 레시피 페이지 템플릿
 			} else {
+				
 				user.setUser_id(loggedInUserId);
 
 				Love love = new Love();
@@ -369,12 +382,14 @@ public class RecipeController {
 				love.setActivity(activity);
 
 				loveservice.saveLove(love);
-
+				
+				model.addAttribute("recipeings",recipeing);
+				model.addAttribute("steps",steps);
 				model.addAttribute("recipe", recipe);
-				return "userRecipe"; // 레시피 페이지 템플릿
+				return "userRecipe2"; // 레시피 페이지 템플릿
 			}
 		}
-		return "userRecipe";
+		return "userRecipe2";
 	}
 
 	@GetMapping("/editRecipe/{recipe_id}")

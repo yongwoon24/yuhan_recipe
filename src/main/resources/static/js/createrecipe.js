@@ -68,28 +68,7 @@ removebutton2.addEventListener('click', () => {
 });
 
 function adjustContainerHeight() {
-	//const e10_2_1dbt = e10_2_1d.getBoundingClientRect();
-	//const e10_2_1dh = e10_2_1dbt.height;
-	//const containerHeight = container.clientHeight;
-	//e10_2_1d.style.height = containerHeight + 'px';
-	//const conlastch = container.lastElementChild;
-	//const lastgb = conlastch.getBoundingClientRect();
-	//const lastbt = lastgb.bottom;
 
-	//const e10_2_2dbt = e10_2_2d.getBoundingClientRect();
-	//const e10_2_2dh = e10_2_2dbt.height;
-
-
-
-
-
-	//const bt = e10_2_1dbt.bottom;
-
-
-
-	//e10_2_2d.style.top = e10_2_1dh + 950 + 'px';
-	//e10_2_3d.style.top = e10_2_1dh + e10_2_1dh + 1500 + 'px';
-	// e10_2_1 요소의 하단 위치 구하기
 	const e10_2_1Bottom = container.getBoundingClientRect().bottom;
 
 	const e10_2_2Bottom = container1.getBoundingClientRect().bottom;
@@ -136,7 +115,7 @@ addButton1.addEventListener("click", () => {
 	newStep.innerHTML = `
                 <label class="step">STEP ${stepCount}</label><br>
 								<textarea class='text2' name="SContent" placeholder="${steptext[steptxtindex]}"></textarea>
-								<input multiple type="file" id="file${stepCount}" name="file" style="display: none;">
+								<input multiple type="file" id="file${stepCount}" name="file1" style="display: none;">
 								<button id="uploadButton${stepCount}" name="uploadButton1" onclick="handleClick(event); handleUploadClick(${stepCount})">
 									<div id="preview${stepCount}" name="preview1">
 										<img src="/img/대표이미지.PNG" width="200px" height="200px">
@@ -193,7 +172,7 @@ function adjustContainerHeight1() {
 	e10_2_3d.style.top = (e10_2_2Bottom + window.scrollY) + (-200) + 'px';
 
 }
-
+let stepnum2=0;
 function handleUploadClick(stepNumber) {
 	const imageInput1 = document.getElementById(`file${stepNumber}`);
 	const uploadButton1 = document.getElementById(`uploadButton${stepNumber}`);
@@ -206,6 +185,7 @@ function handleUploadClick(stepNumber) {
 
 
 	imageInput1.addEventListener('change', (event) => {
+		stepnum2=stepNumber
 		var file1 = event.target.files[0];
 		if (file1) {
 			const reader = new FileReader();
@@ -223,8 +203,7 @@ function handleUploadClick(stepNumber) {
 		}
 	});
 
-	// 업로드 버튼을 클릭하여 이미지 선택 창을 띄우기
-	imageInput.click();
+	
 }
 
 
@@ -238,11 +217,7 @@ uploadButton.addEventListener('click', () => {
 });
 
 imageInput.addEventListener('change', (event) => {
-	let stepCount1 = stepCount;
-	if (stepCount == 1) {
-		stepCount1 = 0;
-	}
-	const file = event.target.files[stepCount1];
+	const file = event.target.files[0];
 	if (file) {
 		const reader = new FileReader();
 
@@ -258,3 +233,4 @@ imageInput.addEventListener('change', (event) => {
 		reader.readAsDataURL(file);
 	}
 });
+

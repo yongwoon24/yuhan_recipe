@@ -35,7 +35,7 @@ public class Recipe {
 	private String main_photo;
 	
 	@Column(name = "created_date")
-	private LocalDate createddate;
+	private LocalDateTime createddate;
 	
 	//private String user_id;
 	@ManyToOne
@@ -118,10 +118,10 @@ public class Recipe {
 	public void setMain_photo(String main_photo) {
 		this.main_photo = main_photo;
 	}
-	public LocalDate getCreated_date() {
+	public LocalDateTime getCreated_date() {
 		return createddate;
 	}
-	public void setCreated_date(LocalDate createddate) {
+	public void setCreated_date(LocalDateTime createddate) {
 		this.createddate = createddate;
 	}
 //	public String getUser_id() {
@@ -202,7 +202,7 @@ public class Recipe {
 	public void updateRecipe(RecipeFormDto recipeFormDto) {
 		this.recipe_id=recipeFormDto.getRecipe_id();
 		this.title=recipeFormDto.getTitle();
-		this.createddate=recipeFormDto.getCreated_date();
+		//this.createddate=recipeFormDto.getCreated_date();
 		//this.user_id=recipeFormDto.getUser_id();
 		this.categoryName=recipeFormDto.getCategory_name();
 		this.viewcount=recipeFormDto.getView_count();
@@ -211,7 +211,9 @@ public class Recipe {
 	
 	@PrePersist
     protected void onCreate() {
-        createddate = LocalDate.now();
+		LocalDateTime now = LocalDateTime.now().withNano(0);
+	    this.setCreated_date(now);
+        
     }
 	
 
