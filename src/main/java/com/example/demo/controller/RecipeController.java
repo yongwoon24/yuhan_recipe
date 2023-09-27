@@ -34,6 +34,7 @@ import com.example.demo.repository.RecipeRepository;
 import com.example.demo.service.LoveService;
 import com.example.demo.service.RecipeService;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
 @Controller
@@ -57,7 +58,10 @@ public class RecipeController {
 		return "recipeList";
 	}
 	@GetMapping("/recipe")
-	public String listRecipes1(Model model, @RequestParam(required = false, defaultValue = "0") int page) {
+
+	public String listRecipes1(Model model, @RequestParam(required = false, defaultValue = "0") int page,
+								@RequestParam(required = false) String CategorName) {
+
 		int pageSize = 20; // 페이지당 레시피 수
 		List<Recipe> recipes = recipeRepository.findAll();
 		model.addAttribute("recipes", recipes);
@@ -71,8 +75,9 @@ public class RecipeController {
 	    }
 	    
 	    @PostMapping("/createRecipe")
-	    public String createRecipe(@ModelAttribute Recipe recipe, MultipartFile file) throws Exception{
-	    	
+	    public String createRecipe(@ModelAttribute Recipe recipe, MultipartFile file, HttpSession session) throws Exception{
+	    	String loggedInNickname = (String) session.getAttribute("loggedInNickname");
+	    	recipe.setNickname(loggedInNickname);
 	    	recipeservice.write(recipe, file);
 	    	recipeRepository.save(recipe);
 	    	//model.addAttribute("message", "글작성이 완료되었습니다.");
@@ -80,14 +85,18 @@ public class RecipeController {
 	        return "redirect:/recipe";
 	        }
 	    
+//	    @PostMapping("/SearchRecipe")
+//	    public String search(@RequestParam String category,)
+	    
 	    @PostMapping("/like")
-	    public String like(@RequestParam int recipe_id, @RequestParam String user_id) {
+	    public String like(@RequestParam int recipe_id, HttpSession session) {
 	        String activity = "좋아요";
 	    	Recipe recipe = new Recipe();
 	        recipe.setRecipe_id(recipe_id);
 	    	
 	        User user = new User();
-	        user.setUser_id(user_id);
+	        String loggedInUserId = (String) session.getAttribute("loggedInUserId");
+	        user.setUser_id(loggedInUserId);
 	        
 	    	Love love = new Love();
 	        love.setUser(user);
@@ -111,10 +120,26 @@ public class RecipeController {
 	    
 	    
 	    @GetMapping("/recipe/{recipe_id}")
-        public String userRecipeview(@PathVariable("recipe_id") int recipe_id, Model model) {
+        public String userRecipeview(@PathVariable("recipe_id") int recipe_id, Model model, HttpSession session) {
             Recipe recipe = recipeRepository.findById(recipe_id);
             if (recipe != null) {
                 recipeRepository.incrementViewCount(recipe_id); // 조회수 업데이트
+                
+                String activity = "조회";
+                Recipe recipe1 = new Recipe();
+    	        recipe.setRecipe_id(recipe_id);
+                
+    	        User user = new User();
+    	        String loggedInUserId = (String) session.getAttribute("loggedInUserId");
+    	        user.setUser_id(loggedInUserId);
+    	        
+    	        Love love = new Love();
+    	        love.setUser(user);
+    	        love.setRecipe(recipe);
+    	        love.setActivity(activity);
+    	        
+    	    	loveservice.saveLove(love);
+    	    	
                 model.addAttribute("recipe", recipe);
                 model.addAttribute("likesCount",likesCount);
                 //model.addAttribute("recipe", new Recipe());

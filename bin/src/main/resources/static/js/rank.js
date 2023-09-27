@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
         sessionStorage.setItem("previousPeriod", selectedPeriodValue);
     });
 });
+<<<<<<< HEAD
 
 // 페이지 변수 가져오기
 var paginationDiv = document.getElementById(".pagination");
@@ -92,3 +93,5 @@ function generatePagination() {
 // 페이지 번호 생성 함수 호출
 generatePagination();
 
+=======
+>>>>>>> 48a1b7e7cdce8bc0fd9cb3c27b5ec6786e9f8be9

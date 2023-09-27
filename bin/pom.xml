@@ -28,6 +28,7 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+<<<<<<< HEAD
 		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
 <dependency>
     <groupId>javax.servlet</groupId>
@@ -37,6 +38,8 @@
 </dependency>
 
 		
+=======
+>>>>>>> 48a1b7e7cdce8bc0fd9cb3c27b5ec6786e9f8be9
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>

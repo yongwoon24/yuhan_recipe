@@ -67,7 +67,28 @@
 			        <button id="submitBtn" type="submit" hidden>선택</button>
 
 			    </form>
+<<<<<<< HEAD
 			    
+=======
+			    <div class="option-buttons">
+				    <table class="whole-table">
+				        <tr>
+				            <td>
+				                <a href="#" class="table-button" data-period="all">전체</a>
+				            </td>
+				            <td>
+				                <a href="#" class="table-button" data-period="daily">일간</a>
+				            </td>
+				            <td>
+				                <a href="#" class="table-button" data-period="weekly">주간</a>
+				            </td>
+				            <td>
+				                <a href="#" class="table-button" data-period="monthly">월간</a>
+				            </td>
+				        </tr>
+				    </table>
+				</div>
+>>>>>>> 48a1b7e7cdce8bc0fd9cb3c27b5ec6786e9f8be9
 			</div>
 			<ul class="img_slide">
 			    <li class="recipe-item" th:each="recipe, recipeIndex : ${topLove}">
@@ -86,6 +107,7 @@
 			
 			</ul>
 			<div class="pagination">
+<<<<<<< HEAD
     <a th:if="${currentPage > firstPage}" th:href="@{|/rank?page=${currentPage - 1}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}">&laquo; 이전</a>
     <span th:each="pageNumber : ${#numbers.sequence(currentPage - 5, currentPage + 4)}" th:if="${pageNumber >= firstPage && pageNumber <= lastPage}">
         <a th:href="@{|/rank?page=${pageNumber}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}"
@@ -96,6 +118,12 @@
 
 
 
+=======
+		    	<a th:if="${currentPage > 0}" th:href="@{|/rank?page=${currentPage - 1}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}">&laquo;</a>
+		    	<!--<span th:text="${currentPage + 1}"></span>-->
+				<a th:if="${topLove.size() > (currentPage * 20)}" th:href="@{|/rank?page=${currentPage + 1}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}">&raquo;</a>
+			</div>
+>>>>>>> 48a1b7e7cdce8bc0fd9cb3c27b5ec6786e9f8be9
 			
 			
 						
