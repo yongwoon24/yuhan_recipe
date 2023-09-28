@@ -62,7 +62,7 @@ li > img{
 
 .menu4 {
 	color: rgba(0, 0, 0, 1);
-	width: 70px;
+	width: 200px;
 	height: 36px;
 	position: absolute;
 	left: 1334px;
@@ -108,11 +108,9 @@ li > img{
 	position: absolute;
 	left: 846px;
 	top: 161px;
-
 	text-align: left;
 	font-size: 25px;
 	letter-spacing: 0;
-
 }
 
 .mainicon {

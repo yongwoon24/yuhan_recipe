@@ -1,17 +1,22 @@
 
 .table-container {
   width: 1000px;
-  margin-top: 20px;
-  margin: 0 auto; /* 가운데 정렬을 위해 좌우 여백을 자동으로 설정 */
+  margin: 50px auto; /* 가운데 정렬을 위해 좌우 여백을 자동으로 설정 */
   padding: 0 20px; /* 좌우 여백 설정 (조정 가능) */
 }
 
 /* 테이블 제목 스타일 */
-.table-container caption {
+.caption {
   font-size: 24px; /* 원하는 제목 폰트 크기 설정 */
   font-weight: bold; /* 제목 글꼴 굵게 설정 */
   margin-bottom: 20px; /* 테이블 아래 여백 추가 */
   margin-top: 40px;
+
+  text-align: center; /* 가로 방향 가운데 정렬 */
+display: flex; /* Flexbox 사용 */
+justify-content: center; /* 가로 방향 가운데 정렬 */
+left:50%
+
 }
 
 
@@ -151,7 +156,7 @@ tr:hover{
 }
 .menu4 {
 	color: rgba(0, 0, 0, 1);
-	width: 70px;
+	width: 200px;
 	height: 36px;
 	position: absolute;
 	left: 1334px;
@@ -437,7 +442,7 @@ li > img{
 }*/
 
 .slide_wrapper{
-	top: 250px;
+	top: 200px;
 	position: relative;
 	margin:0 auto;
 	height: 100%;
@@ -499,57 +504,7 @@ li > img{
    top:115px;
    
 }
-.menu4 { 
-   color:rgba(0, 0, 0, 1);
-   width:70px;
-   height:36px;
-   position:absolute;
-   left:558px;
-   top:161px;
-   text-align:left;
-   font-size:25px;
-   letter-spacing:0;
-   
-}
-.menu3 { 
-   color:rgba(0, 0, 0, 1);
-   width:70px;
-   height:36px;
-   position:absolute;
-   left:402px;
-   top:161px;
-   
-   text-align:left;
-   font-size:25px;
-   letter-spacing:0;
-   
-}
-.menu2 { 
-   color:rgba(0, 0, 0, 1);
-   width:70px;
-   height:36px;
-   position:absolute;
-   left:246px;
-   top:161px;
-   
-   text-align:left;
-   font-size:25px;
-   letter-spacing:0;
-   
-}
-.menu1 { 
-   color:rgba(0, 0, 0, 1);
-   width:70px;
-   height:36px;
-   position:absolute;
-   left:90px;
-   top:161px;
-   
-   text-align:left;
-   font-size:25px;
-   letter-spacing:0;
-   
-}
+
 
 .mainicon { 
    color:rgba(23.58367010951042, 96.68749898672104, 11.683072540909052, 1);
