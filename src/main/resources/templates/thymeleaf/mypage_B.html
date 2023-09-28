@@ -11,7 +11,7 @@
 <link rel="stylesheet" type="text/css" th:href="@{/../css/style.css}" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" type="text/css" th:href="@{/../css/board.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/../css/mypage.css}">
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 </head>
 
@@ -43,53 +43,18 @@
       </div>
       
       <!-- 여기부터 body에 추가할 코드 입력 -->
-<!--<div class="content">-->
-   <div class="table-container">
-          <table class="table">
-			<caption>레시피</caption>
-            <thead>
-               <tr>
-                    <th style="width: 50px;">번호</th>
-                  <th style="width: 300px;">제목</th>
-                  <th style="width: 100px;">작성자</th>
-                  <th style="width: 100px;">작성일</th>
-               </tr>
-            </thead>
-            <tbody>
-              <tr th:each="recipe : ${recipe}">
-               <td style=text-align:center; th:text="${recipe.recipe_id}"></td>
-               <td>
-                <a th:href="@{'/recipe/' + ${recipe.recipe_id}}">
-                    <span th:text="${recipe.title}"></span>
-                </a>
-            </td>
-            	<td style=text-align:center;>
-					<a th:href="@{'/userpage/' + ${recipe.nickname}}">
-	                <span th:text="${recipe.nickname}"></span>
-                </a>
-				</td>
-               <td style=text-align:center; >
-                <p th:if="${#temporals.format(recipe.created_date, 'yyyy-MM-dd') == #temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}"
-                   th:text="${#temporals.format(recipe.created_date, 'HH:mm')}"></p>
-                <p th:if="${#temporals.format(recipe.created_date, 'yyyy-MM-dd') != #temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}"
-                   th:text="${#temporals.format(recipe.created_date, 'yyyy.MM.dd')}"></p>
-            </td>
-              </tr>
-               
-            </tbody>    
-         </table>
-         <hr/>
-
-
-         
-   </div>
-   
+<div class="slide_wrapper">
+	<div class="menu-container">
+	  <span class="menu44"><a href="/mypage_L">My Like&Scrap</a></span>
+      <span class="menu33"><a href="/mypage_B">My Board</a></span>
+      <span class="menu22"><a href="/mypage_R">My Recipe</a></span>
+      <span class="menu11"><a href="/mypage">User Edit</a></span></div>
    <div class="table-container">
           <table class="table">
 			<caption>게시판</caption>
             <thead>
                <tr>
-                    <th style="width: 50px;">번호</th>
+                  <th style="width: 50px;">번호</th>
                   <th style="width: 300px;">제목</th>
                   <th style="width: 100px;">작성자</th>
                   <th style="width: 100px;">작성일</th>
@@ -113,18 +78,14 @@
                    th:text="${#temporals.format(board.created_date, 'HH:mm')}"></p>
                 <p th:if="${#temporals.format(board.created_date, 'yyyy-MM-dd') != #temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}"
                    th:text="${#temporals.format(board.created_date, 'yyyy.MM.dd')}"></p>
-            </td>
+            	</td>
               </tr>
-               
             </tbody>    
-         </table>
-         <hr/>
-
-
-         
+         </table>     
    </div>
-   </div>
-       <!--</div>-->
+   
+       </div>
+       </div>
    <div class="footer">
          <div class="footer_comment">@Yuhan University Group 3's Project</div>
    </div>

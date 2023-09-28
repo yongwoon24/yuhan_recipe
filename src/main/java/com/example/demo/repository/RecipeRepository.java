@@ -68,7 +68,7 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
 
 	List<Recipe> findByCategoryNameIn(List<String> categori);
 
-	List<Recipe> findByNickname(String nickname);
+	List<Recipe> findByNicknameOrderByCreateddateDesc(String nickname);
 
 	List<Recipe> findByRecipeIngredientsIngredientIngredientNameIn(List<String> ingredientNames);
 
