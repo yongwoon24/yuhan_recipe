@@ -349,8 +349,7 @@ public class RecipeController {
 			recipeRepository.incrementViewCount(recipe_id); // 조회수 업데이트
 			List<Recipe_Ingredient> recipeing = recipe.getRecipeIngredients();
 			List<Step> steps = recipe.getSteps();
-			System.out.println(recipeing.size()+"dsaaaaaaaadasdddddddddddddddddddddddddddasd");
-			System.out.println(recipeing.get(0).getIngredient().getIngredient_name()+"dsaaaaaaaadasdddddddddddddddddddddddddddasd");
+
 
 			String activity = "조회";
 			recipe.setRecipe_id(recipe_id);

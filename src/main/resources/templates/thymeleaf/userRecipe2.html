@@ -124,49 +124,77 @@
 							<span th:text="${ingredient.mensuration}" class="ingredient-mensuration"></span>
 						</div>
 					</div>
-				</div>
-				<div class="e17_1213_2">조리단계
-					<div class="step-grid">
-						<div th:each="steps : ${steps}">
-							<div th:if="${(steps.SContent != '')}" class="step-item1">
-							 <img src="/img/연두색화살표.jpg" class="carrot1">
-							 <span th:text="${steps.SContent}" class="Scontent"></span></div><br>
-							<img th:if="${(steps.Sphotopath != null)}"
-							th:src="@{${steps.Sphotopath}}" width="300px" height="300px"><br>
-							<img th:if="${(steps.Sphotopath == null)}"
-							src="/img/흰색.png" width="300px" height="300px"><br>
-							<div th:if="${(steps.Singtxt != '')}" class="step-item">
-							 <img src="/img/carrot.png" class="carrot">
-							 <span th:text="${steps.Singtxt}"></span></div><br>
-							 <div th:if="${(steps.Stooltxt != '')}" class="step-item">
-							 <img src="/img/냄비.png" class="carrot">
-							 <span th:text="${steps.Stooltxt}"></span></div><br>
-							 <div th:if="${(steps.Scontroltxt != '')}" class="step-item">
-							 <img src="/img/불.png" class="carrot">
-							 <span th:text="${steps.Scontroltxt}"></span></div><br>
-							 <div th:if="${(steps.Stip != '')}" class="step-item">
-							 <img src="/img/전구.png" class="carrot">
-							 <span th:text="${steps.Stip}"></span></div><br>	 
-					</div>
-						
+				조리단계
+					<div class="step_grid">
+						<div th:each="steps, status : ${steps}" class="step_item">
+							<div class="v18_2">
+								<div class="v18_3" th:if="${(steps.SContent != '')}">
+									<h3 th:text="${status.index + 1}" class="carrot1"></h3>
+									<h3 th:text="${steps.SContent}" class="Scontent"></h3>
+								</div>
+								<div class="v18_4">
+									<div class="v18_5">
+										<div th:if="${(steps.Singtxt != '')}">
+											<img src="/img/carrot.png" class="carrot">
+											<span th:text="${steps.Singtxt}"></span><br>
+										</div>
+										<div th:if="${(steps.Stooltxt != '')}">
+											<img src="/img/냄비.png" class="carrot">
+											<span th:text="${steps.Stooltxt}"></span><br>
+										</div>
+										<div th:if="${(steps.Scontroltxt != '')}">
+											<img src="/img/불.png" class="carrot">
+											<span th:text="${steps.Scontroltxt}"></span><br>
+										</div>
+										<div th:if="${(steps.Stip != '')}">
+											<img src="/img/전구.png" class="carrot">
+											<span th:text="${steps.Stip}"></span><br>
+										</div>
+									</div>
+								</div>
+								<div class="v18_6">
+									<div class="v18_7"><img th:if="${(steps.Sphotopath != null)}"
+											th:src="@{${steps.Sphotopath}}" width="300px" height="300px"><br>
+										<img th:if="${(steps.Sphotopath == null)}" src="/img/흰색.png" width="300px"
+											height="300px"><br>
+									</div>
+								</div>
 							</div>
 						</div>
-							
-							
+					</div>
+					작성자 정보
+					<div class="step_item1">
+						<div class=e21_2>
+							<div class=e21_3><span class="e21_4">레시피 작성자</span><span class="e21_5">About the
+									writer</span></div>
+							<div class=e21_6>
+								<div class=e21_7>
+									<div class="e21_8"></div>
+								</div>
+								<div class=e21_9><span class="e21_10" th:text="${recipe.nickname}"></span>
+									<div class=e21_11><span class="e21_12">손쉽게 할 수 있는 요리를 올리는 동이입니다</span></div>
+								</div>
+							</div>
 						</div>
 					</div>
-				</div>
+					댓글
+				
+
+
 			</div>
 		</div>
+	</div>
+	</div>
+	</div>
 
 
-		<script th:src="@{/../js/main.js}"></script>
-		<script th:inline="javascript">
-			var errorMessage = /*[[${errorMessage}]]*/ "";
-			if (errorMessage) {
-				alert(errorMessage);
-			}
-		</script>
+	<script th:src="@{/../js/main.js}"></script>
+	<script th:inline="javascript">
+		var errorMessage = /*[[${errorMessage}]]*/ "";
+		if (errorMessage) {
+			alert(errorMessage);
+		}
+	</script>
 
 	</div>
 	<div class="footer">
