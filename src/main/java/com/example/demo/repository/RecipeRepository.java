@@ -91,4 +91,9 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
 
 	List<Recipe> findByCategoryNameInOrderByCreateddateDesc(List<String> categories);
 	List<Recipe> findByCategoryNameInOrderByViewcountDesc(List<String> categories);
+	
+	@Transactional
+	@Modifying
+	@Query("SELECT l.recipe FROM Love l WHERE l.activity = '좋아요' AND l.user.user_id = :userId")
+    List<Recipe> findRecipesLikedByUser(String userId);
 }
