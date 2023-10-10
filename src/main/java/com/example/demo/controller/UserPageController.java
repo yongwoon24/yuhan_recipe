@@ -33,7 +33,7 @@ public class UserPageController {
 	@GetMapping("/userpage/{nickname}")
 	public String showUserPage(Model model, @PathVariable String nickname, @RequestParam(required = false, defaultValue = "0") int page) {
 		List<Board> board = boardRepository.findByNicknameOrderByPostIdDesc(nickname);
-		List<Recipe> recipe = recipeRepository.findByNickname(nickname);
+		List<Recipe> recipe = recipeRepository.findByNicknameOrderByCreateddateDesc(nickname);
 	    model.addAttribute("board", board);
 	    model.addAttribute("recipe", recipe);
 	    
