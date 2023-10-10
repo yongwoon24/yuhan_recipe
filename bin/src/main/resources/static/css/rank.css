@@ -365,6 +365,7 @@ select {
 	top: -2px;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 .pagination{
 	text-align: center;
 	position: relative;
@@ -372,6 +373,8 @@ select {
 	justify-content: center;
 }
 =======
+=======
+>>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
 .pagination {
     display: flex;
     justify-content: center;
@@ -391,4 +394,7 @@ select {
     color: #fff;
     border-radius: 50%;
 }
+<<<<<<< HEAD
 >>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
+=======
+>>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
