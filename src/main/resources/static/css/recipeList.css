@@ -86,56 +86,57 @@ li > img{
    top:115px;
    
 }
-.menu4 { 
-   color:rgba(0, 0, 0, 1);
-   width:70px;
-   height:36px;
-   position:absolute;
-   left:558px;
-   top:161px;
-   text-align:left;
-   font-size:25px;
-   letter-spacing:0;
-   
+.menu4 {
+	color: rgba(0, 0, 0, 1);
+	width: 200px;
+	height: 36px;
+	position: absolute;
+	left: 1334px;
+	top: 161px;
+	text-align: left;
+	font-size: 25px;
+	letter-spacing: 0;
+
 }
-.menu3 { 
-   color:rgba(0, 0, 0, 1);
-   width:70px;
-   height:36px;
-   position:absolute;
-   left:402px;
-   top:161px;
-   
-   text-align:left;
-   font-size:25px;
-   letter-spacing:0;
-   
+
+.menu3 {
+	color: rgba(0, 0, 0, 1);
+	width: 70px;
+	height: 36px;
+	position: absolute;
+	left: 1178px;
+	top: 161px;
+
+	text-align: left;
+	font-size: 25px;
+	letter-spacing: 0;
+
 }
-.menu2 { 
-   color:rgba(0, 0, 0, 1);
-   width:70px;
-   height:36px;
-   position:absolute;
-   left:246px;
-   top:161px;
-   
-   text-align:left;
-   font-size:25px;
-   letter-spacing:0;
-   
+
+.menu2 {
+	color: rgba(0, 0, 0, 1);
+	width: 70px;
+	height: 36px;
+	position: absolute;
+	left: 1022px;
+	top: 161px;
+
+	text-align: left;
+	font-size: 25px;
+	letter-spacing: 0;
+
 }
-.menu1 { 
-   color:rgba(0, 0, 0, 1);
-   width:70px;
-   height:36px;
-   position:absolute;
-   left:90px;
-   top:161px;
-   
-   text-align:left;
-   font-size:25px;
-   letter-spacing:0;
-   
+
+.menu1 {
+	color: rgba(0, 0, 0, 1);
+	width: 70px;
+	height: 36px;
+	position: absolute;
+	left: 846px;
+	top: 161px;
+	text-align: left;
+	font-size: 25px;
+	letter-spacing: 0;
 }
 
 .mainicon { 
@@ -169,6 +170,20 @@ li > img{
    height:55px;
    position:absolute;
    right: 3%;
+   top:30px;
+   font-family:Font Awesome 5 Free;
+   text-align:center;
+   font-size:40px;
+   letter-spacing:0;
+   
+}
+
+.write-icon{
+   color:rgba(0, 0, 0, 1);
+   width:64px;
+   height:55px;
+   position:absolute;
+   right:9%;
    top:30px;
    font-family:Font Awesome 5 Free;
    text-align:center;
@@ -436,4 +451,30 @@ li > img{
 .ranking > span{
 	position: relative;
 	top: -2px;
+}
+
+/* Pagination styles */
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
+
+.pagination a {
+    padding: 5px 10px;
+    margin: 0 5px;
+    text-decoration: none;
+    color: rgb(38, 36, 36);
+}
+
+.pagination a.active {
+    background-color: rgb(38, 36, 36);
+    color: #fff;
+    border-radius: 50%;
 }
