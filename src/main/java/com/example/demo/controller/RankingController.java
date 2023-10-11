@@ -58,6 +58,9 @@ public class RankingController {
 
         int startIndex = page * pageSize;
         int endIndex = Math.min(startIndex + pageSize, topLove.size());
+        //System.out.println(endIndex);
+        //System.out.println(startIndex);
+        //System.out.println(page);
 
         List<Recipe> pagedRecipes = topLove.subList(startIndex, endIndex);
         model.addAttribute("topLove", pagedRecipes);

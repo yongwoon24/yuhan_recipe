@@ -38,44 +38,42 @@ public class BoardController {
 		    @RequestParam(required = false, defaultValue = "title") String searchBy) {
 	int pageSize = 10; // 페이지당 레시피 수  
 	
-	// 게시글 목록을 가져와서 모델에 추가
-   List<Board> boardList = boardRepository.findAll(Sort.by(Sort.Order.desc("postId")));
-      model.addAttribute("boardList", boardList);
-      
-      if (keyword != null && !keyword.isEmpty()) {
-          // 검색어와 검색 조건에 따라 게시물 검색
-          if ("title".equals(searchBy)) {
-              boardList = boardRepository.findByTitleContaining(keyword, Sort.by(Sort.Order.desc("postId")));
-          } else if ("nickname".equals(searchBy)) {
-              boardList = boardRepository.findByNicknameContaining(keyword, Sort.by(Sort.Order.desc("postId")));
-          } else {
-              boardList = boardRepository.findAll(Sort.by(Sort.Order.desc("postId")));
-          }
-      } else {
-          boardList = boardRepository.findAll(Sort.by(Sort.Order.desc("postId")));
-      }
-      
-      int startIndex = page * pageSize;
-      int endIndex = Math.min(startIndex + pageSize, boardList.size());
+	List<Board> boardList;
 
-      List<Board> pagedBoards = boardList.subList(startIndex, endIndex);
-      model.addAttribute("boardList", pagedBoards);
-      model.addAttribute("currentPage", page);
+    if (keyword != null && !keyword.isEmpty()) {
+        // 검색어와 검색 조건에 따라 게시물 검색
+        if ("title".equals(searchBy)) {
+            boardList = boardRepository.findByTitleContaining(keyword, Sort.by(Sort.Order.desc("postId")));
+        } else if ("nickname".equals(searchBy)) {
+            boardList = boardRepository.findByNicknameContaining(keyword, Sort.by(Sort.Order.desc("postId")));
+        } else {
+            boardList = boardRepository.findAll(Sort.by(Sort.Order.desc("postId")));
+        }
+    } else {
+        boardList = boardRepository.findAll(Sort.by(Sort.Order.desc("postId")));
+    }
 
-      // 전체 페이지 수 계산
-      int totalPageCount = (int) Math.ceil((double) boardList.size() / pageSize);
-      model.addAttribute("totalPageCount", totalPageCount);
+    int startIndex = page * pageSize;
+    int endIndex = Math.min(startIndex + pageSize, boardList.size());
 
-      // 첫 페이지 번호와 끝 페이지 번호 계산
-      int firstPage = 0;
-      int lastPage = totalPageCount - 1;
-      model.addAttribute("firstPage", firstPage);
-      model.addAttribute("lastPage", lastPage);
+    List<Board> pagedBoards = boardList.subList(startIndex, endIndex);
+    model.addAttribute("boardList", pagedBoards);
+    model.addAttribute("currentPage", page);
+    model.addAttribute("searchBy", searchBy); // 검색 조건 추가
+    model.addAttribute("keyword", keyword); // 검색어 추가
 
-      
-      
-       return "board"; // board.html 파일을 보여줄 뷰 이름
-   }
+    // 전체 페이지 수 계산
+    int totalPageCount = (int) Math.ceil((double) boardList.size() / pageSize);
+    model.addAttribute("totalPageCount", totalPageCount);
+
+    // 첫 페이지 번호와 끝 페이지 번호 계산
+    int firstPage = 0;
+    int lastPage = totalPageCount - 1;
+    model.addAttribute("firstPage", firstPage);
+    model.addAttribute("lastPage", lastPage);
+
+    return "board"; // board.html 파일을 보여줄 뷰 이름
+}
    
    @GetMapping("/createboard")
     public String showCreateBoardPage(HttpSession session, RedirectAttributes redirectAttributes) {

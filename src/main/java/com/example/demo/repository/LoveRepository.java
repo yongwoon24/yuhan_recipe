@@ -16,8 +16,11 @@ public interface LoveRepository extends JpaRepository<Love, Long>{
     List<Love> findByOrderByActivityId();
     
     
-    @Query("SELECT COUNT(l) FROM Love l WHERE l.recipe.recipe_id = :recipe_id")
+    @Query("SELECT COUNT(l) FROM Love l WHERE l.recipe.recipe_id = :recipe_id AND l.activity = '좋아요'")
     int countLovesByRecipeId(@Param("recipe_id") int recipe_id);
+    
+    @Query("SELECT COUNT(l) FROM Love l WHERE l.recipe.recipe_id = :recipe_id AND l.activity = '좋아요' AND l.user = :user")
+    int countLovesByRecipeId1(@Param("recipe_id") int recipe_id, User user);
     
     @Query("SELECT COUNT(l) FROM Love l WHERE l.recipe.recipe_id = :recipe_id AND l.date = :date")
     int countDailyLikesByRecipeIdAndDate(@Param("recipe_id") int recipe_id, @Param("date") LocalDate date);

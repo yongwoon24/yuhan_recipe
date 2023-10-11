@@ -1,39 +1,62 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Recipe_Ingredient {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int r_id;
-	private int recipe_id;
-	private int ingredient_id;
 	
+	@ManyToOne
+	@JoinColumn(name="recipe_id")
+	Recipe recipe;
+	
+	@ManyToOne
+	@JoinColumn(name="ingredient_id")
+	Ingredient ingredient;
+	
+	private String mensuration;
+	
+	public String getMensuration() {
+		return mensuration;
+	}
+	public void setMensuration(String mensuration) {
+		this.mensuration = mensuration;
+	}
+	public Recipe getRecipe() {
+		return recipe;
+	}
+	public void setRecipe(Recipe recipe) {
+		this.recipe = recipe;
+	}
+	public Ingredient getIngredient() {
+		return ingredient;
+	}
+	public void setIngredient(Ingredient ingredient) {
+		this.ingredient = ingredient;
+	}
 	public int getR_id() {
 		return r_id;
 	}
 	public void setR_id(int r_id) {
 		this.r_id = r_id;
 	}
-	public int getRecipe_id() {
-		return recipe_id;
-	}
-	public void setRecipe_id(int recipe_id) {
-		this.recipe_id = recipe_id;
-	}
-	public int getIngredient_id() {
-		return ingredient_id;
-	}
-	public void setIngredient_id(int ingredient_id) {
-		this.ingredient_id = ingredient_id;
-	}
-	
 	@Override
 	public String toString() {
-		return "RecipeIngredient [r_id=" + r_id + ", recipe_id=" + recipe_id + ", ingredient_id=" + ingredient_id + "]";
+		return "Recipe_Ingredient [r_id=" + r_id + ", recipe=" + recipe + ", ingredient=" + ingredient
+				+ ", mensuration=" + mensuration + "]";
 	}
+
 	
+
 	
 
 }

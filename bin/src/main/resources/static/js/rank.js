@@ -51,6 +51,10 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> c966e8d82e00050f2714d5d828d13bec97f02bd9
 
 // 페이지 변수 가져오기
 var paginationDiv = document.getElementById(".pagination");
@@ -93,5 +97,9 @@ function generatePagination() {
 // 페이지 번호 생성 함수 호출
 generatePagination();
 
+<<<<<<< HEAD
 =======
 >>>>>>> 48a1b7e7cdce8bc0fd9cb3c27b5ec6786e9f8be9
+=======
+>>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
+>>>>>>> c966e8d82e00050f2714d5d828d13bec97f02bd9

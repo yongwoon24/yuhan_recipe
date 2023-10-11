@@ -365,6 +365,16 @@ select {
 	top: -2px;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+.pagination{
+	text-align: center;
+	position: relative;
+	font-size: 100px;
+	justify-content: center;
+}
+=======
+>>>>>>> c966e8d82e00050f2714d5d828d13bec97f02bd9
 .pagination {
     display: flex;
     justify-content: center;
@@ -384,6 +394,7 @@ select {
     color: #fff;
     border-radius: 50%;
 }
+<<<<<<< HEAD
 =======
 .pagination{
 	text-align: center;
@@ -392,3 +403,6 @@ select {
 	justify-content: center;
 }
 >>>>>>> 48a1b7e7cdce8bc0fd9cb3c27b5ec6786e9f8be9
+=======
+>>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
+>>>>>>> c966e8d82e00050f2714d5d828d13bec97f02bd9

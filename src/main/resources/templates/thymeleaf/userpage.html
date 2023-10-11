@@ -19,12 +19,13 @@
 <div class="body_wrapper">
    <div class="body_content">
       <div class="menubar"></div>
-      <span class="menu4"><a href="/recipe">분류</a></span>
-      <span class="menu3"><a href="/rank">랭크</a></span>
+      <span class="menu4"><a href="/mypage">마이페이지</a></span>
+      <span class="menu3"><a href="/recipe">분류</a></span>
       <span class="menu2"><a href="/board">게시판</a></span>
       <span class="menu1"><a href="/rank">랭킹</a></span>
       <span><a class="mainicon" href="/">모두의레시피</a></span>
       <!-- 마이페이지 주소 입력 --> 
+      <div class="write-icon"><a href="/createRecipe"><i class="fas fa-pencil-alt"></i></a></div>
       <div class="usericon"><a href="/mypage"><i class="fa-solid fa-user"></i></a></div>
       <!-- 로그아웃 주소 입력 --> 
       <div class="logout_icon"><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></div>
@@ -43,8 +44,47 @@
       
       <!-- 여기부터 body에 추가할 코드 입력 -->
 <!--<div class="content">-->
+	<div class="table-container">
+          <table class="table">
+			<caption>레시피</caption>
+            <thead>
+               <tr>
+                    <th style="width: 50px;">번호</th>
+                  <th style="width: 300px;">제목</th>
+                  <th style="width: 100px;">작성자</th>
+                  <th style="width: 100px;">작성일</th>
+               </tr>
+            </thead>
+            <tbody>
+              <tr th:each="recipe : ${recipe}">
+               <td style=text-align:center; th:text="${recipe.recipe_id}"></td>
+               <td>
+                <a th:href="@{'/recipe/' + ${recipe.recipe_id}}">
+                    <span th:text="${recipe.title}"></span>
+                </a>
+            </td>
+            	<td style=text-align:center;>
+					<a th:href="@{'/userpage/' + ${recipe.nickname}}">
+	                <span th:text="${recipe.nickname}"></span>
+                </a>
+				</td>
+               <td style=text-align:center; >
+                <p th:if="${#temporals.format(recipe.created_date, 'yyyy-MM-dd') == #temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}"
+                   th:text="${#temporals.format(recipe.created_date, 'HH:mm')}"></p>
+                <p th:if="${#temporals.format(recipe.created_date, 'yyyy-MM-dd') != #temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}"
+                   th:text="${#temporals.format(recipe.created_date, 'yyyy.MM.dd')}"></p>
+            </td>
+              </tr>
+               
+            </tbody>    
+         </table>
+         <hr/>
+        
+   </div>
+	
    <div class="table-container">
           <table class="table">
+			<caption>게시판</caption>
             <thead>
                <tr>
                     <th style="width: 50px;">번호</th>
@@ -70,15 +110,13 @@
                 <p th:if="${#temporals.format(board.created_date, 'yyyy-MM-dd') == #temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}"
                    th:text="${#temporals.format(board.created_date, 'HH:mm')}"></p>
                 <p th:if="${#temporals.format(board.created_date, 'yyyy-MM-dd') != #temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}"
-                   th:text="${#temporals.format(board.created_date, 'MM-dd')}"></p>
+                   th:text="${#temporals.format(board.created_date, 'yyyy.MM.dd')}"></p>
             </td>
               </tr>
                
             </tbody>    
          </table>
          <hr/>
-
-
          
    </div>
    </div>

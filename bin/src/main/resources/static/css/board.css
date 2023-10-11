@@ -17,10 +17,17 @@ table {
 }
 th{
 <<<<<<< HEAD
+<<<<<<< HEAD
    padding: 6px 15px;
 =======
 	padding: 6px 15px;
 >>>>>>> 48a1b7e7cdce8bc0fd9cb3c27b5ec6786e9f8be9
+=======
+	padding: 6px 15px;
+=======
+   padding: 6px 15px;
+>>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
+>>>>>>> c966e8d82e00050f2714d5d828d13bec97f02bd9
 }
 td {
   padding: 0 10px;
@@ -113,6 +120,11 @@ a.button:hover {
   background-color: #333;
   color: #fff;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+}
+=======
+>>>>>>> c966e8d82e00050f2714d5d828d13bec97f02bd9
 }
 /* 검색 바 스타일 */
 .searchbar { 
@@ -190,6 +202,10 @@ a.button:hover {
 }
 
 /* 나머지 검색 바 스타일 (검색어 입력 필드, 검색 버튼)는 이전과 동일하게 유지 */
+<<<<<<< HEAD
 =======
 }
 >>>>>>> 48a1b7e7cdce8bc0fd9cb3c27b5ec6786e9f8be9
+=======
+>>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
+>>>>>>> c966e8d82e00050f2714d5d828d13bec97f02bd9

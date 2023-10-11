@@ -19,12 +19,13 @@
 <div class="body_wrapper">
    <div class="body_content">
       <div class="menubar"></div>
-      <span class="menu4"><a href="recipe">분류</a></span>
-      <span class="menu3"><a href="rank">랭크</a></span>
-      <span class="menu2"><a href="board">게시판</a></span>
-      <span class="menu1"><a href="rank">랭킹</a></span>
+      <span class="menu4"><a href="/mypage">마이페이지</a></span>
+      <span class="menu3"><a href="/recipe">분류</a></span>
+      <span class="menu2"><a href="/board">게시판</a></span>
+      <span class="menu1"><a href="/rank">랭킹</a></span>
       <span><a class="mainicon" href="/">모두의레시피</a></span>
       <!-- 마이페이지 주소 입력 --> 
+      <div class="write-icon"><a href="/createRecipe"><i class="fas fa-pencil-alt"></i></a></div>
       <div class="usericon"><a href="/mypage"><i class="fa-solid fa-user"></i></a></div>
       <!-- 로그아웃 주소 입력 --> 
       <div class="logout_icon"><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></div>
@@ -61,11 +62,11 @@
                     <span th:text="${board.title}"></span>
                 </a>
             </td>
-            	<td style=text-align:center;>
-					<a th:href="@{'/userpage/' + ${board.nickname}}">
-	                <span th:text="${board.nickname}"></span>
+               <td style=text-align:center;>
+               <a th:href="@{'/userpage/' + ${board.nickname}}">
+                   <span th:text="${board.nickname}"></span>
                 </a>
-				</td>
+            </td>
                <td style=text-align:center; >
                 <p th:if="${#temporals.format(board.created_date, 'yyyy-MM-dd') == #temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}"
                    th:text="${#temporals.format(board.created_date, 'HH:mm')}"></p>
@@ -105,12 +106,12 @@
          </div>
          <div class="text-center">
             <div class="pagination">
-    <a th:if="${currentPage > firstPage}" th:href="@{|/board?page=${currentPage - 1}|}">&laquo; 이전</a>
+    <a th:if="${currentPage > firstPage}" th:href="@{|/board?page=${currentPage - 1}&searchBy=${searchBy}&keyword=${keyword}|}">&laquo; 이전</a>
     <span th:each="pageNumber : ${#numbers.sequence(currentPage - 5, currentPage + 4)}" th:if="${pageNumber >= firstPage && pageNumber <= lastPage}">
-        <a th:href="@{|/board?page=${pageNumber}|}"
-           th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber + 1}"></a>
-    </span>
-    <a th:if="${currentPage < lastPage}" th:href="@{|/board?page=${currentPage + 1}|}">다음 &raquo;</a>
+	    <a th:href="@{|/board?page=${pageNumber}&searchBy=${searchBy}&keyword=${keyword == null ? '' : keyword}|}"
+	       th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber + 1}"></a>
+	</span>
+    <a th:if="${currentPage < lastPage}" th:href="@{|/board?page=${currentPage + 1}&searchBy=${searchBy}&keyword=${keyword == null ? '' : keyword}|}">&raquo; 다음</a>
 </div>
 <script th:src="@{/../js/rank.js}"></script>
          </div>
@@ -122,11 +123,11 @@
    </div>
 </div>
 
-	<script th:inline="javascript">
-	        var boarddeleteMessage = /*[[${boarddeleteMessage}]]*/ "";
-	        if (boarddeleteMessage) {
-	            alert(boarddeleteMessage);
-	        }
+   <script th:inline="javascript">
+           var boarddeleteMessage = /*[[${boarddeleteMessage}]]*/ "";
+           if (boarddeleteMessage) {
+               alert(boarddeleteMessage);
+           }
     </script>
    
 </body>
