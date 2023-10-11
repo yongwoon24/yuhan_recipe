@@ -57,8 +57,9 @@
 			            <option value="피크닉">피크닉용</option>
 			            <option value="가정">가정용</option>
 			            <option value="디저트">디저트용</option>
-			            <option value="야식안주">야식/안주용</option>
-			        </select>
+			            <option value="야식/안주">야식/안주용</option> 
+			        </select> &nbsp;&nbsp;
+			        <label for="categoryName">기간 선택:</label>
 			        <select id="period" name="period">
 			            <option value="">전체</option>
 			            <option value="d">일간</option>
@@ -76,7 +77,7 @@
 						<div class="ranking">
                 			<span class="rank-number" th:text="${(currentPage * 20) + recipeIndex.index + 1}+'위'"></span>
             			</div>
-				        <a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}"><img th:src="@{/img/__${recipe.main_photo}__.jpg}">
+				        <a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}"><img th:src="@{${recipe.main_photo_path}}">
 				        <span th:text="${recipe.title}">asd</span></a>
 				        <div class="likes">
 				            <i class="fas fa-heart"></i>

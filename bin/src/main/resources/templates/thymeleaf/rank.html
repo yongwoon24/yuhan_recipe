@@ -68,6 +68,7 @@
 
 			    </form>
 <<<<<<< HEAD
+<<<<<<< HEAD
 			    <div class="option-buttons">
 				    <table class="whole-table">
 				        <tr>
@@ -89,6 +90,9 @@
 =======
 			    
 >>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
+=======
+			    
+>>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
 			</div>
 			<ul class="img_slide">
 			    <li class="recipe-item" th:each="recipe, recipeIndex : ${topLove}">
@@ -108,11 +112,14 @@
 			</ul>
 			<div class="pagination">
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    	<a th:if="${currentPage > 0}" th:href="@{|/rank?page=${currentPage - 1}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}">&laquo;</a>
 		    	<!--<span th:text="${currentPage + 1}"></span>-->
 				<a th:if="${topLove.size() > (currentPage * 20)}" th:href="@{|/rank?page=${currentPage + 1}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}">&raquo;</a>
 			</div>
 =======
+=======
+>>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
     <a th:if="${currentPage > firstPage}" th:href="@{|/rank?page=${currentPage - 1}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}">&laquo; 이전</a>
     <span th:each="pageNumber : ${#numbers.sequence(currentPage - 5, currentPage + 4)}" th:if="${pageNumber >= firstPage && pageNumber <= lastPage}">
         <a th:href="@{|/rank?page=${pageNumber}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}"
@@ -123,7 +130,10 @@
 
 
 
+<<<<<<< HEAD
 >>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
+=======
+>>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
 			
 			
 						
