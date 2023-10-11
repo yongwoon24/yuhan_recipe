@@ -68,14 +68,14 @@
 				<!-- 페이지네이션을 추가한 부분 -->
 
 				<div class="pagination">
-					<a th:if="${currentPage > firstPage}" th:href="@{|/mypage_R?page=${currentPage - 1}|}">&laquo;
+					<a th:if="${currentPage > firstPage}" th:href="@{|/mypage_L?page=${currentPage - 1}|}">&laquo;
 						이전</a>
 					<span th:each="pageNumber : ${#numbers.sequence(1, totalPages)}"
 						th:if="${pageNumber >= firstPage && pageNumber <= lastPage}">
-						<a th:href="@{|/mypage_R?page=${pageNumber}|}"
+						<a th:href="@{|/mypage_L?page=${pageNumber}|}"
 							th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber}"></a>
 					</span>
-					<a th:if="${hasNextPage}" th:href="@{|/mypage_R?page=${currentPage + 1}|}">다음 &raquo;</a>
+					<a th:if="${hasNextPage}" th:href="@{|/mypage_L?page=${currentPage + 1}|}">다음 &raquo;</a>
 				</div>
        </div>
        </div>

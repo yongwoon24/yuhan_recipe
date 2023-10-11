@@ -53,6 +53,8 @@ public class UserController {
             String verificationToken = uuid.toString();
 
             user.setVerificationToken(verificationToken);
+            String photo = "/img/기본유저1.jpg";
+            user.setUserphotopath(photo);
             userRepository.save(user);
 
             // 인증 링크 생성

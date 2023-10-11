@@ -28,12 +28,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.demo.entity.Love;
 import com.example.demo.entity.Recipe;
 import com.example.demo.entity.Recipe_Ingredient;
+import com.example.demo.entity.Scrap;
 import com.example.demo.entity.Step;
 import com.example.demo.entity.User;
 
 import com.example.demo.repository.LoveRepository;
 import com.example.demo.repository.RecipeIngredientRepository;
 import com.example.demo.repository.RecipeRepository;
+import com.example.demo.repository.ScrapRepository;
+import com.example.demo.repository.UserRepository;
 import com.example.demo.service.LoveService;
 import com.example.demo.service.RecipeService;
 
@@ -54,6 +57,11 @@ public class RecipeController {
 	private LoveService loveservice;
 	@Autowired
 	private RecipeIngredientRepository recipeingredientrepository;
+	@Autowired
+	private UserRepository userrepository;
+	@Autowired
+	private ScrapRepository scraprepository;
+	
 	
 	List<Recipe> recipes1;
 	private int likesCount = 0;
@@ -318,6 +326,46 @@ public class RecipeController {
 
 		return "redirect:/recipe/" + recipe_id;
 	}
+	
+	@PostMapping("/scap")
+	public String Scap(@RequestParam int recipe_id, HttpSession session, HttpServletResponse response,
+			RedirectAttributes redirectAttributes) {
+		try {
+			 
+			Recipe recipe = new Recipe();
+			recipe.setRecipe_id(recipe_id);
+
+			User user = new User();
+			String loggedInUserId = (String) session.getAttribute("loggedInUserId");
+			user.setUser_id(loggedInUserId);
+
+			// 사용자가 이미 스크랩를 눌렀는지 확인
+			boolean userAlreadyLiked = checkIfUserscapRecipe(user, recipe, session);
+
+			if (!userAlreadyLiked) {
+				Scrap scrap = new Scrap();
+				scrap.setUser(user);
+				scrap.setRecipe(recipe);
+				//love.setActivity(activity);
+
+				scraprepository.save(scrap);
+
+				// 사용자에게 쿠키 설정 (또는 세션 변수 설정)
+				Cookie likeCookie = new Cookie("liked_recipe_" + recipe_id, "true");
+				likeCookie.setMaxAge(60 * 60 * 24 * 30); // 쿠키의 유효 기간 설정 (예: 30일)
+				response.addCookie(likeCookie);
+			} else {
+				// 이미 좋아요를 눌렀음을 사용자에게 알릴 수 있습니다.
+				redirectAttributes.addFlashAttribute("errorMessage", "이미 스크랩을 하셨습니다");
+			}
+		} catch (Exception e) {
+			// 예외가 발생하면 여기서 처리합니다.
+			// 예를 들어, 데이터베이스 저장 중에 예외가 발생한 경우 사용자에게 알릴 수 있습니다.
+			redirectAttributes.addFlashAttribute("errorMessage", "로그인을 해주세요");
+		}
+
+		return "redirect:/recipe/" + recipe_id;
+	}
 
 	// 사용자가 이미 좋아요를 눌렀는지 확인하는 메서드
 	private boolean checkIfUserLikedRecipe(User user, Recipe recipe, HttpSession session) {
@@ -331,6 +379,19 @@ public class RecipeController {
 			return false;
 		}
 	}
+	
+	// 사용자가 이미 스크랩를 눌렀는지 확인하는 메서드
+		private boolean checkIfUserscapRecipe(User user, Recipe recipe, HttpSession session) {
+			// 여기에서 사용자와 레시피에 대한 좋아요 기록을 조회하여 확인합니다.
+			int n = scraprepository.countscrapByRecipeId(recipe.getRecipe_id(), user.getUser_id());
+			if (n > 0) {
+				return true;
+			}
+			// 이미 좋아요를 누른 경우 true를 반환하고, 그렇지 않으면 false를 반환합니다.
+			else {
+				return false;
+			}
+		}
 
 	@PostMapping("/increase_likes")
 	@ResponseBody
@@ -350,12 +411,16 @@ public class RecipeController {
 			List<Recipe_Ingredient> recipeing = recipe.getRecipeIngredients();
 			List<Step> steps = recipe.getSteps();
 
-
+			
 			String activity = "조회";
 			recipe.setRecipe_id(recipe_id);
 
 			User user = new User();
 			String loggedInUserId = (String) session.getAttribute("loggedInUserId");
+			String loggedInUserNickname = (String) session.getAttribute("loggedInUserNickname");
+			String nickname = recipe.getNickname();
+			String photo = userrepository.findbynickname(nickname).getUserphotopath();
+			String pr = userrepository.findbynickname(nickname).getUserpr();
 			if (loggedInUserId == null) {
 				// 사용자가 로그인하지 않은 경우 로그인 페이지로 리다이렉트하거나 다른 처리를 수행합니다.
 				user.setUser_id("guest");
@@ -366,7 +431,8 @@ public class RecipeController {
 				love.setActivity(activity);
 
 				//loveservice.saveLove(love);
-				
+				model.addAttribute("pr",pr);
+				model.addAttribute("photo",photo);
 				model.addAttribute("recipeings",recipeing);
 				model.addAttribute("steps",steps);
 				model.addAttribute("recipe", recipe);
@@ -374,7 +440,7 @@ public class RecipeController {
 			} else {
 				
 				user.setUser_id(loggedInUserId);
-
+				
 				Love love = new Love();
 				love.setUser(user);
 				love.setRecipe(recipe);
@@ -382,6 +448,8 @@ public class RecipeController {
 
 				loveservice.saveLove(love);
 				
+				model.addAttribute("pr",pr);
+				model.addAttribute("photo",photo);
 				model.addAttribute("recipeings",recipeing);
 				model.addAttribute("steps",steps);
 				model.addAttribute("recipe", recipe);

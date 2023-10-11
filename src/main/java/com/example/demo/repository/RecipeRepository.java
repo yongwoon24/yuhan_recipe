@@ -96,4 +96,9 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
 	@Modifying
 	@Query("SELECT l.recipe FROM Love l WHERE l.activity = '좋아요' AND l.user.user_id = :userId")
     List<Recipe> findRecipesLikedByUser(String userId);
+	
+	@Transactional
+	@Modifying
+	@Query("SELECT l.recipe FROM Scrap l WHERE l.user.user_id = :userId")
+    List<Recipe> findRecipesScrapByUser(String userId);
 }
