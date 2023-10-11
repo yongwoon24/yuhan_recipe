@@ -34,6 +34,7 @@ public class MyPageController {
 		 List<Recipe> recipe = recipeRepository.findByNicknameOrderByCreateddateDesc(loggedInNickname);
 		 model.addAttribute("board", board);
 		 model.addAttribute("recipe", recipe);
+		 model.addAttribute("recipe", recipe);
 	       if (loggedInNickname != null) {
 	          return "mypage_U"; // mypage.html 파일을 보여줄 뷰 이름
 	       }
