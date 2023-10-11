@@ -25,6 +25,16 @@ left:50%
     position: relative;
 }
 
+.preview {
+	max-width: 50px;
+	max-height: 50px;
+}
+
+.preview1{
+	max-width: 50px;
+	max-height: 50px;
+}
+
 .recipe-item {
     display: flex;
     flex-direction: column;

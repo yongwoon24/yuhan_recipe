@@ -20,7 +20,10 @@ public interface UserRepository extends JpaRepository<User, String> {
    
    User findByVerificationToken(String verificationToken);
    User findByEmail(String email);
-   //User findByUser_id(String user_id);
+   
+   @Query(value = "SELECT * FROM user WHERE nickname = :nickname ", nativeQuery = true)
+   User findbynickname(String nickname);
+   //User findByUserid(String user_id);
   
    
 

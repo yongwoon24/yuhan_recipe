@@ -2,23 +2,15 @@ package com.example.demo.service;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.function.Function;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuery;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,6 +18,7 @@ import com.example.demo.entity.Ingredient;
 import com.example.demo.entity.Recipe;
 import com.example.demo.entity.Recipe_Ingredient;
 import com.example.demo.entity.Step;
+import com.example.demo.entity.User;
 import com.example.demo.repository.IngredientRepository;
 import com.example.demo.repository.RecipeIngredientRepository;
 import com.example.demo.repository.RecipeRepository;
@@ -148,6 +141,16 @@ public class RecipeService {
 		// reciperepository.save(recipe);
 	}
 	
+	public void userwrite(User user, MultipartFile file) throws Exception {
+		String proijectpath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\img";
+		UUID uuid = UUID.randomUUID();
+		String fileName = uuid + "_" + file.getOriginalFilename();
+		File savefile = new File(proijectpath, fileName);
+		file.transferTo(savefile);
+		user.setUserphotopath("/img/" + fileName);
+		
+		// reciperepository.save(recipe);
+	}
 	
 	public void stepwrite(Recipe recipe, MultipartFile file) throws Exception {
 		String proijectpath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\img";
