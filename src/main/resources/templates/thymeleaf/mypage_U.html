@@ -61,7 +61,7 @@
         
         <br>
         <div id="preview" name="preview" class="preview" style="width: 100px;height: 100px;">
-            <img th:src="@{${photo}}" name="preview1" class="preview1" alt="프로필 이미지 미리보기" style="width: 100px;height: 100px;">
+            <img th:src="@{${photo}}" name="preview1" class="preview1"   style="width: 100px;height: 100px;">
         </div>
         <label for="user_id">아이디:</label>
         <input type="text" class="text1" id="user_id" name="user_id" th:value="*{user_id}" readonly>
@@ -84,7 +84,7 @@
         <br>
 
         <label for="nickname">닉네임:</label>
-        <input type="text" class="text1" id="nickname" name="nickname" th:value="*{nickname}" required>
+        <input type="text" class="text1" id="nickname" name="nickname" th:value="*{nickname}" required readonly>
         <br>
         
         <label for="userpr">자기소개:</label>
