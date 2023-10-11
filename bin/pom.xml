@@ -28,11 +28,6 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> c966e8d82e00050f2714d5d828d13bec97f02bd9
 		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
 <dependency>
     <groupId>javax.servlet</groupId>
@@ -41,13 +36,11 @@
     <scope>provided</scope>
 </dependency>
 
-		
-<<<<<<< HEAD
-=======
->>>>>>> 48a1b7e7cdce8bc0fd9cb3c27b5ec6786e9f8be9
-=======
->>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
->>>>>>> c966e8d82e00050f2714d5d828d13bec97f02bd9
+		<dependency>
+    <groupId>org.thymeleaf.extras</groupId>
+    <artifactId>thymeleaf-extras-springsecurity4</artifactId>
+    <version>3.0.4.RELEASE</version> <!-- 사용하려는 버전으로 변경 -->
+</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>

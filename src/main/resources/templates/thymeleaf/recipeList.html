@@ -14,91 +14,6 @@
 </head>
 
 <body>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<div class="body_wrapper">
-   <div class="body_content">
-      <div class="menubar"></div>
-        <span class="menu4"><a href="recipe">분류</a></span>
-		<span class="menu3"><a href="rank">랭크</a></span>
-		<span class="menu2"><a href="board">게시판</a></span>
-		<span class="menu1"><a href="rank">랭킹</a></span>
-		<span><a class="mainicon" href="/">모두의레시피</a></span>
-      
-      <!-- 마이페이지 주소 입력 --> 
-      <div class="usericon"><a href="/mypage"><i class="fa-solid fa-user"></i></a></div>
-      <!-- 로그아웃 주소 입력 --> 
-      <div class="logout_icon"><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></div>
-       <div class="searchbar">   
-         <div class="searchradius">
-            <form action="" method=""> <!-- 검색창 주소 입력 --> 
-               <input type="text" class="search_txt">
-               <button type="submit" class="search_btn">
-                  <span class="searchicon">
-                     <i class="fa-solid fa-magnifying-glass"></i>
-                  </span>
-               </button>
-            </form>
-         </div>   
-      </div>
-      <!-- 여기부터 body에 추가할 코드 입력 -->
-        
-    	<div class="slide_wrapper">
-		<div class="check">
-			<div class="checklist">
-            		<form method="post" action="/formAction">
-               			<p>용도</p>
-              			 <label><input type="checkbox" id="picnic" name="type" value="피크닉">피크닉</label>
-              			 <label><input type="checkbox" id="eating_alone" name="type" value="혼밥">혼밥</label>
-               <label><input type="checkbox" id="home_meal" name="type" value="가정">가정</label>
-               <label><input type="checkbox" id="party" name="type" value="파티">파티</label>
-               <label><input type="checkbox" id="dessert" name="type" value="디저트">디저트</label>
-               <label><input type="checkbox" id="late_night_meal" name="type" value="야식/안주">야식/안주</label>
-               </div> 
-               <p>재료</p>
-              <input type="text" id="t1" class="t11" value="">
-              <input type="button" onclick="init()" id="btn" value="생성"><br>
-              <div id="body_wrapper4"></div><br>
-               <p><input type="submit" value="검색"> <input type="reset" value="초기화"></p>
-          </form>
-        </div>
-        <div class="btn1">
-			<input type="button" id="recentbtn" value="최신순">
-			<input type="button" id="querybtn" value="조회수순">
-		</div> 
-			<ul class="img_slide1">
-			    <li class="recipe-item" th:each="recipe, recipeIndex : ${recipes}">
-					<div class="recipe-container">						
-				        <a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}">
-                    <img th:src="@{${recipe.main_photo_path}}" width="300px" height="300px"><br>
-                    <h2 th:text="'제목  :  '+${recipe.title}"></h2>
-                    <p th:text="'작성자  :  '+${recipe.user_id}"></p>
-                    <p th:text="'좋아요  :  '+${recipe.totalLove}"></p>
-                    <p th:text="'조회  :  '+${recipe.view_count}"></p> 
-                </a>
-			        </div>  
-			    </li>
-			
-			</ul>
-			<div class="pagination">
-		    	<a th:if="${currentPage > 0}" th:href="@{|/rank?page=${currentPage - 1}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}">&laquo;</a>
-		    	<!--<span th:text="${currentPage + 1}"></span>-->
-				<a th:if="${recipes.size() > (currentPage * 20)}" th:href="@{|/rank?page=${currentPage + 1}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}">&raquo;</a>
-
-	<div class="body_wrapper">
-		<div class="body_content">
-			<div class="menubar"></div>
-			<span class="menu4"><a href="recipe">분류</a></span>
-			<span class="menu3"><a href="rank">랭크</a></span>
-			<span class="menu2"><a href="board">게시판</a></span>
-			<span class="menu1"><a href="rank">랭킹</a></span>
-			<span><a class="mainicon" href="/">모두의레시피</a></span>
-
-			<!-- 마이페이지 주소 입력 -->
-			<div class="usericon"><a href="마이페이지.html"><i class="fa-solid fa-user"></i></a></div>
-			<!-- 로그아웃 주소 입력 -->
-			<div class="logout_icon"><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></div>
-=======
 	<div class="body_wrapper">
 		<div class="body_content">
 			<div class="menubar"></div>
@@ -114,7 +29,6 @@
 			<!-- 로그아웃 주소 입력 -->
 			<div class="logout_icon"><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></div>
 
->>>>>>> c966e8d82e00050f2714d5d828d13bec97f02bd9
 			<div class="searchbar">
 				<div class="searchradius">
 					<form action="" method=""> <!-- 검색창 주소 입력 -->
@@ -126,10 +40,6 @@
 						</button>
 					</form>
 				</div>
-<<<<<<< HEAD
-
-=======
->>>>>>> c966e8d82e00050f2714d5d828d13bec97f02bd9
 			</div>
 			<!-- 여기부터 body에 추가할 코드 입력 -->
 
