@@ -10,6 +10,7 @@ import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -471,5 +472,93 @@ public class RecipeController {
 		recipeservice.deletePostWithImage(recipe_id);
 		return "redirect:/recipe";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@GetMapping("/search")
+	public String searchRecipes(Model model,
+	        @RequestParam(required = false, defaultValue = "1") int page, // 페이지 기본값을 1로 설정
+	        @RequestParam(required = false) String keyword,
+	        @RequestParam(name = "sort", required = false) String sort
+	    ) {
+	
+	    List<Recipe> recipes;
+	    
+	    
+	    
+	    if (keyword != null && !keyword.isEmpty()) {
+	    	
+	        if ("latest".equals(sort)) {
+	        	recipes = recipeRepository.findByTitleContaining(keyword, Sort.by(Sort.Order.desc("createddate")));
+	        } else if ("views".equals(sort)) {
+	        	recipes = recipeRepository.findByTitleContaining(keyword, Sort.by(Sort.Order.desc("viewcount")));
+	        } else {
+	        	recipes = recipeRepository.findByTitleContaining(keyword, Sort.by(Sort.Order.desc("createddate")));
+	        }
+	    } else {
+	    	recipes = recipeRepository.findByTitleContaining(keyword, Sort.by(Sort.Order.desc("createddate")));
+	    }
+	    
+	    
+	    
+	    int totalRecipes = recipes.size();
+	    int pageSize = 20; // 페이지당 레시피 수
+	    int totalPages = (int) Math.ceil((double) totalRecipes / pageSize);
+	    
+	    // 현재 페이지가 유효한 범위 내에 있는지 확인
+	    if (page < 1) {
+	        page = 1;
+	    } else if (page > totalPages) {
+	        page = totalPages;
+	    }
+
+	    // 시작 인덱스와 끝 인덱스 계산
+	    int startIndex = (page - 1) * pageSize;
+	    int endIndex = Math.min(startIndex + pageSize, totalRecipes);
+	    
+	    // startIndex 및 endIndex 유효성 검사
+	    if (startIndex < 0) {
+	        startIndex = 0;
+	    }
+	    if (endIndex > totalRecipes) {
+	        endIndex = totalRecipes;
+	    }
+	    
+	    System.out.println(startIndex);
+	    System.out.println(endIndex);
+	    System.out.println(totalPages);
+
+	    // 현재 페이지에 해당하는 레시피 목록 추출
+	    List<Recipe> pagedRecipes = recipes.subList(startIndex, endIndex);
+
+	    // 이전 페이지와 다음 페이지가 있는지 여부를 확인하여 모델에 추가
+	    boolean hasPreviousPage = (page > 1);
+	    boolean hasNextPage = (page < totalPages);
+	    
+	    model.addAttribute("recipes", pagedRecipes);
+	    model.addAttribute("currentPage", page);
+	    model.addAttribute("totalPages", totalPages);
+	    model.addAttribute("hasPreviousPage", hasPreviousPage);
+	    model.addAttribute("hasNextPage", hasNextPage);
+	    model.addAttribute("sort", sort);
+	    model.addAttribute("keyword", keyword); // 검색어 추가
+	    
+	    return "search";
+        }
 
 }

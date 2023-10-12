@@ -34,8 +34,8 @@
 		<div class="logout_icon"><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></div>
   		<div class="searchbar">	
 			<div class="searchradius">
-				<form action="" method=""> <!-- 검색창 주소 입력 --> 
-					<input id="search" type="text" class="search_txt">
+				<form action="/search" method="get"> <!-- 검색창 주소 입력 --> 
+					<input type="text" name="keyword" class="search_txt">
 					<button type="submit" class="search_btn">
 						<span class="searchicon">
 							<i class="fa-solid fa-magnifying-glass"></i>
@@ -57,8 +57,9 @@
 			            <option value="피크닉">피크닉용</option>
 			            <option value="가정">가정용</option>
 			            <option value="디저트">디저트용</option>
-			            <option value="야식안주">야식/안주용</option>
-			        </select>
+			            <option value="야식/안주">야식/안주용</option> 
+			        </select> &nbsp;&nbsp;
+			        <label for="categoryName">기간 선택:</label>
 			        <select id="period" name="period">
 			            <option value="">전체</option>
 			            <option value="d">일간</option>

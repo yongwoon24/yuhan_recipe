@@ -49,6 +49,7 @@
                <tr>
                     <th style="width: 50px;">번호</th>
 <<<<<<< HEAD
+<<<<<<< HEAD
 		            <th style="width: 300px;">제목</th>
 		            <th style="width: 100px;">작성자</th>
 		            <th style="width: 100px;">작성일</th>
@@ -57,10 +58,16 @@
                   <th style="width: 100px;">작성자</th>
                   <th style="width: 100px;">작성일</th>
 >>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
+=======
+                  <th style="width: 300px;">제목</th>
+                  <th style="width: 100px;">작성자</th>
+                  <th style="width: 100px;">작성일</th>
+>>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
                </tr>
             </thead>
             <tbody>
               <tr th:each="board : ${boardList}">
+<<<<<<< HEAD
 <<<<<<< HEAD
             	<td style=text-align:center; th:text="${board.post_id}"></td>
             	<td th:text="${board.title}"></td>
@@ -73,6 +80,8 @@
 				</td>
       		  </tr>
 =======
+=======
+>>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
                <td style=text-align:center; th:text="${board.postId}"></td>
                <td>
                 <a th:href="@{'/board/' + ${board.postId}}">
@@ -87,13 +96,19 @@
                    th:text="${#temporals.format(board.created_date, 'MM-dd')}"></p>
             </td>
               </tr>
+<<<<<<< HEAD
 >>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
+=======
+>>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
                
             </tbody>    
          </table>
          <hr/>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
 
 
 <div class="searchbar">
@@ -117,11 +132,15 @@
         </form>
     </div>
 </div>
+<<<<<<< HEAD
 >>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
+=======
+>>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
          <div class="button-container">
          <a href="/createboard" class="button">글쓰기</a>
          </div>
          <div class="text-center">
+<<<<<<< HEAD
 <<<<<<< HEAD
             <ul class="pagination">
                <li><a href = "">1</a></li>
@@ -130,6 +149,8 @@
                <li><a href = "">4</a></li>
             </ul>
 =======
+=======
+>>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
             <div class="pagination">
     <a th:if="${currentPage > firstPage}" th:href="@{|/board?page=${currentPage - 1}|}">&laquo; 이전</a>
     <span th:each="pageNumber : ${#numbers.sequence(currentPage - 5, currentPage + 4)}" th:if="${pageNumber >= firstPage && pageNumber <= lastPage}">
@@ -139,7 +160,10 @@
     <a th:if="${currentPage < lastPage}" th:href="@{|/board?page=${currentPage + 1}|}">다음 &raquo;</a>
 </div>
 <script th:src="@{/../js/rank.js}"></script>
+<<<<<<< HEAD
 >>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
+=======
+>>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
          </div>
    </div>
    </div>
@@ -149,7 +173,10 @@
    </div>
 </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
 
 	<script th:inline="javascript">
 	        var boarddeleteMessage = /*[[${boarddeleteMessage}]]*/ "";
@@ -158,6 +185,9 @@
 	        }
     </script>
    
+<<<<<<< HEAD
 >>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
+=======
+>>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
 </body>
 </html>
