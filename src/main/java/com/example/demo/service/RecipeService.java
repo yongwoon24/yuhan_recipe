@@ -18,6 +18,7 @@ import com.example.demo.entity.Ingredient;
 import com.example.demo.entity.Recipe;
 import com.example.demo.entity.Recipe_Ingredient;
 import com.example.demo.entity.Step;
+import com.example.demo.entity.Tag;
 import com.example.demo.entity.User;
 import com.example.demo.repository.IngredientRepository;
 import com.example.demo.repository.RecipeIngredientRepository;
@@ -75,6 +76,20 @@ public class RecipeService {
 
 		recipe.setRecipeIngredients(recipeIngredients);
 
+	}
+	
+	public void createtag(Recipe recipe, List<String> tag) {
+		List<Tag> tags = new ArrayList<>();
+		
+		for (int i = 0; i < tag.size(); i++) {
+			Tag ntag = new Tag();
+			ntag.setRecipe(recipe);
+			String tagc = tag.get(i);
+			//System.out.println(tagc);
+			ntag.setContent(tagc);
+			tags.add(ntag);
+		}
+		recipe.setTag(tags);
 	}
 
 	public void createStep(Recipe recipe, List<String> SContents, List<String> Singtxts, List<String> Stooltxts,

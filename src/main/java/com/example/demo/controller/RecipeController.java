@@ -3,7 +3,7 @@ package com.example.demo.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -14,7 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -226,19 +226,28 @@ public class RecipeController {
 
 	@PostMapping("/createRecipe")
 	@Async
-	public String createRecipe(@ModelAttribute Recipe recipe, @ModelAttribute Recipe_Ingredient recipe_ingredient,
-			@ModelAttribute Step step, @RequestParam("file") MultipartFile file, HttpSession session,
-			@RequestParam("ingredientName") List<String> ingredientName,
-			@RequestParam("mensuration") List<String> mensuration, @RequestParam("SContent") List<String> SContent,
-			@RequestParam("Singtxt") List<String> Singtxt, @RequestParam("Stooltxt") List<String> Stooltxt,
-			@RequestParam("Stip") List<String> Stip, @RequestParam("Scontroltxt") List<String> Scontroltxt,
-			@RequestParam("file1") List<MultipartFile> file1)
+	public String createRecipe(@ModelAttribute Recipe recipe, 
+            @ModelAttribute Recipe_Ingredient recipe_ingredient,
+            @ModelAttribute Step step, 
+            @RequestParam("file") MultipartFile file, 
+            HttpSession session,
+            @RequestParam("ingredientName") List<String> ingredientName,
+            @RequestParam("mensuration") List<String> mensuration, 
+            @RequestParam("SContent") List<String> SContent,
+            @RequestParam("Singtxt") List<String> Singtxt, 
+            @RequestParam("Stooltxt") List<String> Stooltxt,
+            @RequestParam("Stip") List<String> Stip, 
+            @RequestParam("Scontroltxt") List<String> Scontroltxt,
+            @RequestParam("file1") List<MultipartFile> file1,
+            @RequestParam("tags") String tags)
 			throws Exception {
+		 List<String> tagList = Arrays.asList(tags.split(","));
 		String loggedInNickname = (String) session.getAttribute("loggedInNickname");
 		recipe.setNickname(loggedInNickname);
 		recipeservice.write(recipe, file);
 		recipeservice.createRecipe(recipe, ingredientName, mensuration);
 		recipeservice.createStep(recipe, SContent, Singtxt, Stooltxt, Stip, Scontroltxt,file1);
+		recipeservice.createtag(recipe, tagList);
 		
 		//레시피 21개 복제 페이지네이션 테스트용
 //		for (int i = 0; i < 21; i++) {
@@ -472,21 +481,6 @@ public class RecipeController {
 		recipeservice.deletePostWithImage(recipe_id);
 		return "redirect:/recipe";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	

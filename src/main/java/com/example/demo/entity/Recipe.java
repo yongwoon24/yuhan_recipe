@@ -16,6 +16,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
 
 @Entity
@@ -87,7 +88,28 @@ public class Recipe {
     
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
     private List<Step> steps;
+    
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
+    private List<Tag> tag;
 	
+	public LocalDateTime getCreateddate() {
+		return createddate;
+	}
+	public void setCreateddate(LocalDateTime createddate) {
+		this.createddate = createddate;
+	}
+	public Integer getViewcount() {
+		return viewcount;
+	}
+	public void setViewcount(Integer viewcount) {
+		this.viewcount = viewcount;
+	}
+	public List<Tag> getTag() {
+		return tag;
+	}
+	public void setTag(List<Tag> tag) {
+		this.tag = tag;
+	}
 	public List<Step> getSteps() {
 		return steps;
 	}
