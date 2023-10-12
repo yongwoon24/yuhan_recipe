@@ -32,10 +32,10 @@
 		<div class="body_content">
 			<div class="menubar"></div>
 			<span class="menu4"><a href="/mypage">마이페이지</a></span>
-      <span class="menu3"><a href="/recipe">분류</a></span>
-      <span class="menu2"><a href="/board">게시판</a></span>
-      <span class="menu1"><a href="/rank">랭킹</a></span>
-      <span><a class="mainicon" href="/">모두의레시피</a></span>
+			<span class="menu3"><a href="/recipe">분류</a></span>
+			<span class="menu2"><a href="/board">게시판</a></span>
+			<span class="menu1"><a href="/rank">랭킹</a></span>
+			<span><a class="mainicon" href="/">모두의레시피</a></span>
 
 
 			<!-- 마이페이지 주소 입력 -->
@@ -43,18 +43,18 @@
 			<div class="usericon"><a href="/mypage"><i class="fa-solid fa-user"></i></a></div>
 			<!-- 로그아웃 주소 입력 -->
 			<div class="logout_icon"><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></div>
-			<div class="searchbar">	
+			<div class="searchbar">
 				<div class="searchradius">
-				<form action="/search" method="get"> <!-- 검색창 주소 입력 --> 
-					<input type="text" name="keyword" class="search_txt">
-					<button type="submit" class="search_btn">
-						<span class="searchicon">
-							<i class="fa-solid fa-magnifying-glass"></i>
-						</span>
-					</button>
-				</form>
-			</div>	
-		</div>
+					<form action="/search" method="get"> <!-- 검색창 주소 입력 -->
+						<input type="text" name="keyword" class="search_txt">
+						<button type="submit" class="search_btn">
+							<span class="searchicon">
+								<i class="fa-solid fa-magnifying-glass"></i>
+							</span>
+						</button>
+					</form>
+				</div>
+			</div>
 			<!-- 여기부터 body에 추가할 코드 입력 -->
 
 			<div class="slide_wrapper">
@@ -72,7 +72,8 @@
 								<input multiple type="file" id="file" name="file" style="display: none;">
 								<button id="uploadButton" name="uploadButton" onclick="handleClick(event)">
 									<div id="preview" name="preview" width="400px" height="400px">
-										<img src="/img/대표이미지.PNG?timestamp=<%= System.currentTimeMillis() %>" width="400px" height="400px">
+										<img src="/img/대표이미지.PNG?timestamp=<%= System.currentTimeMillis() %>"
+											width="400px" height="400px">
 									</div>
 								</button>
 							</span>
@@ -138,21 +139,27 @@
 								<input type="text" class="text3" name="Singtxt"
 									placeholder="재료에 대해 적어주세요! 예 ) 감자 1개, 소금 2큰술, 물 2컵"><br>
 								<img src="/img/냄비.png" class="carrot">
-								<input type="text" class="text3" name="Stooltxt" placeholder="재료도구에 대해 적어주세요! 예 ) 냄비, 프라이팬, 국자"><br>
+								<input type="text" class="text3" name="Stooltxt"
+									placeholder="재료도구에 대해 적어주세요! 예 ) 냄비, 프라이팬, 국자"><br>
 								<img src="/img/불.png" class="carrot">
 								<input type="text" class="text3" name="Scontroltxt"
 									placeholder="불 세기나 도구 사용시간에 대해 적어주세요! 예 ) 약불, 전자레인지 2분"><br>
 								<img src="/img/전구.png" class="carrot1">
-								<textarea class="text4" name="Stip" placeholder="팁이 있다면 적어주세요! 예 ) 삶은 감자를 2분 정도 식혀주세요"></textarea>
+								<textarea class="text4" name="Stip"
+									placeholder="팁이 있다면 적어주세요! 예 ) 삶은 감자를 2분 정도 식혀주세요"></textarea>
 							</div>
 						</div>
 					</div>
 					<div class="e10_2_3">
-						<span class="e16_84">요리전체 팁</span>
-						<span class="e10_8">요리 팁</span>
-						<span class="e10_11"><textarea name="recipetip"></textarea></span><br>
-						<span class="e10_8_1">태그</span>
-						<span class="e10_11_1"><textarea name="recipetip"></textarea></span><br>
+						<span class="e16_84">태그</span>
+						<span class="e10_8">태그</span>
+						<span class="e10_11"><div class="text-container">
+								<ul id="textList"></ul>
+								<input type="text" id="textInput" placeholder="태그를 입력하세요"
+									onkeydown="handleInput(event)"><br>*태그 입력 후 엔터를 눌러주세요*
+							</div></span><br>
+						
+						<br>
 						<input type="submit" class="Rsubmit" value="게시">
 					</div>
 				</form>
@@ -166,7 +173,7 @@
 		<div class="footer">
 			<div class="footer_comment">@Yuhan University Group 3's Project</div>
 		</div>
-		
+
 </body>
 
 </html>

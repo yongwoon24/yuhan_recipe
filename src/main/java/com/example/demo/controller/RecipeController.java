@@ -3,7 +3,7 @@ package com.example.demo.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -14,7 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import org.springframework.web.bind.annotation.RequestParam;
 
-import org.springframework.web.bind.annotation.ResponseBody;
+
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -34,7 +34,6 @@ import com.example.demo.entity.Step;
 import com.example.demo.entity.User;
 
 import com.example.demo.repository.LoveRepository;
-import com.example.demo.repository.RecipeIngredientRepository;
 import com.example.demo.repository.RecipeRepository;
 import com.example.demo.repository.ScrapRepository;
 import com.example.demo.repository.UserRepository;
@@ -57,15 +56,13 @@ public class RecipeController {
 	@Autowired
 	private LoveService loveservice;
 	@Autowired
-	private RecipeIngredientRepository recipeingredientrepository;
-	@Autowired
 	private UserRepository userrepository;
 	@Autowired
 	private ScrapRepository scraprepository;
 	
 	
 	List<Recipe> recipes1;
-	private int likesCount = 0;
+	
 
 
 	@GetMapping("/recipe")
@@ -229,19 +226,28 @@ public class RecipeController {
 
 	@PostMapping("/createRecipe")
 	@Async
-	public String createRecipe(@ModelAttribute Recipe recipe, @ModelAttribute Recipe_Ingredient recipe_ingredient,
-			@ModelAttribute Step step, @RequestParam("file") MultipartFile file, HttpSession session,
-			@RequestParam("ingredientName") List<String> ingredientName,
-			@RequestParam("mensuration") List<String> mensuration, @RequestParam("SContent") List<String> SContent,
-			@RequestParam("Singtxt") List<String> Singtxt, @RequestParam("Stooltxt") List<String> Stooltxt,
-			@RequestParam("Stip") List<String> Stip, @RequestParam("Scontroltxt") List<String> Scontroltxt,
-			@RequestParam("file1") List<MultipartFile> file1)
+	public String createRecipe(@ModelAttribute Recipe recipe, 
+            @ModelAttribute Recipe_Ingredient recipe_ingredient,
+            @ModelAttribute Step step, 
+            @RequestParam("file") MultipartFile file, 
+            HttpSession session,
+            @RequestParam("ingredientName") List<String> ingredientName,
+            @RequestParam("mensuration") List<String> mensuration, 
+            @RequestParam("SContent") List<String> SContent,
+            @RequestParam("Singtxt") List<String> Singtxt, 
+            @RequestParam("Stooltxt") List<String> Stooltxt,
+            @RequestParam("Stip") List<String> Stip, 
+            @RequestParam("Scontroltxt") List<String> Scontroltxt,
+            @RequestParam("file1") List<MultipartFile> file1,
+            @RequestParam("tags") String tags)
 			throws Exception {
+		 List<String> tagList = Arrays.asList(tags.split(","));
 		String loggedInNickname = (String) session.getAttribute("loggedInNickname");
 		recipe.setNickname(loggedInNickname);
 		recipeservice.write(recipe, file);
 		recipeservice.createRecipe(recipe, ingredientName, mensuration);
 		recipeservice.createStep(recipe, SContent, Singtxt, Stooltxt, Stip, Scontroltxt,file1);
+		recipeservice.createtag(recipe, tagList);
 		
 		//레시피 21개 복제 페이지네이션 테스트용
 //		for (int i = 0; i < 21; i++) {
@@ -394,13 +400,7 @@ public class RecipeController {
 			}
 		}
 
-	@PostMapping("/increase_likes")
-	@ResponseBody
-	public int increaseLoves(@RequestParam("recipe_id") String recipe_id) {
-		// 게시물 ID에 해당하는 좋아요 수 증가 로직
-		likesCount++;
-		return likesCount;
-	}
+	
 
 	@GetMapping("/recipe/{recipe_id}")
 	public String userRecipeview(@PathVariable("recipe_id") int recipe_id, Model model, HttpSession session) {
@@ -418,9 +418,11 @@ public class RecipeController {
 
 			User user = new User();
 			String loggedInUserId = (String) session.getAttribute("loggedInUserId");
-			String loggedInUserNickname = (String) session.getAttribute("loggedInUserNickname");
 			String nickname = recipe.getNickname();
 			String photo = userrepository.findbynickname(nickname).getUserphotopath();
+			if(photo == null) {
+				photo="/img/기본유저1.jpg";
+			}
 			String pr = userrepository.findbynickname(nickname).getUserpr();
 			if (loggedInUserId == null) {
 				// 사용자가 로그인하지 않은 경우 로그인 페이지로 리다이렉트하거나 다른 처리를 수행합니다.
@@ -479,21 +481,6 @@ public class RecipeController {
 		recipeservice.deletePostWithImage(recipe_id);
 		return "redirect:/recipe";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	

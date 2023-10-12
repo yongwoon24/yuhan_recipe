@@ -234,3 +234,46 @@ imageInput.addEventListener('change', (event) => {
 	}
 });
 
+function createListItem(text) {
+            const listItem = document.createElement("div");
+            listItem.className = "list-item";
+
+            
+            
+            const inputHidden = document.createElement("input");
+            inputHidden.type = "hidden";
+            inputHidden.name = "tags";
+            inputHidden.id = "tags";
+            inputHidden.value = text;
+
+            const deleteButton = document.createElement("button");
+            deleteButton.className = "delete-button";
+            deleteButton.textContent = text; // 버튼 내용을 입력값(text)으로 설정
+            deleteButton.onclick = function() {
+                listItem.remove();
+            };
+
+           
+            listItem.appendChild(deleteButton);
+            listItem.appendChild(inputHidden);
+            return listItem;
+        }
+
+        function handleInput(event) {
+            const textInput = document.getElementById("textInput");
+            const textList = document.getElementById("textList");
+            if (event.key === "Enter") {
+                event.preventDefault();
+                const text = textInput.value;
+
+                if (text.trim() !== "") {
+                    const textArray = text.split(",");
+
+                    textArray.forEach(item => {
+                        const listItem = createListItem(item);
+                        textList.appendChild(listItem);
+                        textInput.value = "";
+                    });
+                }
+            }
+        }

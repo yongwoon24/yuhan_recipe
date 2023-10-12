@@ -176,7 +176,7 @@
 						다음 &raquo;
 					</a>
 					<a th:if="${hasNextPage && (categories == null || categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty()) && (sort == null)}"
-						th:href="@{|/recipe?page=${currentPage + 1}&amp;ingredientNames=${ingredientNames}|}">
+						th:href="@{|/recipe?page=${currentPage + 1}&amp;=${ingredientNames}|}">
 						다음 &raquo;
 					</a>
 
