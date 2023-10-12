@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import org.springframework.web.bind.annotation.RequestParam;
 
-import org.springframework.web.bind.annotation.ResponseBody;
+
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -33,7 +33,6 @@ import com.example.demo.entity.Step;
 import com.example.demo.entity.User;
 
 import com.example.demo.repository.LoveRepository;
-import com.example.demo.repository.RecipeIngredientRepository;
 import com.example.demo.repository.RecipeRepository;
 import com.example.demo.repository.ScrapRepository;
 import com.example.demo.repository.UserRepository;
@@ -56,15 +55,13 @@ public class RecipeController {
 	@Autowired
 	private LoveService loveservice;
 	@Autowired
-	private RecipeIngredientRepository recipeingredientrepository;
-	@Autowired
 	private UserRepository userrepository;
 	@Autowired
 	private ScrapRepository scraprepository;
 	
 	
 	List<Recipe> recipes1;
-	private int likesCount = 0;
+	
 
 
 	@GetMapping("/recipe")
@@ -393,13 +390,7 @@ public class RecipeController {
 			}
 		}
 
-	@PostMapping("/increase_likes")
-	@ResponseBody
-	public int increaseLoves(@RequestParam("recipe_id") String recipe_id) {
-		// 게시물 ID에 해당하는 좋아요 수 증가 로직
-		likesCount++;
-		return likesCount;
-	}
+	
 
 	@GetMapping("/recipe/{recipe_id}")
 	public String userRecipeview(@PathVariable("recipe_id") int recipe_id, Model model, HttpSession session) {
@@ -417,9 +408,11 @@ public class RecipeController {
 
 			User user = new User();
 			String loggedInUserId = (String) session.getAttribute("loggedInUserId");
-			String loggedInUserNickname = (String) session.getAttribute("loggedInUserNickname");
 			String nickname = recipe.getNickname();
 			String photo = userrepository.findbynickname(nickname).getUserphotopath();
+			if(photo == null) {
+				photo="/img/기본유저1.jpg";
+			}
 			String pr = userrepository.findbynickname(nickname).getUserpr();
 			if (loggedInUserId == null) {
 				// 사용자가 로그인하지 않은 경우 로그인 페이지로 리다이렉트하거나 다른 처리를 수행합니다.
