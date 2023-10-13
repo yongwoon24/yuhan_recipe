@@ -31,6 +31,7 @@ import com.example.demo.entity.Recipe;
 import com.example.demo.entity.Recipe_Ingredient;
 import com.example.demo.entity.Scrap;
 import com.example.demo.entity.Step;
+import com.example.demo.entity.Tag;
 import com.example.demo.entity.User;
 
 import com.example.demo.repository.LoveRepository;
@@ -411,6 +412,7 @@ public class RecipeController {
 			recipeRepository.incrementViewCount(recipe_id); // 조회수 업데이트
 			List<Recipe_Ingredient> recipeing = recipe.getRecipeIngredients();
 			List<Step> steps = recipe.getSteps();
+			List<Tag> tagss = recipe.getTag();
 
 			
 			String activity = "조회";
@@ -438,6 +440,7 @@ public class RecipeController {
 				model.addAttribute("photo",photo);
 				model.addAttribute("recipeings",recipeing);
 				model.addAttribute("steps",steps);
+				model.addAttribute("tagss",tagss);
 				model.addAttribute("recipe", recipe);
 				return "userRecipe"; // 레시피 페이지 템플릿
 			} else {
@@ -455,6 +458,7 @@ public class RecipeController {
 				model.addAttribute("photo",photo);
 				model.addAttribute("recipeings",recipeing);
 				model.addAttribute("steps",steps);
+				model.addAttribute("tagss",tagss);
 				model.addAttribute("recipe", recipe);
 				return "userRecipe"; // 레시피 페이지 템플릿
 			}
