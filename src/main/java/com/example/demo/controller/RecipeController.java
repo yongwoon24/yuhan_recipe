@@ -240,15 +240,19 @@ public class RecipeController {
             @RequestParam("Stip") List<String> Stip, 
             @RequestParam("Scontroltxt") List<String> Scontroltxt,
             @RequestParam("file1") List<MultipartFile> file1,
-            @RequestParam("tags") String tags)
+            @RequestParam(name ="tags", required = false) String tags)
 			throws Exception {
-		 List<String> tagList = Arrays.asList(tags.split(","));
+
 		String loggedInNickname = (String) session.getAttribute("loggedInNickname");
 		recipe.setNickname(loggedInNickname);
 		recipeservice.write(recipe, file);
 		recipeservice.createRecipe(recipe, ingredientName, mensuration);
 		recipeservice.createStep(recipe, SContent, Singtxt, Stooltxt, Stip, Scontroltxt,file1);
-		recipeservice.createtag(recipe, tagList);
+		if(tags != null) {
+			 List<String> tagList = Arrays.asList(tags.split(","));
+			recipeservice.createtag(recipe, tagList);
+		}
+		
 		
 		//레시피 21개 복제 페이지네이션 테스트용
 //		for (int i = 0; i < 21; i++) {
@@ -406,6 +410,8 @@ public class RecipeController {
 	@GetMapping("/recipe/{recipe_id}")
 	public String userRecipeview(@PathVariable("recipe_id") int recipe_id, Model model, HttpSession session) {
 		Recipe recipe = recipeRepository.findById(recipe_id);
+		String loggedInNickname = (String) session.getAttribute("loggedInNickname");
+		String Nickname = recipe.getNickname();
 		
 		
 		if (recipe != null) {
@@ -442,6 +448,8 @@ public class RecipeController {
 				model.addAttribute("steps",steps);
 				model.addAttribute("tagss",tagss);
 				model.addAttribute("recipe", recipe);
+				model.addAttribute("loggedInNickname", loggedInNickname);
+				model.addAttribute("Nickname", Nickname);
 				return "userRecipe"; // 레시피 페이지 템플릿
 			} else {
 				
@@ -460,6 +468,8 @@ public class RecipeController {
 				model.addAttribute("steps",steps);
 				model.addAttribute("tagss",tagss);
 				model.addAttribute("recipe", recipe);
+				model.addAttribute("loggedInNickname", loggedInNickname);
+				model.addAttribute("Nickname", Nickname);
 				return "userRecipe"; // 레시피 페이지 템플릿
 			}
 		}
@@ -481,8 +491,10 @@ public class RecipeController {
 	}
 
 	@GetMapping("/deleteRecipe/{recipe_id}")
-	public String deleteRecipe(@PathVariable int recipe_id) {
-		recipeservice.deletePostWithImage(recipe_id);
+	public String deleteRecipe(@PathVariable int recipe_id, RedirectAttributes redirectAttributes) {		
+		 recipeservice.deletePostWithImage(recipe_id);
+		 redirectAttributes.addFlashAttribute("asd", "삭제되었습니다");
+				
 		return "redirect:/recipe";
 	}
 	
@@ -502,14 +514,14 @@ public class RecipeController {
 	    if (keyword != null && !keyword.isEmpty()) {
 	    	
 	        if ("latest".equals(sort)) {
-	        	recipes = recipeRepository.findByTitleContaining(keyword, Sort.by(Sort.Order.desc("createddate")));
+	        	recipes = recipeRepository.findByTitleContainingOrTagContentContaining(keyword, keyword, Sort.by(Sort.Order.desc("createddate")));
 	        } else if ("views".equals(sort)) {
-	        	recipes = recipeRepository.findByTitleContaining(keyword, Sort.by(Sort.Order.desc("viewcount")));
+	        	recipes = recipeRepository.findByTitleContainingOrTagContentContaining(keyword, keyword, Sort.by(Sort.Order.desc("viewcount")));
 	        } else {
-	        	recipes = recipeRepository.findByTitleContaining(keyword, Sort.by(Sort.Order.desc("createddate")));
+	        	recipes = recipeRepository.findByTitleContainingOrTagContentContaining(keyword, keyword, Sort.by(Sort.Order.desc("createddate")));
 	        }
 	    } else {
-	    	recipes = recipeRepository.findByTitleContaining(keyword, Sort.by(Sort.Order.desc("createddate")));
+	    	recipes = recipeRepository.findByTitleContainingOrTagContentContaining(keyword, keyword, Sort.by(Sort.Order.desc("createddate")));
 	    }
 	    
 	    
