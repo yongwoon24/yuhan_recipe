@@ -31,8 +31,8 @@
 
 			<div class="searchbar">	
 			<div class="searchradius">
-				<form action="@{/search}" method="get"> <!-- 검색창 주소 입력 --> 
-					<input type="text" name="keyword" class="search_txt">
+				<form action="/search" method="get"> <!-- 검색창 주소 입력 --> 
+					<input type="text" th:value="${keyword}" name="keyword" class="search_txt" required>
 					<button type="submit" class="search_btn">
 						<span class="searchicon">
 							<i class="fa-solid fa-magnifying-glass"></i>
@@ -41,6 +41,8 @@
 				</form>
 			</div>	
 		</div>
+		
+		
 			<!-- 여기부터 body에 추가할 코드 입력 -->
 
 			<div class="slide_wrapper">
