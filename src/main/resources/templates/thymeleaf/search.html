@@ -47,7 +47,7 @@
 
 			<div class="slide_wrapper">
 			
-				<div class="btn1">
+				<div class="btn1" th:if="${not recipes.isEmpty()}">
 					<p>
 						
 						<a th:href="@{|/search?sort=latest&keyword=${keyword}|}">최신순</a>
@@ -57,7 +57,14 @@
 						<a th:href="@{|/search?sort=views&keyword=${keyword}|}">조회수순</a>
 					</p>
 				</div>
-				<ul class="img_slide1">
+				
+				<!-- 검색 결과가 없을 때의 메시지를 추가 -->
+			    <div th:if="${recipes.isEmpty()}">
+			        <h2>검색 결과가 없습니다.</h2>
+			    </div>
+			    
+			     <!-- 검색 결과가 있는 경우 레시피를 표시 -->
+				<ul class="img_slide1" th:if="${not recipes.isEmpty()}">
 					<li class="recipe-item" th:each="recipe, recipeIndex : ${recipes}">
 						<div class="recipe-container">
 							<a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}">
@@ -75,31 +82,31 @@
 
 				<div class="pagination">
 					
-					<a th:if="${hasPreviousPage && (sort == null)}"
+					<a th:if="${hasPreviousPage && (sort == null) && (!recipes.isEmpty())}"
 						th:href="@{|/search?page=${currentPage - 1}&keyword=${keyword}|}">
 						&laquo; 이전
 					</a>
-					<a th:if="${hasPreviousPage && (sort != null)}"
+					<a th:if="${hasPreviousPage && (sort != null) && (!recipes.isEmpty())}"
 						th:href="@{|/search?page=${currentPage - 1}&amp;sort=${sort}&keyword=${keyword}|}">
 						&laquo; 이전
 					</a>
 					<span th:each="pageNumber : ${#numbers.sequence(1, totalPages)}">
-						<a th:if="${(sort == null)}"
+						<a th:if="${(sort == null) && (!recipes.isEmpty())}"
 							th:href="@{|/search?page=${pageNumber}&keyword=${keyword}|}"
 							th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber}"></a>
 
 
-						<a th:if="${(sort != null)}"
+						<a th:if="${(sort != null) && (!recipes.isEmpty())}"
 							th:href="@{|/search?page=${pageNumber}&amp;sort=${sort}&keyword=${keyword}|}"
 							th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber}"></a>
 					</span>
-					<a th:if="${hasNextPage && (sort == null)}"
+					<a th:if="${hasNextPage && (sort == null) && (!recipes.isEmpty())}"
 						th:href="@{|/search?page=${currentPage + 1}&keyword=${keyword}|}">
 						다음 &raquo;
 					</a>
 
 
-					<a th:if="${hasNextPage && (sort != null)}"
+					<a th:if="${hasNextPage && (sort != null) && (!recipes.isEmpty())}"
 						th:href="@{|/search?page=${currentPage + 1}&amp;sort=${sort}&keyword=${keyword}|}">
 						다음 &raquo;
 					</a>
