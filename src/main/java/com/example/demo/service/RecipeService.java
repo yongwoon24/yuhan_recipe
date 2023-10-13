@@ -17,12 +17,14 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.demo.entity.Ingredient;
 import com.example.demo.entity.Recipe;
 import com.example.demo.entity.Recipe_Ingredient;
+import com.example.demo.entity.Scrap;
 import com.example.demo.entity.Step;
 import com.example.demo.entity.Tag;
 import com.example.demo.entity.User;
 import com.example.demo.repository.IngredientRepository;
 import com.example.demo.repository.RecipeIngredientRepository;
 import com.example.demo.repository.RecipeRepository;
+import com.example.demo.repository.ScrapRepository;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -36,6 +38,9 @@ public class RecipeService {
 	private RecipeRepository reciperepository;
 	@Autowired
 	private RecipeIngredientRepository recipeIngredientRepository;
+	
+	@Autowired
+	private ScrapRepository scraprepository;
 
 	@Autowired
 	private IngredientRepository ingredientRepository;
@@ -194,6 +199,8 @@ public class RecipeService {
 		// 1. 게시물 정보 조회
 		Recipe recipe = reciperepository.findById(recipe_id);
 
+		List<Scrap> scraps = scraprepository.findByRecipe(recipe);
+		
 		if (recipe != null) {
 			// 2. 이미지 파일 삭제
 			String imagePath = recipe.getMain_photo_path();
@@ -203,6 +210,12 @@ public class RecipeService {
 		}
 
 		// 3. 게시물 및 이미지 정보 삭제
+		
+		for (int i = 0; i < scraps.size(); i++) {
+		
+			scraprepository.delete(scraps.get(i));
+		}
+		
 		reciperepository.delete(recipe);
 	}
 

@@ -213,12 +213,12 @@ public class Recipe {
 	}
 	@Override
 	public String toString() {
-		return "Recipe [recipe_id=" + recipe_id + ", title=" + title + ", main_photo=" + main_photo + ", created_date="
+		return "Recipe [recipe_id=" + recipe_id + ", title=" + title + ", main_photo=" + main_photo + ", createddate="
 				+ createddate + ", user=" + user + ", categoryName=" + categoryName + ", totalLove=" + totalLove
-				+ ", view_count=" + viewcount + ", dailyLove=" + dailyLove + ", weeklyLove=" + weeklyLove
+				+ ", viewcount=" + viewcount + ", dailyLove=" + dailyLove + ", weeklyLove=" + weeklyLove
 				+ ", monthlyLove=" + monthlyLove + ", nickname=" + nickname + ", main_photo_path=" + main_photo_path
 				+ ", recipesubtxt=" + recipesubtxt + ", loves=" + loves + ", recipeIngredients=" + recipeIngredients
-				+ ", steps=" + steps + "]";
+				+ ", steps=" + steps + ", tag=" + tag + "]";
 	}
 	
 	public void updateRecipe(RecipeFormDto recipeFormDto) {

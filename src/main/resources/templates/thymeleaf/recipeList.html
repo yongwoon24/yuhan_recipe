@@ -299,7 +299,37 @@
 				form.submit();
 			}
 			
-		</script>
+			var imagePaths = ["image1.jpg", "image2.jpg", "image3.jpg"];
+				var cachedImages = {};
+
+				// 이미지 캐싱
+				imagePaths.forEach(function (path) {
+					var image = new Image();
+					image.src = path;
+					cachedImages[path] = image;
+				});
+
+				// 이미지를 화면에 표시
+				function displayImage(path) {
+					var myImage = document.getElementById("myImage");
+					if (cachedImages[path]) {
+						myImage.src = cachedImages[path].src;
+					} else {
+						// 이미지가 캐시되어 있지 않으면 로딩 중 이미지를 표시할 수도 있습니다
+						myImage.src = "loading.gif";
+					}
+				}
+
+
+			</script>
+			
+			<script th:inline="javascript">
+        var successMessage = /*[[${asd}]]*/ "";
+        if (successMessage) {
+            alert(successMessage);
+        }
+    </script>
+    
 
 </body>
 
