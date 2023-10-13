@@ -44,7 +44,7 @@ public class MyPageController {
 		 
 		 String loggedInNickname = (String) session.getAttribute("loggedInNickname");
 		 String loggedInUserId = (String) session.getAttribute("loggedInUserId");
-		 if(loggedInNickname == null) {return "redirect:/login";}
+		 if(loggedInNickname == null) {redirectAttributes.addFlashAttribute("loginMessage", "로그인 상태가 아닙니다!"); return "redirect:/login";}
 		 User user = userRepository.findbynickname(loggedInNickname);
 		 String name = user.getName();
 		 String email= user.getEmail();
