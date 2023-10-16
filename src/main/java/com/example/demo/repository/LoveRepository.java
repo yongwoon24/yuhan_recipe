@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,7 +15,16 @@ public interface LoveRepository extends JpaRepository<Love, Long>{
     @Query("SELECT COUNT(l) FROM Love l WHERE l.recipe.recipe_id = :recipe_id")
     int countLovesByRecipeId(@Param("recipe_id") int recipe_id);
     
-	//int countLovesByRecipe_id(int recipeId);
+    @Query("SELECT COUNT(l) FROM Love l WHERE l.recipe.recipe_id = :recipe_id AND l.date = :date")
+    int countDailyLikesByRecipeIdAndDate(@Param("recipe_id") int recipe_id, @Param("date") LocalDate date);
+
+    @Query("SELECT COUNT(l) FROM Love l WHERE l.recipe.recipe_id = :recipe_id AND l.date BETWEEN :startOfWeek AND :endOfWeek")
+    int countWeeklyLikesByRecipeIdAndDateRange(@Param("recipe_id") int recipe_id, @Param("startOfWeek") LocalDate startOfWeek, @Param("endOfWeek") LocalDate endOfWeek);
+
+    @Query("SELECT COUNT(l) FROM Love l WHERE l.recipe.recipe_id = :recipe_id AND YEAR(l.date) = YEAR(:date) AND MONTH(l.date) = MONTH(:date)")
+    int countMonthlyLikesByRecipeIdAndMonth(@Param("recipe_id") int recipe_id, @Param("date") LocalDate date);
+
+    	//int countLovesByRecipe_id(int recipeId);
     
     //Optional<Love> findByRecipeAndUser(Recipe recipe, User user);
     

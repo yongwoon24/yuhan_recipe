@@ -51,7 +51,7 @@ public class RecipeController {
 	public String listRecipes(Model model, @RequestParam(required = false) String title) {
 		List<Recipe> recipes = recipeRepository.findAll();
 		model.addAttribute("recipes", recipes);
-		return "recipeList2";
+		return "recipeList";
 	}
 	@GetMapping("/recipe")
 	public String listRecipes1(Model model, @RequestParam(required = false, defaultValue = "0") int page) {
@@ -59,12 +59,12 @@ public class RecipeController {
 		List<Recipe> recipes = recipeRepository.findAll();
 		model.addAttribute("recipes", recipes);
 		model.addAttribute("currentPage", page);
-		return "recipeList3";
+		return "recipeList";
 	}
 	 @GetMapping("/createRecipe")
 	    public String createRecipeForm(Model model) {
 	        model.addAttribute("recipe", new Recipe());
-	        return "createRecipe3";
+	        return "createRecipe";
 	    }
 	    
 	    @PostMapping("/createRecipe")
@@ -79,7 +79,8 @@ public class RecipeController {
 	    
 	    @PostMapping("/like")
 	    public String like(@RequestParam int recipe_id, @RequestParam String user_id) {
-	        Recipe recipe = new Recipe();
+	        String activity = "좋아요";
+	    	Recipe recipe = new Recipe();
 	        recipe.setRecipe_id(recipe_id);
 	    	
 	        User user = new User();
@@ -88,6 +89,7 @@ public class RecipeController {
 	    	Love love = new Love();
 	        love.setUser(user);
 	        love.setRecipe(recipe);
+	        love.setActivity(activity);
 	        
 	    	loveservice.saveLove(love);
 	        
@@ -127,20 +129,5 @@ public class RecipeController {
             recipeRepository.deleteById(recipe_id);
             return "redirect:/recipe";
         }
-        
-       
-        
-        
-        
-        
-        
-        
-        
-        @GetMapping("/viewRecipe")
-    	public String viewRecipe(Model model) {
-    		List<Recipe> recipes = recipeRepository.findAll();
-    		model.addAttribute("recipes", recipes);
-    		return "viewRecipe";
-    	}
-        
+  
 	}

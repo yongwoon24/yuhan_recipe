@@ -31,6 +31,7 @@ li > img{
 	overflow: hidden;
 	align-items: center;
 	box-shadow: #949494 5px 5px 10px;
+	
 }
 
 .img_slide{
@@ -635,11 +636,177 @@ select[name="categoryName"] {
 }
 
 button[name="uploadButton"] {
+	
 	border: #ffffff;
 	background-color: #ffffff;
+	cursor: pointer;
+}
+button[name="uploadButton1"] {
+	
+	border: #ffffff;
+	background-color: #ffffff;
+	cursor: pointer;
 }
 
 div[name="preview"] {
 	width: 400px;
 	height: 400px;
 }
+div[name="preview1"] {
+	width: 200px;
+	height: 200px;
+}
+
+
+button[id="addButton"] {
+	width: 150px;
+	height: 50px;
+	margin-bottom: 20px;
+}
+button[id="addButton1"] {
+	width: 150px;
+	height: 50px;
+	margin-bottom: 20px;
+}
+text[name='ingd'] {
+	width: 150px;
+	height: 50px;
+}
+
+.e10_2_1 { 
+	background-color:rgba(255, 255, 255, 1);
+	width:100%;
+	height: 357px;
+	position:absolute;
+	top: 800px;
+	
+}
+.e10_2_2 { 
+	background-color:rgba(255, 255, 255, 1);
+	width:100%;
+	height:1500px;
+	position:absolute;
+	top: 1200px;
+}
+
+.e12_5 { 
+	color:rgba(0, 0, 0, 1);
+	width:469px;
+	height:35px;
+	position:absolute;
+	left:43%;
+	top:30px;
+	font-family:Inter;
+	text-align:center;
+	font-size:12px;
+	letter-spacing:0;
+	display: flex;
+}
+
+
+  #container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top:50px;
+  }
+  #container1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top:50px;
+  }
+  .text-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .text {
+	width: 200px;
+	height: 50px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+  }
+  .text1 {
+	width: 200px;
+	height: 50px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    margin-right: 4px;
+    margin-bottom: 10px;
+  }
+  
+  .remove-button {
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .text2 {
+	width: 500px;
+	height: 190px;
+    border: 1px solid #ccc;
+    margin-right: 4px;
+    resize: none;
+  }
+  
+  .text3 {
+	width: 470px;
+	height: 25px;
+    border: 1px solid #ccc;
+    margin-right: 4px;
+    margin-bottom: 10px;
+    resize: none;
+    left: 500px;
+  }
+  
+  .text4 {
+	width: 470px;
+	height: 50px;
+    border: 1px solid #ccc;
+    margin-right: 4px;
+    margin-bottom: 10px;
+    resize: none;
+    left: 500px;
+  }
+ .carrot {
+	   width: 25px;
+	   height:25px;
+	   margin-top: 5px;
+	   left: 500px;
+   }
+    .carrot1 {
+	   width: 25px;
+	   height:25px;
+	   margin-top: 5px;
+	   left: 500px;
+	   vertical-align: top;
+   }
+   
+.step { 
+	font-size: 50px;
+	color: chartreuse;
+	vertical-align: top; 
+}
+.textRow {
+	position: relative;
+	opacity: 1;
+    transition: opacity 0.3s ease;
+}
+.textRow1 {
+	position: relative;
+	opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+
+.remove-button1 {
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }

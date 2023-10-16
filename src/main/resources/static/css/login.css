@@ -1,0 +1,133 @@
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	font-family: 'Jua', sans-serif;
+	font-size: 20px;
+}
+
+.body_wrapper {
+	background: linear-gradient(#90E4B3, #DBFE74);
+	position: relative;
+	margin: 0;
+	padding-top: 125px;
+	height: 100%;
+}
+
+.mainicon {
+	color:rgba(23.58367010951042, 96.68749898672104, 11.683072540909052, 1);
+	width:253px;
+	height:100px;
+	position:relative;
+	font-size:40px;
+	letter-spacing:0;
+}
+
+.mainicon_wrapper {
+	text-align: center;
+	padding-bottom: 20px;
+}
+
+.login_wrapper { 
+	background-color: rgb(244, 255, 245);
+	width:550px;
+	height:450px;
+	position:relative;
+	border: 2px solid;
+	border-radius: 8px;
+	margin:0 auto;
+}
+
+a {
+	text-decoration-line: none;
+}
+
+.login_form {
+	position: relative;
+	text-align: center;
+	padding: 40px;
+}
+
+label {
+	margin-top: 50px;
+	font-size:22px;
+}
+
+label[for="user_id"] {
+	margin-right: 238px;
+	font-size: 24px;
+	letter-spacing:3px;
+}
+
+label[for="password"] {
+	margin-right: 210px;
+	font-size: 24px;
+	letter-spacing:3px;
+}
+
+input {
+	margin-top: 10px;
+	margin-bottom: 20px;
+	width: 300px;
+	height: 35px;
+	border-radius: 5px;
+	font-size: 25px;
+}
+
+button {
+	background-color: #44E0A7;
+	margin-top: 10px;
+	margin-bottom: 5px;
+	width: 308px;
+	height: 40px;
+	color: white;
+	border-radius: 5px;
+	font-family: 'Jua', sans-serif;
+	font-size: 23px;
+	letter-spacing:5px;
+}
+
+hr {
+	margin-bottom: 18px;
+	position: relative;
+	width: 375px;
+}
+
+table {
+	margin: 0 auto;
+	text-align: center;
+}
+
+
+
+
+
+
+.findid_wrapper, .findps_wrapper { 
+	background-color: rgb(244, 255, 245);
+	width:550px;
+	height:450px;
+	position:relative;
+	border: 2px solid;
+	border-radius: 8px;
+	margin:0 auto;
+}
+
+h2 {
+	padding-top: 5px;
+	padding-left: 25px;
+}
+
+.findid_form, .findps_form {
+	position: relative;
+	text-align: center;
+	padding: 50px;
+}
+
+label[for="email"] {
+	margin-right: 245px;
+}
+
+input[type="email"] {
+	margin-top: 20px;
+}

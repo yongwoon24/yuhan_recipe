@@ -49,5 +49,12 @@
          
         <button type="submit">비밀번호 재설정</button>
     </form>
+    
+    <script th:inline="javascript">
+        var errorMessage = /*[[${errorMessage}]]*/ "";
+        if (errorMessage) {
+            alert(errorMessage);
+        }
+    </script>
 </body>
 </html>
