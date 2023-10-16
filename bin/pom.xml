@@ -64,6 +64,13 @@
 		</dependency>
 
 		<dependency>
+<<<<<<< HEAD
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+=======
+>>>>>>> a81dc367ec064973a149017e6309ee0077be3a5d
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
@@ -72,12 +79,18 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
+<<<<<<< HEAD
+=======
 		
+>>>>>>> a81dc367ec064973a149017e6309ee0077be3a5d
 		 <dependency>
         	<groupId>org.springframework.boot</groupId>
         	<artifactId>spring-boot-starter-data-jpa</artifactId>
    		 </dependency>
+<<<<<<< HEAD
+=======
    		 
+>>>>>>> a81dc367ec064973a149017e6309ee0077be3a5d
 		  <dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -89,6 +102,8 @@
             <artifactId>junit</artifactId>
             <version>4.12</version>
         </dependency>
+<<<<<<< HEAD
+=======
         
         <dependency>
 		<groupId>org.apache.commons</groupId>
@@ -173,6 +188,7 @@
         <artifactId>spring-boot-starter</artifactId>
     </dependency>
 
+>>>>>>> a81dc367ec064973a149017e6309ee0077be3a5d
 	</dependencies>
 
 	<build>
