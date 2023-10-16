@@ -1,0 +1,61 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+    	<title>Post List</title>
+    	<style>
+        /* CSS 스타일 추가 */
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin:auto;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center; /* 가운데 정렬 */
+        }
+        div {
+			text-align: center;
+		}
+		h1 {
+			text-align: center;
+		}
+    </style>
+	</head>
+	<body>
+		<h1>공지사항</h1>
+		<table>
+			<tr>
+				<td>제목</td>
+				<td>날짜</td>
+			</tr>
+		</table>
+		<h1>게시판목록</h1>
+		<table>
+			<tr>
+				<th>post_id</th>
+				<th>title</td>
+				<th>user_id</th>
+				<th>created_date</th>
+			</tr>
+			<tr>
+				<td th:text="${board.post_id}"></td>
+				<td th:text="${board.title}"></td>
+				<td th:text="${board.user_id}"></td>
+				<td th:text="${board.created_date}"></td>
+			</tr>
+		</table>
+		<div>
+  			<select name="searchType">
+      			<option value="title">제목</option>
+         		<option value="content">내용</option>
+      			<option value="title_content">제목+내용</option>
+      			<option value="writer">작성자</option>
+  			</select>
+  
+  			<input type="text" name="keyword"/>
+  
+  			<button type="button">검색</button>
+ 		</div>
+	</body>
+</html>
