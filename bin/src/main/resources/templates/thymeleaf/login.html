@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인</title>
+</head>
+<body>
+    <h2>모두의 레시피 로그인</h2>
+    
+    <form action="#" th:action="@{/login}" th:object="${user}" method="post">
+        <label for="user_id">아이디:</label>
+        <input type="text" id="user_id" name="user_id" required autofocus><br>
+        
+        <label for="password">비밀번호:</label>
+        <input type="password" id="password" name="password" required><br>
+        
+        <button type="submit">로그인</button>
+    </form>
+    <table>
+<<<<<<< HEAD
+<<<<<<< HEAD
+		<tr>
+	     <td><p><a href="/signup">회원가입 / </a></p></td>
+	     <td><p><a href="/findid">아이디 찾기 / </a></p></td>
+	     <td><p><a href="/findps">비밀번호 찾기</a></p></td>
+	     </tr>
+=======
+=======
+>>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
+      <tr>
+        <td><p><a href="/signup">회원가입 / </a></p></td>
+        <td><p><a href="/findid">아이디 찾기 / </a></p></td>
+        <td><p><a href="/findps">비밀번호 찾기</a></p></td>
+        </tr>
+<<<<<<< HEAD
+>>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
+=======
+>>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
+    </table>
+    
+    <script th:inline="javascript">
+        var successMessage = /*[[${successMessage}]]*/ "";
+        if (successMessage) {
+            alert(successMessage);
+        }
+    </script>
+    
+    <script th:inline="javascript">
+        var errorMessage = /*[[${errorMessage}]]*/ "";
+        if (errorMessage) {
+            alert(errorMessage);
+        }
+    </script>
+    
+    <script th:inline="javascript">
+        var sendMessage = /*[[${sendMessage}]]*/ "";
+        if (sendMessage) {
+            alert(sendMessage);
+        }
+    </script>
+    
+    <script th:inline="javascript">
+        var sendMessage = /*[[${loginMessage}]]*/ "";
+        if (sendMessage) {
+            alert(sendMessage);
+        }
+    </script>
+</body>
+<<<<<<< HEAD
+<<<<<<< HEAD
+</html>
+=======
+</html>
+>>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
+=======
+</html>
+>>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607

@@ -15,9 +15,15 @@ public interface UserRepository extends JpaRepository<User, String> {
     List<User> findByUser_id(String user_id);
    @Query(value = "SELECT * FROM user WHERE email = :email ", nativeQuery = true)
    List<User> findByemailList(String email);
+   @Query(value = "SELECT * FROM user WHERE nickname = :nickname ", nativeQuery = true)
+   List<User> findBynicknameList(String nickname);
    
    User findByVerificationToken(String verificationToken);
    User findByEmail(String email);
+   
+   @Query(value = "SELECT * FROM user WHERE nickname = :nickname ", nativeQuery = true)
+   User findbynickname(String nickname);
+   //User findByUserid(String user_id);
   
    
 

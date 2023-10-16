@@ -132,7 +132,13 @@ CREATE TABLE User (
     email VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
     birthdate DATE,
+<<<<<<< HEAD
     phone_number VARCHAR(255)
+=======
+    phone_number VARCHAR(255),
+    email_verified BIT NOT NULL DEFAULT 0,
+    verification_token VARCHAR(36)
+>>>>>>> a81dc367ec064973a149017e6309ee0077be3a5d
 );
 
 
@@ -145,14 +151,30 @@ CREATE TABLE Board (
     FOREIGN KEY (user_id) REFERENCES User(user_id)
 );
 
+<<<<<<< HEAD
 
 CREATE TABLE Recipe (
     recipe_id INT AUTO_INCREMENT PRIMARY KEY,
+=======
+CREATE TABLE Category (
+    category_name VARCHAR(255) PRIMARY KEY
+    );
+
+CREATE TABLE Recipe (
+    recipe_id INT AUTO_INCREMENT PRIMARY KEY,
+    category_name VARCHAR(255),
+>>>>>>> a81dc367ec064973a149017e6309ee0077be3a5d
     title VARCHAR(255) NOT NULL,
     main_photo VARCHAR(255),
     created_date DATE NOT NULL,
     user_id VARCHAR(255),
+<<<<<<< HEAD
     FOREIGN KEY (user_id) REFERENCES User(user_id)
+=======
+    view_count INT DEFAULT 0,
+    FOREIGN KEY (user_id) REFERENCES User(user_id),
+    FOREIGN KEY (category_name) REFERENCES Category(category_name)
+>>>>>>> a81dc367ec064973a149017e6309ee0077be3a5d
 );
 
 
@@ -167,9 +189,13 @@ CREATE TABLE CookingStep (
 
 CREATE TABLE Ingredient (
     ingredient_id INT AUTO_INCREMENT PRIMARY KEY,
+<<<<<<< HEAD
     recipe_id INT,
     ingredient_name VARCHAR(255),
     FOREIGN KEY (recipe_id) REFERENCES Recipe(recipe_id)
+=======
+    ingredient_name VARCHAR(255)
+>>>>>>> a81dc367ec064973a149017e6309ee0077be3a5d
 );
 
 
@@ -193,6 +219,7 @@ CREATE TABLE Scrap (
 );
 
 
+<<<<<<< HEAD
 CREATE TABLE Love (
     like_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id VARCHAR(255),
@@ -209,10 +236,46 @@ ALTER TABLE Recipe
 ADD category_name VARCHAR(255),
 ADD CONSTRAINT fk_category
     FOREIGN KEY (category_name) REFERENCES Category(category_name);
+=======
+CREATE TABLE UserActivity (
+    activity_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id VARCHAR(255),
+    recipe_id INT,
+    activity VARCHAR(45),
+    date DATE(),
+    FOREIGN KEY (user_id) REFERENCES User(user_id),
+    FOREIGN KEY (recipe_id) REFERENCES Recipe(recipe_id)
+);
+
+CREATE TABLE Recipe_Ingredient (
+    r_id INT AUTO_INCREMENT PRIMARY KEY,
+    recipe_id INT,
+    ingredient_id INT,
+    mount VARCHAR(255),
+    FOREIGN KEY (recipe_id) REFERENCES Recipe(recipe_id),
+    FOREIGN KEY (ingredient_id) REFERENCES Ingredient(ingredient_id)
+);
+>>>>>>> a81dc367ec064973a149017e6309ee0077be3a5d
 
 INSERT INTO `yuhan_db`.`category` (`category_name`) VALUES ('피크닉');
 INSERT INTO `yuhan_db`.`category` (`category_name`) VALUES ('혼밥');
 INSERT INTO `yuhan_db`.`category` (`category_name`) VALUES ('파티');
 INSERT INTO `yuhan_db`.`category` (`category_name`) VALUES ('가정');
 INSERT INTO `yuhan_db`.`category` (`category_name`) VALUES ('디저트');
+<<<<<<< HEAD
 INSERT INTO `yuhan_db`.`category` (`category_name`) VALUES ('야식/안주');
+=======
+INSERT INTO `yuhan_db`.`category` (`category_name`) VALUES ('야식/안주');
+
+
+ALTER TABLE Recipe
+ADD view_count INT DEFAULT 0;
+
+SELECT COUNT(*) AS like_count // 좋아요 수 가져오기
+FROM Love
+WHERE recipe_id = <레시피아이디>;
+
+UPDATE Recipe // 조회수 가져오기
+SET view_count = view_count + 1
+WHERE recipe_id = <레시피아이디>;
+>>>>>>> a81dc367ec064973a149017e6309ee0077be3a5d

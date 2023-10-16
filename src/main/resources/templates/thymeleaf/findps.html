@@ -13,5 +13,12 @@
         
         <button type="submit">인증하기</button>
     </form>
+    
+     <script th:inline="javascript">
+        var errorMessage = /*[[${errorMessage}]]*/ "";
+        if (errorMessage) {
+            alert(errorMessage);
+        }
+    </script>
 </body>
 </html>

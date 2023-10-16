@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta content="text/html; charset=euc-kr">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>게시판 글쓰기 수정</title>
+<style type="text/css">
+	
+</style>
+<script src="https://kit.fontawesome.com/2636adf573.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" th:href="@{/../css/style.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/../css/editboard.css}"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" type="text/css" th:href="@{/../css/board.css}">
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<div class="body_wrapper">
+   <div class="body_content">
+      <div class="menubar"></div>
+      <span class="menu4"><a href="/mypage">마이페이지</a></span>
+      <span class="menu3"><a href="/recipe">분류</a></span>
+      <span class="menu2"><a href="/board">게시판</a></span>
+      <span class="menu1"><a href="/rank">랭킹</a></span>
+      <span><a class="mainicon" href="/">모두의레시피</a></span>
+      <!-- 마이페이지 주소 입력 --> 
+      <div class="write-icon"><a href="/createRecipe"><i class="fas fa-pencil-alt"></i></a></div>
+      <div class="usericon"><a href="/mypage"><i class="fa-solid fa-user"></i></a></div>
+      <!-- 로그아웃 주소 입력 --> 
+      <div class="logout_icon"><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></div>
+        <div class="searchbar">   
+         <div class="searchradius">
+            <form action="" method=""> <!-- 검색창 주소 입력 --> 
+               <input type="text" class="search_txt">
+               <button type="submit" class="search_btn">
+                  <span class="searchicon">
+                     <i class="fa-solid fa-magnifying-glass"></i>
+                  </span>
+               </button>
+            </form>
+         </div>   
+      </div>
+      
+      <!-- 여기부터 body에 추가할 코드 입력 -->
+	<div class="contents">
+		
+		<h1>게시글 수정</h1>
+		
+		<hr>
+    
+    <form th:action="@{'/edit/' + ${postId}}" th:object="${board}" method="POST">
+		<input type="hidden" th:field="*{postId}" />
+		<label class="text_title">제목: <input type="text" th:field="*{title}" spellcheck="false"/></label>
+		
+		<br>
+		
+        <label for="content">내용:</label>
+		<textarea id="content" name="content" rows="5" th:field="*{content}" spellcheck="false" required></textarea>
+		
+		<br>
+
+        
+        <button class="btn_submit" type="submit">수정하기</button>
+    </form>
+		
+	</div>
+    
+   </div>
+       <!--</div>-->
+   <div class="footer">
+         <div class="footer_comment">@Yuhan University Group 3's Project</div>
+   </div>
+</div>
+
+   
+</body>
+</html>

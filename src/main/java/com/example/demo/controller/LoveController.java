@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import com.example.demo.entity.Love;
 import com.example.demo.entity.Recipe;
 import com.example.demo.repository.LoveRepository;
@@ -41,7 +42,7 @@ public class LoveController {
     	/*
         // Create a map to store recipe IDs and their corresponding like counts
         Map<Long, Long> recipeLikeCounts = topLove.stream()
-                .collect(Collectors.groupingBy(
+        s        .collect(Collectors.groupingBy(
                         love -> (long)love.getRecipe().getRecipe_id(),
                         Collectors.counting()
                 ));

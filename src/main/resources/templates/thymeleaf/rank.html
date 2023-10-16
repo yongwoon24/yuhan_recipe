@@ -21,19 +21,21 @@
 <div class="body_wrapper">
 	<div class="body_content">
 		<div class="menubar"></div>
-		<span class="menu4"><a href="recipe">메뉴4</a></span>
-		<span class="menu3"><a href="user">메뉴3</a></span>
-		<span class="menu2"><a href="user">메뉴2</a></span>
-		<span class="menu1"><a href="rank">랭킹</a></span>
-		<span><a class="mainicon" href="/">모두의레시피</a></span>
+		<span class="menu4"><a href="/mypage">마이페이지</a></span>
+      <span class="menu3"><a href="/recipe">분류</a></span>
+      <span class="menu2"><a href="/board">게시판</a></span>
+      <span class="menu1"><a href="/rank">랭킹</a></span>
+      <span><a class="mainicon" href="/">모두의레시피</a></span>
+		
 		<!-- 마이페이지 주소 입력 --> 
-		<div class="usericon"><a href="마이페이지.html"><i class="fa-solid fa-user"></i></a></div>
+		<div class="write-icon"><a href="/createRecipe"><i class="fas fa-pencil-alt"></i></a></div>
+		<div class="usericon"><a href="/mypage"><i class="fa-solid fa-user"></i></a></div>
 		<!-- 로그아웃 주소 입력 --> 
-		<div class="logout_icon"><a href="로그아웃.html"><i class="fa-solid fa-right-from-bracket"></i></a></div>
+		<div class="logout_icon"><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></div>
   		<div class="searchbar">	
 			<div class="searchradius">
-				<form action="" method=""> <!-- 검색창 주소 입력 --> 
-					<input id="search" type="text" class="search_txt">
+				<form action="/search" method="get"> <!-- 검색창 주소 입력 --> 
+					<input type="text" name="keyword" class="search_txt" required>
 					<button type="submit" class="search_btn">
 						<span class="searchicon">
 							<i class="fa-solid fa-magnifying-glass"></i>
@@ -55,11 +57,19 @@
 			            <option value="피크닉">피크닉용</option>
 			            <option value="가정">가정용</option>
 			            <option value="디저트">디저트용</option>
-			            <option value="야식안주">야식/안주용</option>
+			            <option value="야식/안주">야식/안주용</option> 
+			        </select> &nbsp;&nbsp;
+			        <label for="categoryName">기간 선택:</label>
+			        <select id="period" name="period">
+			            <option value="">전체</option>
+			            <option value="d">일간</option>
+			            <option value="w">주간</option>
+			            <option value="m">월간</option>
 			        </select>
 			        <button id="submitBtn" type="submit" hidden>선택</button>
 
 			    </form>
+			    
 			</div>
 			<ul class="img_slide">
 			    <li class="recipe-item" th:each="recipe, recipeIndex : ${topLove}">
@@ -67,8 +77,8 @@
 						<div class="ranking">
                 			<span class="rank-number" th:text="${(currentPage * 20) + recipeIndex.index + 1}+'위'"></span>
             			</div>
-				        <a href="recipe"><img th:src="@{/img/__${recipe.main_photo}__.jpg}"></a>
-				        <a href="recipe"><span th:text="${recipe.title}">asd</span></a>
+				        <a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}"><img th:src="@{${recipe.main_photo_path}}">
+				        <span th:text="${recipe.title}">asd</span></a>
 				        <div class="likes">
 				            <i class="fas fa-heart"></i>
 				            <span th:text="${recipe.totalLove}"></span>
@@ -78,10 +88,16 @@
 			
 			</ul>
 			<div class="pagination">
-		    	<a th:if="${currentPage > 0}" th:href="@{|/rank?page=${currentPage - 1}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}">&laquo;</a>
-		    	<!--<span th:text="${currentPage + 1}"></span>-->
-				<a th:if="${topLove.size() > (currentPage * 20)}" th:href="@{|/rank?page=${currentPage + 1}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}">&raquo;</a>
-			</div>
+    <a th:if="${currentPage > firstPage}" th:href="@{|/rank?page=${currentPage - 1}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}">&laquo; 이전</a>
+    <span th:each="pageNumber : ${#numbers.sequence(currentPage - 5, currentPage + 4)}" th:if="${pageNumber >= firstPage && pageNumber <= lastPage}">
+        <a th:href="@{|/rank?page=${pageNumber}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}"
+           th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber + 1}"></a>
+    </span>
+    <a th:if="${currentPage < lastPage}" th:href="@{|/rank?page=${currentPage + 1}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}">다음 &raquo;</a>
+</div>
+
+
+
 			
 			
 						
