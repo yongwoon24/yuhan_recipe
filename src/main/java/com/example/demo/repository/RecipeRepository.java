@@ -103,7 +103,7 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
     List<Recipe> findRecipesScrapByUser(String userId);
 	
 	List<Recipe> findByTitleContaining(String title, Sort sort);
-	List<Recipe> findByTitleContainingOrTagContentContaining(String title, String tagcontent, Sort sort);
+	List<Recipe> findByTitleContainingOrTagContent(String title, String tagcontent, Sort sort);
 	
 }
 

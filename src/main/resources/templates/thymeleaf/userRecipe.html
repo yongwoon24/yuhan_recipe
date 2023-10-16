@@ -126,15 +126,19 @@
 								name="scapbtn" value="스크랩"></span>
 					</form>
 					<a th:if="${#strings.equals(recipe.nickname, session.loggedInNickname)}" th:href="@{/deleteRecipe/{recipe_id}(recipe_id=${recipe.recipe_id})}">Delete</a>
-					<div class="step_item2" th:if="${(tagss != null) && (!tagss.isEmpty())}">태그
-						<div class="tag-container">
+					
+					
+				</div>
+				
+				<div class="e17_1213_1">
+					<div class="step_item2" th:if="${(tagss != null) && (!tagss.isEmpty())}">
+						<div class="tag-container">태그&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<span class="tag" th:each="tag : ${tagss}">
 								<a th:href="@{|/search?keyword=${tag.content}|}" th:text="'#'+${tag.content}"></a>
 							</span>
 						</div>
 					</div>
-				</div>
-				<div class="e17_1213_1">재료
+					재료
 					<div class="ingredient-grid">
 						<div th:each="ingredient : ${recipeings}"
 							th:if="${(ingredient.ingredient.ingredient_name != '')}" class="ingredient-item">
@@ -198,25 +202,10 @@
 								</div>
 							</div>
 						</div>
-					</div>
-					태그
-					<div class="step_item2">
-						<div class="tag-container">
-							<span class="tag" th:each="tag : ${tagss}">
-								<button onclick="redirectToSearch('${tag.content}')" th:text="${tag.content}"></button>
-							</span>
-						</div>
-					</div>
+					</div>		
 				</div>
 			</div>
 		</div>
-		<div class="step_item2">
-						<div class="tag-container">
-							<span class="tag" th:each="tag : ${tagss}">
-								<button onclick="redirectToSearch('${tag.content}')" th:text="${tag.content}"></button>
-							</span>
-						</div>
-					</div>
 	</div>
 
 

@@ -514,14 +514,14 @@ public class RecipeController {
 	    if (keyword != null && !keyword.isEmpty()) {
 	    	
 	        if ("latest".equals(sort)) {
-	        	recipes = recipeRepository.findByTitleContainingOrTagContentContaining(keyword, keyword, Sort.by(Sort.Order.desc("createddate")));
+	        	recipes = recipeRepository.findByTitleContainingOrTagContent(keyword, keyword, Sort.by(Sort.Order.desc("createddate")));
 	        } else if ("views".equals(sort)) {
-	        	recipes = recipeRepository.findByTitleContainingOrTagContentContaining(keyword, keyword, Sort.by(Sort.Order.desc("viewcount")));
+	        	recipes = recipeRepository.findByTitleContainingOrTagContent(keyword, keyword, Sort.by(Sort.Order.desc("viewcount")));
 	        } else {
-	        	recipes = recipeRepository.findByTitleContainingOrTagContentContaining(keyword, keyword, Sort.by(Sort.Order.desc("createddate")));
+	        	recipes = recipeRepository.findByTitleContainingOrTagContent(keyword, keyword, Sort.by(Sort.Order.desc("createddate")));
 	        }
 	    } else {
-	    	recipes = recipeRepository.findByTitleContainingOrTagContentContaining(keyword, keyword, Sort.by(Sort.Order.desc("createddate")));
+	    	recipes = recipeRepository.findByTitleContainingOrTagContent(keyword, keyword, Sort.by(Sort.Order.desc("createddate")));
 	    }
 	    
 	    
