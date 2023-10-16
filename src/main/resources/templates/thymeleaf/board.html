@@ -29,22 +29,54 @@
       <div class="usericon"><a href="/mypage"><i class="fa-solid fa-user"></i></a></div>
       <!-- 로그아웃 주소 입력 --> 
       <div class="logout_icon"><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></div>
-        <div class="searchbar">   
-         <div class="searchradius">
-            <form action="" method=""> <!-- 검색창 주소 입력 --> 
-               <input type="text" class="search_txt">
-               <button type="submit" class="search_btn">
-                  <span class="searchicon">
-                     <i class="fa-solid fa-magnifying-glass"></i>
-                  </span>
-               </button>
-            </form>
-         </div>   
-      </div>
-      
+        <div class="searchbar">	
+			<div class="searchradius">
+				<form action="/search" method="get"> <!-- 검색창 주소 입력 --> 
+					<input type="text" name="keyword" class="search_txt" required>
+					<button type="submit" class="search_btn">
+						<span class="searchicon">
+							<i class="fa-solid fa-magnifying-glass"></i>
+						</span>
+					</button>
+				</form>
+			</div>	
+		</div>
+		
+      	<!-- 검색 결과가 없을 때의 메시지를 추가 -->
+		<div class="search" th:if="${boardList.isEmpty()}">
+			<h2>검색 결과가 없습니다.</h2>
+			<div class="searchbar">
+			    <div class="searchradius">
+			        <form th:action="@{/board}" method="get" class="search-form">
+			            <div class="search-left">
+			                <label for="searchBy" class="search-label"></label>
+			                <select name="searchBy" id="searchBy" class="search-select">
+			                    <option value="title">제목</option>
+			                    <option value="nickname">작성자</option>
+			                </select>
+			            </div>
+			            <div class="search-right">
+			                <input type="text" th:value="${keyword}" name="keyword" class="search_txt" placeholder="검색어를 입력하세요" required>
+			                <button type="submit" class="search_btn">
+			                    <span class="searchicon">
+			                        <i class="fa-solid fa-magnifying-glass"></i>
+			                    </span>
+			                </button>
+			            </div>
+			        </form>
+			    </div>
+			</div>
+         <div class="button-container">
+         <a href="/createboard" class="button">글쓰기</a>
+         </div>
+         <div class="text-center">
+			<script th:src="@{/../js/rank.js}"></script>
+         </div>
+		</div>
+		
       <!-- 여기부터 body에 추가할 코드 입력 -->
 <!--<div class="content">-->
-   <div class="table-container">
+   <div class="table-container" th:if="${not boardList.isEmpty()}">
           <table class="table">
             <thead>
                <tr>
@@ -63,7 +95,7 @@
                 </a>
             </td>
                <td style=text-align:center;>
-               <a th:href="@{'/userpage/' + ${board.nickname}}">
+               <a th:href="@{'/userpage_R/' + ${board.nickname}}">
                    <span th:text="${board.nickname}"></span>
                 </a>
             </td>
@@ -91,7 +123,7 @@
                 </select>
             </div>
             <div class="search-right">
-                <input type="text" name="keyword" class="search_txt" placeholder="검색어를 입력하세요">
+                <input type="text" th:value="${keyword}" name="keyword" class="search_txt" placeholder="검색어를 입력하세요" required>
                 <button type="submit" class="search_btn">
                     <span class="searchicon">
                         <i class="fa-solid fa-magnifying-glass"></i>

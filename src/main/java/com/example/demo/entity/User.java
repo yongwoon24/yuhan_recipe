@@ -16,7 +16,8 @@ public class User {
 	private LocalDate birthdate;
 	private String phone_number;
 	private String nickname;
-	
+	private String userphotopath;
+	private String userpr;
 	
 	@Column(length = 36, name = "verification_token")
     private String verificationToken;
@@ -93,6 +94,25 @@ public class User {
 
 	public void setEmailVerified(boolean emailVerified) {
 		this.emailVerified = emailVerified;
+	}
+	
+
+	public String getUserphotopath() {
+		return userphotopath;
+	}
+
+	public void setUserphotopath(String userphotopath) {
+		this.userphotopath = userphotopath;
+	}
+
+	
+	
+	public String getUserpr() {
+		return userpr;
+	}
+
+	public void setUserpr(String userpr) {
+		this.userpr = userpr;
 	}
 
 	@Override

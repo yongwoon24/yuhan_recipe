@@ -1,13 +1,25 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 @Entity
 public class Scrap {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int scrap_id;
-	private int post_id;
-	private String user_id;
+	
+	@ManyToOne
+	@JoinColumn(name="recipe_id")
+	private Recipe recipe;
+	
+	@ManyToOne
+    @JoinColumn(name = "user_id")
+    User user;
 	
 	public int getScrap_id() {
 		return scrap_id;
@@ -15,22 +27,25 @@ public class Scrap {
 	public void setScrap_id(int scrap_id) {
 		this.scrap_id = scrap_id;
 	}
-	public int getPost_id() {
-		return post_id;
+	public Recipe getRecipe() {
+		return recipe;
 	}
-	public void setPost_id(int post_id) {
-		this.post_id = post_id;
+	public void setRecipe(Recipe recipe) {
+		this.recipe = recipe;
 	}
-	public String getUser_id() {
-		return user_id;
+	public User getUser() {
+		return user;
 	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+	public void setUser(User user) {
+		this.user = user;
 	}
-	
 	@Override
 	public String toString() {
-		return "Scrap [scrap_id=" + scrap_id + ", post_id=" + post_id + ", user_id=" + user_id + "]";
+		return "Scrap [scrap_id=" + scrap_id + ", recipe=" + recipe + ", user=" + user + "]";
 	}
+	
+	
+	
+	
 
 }

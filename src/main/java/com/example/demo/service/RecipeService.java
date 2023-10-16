@@ -2,33 +2,29 @@ package com.example.demo.service;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.function.Function;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuery;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.entity.Ingredient;
 import com.example.demo.entity.Recipe;
 import com.example.demo.entity.Recipe_Ingredient;
+import com.example.demo.entity.Scrap;
 import com.example.demo.entity.Step;
+import com.example.demo.entity.Tag;
+import com.example.demo.entity.User;
 import com.example.demo.repository.IngredientRepository;
 import com.example.demo.repository.RecipeIngredientRepository;
 import com.example.demo.repository.RecipeRepository;
+import com.example.demo.repository.ScrapRepository;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -42,6 +38,9 @@ public class RecipeService {
 	private RecipeRepository reciperepository;
 	@Autowired
 	private RecipeIngredientRepository recipeIngredientRepository;
+	
+	@Autowired
+	private ScrapRepository scraprepository;
 
 	@Autowired
 	private IngredientRepository ingredientRepository;
@@ -82,6 +81,20 @@ public class RecipeService {
 
 		recipe.setRecipeIngredients(recipeIngredients);
 
+	}
+	
+	public void createtag(Recipe recipe, List<String> tag) {
+		List<Tag> tags = new ArrayList<>();
+		
+		for (int i = 0; i < tag.size(); i++) {
+			Tag ntag = new Tag();
+			ntag.setRecipe(recipe);
+			String tagc = tag.get(i);
+			//System.out.println(tagc);
+			ntag.setContent(tagc);
+			tags.add(ntag);
+		}
+		recipe.setTag(tags);
 	}
 
 	public void createStep(Recipe recipe, List<String> SContents, List<String> Singtxts, List<String> Stooltxts,
@@ -148,6 +161,16 @@ public class RecipeService {
 		// reciperepository.save(recipe);
 	}
 	
+	public void userwrite(User user, MultipartFile file) throws Exception {
+		String proijectpath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\img";
+		UUID uuid = UUID.randomUUID();
+		String fileName = uuid + "_" + file.getOriginalFilename();
+		File savefile = new File(proijectpath, fileName);
+		file.transferTo(savefile);
+		user.setUserphotopath("/img/" + fileName);
+		
+		// reciperepository.save(recipe);
+	}
 	
 	public void stepwrite(Recipe recipe, MultipartFile file) throws Exception {
 		String proijectpath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\img";
@@ -176,6 +199,8 @@ public class RecipeService {
 		// 1. 게시물 정보 조회
 		Recipe recipe = reciperepository.findById(recipe_id);
 
+		List<Scrap> scraps = scraprepository.findByRecipe(recipe);
+		
 		if (recipe != null) {
 			// 2. 이미지 파일 삭제
 			String imagePath = recipe.getMain_photo_path();
@@ -185,6 +210,12 @@ public class RecipeService {
 		}
 
 		// 3. 게시물 및 이미지 정보 삭제
+		
+		for (int i = 0; i < scraps.size(); i++) {
+		
+			scraprepository.delete(scraps.get(i));
+		}
+		
 		reciperepository.delete(recipe);
 	}
 

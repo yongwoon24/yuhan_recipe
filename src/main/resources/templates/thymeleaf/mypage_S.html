@@ -29,18 +29,18 @@
       <div class="usericon"><a href="/mypage"><i class="fa-solid fa-user"></i></a></div>
       <!-- 로그아웃 주소 입력 --> 
       <div class="logout_icon"><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></div>
-        <div class="searchbar">   
-         <div class="searchradius">
-            <form action="" method=""> <!-- 검색창 주소 입력 --> 
-               <input type="text" class="search_txt">
-               <button type="submit" class="search_btn">
-                  <span class="searchicon">
-                     <i class="fa-solid fa-magnifying-glass"></i>
-                  </span>
-               </button>
-            </form>
-         </div>   
-      </div>
+        <div class="searchbar">	
+			<div class="searchradius">
+				<form action="/search" method="get"> <!-- 검색창 주소 입력 --> 
+					<input type="text" name="keyword" class="search_txt" required>
+					<button type="submit" class="search_btn">
+						<span class="searchicon">
+							<i class="fa-solid fa-magnifying-glass"></i>
+						</span>
+					</button>
+				</form>
+			</div>	
+		</div>
       
       
 <div class="slide_wrapper">
@@ -52,7 +52,32 @@
       <span class="menu55"><a href="/mypage_S">My Scrap</a></span></div>
 
 <!-- 여기부터 body에 추가할 코드 입력 -->
-   
+   <ul class="img_slide1">
+					<li class="recipe-item" th:each="recipe, recipeIndex : ${recipes}">
+						<div class="recipe-container">
+							<a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}">
+								<img th:src="@{${recipe.main_photo_path}}" width="300px" height="300px"><br>
+								<h2 th:text="'제목  :  '+${recipe.title}"></h2>
+								<p th:text="'작성자  :  '+${recipe.nickname}"></p>
+								<p th:text="'좋아요  :  '+${recipe.totalLove}"></p>
+								<p th:text="'조회  :  '+${recipe.view_count}"></p>
+							</a>
+						</div>
+					</li>
+				</ul>
+
+				<!-- 페이지네이션을 추가한 부분 -->
+
+				<div class="pagination">
+					<a th:if="${currentPage > firstPage}" th:href="@{|/mypage_S?page=${currentPage - 1}|}">&laquo;
+						이전</a>
+					<span th:each="pageNumber : ${#numbers.sequence(1, totalPages)}"
+						th:if="${pageNumber >= firstPage && pageNumber <= lastPage}">
+						<a th:href="@{|/mypage_S?page=${pageNumber}|}"
+							th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber}"></a>
+					</span>
+					<a th:if="${hasNextPage}" th:href="@{|/mypage_S?page=${currentPage + 1}|}">다음 &raquo;</a>
+				</div>
        </div>
        </div>
    <div class="footer">

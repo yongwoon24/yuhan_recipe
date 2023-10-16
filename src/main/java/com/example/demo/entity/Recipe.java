@@ -16,6 +16,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
 
 @Entity
@@ -87,7 +88,28 @@ public class Recipe {
     
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
     private List<Step> steps;
+    
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
+    private List<Tag> tag;
 	
+	public LocalDateTime getCreateddate() {
+		return createddate;
+	}
+	public void setCreateddate(LocalDateTime createddate) {
+		this.createddate = createddate;
+	}
+	public Integer getViewcount() {
+		return viewcount;
+	}
+	public void setViewcount(Integer viewcount) {
+		this.viewcount = viewcount;
+	}
+	public List<Tag> getTag() {
+		return tag;
+	}
+	public void setTag(List<Tag> tag) {
+		this.tag = tag;
+	}
 	public List<Step> getSteps() {
 		return steps;
 	}
@@ -191,12 +213,12 @@ public class Recipe {
 	}
 	@Override
 	public String toString() {
-		return "Recipe [recipe_id=" + recipe_id + ", title=" + title + ", main_photo=" + main_photo + ", created_date="
+		return "Recipe [recipe_id=" + recipe_id + ", title=" + title + ", main_photo=" + main_photo + ", createddate="
 				+ createddate + ", user=" + user + ", categoryName=" + categoryName + ", totalLove=" + totalLove
-				+ ", view_count=" + viewcount + ", dailyLove=" + dailyLove + ", weeklyLove=" + weeklyLove
+				+ ", viewcount=" + viewcount + ", dailyLove=" + dailyLove + ", weeklyLove=" + weeklyLove
 				+ ", monthlyLove=" + monthlyLove + ", nickname=" + nickname + ", main_photo_path=" + main_photo_path
 				+ ", recipesubtxt=" + recipesubtxt + ", loves=" + loves + ", recipeIngredients=" + recipeIngredients
-				+ ", steps=" + steps + "]";
+				+ ", steps=" + steps + ", tag=" + tag + "]";
 	}
 	
 	public void updateRecipe(RecipeFormDto recipeFormDto) {

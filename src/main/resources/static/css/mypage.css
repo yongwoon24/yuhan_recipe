@@ -25,6 +25,16 @@ left:50%
     position: relative;
 }
 
+.preview {
+	max-width: 50px;
+	max-height: 50px;
+}
+
+.preview1{
+	max-width: 50px;
+	max-height: 50px;
+}
+
 .recipe-item {
     display: flex;
     flex-direction: column;
@@ -469,10 +479,7 @@ a.button:hover {
 	text-align: center;
 }
 
-/* 각 메뉴 아이템의 스타일 */
-.menu-item {
-    /* 원하는 스타일링을 추가하세요 */
-}
+
 a{
    text-decoration: none;
    color: rgba(0, 0, 0, 1);
@@ -545,9 +552,9 @@ li > img{
 .slide_control span.prev{font-size: 50px; right:calc(100% - 30px); text-shadow: 1px 1px 0px #ffffff, 3px 3px 2px #663333;}
 .slide_control span.next{font-size: 50px; left:calc(100% - 140px); text-shadow: 1px 1px 0px #ffffff, 3px 3px 2px #663333;}
 .body_wrapper { 
-   background-color:rgba(255, 255, 255, 1);
+   
    width:100%;
-   height:100%;
+   
    position:absolute;
    font-family: 'Jua', sans-serif;   
 }
@@ -692,7 +699,7 @@ li > img{
    transform: translateY(-50%);
 }
 .body_content{
-   height: 9999px;
+   
    position: relative;
    padding-bottom: 400px;
    

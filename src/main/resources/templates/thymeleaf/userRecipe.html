@@ -63,28 +63,30 @@
 		<div class="body_content">
 			<div class="menubar"></div>
 			<span class="menu4"><a href="/mypage">마이페이지</a></span>
-      <span class="menu3"><a href="/recipe">분류</a></span>
-      <span class="menu2"><a href="/board">게시판</a></span>
-      <span class="menu1"><a href="/rank">랭킹</a></span>
-      <span><a class="mainicon" href="/">모두의레시피</a></span>
+			<span class="menu3"><a href="/recipe">분류</a></span>
+			<span class="menu2"><a href="/board">게시판</a></span>
+			<span class="menu1"><a href="/rank">랭킹</a></span>
+			<span><a class="mainicon" href="/">모두의레시피</a></span>
 
 			<!-- 마이페이지 주소 입력 -->
 			<div class="write-icon"><a href="/createRecipe"><i class="fas fa-pencil-alt"></i></a></div>
 			<div class="usericon"><a href="/mypage"><i class="fa-solid fa-user"></i></a></div>
 			<!-- 로그아웃 주소 입력 -->
 			<div class="logout_icon"><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></div>
-			<div class="searchbar">
-				<div class="searchradius">
-					<form action="" method=""> <!-- 검색창 주소 입력 -->
-						<input type="text" class="search_txt">
-						<button type="submit" class="search_btn">
-							<span class="searchicon">
-								<i class="fa-solid fa-magnifying-glass"></i>
-							</span>
-						</button>
-					</form>
-				</div>
-			</div>
+
+			<div class="searchbar">	
+			<div class="searchradius">
+				<form action="/search" method="get"> <!-- 검색창 주소 입력 --> 
+					<input type="text" name="keyword" class="search_txt" required>
+					<button type="submit" class="search_btn">
+						<span class="searchicon">
+							<i class="fa-solid fa-magnifying-glass"></i>
+						</span>
+					</button>
+				</form>
+			</div>	
+		</div>
+
 			<!-- 여기부터 body에 추가할 코드 입력 -->
 
 			<div class="slide_wrapper">
@@ -94,7 +96,10 @@
 						<div class=e17_1216><span class="e17_1218">
 								<h th:text="${recipe.nickname}"></h>
 							</span></div>
-						<div class=e17_1217></div>
+						<div class=e17_1217 style="width: 100px;height: 100px;">
+							<img th:src="@{${photo}}" class=e17_1217_1
+								style="max-width: 100px;max-height: 100px;"></img>
+						</div>
 						<div class=e18_1227>
 							<div class=e18_1228><span class="e19_1231">View</span></div>
 							<div class=e18_1229><span class="e19_1230">
@@ -112,8 +117,22 @@
 							<input type="submit" th:onclick="'javascript:increaseLoves(\''+${recipe_id}+'\')'"
 								name="lovebtn" value="좋아요">
 						</form><span id="like-count" th:text="${recipe.totalLove}"></span>
-					</span><span class="e17_1226">스크랩</span>
-					<a th:href="@{/deleteRecipe/{recipe_id}(recipe_id=${recipe.recipe_id})}">Delete</a>
+					</span>
+					<form id="scapform" th:action="@{/scap}" method="post">
+						<input type="hidden" id="recipe_id" name="recipe_id"
+							th:value="@{{recipe_id}(recipe_id=${recipe.recipe_id})}">
+						<span class="e17_1226"><input type="hidden" id="recipe_id" name="recipe_id"
+								th:value="@{{recipe_id}(recipe_id=${recipe.recipe_id})}"><input type="submit"
+								name="scapbtn" value="스크랩"></span>
+					</form>
+					<a th:if="${#strings.equals(recipe.nickname, session.loggedInNickname)}" th:href="@{/deleteRecipe/{recipe_id}(recipe_id=${recipe.recipe_id})}">Delete</a>
+					<div class="step_item2" th:if="${(tagss != null) && (!tagss.isEmpty())}">태그
+						<div class="tag-container">
+							<span class="tag" th:each="tag : ${tagss}">
+								<a th:href="@{|/search?keyword=${tag.content}|}" th:text="'#'+${tag.content}"></a>
+							</span>
+						</div>
+					</div>
 				</div>
 				<div class="e17_1213_1">재료
 					<div class="ingredient-grid">
@@ -124,7 +143,7 @@
 							<span th:text="${ingredient.mensuration}" class="ingredient-mensuration"></span>
 						</div>
 					</div>
-				조리단계
+					조리단계
 					<div class="step_grid">
 						<div th:each="steps, status : ${steps}" class="step_item">
 							<div class="v18_2">
@@ -169,22 +188,35 @@
 									writer</span></div>
 							<div class=e21_6>
 								<div class=e21_7>
-									<div class="e21_8"></div>
+									<div class="e21_8">
+										<img th:src="@{${photo}}" class="e21_8"
+											style="max-width: 100px;max-height: 100px;"></img>
+									</div>
 								</div>
 								<div class=e21_9><span class="e21_10" th:text="${recipe.nickname}"></span>
-									<div class=e21_11><span class="e21_12">손쉽게 할 수 있는 요리를 올리는 동이입니다</span></div>
+									<div class=e21_11><span class="e21_12" th:text="${pr}"></span></div>
 								</div>
 							</div>
 						</div>
 					</div>
-					댓글
-				
-
-
+					태그
+					<div class="step_item2">
+						<div class="tag-container">
+							<span class="tag" th:each="tag : ${tagss}">
+								<button onclick="redirectToSearch('${tag.content}')" th:text="${tag.content}"></button>
+							</span>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-	</div>
+		<div class="step_item2">
+						<div class="tag-container">
+							<span class="tag" th:each="tag : ${tagss}">
+								<button onclick="redirectToSearch('${tag.content}')" th:text="${tag.content}"></button>
+							</span>
+						</div>
+					</div>
 	</div>
 
 
@@ -195,6 +227,12 @@
 			alert(errorMessage);
 		}
 	</script>
+	<script>
+    function redirectToSearch(keyword) {
+        var url = "/search?keyword=" + keyword;
+        window.location.href = url;
+    }
+</script>
 
 	</div>
 	<div class="footer">
