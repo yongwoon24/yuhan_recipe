@@ -58,7 +58,7 @@
     <span th:text="${#temporals.format(board.created_date, 'yyyy-MM-dd HH:mm')}" class="write_date">작성일</span><hr>
     <div th:text="${board.content}" class="content">게시물 내용</div><hr>
     <!-- 게시물 수정 버튼과 게시물 삭제 버튼 -->
-	<div th:if="${#strings.equals(board.nickname, session.loggedInNickname)}">
+	<div th:if="${#strings.equals(board.nickname, session.loggedInNickname) or session.loggedInNickname == '관리자'}">
 	    <a th:href="@{'/edit/' + ${board.postId}}" class="button">수정</a>
 		<a th:href="@{'/delete/' + ${board.postId}}" class="button" onclick="return confirm('정말로 삭제하시겠습니까?');">삭제</a>
 	</div>
@@ -86,9 +86,8 @@
 	            </div>
 	
 	            <!-- 게시물 수정/삭제 버튼 -->
-	            <div th:if="${#strings.equals(comment.nickname, session.loggedInNickname)}">
-	                    <button th:onclick="|location.href='@{'/editcomment/' + ${comment.commentId} + '/' + ${comment.postId}}'|" class="button-style">수정</button>
-	                    <button th:onclick="|location.href='@{'/deletecomment/' + ${comment.commentId} + '/' + ${comment.postId}}'|" class="button-style">삭제</button>
+	            <div th:if="${#strings.equals(comment.nickname, session.loggedInNickname) or session.loggedInNickname == '관리자'}">
+	            	<button th:onclick="|if(confirm('정말로 삭제하시겠습니까?')) location.href='@{/deletecomment/{commentId}/{postId}(commentId=${comment.commentId}, postId=${comment.postId})}'|" class="button-style">삭제</button>
 	            </div>
 	        </div>
 	    </li>

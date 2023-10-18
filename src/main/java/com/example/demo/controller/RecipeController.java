@@ -1,14 +1,14 @@
 package com.example.demo.controller;
 
 
+import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-
-
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -508,7 +508,8 @@ public class RecipeController {
 	}
 
 	@PostMapping("/editRecipe/{recipe_id}")
-	public String editRecipe(@PathVariable int recipe_id ,@ModelAttribute Recipe recipe,  @RequestParam("SContent") List<String> SContent,
+	public String editRecipe(@PathVariable int recipe_id ,@ModelAttribute Recipe recipe,  
+			@RequestParam("SContent") List<String> SContent,
             @RequestParam("Singtxt") List<String> Singtxt, 
             @RequestParam("Stooltxt") List<String> Stooltxt,
             @RequestParam("Stip") List<String> Stip, 
@@ -545,8 +546,9 @@ public class RecipeController {
 	    	photo.add(evsteps.get(i).getSphoto());
 	    	photopath.add(evsteps.get(i).getSphotopath());
 		}
+	    
+	    recipeservice.editStep1(recipe, SContent, Singtxt, Stooltxt, Stip, Scontroltxt,file1);
 	    steprepository.deleteAll(evsteps);
-	    recipeservice.editStep(recipe, SContent, Singtxt, Stooltxt, Stip, Scontroltxt,file1,photo,photopath);
 	    
 	    List<Recipe_Ingredient> evrecipeings = recipeingredientrepository.findByRecipe(recipe1);
 	    recipeingredientrepository.deleteAll(evrecipeings);
@@ -563,7 +565,8 @@ public class RecipeController {
 	    recipeRepository.save(recipe);
 	    return "redirect:/recipe/{recipe_id}"; // Redirect to the recipe page
 	}
-
+	
+	
 	@GetMapping("/deleteRecipe/{recipe_id}")
 	public String deleteRecipe(@PathVariable int recipe_id, RedirectAttributes redirectAttributes) {		
 		 recipeservice.deletePostWithImage(recipe_id);
