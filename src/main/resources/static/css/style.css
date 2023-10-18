@@ -264,3 +264,25 @@ li > a > img{
 	padding-bottom: 150px;
 	
 }
+
+.confirm_btn{
+	width:100px;
+	height:55px;
+	position:absolute;
+	right: 20%;
+	top:30px;
+	text-align:center;
+	font-size:40px;
+	letter-spacing:0;
+} 
+
+.user_btn {
+    width:100px;
+	height:55px;
+	position:absolute;
+	right: 15%;
+	top:30px;
+	text-align:center;
+	font-size:40px;
+	letter-spacing:0;
+}

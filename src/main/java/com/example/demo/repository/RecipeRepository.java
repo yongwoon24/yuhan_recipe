@@ -105,5 +105,7 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
 	List<Recipe> findByTitleContaining(String title, Sort sort);
 	List<Recipe> findByTitleContainingOrTagContentContaining(String title, String tagcontent, Sort sort);
 	
+	void deleteByNickname(String nickname);
+	
 }
 

@@ -35,4 +35,6 @@ public interface LoveRepository extends JpaRepository<Love, Long>{
     
     //Optional<Love> findByRecipeAndUser(Recipe recipe, User user);
     
+    void deleteByUser(User user);
+    
 }
