@@ -129,36 +129,42 @@ select {
 	width:170px;
 	height:40px;
 	position:absolute;
-	top:161px;
 	left: 75%;
-	text-align:center;
-	font-size:35px;
-	letter-spacing:0;
-}
-.menu3 { 
-	color:rgb(0, 0, 0);
-	width:170px;
-	height:40px;
-	position:absolute;
 	top:161px;
-	left: 55%;
 	text-align:center;
 	font-size:35px;
 	letter-spacing:0;
 	
 }
+
+.menu3 { 
+	color:rgb(0, 0, 0, 1);
+	width:170px;
+	height:40px;
+	position:absolute;
+	left: 55%;
+	top:161px;
+	
+	text-align:center;
+	font-size:35px;
+	letter-spacing:0;
+	
+}
+
 .menu2 { 
 	color:rgba(0, 0, 0, 1);
 	width:170px;
 	height:40px;
 	position:absolute;
-	top:161px;
 	left: 35%;
+	top:161px;
+		
 	text-align:center;
 	font-size:35px;
 	letter-spacing:0;
 	
 }
+
 .menu1 { 
 	color:rgba(0, 0, 0, 1);
 	width:170px;
@@ -166,11 +172,9 @@ select {
 	position:absolute;
 	left: 15%;
 	top:161px;
-	
 	text-align:center;
 	font-size:35px;
 	letter-spacing:0;
-	
 }
 .mainicon { 
 	color:rgba(23.58367010951042, 96.68749898672104, 11.683072540909052, 1);
@@ -381,19 +385,16 @@ select {
     color: #fff;
     border-radius: 50%;
 }
-
-
-
-
-
-.menu1 > a, .menu2 > a, .menu3 > a, .menu4 > a {
-	color: rgb(254, 255, 238);
-	text-shadow: 1px 1px 1px rgb(38, 193, 50);
-	letter-spacing:2px;
-}
-
-html, body {
-	height: 100%;
-	margin: 0;
-	padding: 0;
+.write-icon{
+   color:rgba(0, 0, 0, 1);
+   width:64px;
+   height:55px;
+   position:absolute;
+   right:9%;
+   top:30px;
+   font-family:Font Awesome 5 Free;
+   text-align:center;
+   font-size:40px;
+   letter-spacing:0;
+   
 }

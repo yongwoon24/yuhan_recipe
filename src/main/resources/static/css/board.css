@@ -5,6 +5,27 @@
   padding: 0 20px; /* 좌우 여백 설정 (조정 가능) */
 }
 
+/* 테이블 제목 스타일 */
+.table-container caption {
+  font-size: 24px; /* 원하는 제목 폰트 크기 설정 */
+  font-weight: bold; /* 제목 글꼴 굵게 설정 */
+  margin-bottom: 20px; /* 테이블 아래 여백 추가 */
+}
+
+.write-icon{
+   color:rgba(0, 0, 0, 1);
+   width:64px;
+   height:55px;
+   position:absolute;
+   right:9%;
+   top:30px;
+   font-family:Font Awesome 5 Free;
+   text-align:center;
+   font-size:40px;
+   letter-spacing:0;
+   
+}
+
 body {
   color: #000000;
   font: 16px/24px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif;
@@ -109,79 +130,86 @@ a.button:hover {
   background-color: #333;
   color: #fff;
 }
-
-
-
-
-.menubar { 
-	box-shadow: #949494 5px 5px 10px;
-	/*background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);*/
-	background: linear-gradient(to right,  rgb(150, 231, 150), rgb(152, 228, 143));
-	width:100%;
-	height:128px;
+/* 검색 바 스타일 */
+.searchbar { 
+	width:740px;
+	height:50px;
+	position:relative;
+	left:50%;
+	top:32px;
+	transform: translate(-50%,0%);
+	
+}
+.searchradius { 
+	background-color:rgba(244.3749949336052, 244.3749949336052, 244.3749949336052, 1);
+	width:740px;
+	height:50px;
 	position:absolute;
 	left:0px;
-	top:115px;
+	top:0px;
+	border-top-left-radius:20px;
+	border-top-right-radius:20px;
+	border-bottom-left-radius:20px;
+	border-bottom-right-radius:20px;
+	box-shadow: #949494 5px 5px 10px;
 }
-
-.menu4 { 
-	color:rgba(0, 0, 0, 1);
-	width:170px;
-	height:40px;
+.searchicon { 
+	color:rgba(153.00000607967377, 153.00000607967377, 153.00000607967377, 1);
+	width:34px;
+	height:19px;
 	position:absolute;
-	top:161px;
-	left: 75%;
+	left:685px;
+	top:8px;
+	font-family:Font Awesome 5 Free;
 	text-align:center;
-	font-size:38px;
+	font-size:30px;
 	letter-spacing:0;
 }
-.menu3 { 
-	color:rgb(0, 0, 0);
-	width:170px;
-	height:40px;
-	position:absolute;
-	top:161px;
-	left: 55%;
-	text-align:center;
-	font-size:35px;
-	letter-spacing:0;
-	
-}
-.menu2 { 
-	color:rgba(0, 0, 0, 1);
-	width:170px;
-	height:40px;
-	position:absolute;
-	top:161px;
-	left: 35%;
-	text-align:center;
-	font-size:35px;
-	letter-spacing:0;
-	
-}
-.menu1 { 
-	color:rgba(0, 0, 0, 1);
-	width:170px;
-	height:40px;
-	position:absolute;
-	left: 15%;
-	top:161px;
-	
-	text-align:center;
-	font-size:35px;
-	letter-spacing:0;
-	
-}
-
-
-.menu1 > a, .menu2 > a, .menu3 > a, .menu4 > a {
-	color: rgb(254, 255, 238);
-	text-shadow: 1px 1px 1px rgb(38, 193, 50);
-	letter-spacing:2px;
-}
-
-html, body {
-	height: 100%;
-	margin: 0;
+.search_txt{
+	position: relative;
+	top: 10px;
+	left: 5%;
+	width: 600px;
 	padding: 0;
+	background: transparent;
+	border: none;
+	outline: none;
+	float: left;
+	font-size: 1rem;
+	line-height: 30px;
+}
+.search_btn{
+	border: none;
+	background-color: rgba(244.3749949336052, 244.3749949336052, 244.3749949336052, 1);;
+}
+
+/* 검색 바 스타일 */
+.search-form {
+    display: flex; /* 요소들을 가로로 배치 */
+    align-items: center; /* 세로 중앙 정렬 */
+}
+
+.search-left {
+    flex: 1; /* 왼쪽 요소들이 가능한 모든 공간을 차지 */
+    display: flex; /* 왼쪽 요소들을 가로로 배치 */
+    align-items: center; /* 세로 중앙 정렬 */
+}
+
+.search-label {
+    margin-right: 10px; /* 라벨과 선택 상자 사이 간격 설정 */
+}
+
+.search-right {
+    flex: 2; /* 오른쪽 요소들이 가능한 모든 공간을 차지 */
+    display: flex; /* 오른쪽 요소들을 가로로 배치 */
+    align-items: center; /* 세로 중앙 정렬 */
+}
+
+/* 나머지 검색 바 스타일 (검색어 입력 필드, 검색 버튼)는 이전과 동일하게 유지 */
+
+
+.search {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 200px 20px 0; /* 위쪽 여백 추가 */
 }

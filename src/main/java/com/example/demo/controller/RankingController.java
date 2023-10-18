@@ -30,7 +30,7 @@ public class RankingController {
     public String getTopRecipes(Model model, @RequestParam(required = false, defaultValue = "0") int page,
                                 @RequestParam(required = false) String categoryName,
                                 @RequestParam(required = false) String period) {
-        int pageSize = 20; // 페이지당 레시피 수
+        int pageSize = 3; // 페이지당 레시피 수
 
         List<Recipe> topLove;
         if (categoryName == null || categoryName.isEmpty()) {
@@ -58,6 +58,9 @@ public class RankingController {
 
         int startIndex = page * pageSize;
         int endIndex = Math.min(startIndex + pageSize, topLove.size());
+        //System.out.println(endIndex);
+        //System.out.println(startIndex);
+        //System.out.println(page);
 
         List<Recipe> pagedRecipes = topLove.subList(startIndex, endIndex);
         model.addAttribute("topLove", pagedRecipes);

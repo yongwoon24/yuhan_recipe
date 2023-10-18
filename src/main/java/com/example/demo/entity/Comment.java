@@ -8,24 +8,25 @@ import jakarta.persistence.Id;
 @Entity
 public class Comment {
 	@Id
-	private int comment_id;
-	private int post_id;
+	private int commentId;
+	private int postId;
 	private String user_id;
 	@Column(name = "content", columnDefinition = "TEXT")
 	private String content;
 	private LocalDateTime created_date;
+	private String nickname;
 	
-	public int getComment_id() {
-		return comment_id;
+	public int getCommentId() {
+		return commentId;
 	}
-	public void setComment_id(int comment_id) {
-		this.comment_id = comment_id;
+	public void setCommentId(int commentId) {
+		this.commentId = commentId;
 	}
-	public int getPost_id() {
-		return post_id;
+	public int getPostId() {
+		return postId;
 	}
-	public void setPost_id(int post_id) {
-		this.post_id = post_id;
+	public void setPostId(int postId) {
+		this.postId = postId;
 	}
 	public String getUser_id() {
 		return user_id;
@@ -45,12 +46,20 @@ public class Comment {
 	public void setCreated_date(LocalDateTime created_date) {
 		this.created_date = created_date;
 	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 	
 	@Override
 	public String toString() {
-		return "Comment [comment_id=" + comment_id + ", post_id=" + post_id + ", user_id=" + user_id + ", content="
-				+ content + ", created_date=" + created_date + "]";
+		return "Comment [commentId=" + commentId + ", postId=" + postId + ", user_id=" + user_id + ", content="
+				+ content + ", created_date=" + created_date + ", nickname=" + nickname + "]";
 	}
+	
+	
 	
 	
 }

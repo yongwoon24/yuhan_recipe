@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>아이디 찾기</title>
+</head>
+<body>
+    <h2>아이디 찾기</h2>
+
+    <form th:action="@{/findid}" method="post">
+        <label for="email">이메일:</label>
+        <input type="email" id="email" name="email" required><br>
+        
+        <button type="submit">인증하기</button>
+    </form>
+    
+     <script th:inline="javascript">
+        var errorMessage = /*[[${errorMessage}]]*/ "";
+        if (errorMessage) {
+            alert(errorMessage);
+        }
+    </script>
+</body>
+<<<<<<< HEAD
+<<<<<<< HEAD
+</html>
+=======
+</html>
+>>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
+=======
+</html>
+>>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607

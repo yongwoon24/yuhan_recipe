@@ -91,36 +91,42 @@ li > img{
 	width:170px;
 	height:40px;
 	position:absolute;
-	top:161px;
 	left: 75%;
+	top:161px;
 	text-align:center;
 	font-size:38px;
 	letter-spacing:0;
+
 }
+
 .menu3 { 
-	color:rgb(0, 0, 0);
+	color:rgb(0, 0, 0, 1);
 	width:170px;
 	height:40px;
 	position:absolute;
-	top:161px;
 	left: 55%;
+	top:161px;
+	
 	text-align:center;
 	font-size:35px;
 	letter-spacing:0;
 	
 }
+
 .menu2 { 
 	color:rgba(0, 0, 0, 1);
 	width:170px;
 	height:40px;
 	position:absolute;
-	top:161px;
 	left: 35%;
+	top:161px;
+	
 	text-align:center;
 	font-size:35px;
 	letter-spacing:0;
 	
 }
+
 .menu1 { 
 	color:rgba(0, 0, 0, 1);
 	width:170px;
@@ -128,11 +134,9 @@ li > img{
 	position:absolute;
 	left: 15%;
 	top:161px;
-	
 	text-align:center;
 	font-size:35px;
 	letter-spacing:0;
-	
 }
 
 .mainicon { 
@@ -166,6 +170,20 @@ li > img{
    height:55px;
    position:absolute;
    right: 3%;
+   top:30px;
+   font-family:Font Awesome 5 Free;
+   text-align:center;
+   font-size:40px;
+   letter-spacing:0;
+   
+}
+
+.write-icon{
+   color:rgba(0, 0, 0, 1);
+   width:64px;
+   height:55px;
+   position:absolute;
+   right:9%;
    top:30px;
    font-family:Font Awesome 5 Free;
    text-align:center;
@@ -435,13 +453,40 @@ li > img{
 	top: -2px;
 }
 
+/* Pagination styles */
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
+
+.pagination a {
+    padding: 5px 10px;
+    margin: 0 5px;
+    text-decoration: none;
+    color: rgb(38, 36, 36);
+}
+
+.pagination a.active {
+    background-color: rgb(38, 36, 36);
+    color: #fff;
+    border-radius: 50%;
+}
+
+/*
 .pagination{
 	text-align: center;
 	position: relative;
 	font-size: 100px;
 	justify-content: center;
 }
-
+*/
 
 
 .write-icon {
@@ -457,17 +502,7 @@ li > img{
 	letter-spacing: 0;
 }
 
-.menu1 > a, .menu2 > a, .menu3 > a, .menu4 > a {
-	color: rgb(254, 255, 238);
-	text-shadow: 1px 1px 1px rgb(38, 193, 50);
-	letter-spacing:2px;
-}
 
-html, body {
-	height: 100%;
-	margin: 0;
-	padding: 0;
-}
 
 p, label {
 	font-size: 30px;
@@ -506,9 +541,5 @@ p, label {
 .ingredient_wrapper {
 	width: 100%;
 	height: 130px;
-	
-}
-
-.ingredientName {
 	
 }

@@ -10,33 +10,69 @@ import com.example.demo.formdto.RecipeFormDto;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
 
 @Entity
 public class Recipe {
 	@Id
 	@Column(name = "recipe_id") // Column 매핑 추가
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int recipe_id;
+	public List<Recipe_Ingredient> getRecipeIngredients() {
+		return recipeIngredients;
+	}
+	public void setRecipeIngredients(List<Recipe_Ingredient> recipeIngredients) {
+		this.recipeIngredients = recipeIngredients;
+	}
+
 	private String title;
 	private String main_photo;
-	private LocalDate created_date;
-	private String user_id;
+	
+	@Column(name = "created_date")
+	private LocalDateTime createddate;
+	
+	//private String user_id;
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	User user;
+	
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@Column(name = "category_name")
 	private String categoryName;
 
 	
 	@Column(name = "total_love")
 	private Integer totalLove=0;
-
-	private Integer view_count = 0;
+	
+	@Column(name = "view_count")
+	private Integer viewcount = 0;
 	
 	private Integer dailyLove;
 	private Integer weeklyLove;
 	private Integer monthlyLove;
 	
+	private String nickname;
+	
+
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 
 	private String main_photo_path;
 	@Column(name = "recipe_subtext")
@@ -47,6 +83,39 @@ public class Recipe {
 	@JoinColumn(name = "recipe_id")
 	private List<Love> loves = new ArrayList<>();
 	
+	@OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
+    private List<Recipe_Ingredient> recipeIngredients;
+    
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
+    private List<Step> steps;
+    
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
+    private List<Tag> tag;
+	
+	public LocalDateTime getCreateddate() {
+		return createddate;
+	}
+	public void setCreateddate(LocalDateTime createddate) {
+		this.createddate = createddate;
+	}
+	public Integer getViewcount() {
+		return viewcount;
+	}
+	public void setViewcount(Integer viewcount) {
+		this.viewcount = viewcount;
+	}
+	public List<Tag> getTag() {
+		return tag;
+	}
+	public void setTag(List<Tag> tag) {
+		this.tag = tag;
+	}
+	public List<Step> getSteps() {
+		return steps;
+	}
+	public void setSteps(List<Step> steps) {
+		this.steps = steps;
+	}
 	public String getRecipesubtxt() {
 		return recipesubtxt;
 	}
@@ -71,32 +140,44 @@ public class Recipe {
 	public void setMain_photo(String main_photo) {
 		this.main_photo = main_photo;
 	}
-	public LocalDate getCreated_date() {
-		return created_date;
+	public LocalDateTime getCreated_date() {
+		return createddate;
 	}
-	public void setCreated_date(LocalDate created_date) {
-		this.created_date = created_date;
+	public void setCreated_date(LocalDateTime createddate) {
+		this.createddate = createddate;
 	}
-	public String getUser_id() {
-		return user_id;
-	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
-	}
+//	public String getUser_id() {
+//		return user_id;
+//	}
+//	public void setUser_id(String user_id) {
+//		this.user_id = user_id;
+//	}
 	public String getCategoryName() {
 		return categoryName;
+	}
+//	public List<User> getUser() {
+//		return users;
+//	}
+//	public void setUser(List<User> users) {
+//		this.users = users;
+//	}
+	public List<Love> getLoves() {
+		return loves;
+	}
+	public void setLoves(List<Love> loves) {
+		this.loves = loves;
+	}
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 	public void setCategory_name(String categoryName) {
 		this.categoryName = categoryName;
 	}
-
-	
 	public Integer getView_count() {
-		return view_count;
+		return viewcount;
 	}
-	public void setView_count(Integer view_count) {
-		this.view_count = view_count;
-
+	public void setView_count(Integer viewcount) {
+		this.viewcount = viewcount;
 	}
 	
 	public Integer getTotalLove() {
@@ -132,29 +213,31 @@ public class Recipe {
 	}
 	@Override
 	public String toString() {
-		return "Recipe [recipe_id=" + recipe_id + ", title=" + title + ", main_photo=" + main_photo + ", created_date="
-				+ created_date + ", user_id=" + user_id + ", categoryName=" + categoryName + ", view_count="
-				+ view_count + ", totalLove=" + totalLove + ", main_photo_path=" + main_photo_path + ", recipesubtxt="
-				+ recipesubtxt + "]";
+		return "Recipe [recipe_id=" + recipe_id + ", title=" + title + ", main_photo=" + main_photo + ", createddate="
+				+ createddate + ", user=" + user + ", categoryName=" + categoryName + ", totalLove=" + totalLove
+				+ ", viewcount=" + viewcount + ", dailyLove=" + dailyLove + ", weeklyLove=" + weeklyLove
+				+ ", monthlyLove=" + monthlyLove + ", nickname=" + nickname + ", main_photo_path=" + main_photo_path
+				+ ", recipesubtxt=" + recipesubtxt + ", loves=" + loves + ", recipeIngredients=" + recipeIngredients
+				+ ", steps=" + steps + ", tag=" + tag + "]";
 	}
 	
-
 	public void updateRecipe(RecipeFormDto recipeFormDto) {
 		this.recipe_id=recipeFormDto.getRecipe_id();
 		this.title=recipeFormDto.getTitle();
-		this.created_date=recipeFormDto.getCreated_date();
-		this.user_id=recipeFormDto.getUser_id();
+		//this.createddate=recipeFormDto.getCreated_date();
+		//this.user_id=recipeFormDto.getUser_id();
 		this.categoryName=recipeFormDto.getCategory_name();
-		this.view_count=recipeFormDto.getView_count();
+		this.viewcount=recipeFormDto.getView_count();
 		this.totalLove=recipeFormDto.getTotalLove();
 	}
 	
 	@PrePersist
     protected void onCreate() {
-        created_date = LocalDate.now();
+		LocalDateTime now = LocalDateTime.now().withNano(0);
+	    this.setCreated_date(now);
+        
     }
 	
-
 
 }
 	
@@ -166,4 +249,3 @@ public class Recipe {
 	
 	
 	
-

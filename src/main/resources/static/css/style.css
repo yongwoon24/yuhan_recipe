@@ -2,7 +2,6 @@ a{
 	text-decoration: none;
 	color: rgb(0, 0, 0);
 }
-
 .likes{
 	position: absolute;
 	float:right;
@@ -16,6 +15,20 @@ li{
 li > a > img{
 	width: 400px;
 	height: 400px;
+}
+
+.write-icon{
+   color:rgba(0, 0, 0, 1);
+   width:64px;
+   height:55px;
+   position:absolute;
+   right:9%;
+   top:30px;
+   font-family:Font Awesome 5 Free;
+   text-align:center;
+   font-size:40px;
+   letter-spacing:0;
+   
 }
 .slide_wrapper{
 	top: 250px;
@@ -72,7 +85,6 @@ li > a > img{
 }
 .menubar { 
 	box-shadow: #949494 5px 5px 10px;
-	/*background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);*/
 	background: linear-gradient(to right,  rgb(150, 231, 150), rgb(152, 228, 143));
 	width:100%;
 	height:128px;
@@ -85,36 +97,42 @@ li > a > img{
 	width:170px;
 	height:40px;
 	position:absolute;
-	top:161px;
 	left: 75%;
+	top:161px;
 	text-align:center;
 	font-size:38px;
 	letter-spacing:0;
+
 }
+
 .menu3 { 
-	color:rgb(0, 0, 0);
+	color:rgb(0, 0, 0, 1);
 	width:170px;
 	height:40px;
 	position:absolute;
-	top:161px;
 	left: 55%;
+	top: 161px;
+	
 	text-align:center;
 	font-size:35px;
 	letter-spacing:0;
 	
 }
+
 .menu2 { 
 	color:rgba(0, 0, 0, 1);
 	width:170px;
 	height:40px;
 	position:absolute;
-	top:161px;
 	left: 35%;
+	top:161px;
+	
 	text-align:center;
 	font-size:35px;
 	letter-spacing:0;
 	
 }
+
 .menu1 { 
 	color:rgba(0, 0, 0, 1);
 	width:170px;
@@ -122,11 +140,9 @@ li > a > img{
 	position:absolute;
 	left: 15%;
 	top:161px;
-	
 	text-align:center;
 	font-size:35px;
 	letter-spacing:0;
-	
 }
 .mainicon { 
 	color:rgba(23.58367010951042, 96.68749898672104, 11.683072540909052, 1);
@@ -248,10 +264,6 @@ li > a > img{
    padding-bottom: 150px;
    
 }
-
-
-
-
 
 .menu1 > a, .menu2 > a, .menu3 > a, .menu4 > a {
 	color: rgb(254, 255, 238);

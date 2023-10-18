@@ -204,16 +204,15 @@ CREATE TABLE UserActivity (
     user_id VARCHAR(255),
     recipe_id INT,
     activity VARCHAR(45),
+<<<<<<< HEAD
     date DATE(255)
+=======
+    date DATE(),
+>>>>>>> c29485b42e2b4af98fb359d687df6a6e6054ccd5
     FOREIGN KEY (user_id) REFERENCES User(user_id),
     FOREIGN KEY (recipe_id) REFERENCES Recipe(recipe_id)
 );
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> e2db5c884523330d4b6a0ef14b34be6f0a75cf9e
 CREATE TABLE Recipe_Ingredient (
     r_id INT AUTO_INCREMENT PRIMARY KEY,
     recipe_id INT,
