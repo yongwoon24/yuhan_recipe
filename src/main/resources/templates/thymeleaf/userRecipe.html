@@ -126,14 +126,16 @@
 								name="scapbtn" value="스크랩"></span>
 					</form>
 
-					<a th:if="${#strings.equals(recipe.nickname, session.loggedInNickname) or session.loggedInNickname == '관리자'}" th:href="@{/deleteRecipe/{recipe_id}(recipe_id=${recipe.recipe_id})}">Delete</a><br>
+<a th:if="${#strings.equals(recipe.nickname, session.loggedInNickname) or session.loggedInNickname == '관리자'}" th:href="@{/deleteRecipe/{recipe_id}(recipe_id=${recipe.recipe_id})}">Delete</a><br>
 					<a th:if="${#strings.equals(recipe.nickname, session.loggedInNickname)}" th:href="@{/editRecipe/{recipe_id}(recipe_id=${recipe.recipe_id})}">수정</a>
-					
 				</div>
 				
 				<div class="e17_1213_1">
-					<div class="step_item2" th:if="${(tagss != null) && (!tagss.isEmpty())}">
-						<div class="tag-container">태그&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		
+					
+					<div class="step_item2" th:if="${(tagss != null) && (!tagss.isEmpty())}">태그&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<div class="tag-container">
+
 							<span class="tag" th:each="tag : ${tagss}">
 								<a th:href="@{|/search?keyword=${tag.content}|}" th:text="'#'+${tag.content}"></a>
 							</span>
