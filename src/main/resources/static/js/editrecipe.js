@@ -1,6 +1,6 @@
 const addButton = document.getElementById('addButton');
 const container = document.getElementById('container');
-
+const container1 = document.getElementById('container2');
 const removebutton1 = document.getElementById('removebutton');
 const removebutton2 = document.getElementById('removebutton1');
 const removebutton3 = document.getElementById('removebutton2');
@@ -47,24 +47,24 @@ addButton.addEventListener('click', () => {
 	removeButton.textContent = '삭제';
 	removeButton.addEventListener('click', () => {
 		container.removeChild(textRow);
-		adjustContainerHeight();
+		//adjustContainerHeight();
 	});
 	textRow.appendChild(removeButton);
 
 
 	container.appendChild(textRow);
-	adjustContainerHeight();
+	//adjustContainerHeight();
 });
 removebutton1.addEventListener('click', () => {
 	container.removeChild(t1);
-	adjustContainerHeight();
+	//adjustContainerHeight();
 });
 removebutton2.addEventListener('click', () => {
 	container.removeChild(t2);
-	adjustContainerHeight();
+	//adjustContainerHeight();
 }); removebutton3.addEventListener('click', () => {
 	container.removeChild(t3);
-	adjustContainerHeight();
+	//adjustContainerHeight();
 });
 
 function adjustContainerHeight() {
@@ -85,10 +85,7 @@ function adjustContainerHeight() {
 
 }
 
-
-
 //요리스텝 스크립트
-const container2 = document.getElementById('container1');
 let stepCount = 1;
 let steptxtindex = 1;
 const steptext = ['예 ) 다 볶았으면 접시에 옮겨 담고 마지막으로 참깨가루를 뿌려주세요.',
@@ -99,46 +96,44 @@ const steptext = ['예 ) 다 볶았으면 접시에 옮겨 담고 마지막으�
 	'예 ) 볶았으면 밥 한 공기와, 다시다 1큰술, 물엿 2큰술을 넣고 5분정도 볶아주세요.',
 	'예 ) 볶은 뒤 참기름을 반큰술 넣고 1분만 볶아주세요.']
 
-const addButton1 = document.getElementById("addButton1");
+const addButton1 = document.getElementById("addButton4");
+const container2 = document.getElementById("container2");
 
+// addButton1 클릭 이벤트 처리
+addButton1.addEventListener('click', () => {
+    alert("Button clicked!"); // 버튼 클릭 시 경고 표시
+    stepCount++;
+    steptxtindex++;
+    if (steptxtindex == 7) {
+        steptxtindex = 0;
+    }
 
-addButton1.addEventListener("click", () => {
+    const newStep = document.createElement('div');
+    newStep.className='textRow1';
+    newStep.id = "r" + stepCount;
 
-    
-	stepCount++;
-	steptxtindex++;
-	if (steptxtindex == 7) {
-		steptxtindex = 0;
-	}
+    newStep.innerHTML = `
+        <label class="step">STEP ${stepCount}</label><br>
+        <textarea class='text2' name="SContent" placeholder="${steptext[steptxtindex]}"></textarea>
+        <input multiple type="file" id="file${stepCount}" name="file1" style="display: none;">
+        <button id="uploadButton${stepCount}" name="uploadButton1" onclick="handleClick(event); handleUploadClick(${stepCount})">
+            <div id="preview${stepCount}" name="preview1">
+                <img src="/img/대표이미지.PNG" width="200px" height="200px">
+            </div>
+        </button>
+        <input type="button" class="remove-button1" value="삭제" onclick="removeStep1('r${stepCount}')"><br>
+        <img src="/img/carrot.png" class="carrot">
+        <input type="text" class="text3" name="Singtxt" placeholder="재료에 대해 적어주세요! 예 ) 감자 1개, 소금 2큰술, 물 2컵"><br>
+        <img src="/img/냄비.png" class="carrot">
+        <input type="text" class="text3" name="Stooltxt" placeholder="재료도구에 대해 적어주세요! 예 ) 냄비, 프라이팬, 국자"><br>
+        <img src="/img/불.png" class="carrot">
+        <input type="text" class="text3" name="Scontroltxt" placeholder="불 세기나 도구 사용시간에 대해 적어주세요! 예 ) 약불, 전자레인지 2분"><br>
+        <img src="/img/전구.png" class="carrot1">
+        <textarea class="text4" name="Stip" placeholder="팁이 있다면 적어주세요! 예 ) 삶은 감자를 2분 정도 식혀주세요"></textarea>
+    `;
 
-	const newStep = document.createElement("div");
-	newStep.className = "textRow1";
-	newStep.id = "r" + stepCount;
-
-	newStep.innerHTML = `
-                <label class="step">STEP ${stepCount}</label><br>
-								<textarea class='text2' name="SContent" placeholder="${steptext[steptxtindex]}"></textarea>
-								<input multiple type="file" id="file${stepCount}" name="file1" style="display: none;">
-								<button id="uploadButton${stepCount}" name="uploadButton1" onclick="handleClick(event); handleUploadClick(${stepCount})">
-									<div id="preview${stepCount}" name="preview1">
-										<img src="/img/대표이미지.PNG" width="200px" height="200px">
-										</div>
-								</button>
-								<input type="button" class="remove-button1" value="삭제" onclick="removeStep1('r${stepCount}')"><br>
-								<img src="/img/carrot.png" class="carrot">
-								<input type="text" class="text3" name="Singtxt" placeholder="재료에 대해 적어주세요! 예 ) 감자 1개, 소금 2큰술, 물 2컵"><br>
-								<img src="/img/냄비.png" class="carrot">
-								<input type="text" class="text3" name="Stooltxt" placeholder="재료도구에 대해 적어주세요! 예 ) 냄비, 프라이팬, 국자"><br>
-								<img src="/img/불.png" class="carrot">
-								<input type="text" class="text3" name="Scontroltxt" placeholder="불 세기나 도구 사용시간에 대해 적어주세요! 예 ) 약불, 전자레인지 2분"><br>
-								<img src="/img/전구.png" class="carrot1">
-								<textarea class="text4" name="Stip" placeholder="팁이 있다면 적어주세요! 예 ) 삶은 감자를 2분 정도 식혀주세요"></textarea>
-            `;
-
-	container2.appendChild(newStep);
-	adjustContainerHeight1();
-	
-	
+    container2.appendChild(newStep);
+    // adjustContainerHeight1(); // 이 함수를 호출하려면 함수 정의가 필요합니다.
 });
 
 function removeStep1(stepId) {
@@ -148,7 +143,7 @@ function removeStep1(stepId) {
 		stepCount--;
 		// 중간의 스텝이 제거되면 다시 스텝 숫자를 정렬
 		reorganizeStepLabels();
-		adjustContainerHeight1();
+		//adjustContainerHeight1();
 	}
 }
 
@@ -239,10 +234,12 @@ imageInput.addEventListener('change', (event) => {
 	}
 });
 
-function createListItem(text) {
+/*function createListItem(text) {
             const listItem = document.createElement("div");
             listItem.className = "list-item";
 
+            
+            
             const inputHidden = document.createElement("input");
             inputHidden.type = "hidden";
             inputHidden.name = "tags";
@@ -279,4 +276,4 @@ function createListItem(text) {
                     });
                 }
             }
-        }
+        }*/

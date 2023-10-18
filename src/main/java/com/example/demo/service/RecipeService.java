@@ -96,6 +96,61 @@ public class RecipeService {
 		}
 		recipe.setTag(tags);
 	}
+	
+	public void editStep(Recipe recipe, List<String> SContents, List<String> Singtxts, List<String> Stooltxts,
+	        List<String> Stips, List<String> Scontroltxts, List<MultipartFile> cookingStepImages, List<String> photo,
+	        List<String> photopath) {
+
+	    List<Step> steps = new ArrayList<>();
+	    
+	    int maxSize = Math.max(Math.max(Math.max(SContents.size(), Singtxts.size()), Stooltxts.size()), Math.max(Stips.size(), Scontroltxts.size()));
+	    
+	    for (int i = 0; i < maxSize; i++) {
+	        String SContent = (i < SContents.size()) ? SContents.get(i) : null;
+	        String Singtxt = (i < Singtxts.size()) ? Singtxts.get(i) : null;
+	        String Stooltxt = (i < Stooltxts.size()) ? Stooltxts.get(i) : null;
+	        String Stip = (i < Stips.size()) ? Stips.get(i) : null;
+	        String Scontroltxt = (i < Scontroltxts.size()) ? Scontroltxts.get(i) : null;
+
+	        // 각 리스트에서 요소가 존재하는지 확인
+	        if (SContent != null || Singtxt != null || Stooltxt != null || Stip != null || Scontroltxt != null|| (cookingStepImages != null && !cookingStepImages.get(i).isEmpty())) {
+	            Step step = new Step();
+	            step.setRecipe(recipe);
+	            step.setSContent(SContent);
+	            step.setScontroltxt(Scontroltxt);
+	            step.setSingtxt(Singtxt);
+	            step.setStip(Stip);
+	            step.setStooltxt(Stooltxt);
+	            
+	            if ((cookingStepImages != null && !cookingStepImages.get(i).isEmpty())) {
+	                try {
+	                	String proijectpath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\img"; // 단계 이미지 저장 경로
+	                	MultipartFile stepImageFile = cookingStepImages.get(i);
+	                   
+	                    UUID uuid = UUID.randomUUID();
+	            		String fileName = uuid + "_" + stepImageFile.getOriginalFilename();
+	            		System.out.println(fileName);
+	            		File savefile = new File(proijectpath, fileName);
+	            		stepImageFile.transferTo(savefile);
+	            		step.setSphoto(fileName);
+	            		step.setSphotopath("/img/" + fileName);
+	                } catch (IOException e) {
+	                    e.printStackTrace();
+	                    // 이미지 저장 중 오류 발생 시 처리
+	                }
+	            }else {
+	            	step.setSphoto(photo.get(i));
+            		step.setSphotopath(photopath.get(i));
+	            }
+	            steps.add(step);
+	        } else {
+	            // 처리할 수 없는 상황이라면 예외 처리 또는 오류 처리를 수행하세요.
+	            // 예를 들어, 로그를 남기거나 사용자에게 오류 메시지를 표시할 수 있습니다.
+	        }
+	    }
+
+	    recipe.setSteps(steps);
+	}
 
 	public void createStep(Recipe recipe, List<String> SContents, List<String> Singtxts, List<String> Stooltxts,
 	        List<String> Stips, List<String> Scontroltxts, List<MultipartFile> cookingStepImages) {
@@ -158,6 +213,23 @@ public class RecipeService {
 		recipe.setMain_photo(fileName);
 		recipe.setMain_photo_path("/img/" + fileName);
 		
+		// reciperepository.save(recipe);
+	}
+	
+	
+	public void editwrite(Recipe recipe, MultipartFile file, String Rphoto,String Rphotopath) throws Exception {
+		if(file != null && !file.isEmpty()) {
+		String proijectpath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\img";
+		UUID uuid = UUID.randomUUID();
+		String fileName = uuid + "_" + file.getOriginalFilename();
+		File savefile = new File(proijectpath, fileName);
+		file.transferTo(savefile);
+		recipe.setMain_photo(fileName);
+		recipe.setMain_photo_path("/img/" + fileName);
+		}else {
+			recipe.setMain_photo(Rphoto);
+			recipe.setMain_photo_path(Rphotopath);
+		}
 		// reciperepository.save(recipe);
 	}
 	

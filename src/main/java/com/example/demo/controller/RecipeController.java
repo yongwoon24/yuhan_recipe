@@ -3,6 +3,7 @@ package com.example.demo.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -35,8 +36,11 @@ import com.example.demo.entity.Tag;
 import com.example.demo.entity.User;
 
 import com.example.demo.repository.LoveRepository;
+import com.example.demo.repository.RecipeIngredientRepository;
 import com.example.demo.repository.RecipeRepository;
 import com.example.demo.repository.ScrapRepository;
+import com.example.demo.repository.StepRepository;
+import com.example.demo.repository.TagRepository;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.LoveService;
 import com.example.demo.service.RecipeService;
@@ -60,6 +64,12 @@ public class RecipeController {
 	private UserRepository userrepository;
 	@Autowired
 	private ScrapRepository scraprepository;
+	@Autowired
+	private StepRepository steprepository;
+	@Autowired
+	private RecipeIngredientRepository recipeingredientrepository;
+	@Autowired
+	private TagRepository tagrepository;
 	
 	
 	List<Recipe> recipes1;
@@ -477,17 +487,81 @@ public class RecipeController {
 	}
 
 	@GetMapping("/editRecipe/{recipe_id}")
-	public String editRecipeForm(@PathVariable Integer recipe_id, Model model) {
+	public String editRecipeForm(@PathVariable Integer recipe_id, Model model,
+			HttpSession session, RedirectAttributes redirectAttributes) {
+		String loggedInNickname = (String) session.getAttribute("loggedInNickname");
+		String loggedInUserId = (String) session.getAttribute("loggedInUserId");
 		Recipe recipe = recipeRepository.findById(recipe_id)
 				.orElseThrow(() -> new IllegalArgumentException("Invalid Recipe ID: " + recipe_id));
+		List<Recipe_Ingredient> recipeing = recipe.getRecipeIngredients();
+		List<Step> steps = recipe.getSteps();
+		int stepssize = steps.size();
+		List<Tag> tagss = recipe.getTag();
+		int tagsize = tagss.size();
+		model.addAttribute("stepssize",stepssize);
+		model.addAttribute("tagsize",tagsize);
+		model.addAttribute("steps",steps);
+		model.addAttribute("tagss",tagss);
+		model.addAttribute("recipeings",recipeing);
 		model.addAttribute("recipe", recipe);
 		return "editRecipe";
 	}
 
 	@PostMapping("/editRecipe/{recipe_id}")
-	public String editRecipe(@PathVariable Long recipe_id, @ModelAttribute Recipe recipe) {
-		recipeRepository.save(recipe);
-		return "redirect:/recipe";
+	public String editRecipe(@PathVariable int recipe_id ,@ModelAttribute Recipe recipe,  @RequestParam("SContent") List<String> SContent,
+            @RequestParam("Singtxt") List<String> Singtxt, 
+            @RequestParam("Stooltxt") List<String> Stooltxt,
+            @RequestParam("Stip") List<String> Stip, 
+            @RequestParam("Scontroltxt") List<String> Scontroltxt,
+            @RequestParam("file1") List<MultipartFile> file1,
+            @RequestParam("ingredientName") List<String> ingredientName,
+            @RequestParam("mensuration") List<String> mensuration,
+            @RequestParam(name ="tags", required = false) String tags,
+            @RequestParam("file") MultipartFile file) throws Exception {
+	    recipe.setRecipe_id(recipe_id); // Set the ID to the path variable value for updating the correct recipe
+	    Recipe recipe1 = recipeRepository.findById(recipe_id);
+	    String nickname = recipe1.getNickname();
+	    recipe.setNickname(nickname);
+	    recipe = recipe1;
+	    
+	    String Rphoto = recipe1.getMain_photo();
+	    String Rphotopath = recipe1.getMain_photo_path();
+	    if(Rphoto == null) {
+	    	Rphoto = "";
+	    	Rphotopath = "";
+	    }
+	    recipeservice.editwrite(recipe, file, Rphoto,Rphotopath);
+	    
+	    List<Love> loves = loverepository.findByRecipe(recipe1);
+	    recipe.setLoves(loves);
+	    
+	    List<Scrap> scraps = scraprepository.findByRecipe(recipe1);
+	    recipe.setScraps(scraps);
+	    
+	    List<Step> evsteps = steprepository.findByRecipe(recipe1);
+	    List<String> photo = new ArrayList<>();
+	    List<String> photopath = new ArrayList<>();
+	    for (int i = 0; i < evsteps.size(); i++) {
+	    	photo.add(evsteps.get(i).getSphoto());
+	    	photopath.add(evsteps.get(i).getSphotopath());
+		}
+	    steprepository.deleteAll(evsteps);
+	    recipeservice.editStep(recipe, SContent, Singtxt, Stooltxt, Stip, Scontroltxt,file1,photo,photopath);
+	    
+	    List<Recipe_Ingredient> evrecipeings = recipeingredientrepository.findByRecipe(recipe1);
+	    recipeingredientrepository.deleteAll(evrecipeings);
+	    recipeservice.createRecipe(recipe, ingredientName, mensuration);
+	    
+	    List<Tag> evtags = tagrepository.findByRecipe(recipe1);
+	    tagrepository.deleteAll(evtags);
+	    if(tags != null) {
+			 List<String> tagList = Arrays.asList(tags.split(","));
+			recipeservice.createtag(recipe, tagList);
+		}
+	    
+	    
+	    recipeRepository.save(recipe);
+	    return "redirect:/recipe/{recipe_id}"; // Redirect to the recipe page
 	}
 
 	@GetMapping("/deleteRecipe/{recipe_id}")

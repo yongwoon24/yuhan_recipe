@@ -125,7 +125,8 @@
 								th:value="@{{recipe_id}(recipe_id=${recipe.recipe_id})}"><input type="submit"
 								name="scapbtn" value="스크랩"></span>
 					</form>
-					<a th:if="${#strings.equals(recipe.nickname, session.loggedInNickname)}" th:href="@{/deleteRecipe/{recipe_id}(recipe_id=${recipe.recipe_id})}">Delete</a>
+					<a th:if="${#strings.equals(recipe.nickname, session.loggedInNickname)}" th:href="@{/deleteRecipe/{recipe_id}(recipe_id=${recipe.recipe_id})}">Delete</a><br>
+					<a th:if="${#strings.equals(recipe.nickname, session.loggedInNickname)}" th:href="@{/editRecipe/{recipe_id}(recipe_id=${recipe.recipe_id})}">수정</a>
 					
 					
 				</div>
