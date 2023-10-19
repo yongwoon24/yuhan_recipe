@@ -15,13 +15,25 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.entity.Board;
 import com.example.demo.entity.Comment;
+import com.example.demo.entity.Love;
+import com.example.demo.entity.User;
+import com.example.demo.repository.BoardRepository;
 import com.example.demo.repository.CommentRepository;
+import com.example.demo.repository.LoveRepository;
+import com.example.demo.repository.UserRepository;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 @Controller
 public class CommentController {
     private final CommentRepository commentRepository;
+    @Autowired
+    private BoardRepository boardrepository;
+    @Autowired
+    private UserRepository userrepository;
+    @Autowired
+    private LoveRepository loverepository;
+
 
     @Autowired
     public CommentController(CommentRepository commentRepository) {
@@ -47,9 +59,17 @@ public class CommentController {
         comment.setPostId(postId);
         
         comment.setContent(content);
-
+        
+        Board board = boardrepository.findByPostId(postId);
+        User user = userrepository.findbynickname(loggedInNickname);
         // 댓글 저장
         commentRepository.save(comment);
+        Love love = new Love();
+        love.setBoard(board);
+        love.setUser(user);
+        love.setActivity("댓글");
+        loverepository.save(love);
+        
 
         return "redirect:/board/" + postId; // 글쓰기 성공 후 게시판 목록 페이지로 리다이렉트
         

@@ -2,6 +2,7 @@ package com.example.demo.entity;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -30,11 +31,15 @@ public class Love {
     private String activity;
     
     @Column(name="date")
-    private LocalDate date;
+    private LocalDateTime date;
 
     @ManyToOne
     @JoinColumn(name = "recipe_id")
     private Recipe recipe;
+    
+    @ManyToOne
+    @JoinColumn(name = "postId")
+    private Board board;
 
 	public Long getActivityId() {
 		return activityId;
@@ -61,11 +66,11 @@ public class Love {
 		this.activity = activity;
 	}
 
-	public LocalDate getDate() {
+	public LocalDateTime getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDate date) {
+	public void setDate(LocalDateTime date) {
 		this.date = date;
 	}
 
@@ -79,6 +84,15 @@ public class Love {
 	
 	@PrePersist
 	protected void onCreate1() {
-        date = LocalDate.now();
+		LocalDateTime now = LocalDateTime.now().withNano(0);
+	    this.setDate(now);
     }
+
+	public Board getBoard() {
+		return board;
+	}
+
+	public void setBoard(Board board) {
+		this.board = board;
+	}
 }
