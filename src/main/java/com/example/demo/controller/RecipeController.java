@@ -519,7 +519,8 @@ public class RecipeController {
             @RequestParam("ingredientName") List<String> ingredientName,
             @RequestParam("mensuration") List<String> mensuration,
             @RequestParam(name ="tags", required = false) String tags,
-            @RequestParam("file") MultipartFile file) throws Exception {
+            @RequestParam("file") MultipartFile file,
+            @RequestParam(name = "deleteindex", required = false) List<Integer> deleteindex) throws Exception {
 	    recipe.setRecipe_id(recipe_id); // Set the ID to the path variable value for updating the correct recipe
 	    Recipe recipe1 = recipeRepository.findById(recipe_id);
 	    String nickname = recipe1.getNickname();
@@ -541,6 +542,10 @@ public class RecipeController {
 	    recipe.setScraps(scraps);
 	    
 	    List<Step> evsteps = steprepository.findByRecipe(recipe1);
+	    if(deleteindex != null) {
+	    for (int i = 0; i < deleteindex.size(); i++) {
+			steprepository.delete(evsteps.get(deleteindex.get(i)-1));
+		}}
 	    List<String> photo = new ArrayList<>();
 	    List<String> photopath = new ArrayList<>();
 	    for (int i = 0; i < evsteps.size(); i++) {

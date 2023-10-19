@@ -61,8 +61,8 @@ public class RecipeService {
 
 		List<Recipe_Ingredient> recipeIngredients = new ArrayList<>();
 		for (int i = 0; i < ingredientNames.size(); i++) {
-			String ingredientName = ingredientNames.get(i);
-			String mensuration = mensurations.get(i);
+			String ingredientName = (i < ingredientNames.size()) ? ingredientNames.get(i) : null;
+			String mensuration = (i < mensurations.size()) ? mensurations.get(i) : null;
 
 			Ingredient existingIngredient = ingredientRepository.findByIngredientName(ingredientName);
 			if (existingIngredient != null) {
@@ -128,17 +128,25 @@ public class RecipeService {
 			List<String> Stip, List<String> Scontroltxt, List<MultipartFile> file1) {
 
 		List<Step> existingSteps = stepRepository.findByRecipe(recipe);
+		System.out.println(existingSteps.size()+"sadassssssssssssssss");
 
 		for (int i = 0; i < existingSteps.size(); i++) {
 			Step step = existingSteps.get(i);
-			step.setSContent(SContent.get(i));
-			step.setSingtxt(Singtxt.get(i));
-			step.setStooltxt(Stooltxt.get(i));
-			step.setStip(Stip.get(i));
-			step.setScontroltxt(Scontroltxt.get(i));
-
+			
+			String SContents = (i < SContent.size()) ? SContent.get(i) : "";
+			String Singtxts = (i < Singtxt.size()) ? Singtxt.get(i) : "";
+			String Stooltxts = (i < Stooltxt.size()) ? Stooltxt.get(i) : "";
+			String Stips = (i < Stip.size()) ? Stip.get(i) : "";
+			String Scontroltxts = (i < Scontroltxt.size()) ? Scontroltxt.get(i) : "";
+			
+			step.setSContent(SContents);
+			step.setSingtxt(Singtxts);
+			step.setStooltxt(Stooltxts);
+			step.setStip(Stips);
+			step.setScontroltxt(Scontroltxts);
+			
 			MultipartFile newImage = file1.get(i);
-			if(!newImage.isEmpty()) {
+			if (newImage != null && !newImage.isEmpty())  {
 				String newImagePath = uploadImage(newImage, null);
 
 				step.setSphotopath(newImagePath);
@@ -156,12 +164,17 @@ public class RecipeService {
 // 새로운 스텝을 추가합니다.
 		for (int i = existingSteps.size(); i < SContent.size(); i++) {
 			Step newStep = new Step();
+			String SContents = (i < SContent.size()) ? SContent.get(i) : "";
+			String Singtxts = (i < Singtxt.size()) ? Singtxt.get(i) : "";
+			String Stooltxts = (i < Stooltxt.size()) ? Stooltxt.get(i) : "";
+			String Stips = (i < Stip.size()) ? Stip.get(i) : "";
+			String Scontroltxts = (i < Scontroltxt.size()) ? Scontroltxt.get(i) : "";
 			newStep.setRecipe(recipe);
-			newStep.setSContent(SContent.get(i));
-			newStep.setSingtxt(Singtxt.get(i));
-			newStep.setStooltxt(Stooltxt.get(i));
-			newStep.setStip(Stip.get(i));
-			newStep.setScontroltxt(Scontroltxt.get(i));
+			newStep.setSContent(SContents);
+			newStep.setSingtxt(Singtxts);
+			newStep.setStooltxt(Stooltxts);
+			newStep.setStip(Stips);
+			newStep.setScontroltxt(Scontroltxts);
 
 			MultipartFile newImage = file1.get(i);
 			
@@ -313,11 +326,11 @@ public class RecipeService {
 				Math.max(Stips.size(), Scontroltxts.size()));
 
 		for (int i = 0; i < maxSize; i++) {
-			String SContent = (i < SContents.size()) ? SContents.get(i) : null;
-			String Singtxt = (i < Singtxts.size()) ? Singtxts.get(i) : null;
-			String Stooltxt = (i < Stooltxts.size()) ? Stooltxts.get(i) : null;
-			String Stip = (i < Stips.size()) ? Stips.get(i) : null;
-			String Scontroltxt = (i < Scontroltxts.size()) ? Scontroltxts.get(i) : null;
+			String SContent = (i < SContents.size()) ? SContents.get(i) : "";
+			String Singtxt = (i < Singtxts.size()) ? Singtxts.get(i) : "";
+			String Stooltxt = (i < Stooltxts.size()) ? Stooltxts.get(i) : "";
+			String Stip = (i < Stips.size()) ? Stips.get(i) : "";
+			String Scontroltxt = (i < Scontroltxts.size()) ? Scontroltxts.get(i) : "";
 
 			// 각 리스트에서 요소가 존재하는지 확인
 			if (SContent != null || Singtxt != null || Stooltxt != null || Stip != null || Scontroltxt != null
@@ -349,10 +362,7 @@ public class RecipeService {
 						e.printStackTrace();
 						// 이미지 저장 중 오류 발생 시 처리
 					}
-				} else {
-					step.setSphoto("");
-					step.setSphotopath("");
-				}
+				} 
 				steps.add(step);
 			} else {
 				// 처리할 수 없는 상황이라면 예외 처리 또는 오류 처리를 수행하세요.

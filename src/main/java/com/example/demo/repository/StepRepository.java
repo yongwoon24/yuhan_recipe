@@ -11,4 +11,5 @@ import com.example.demo.entity.Step;
 public interface StepRepository extends JpaRepository<Step, Long>{
 	//@Query("SELECT s FROM Step s WHERE s.recipe_id = :recipe_id")
 	List<Step> findByRecipe(Recipe recipe);
+	
 }
