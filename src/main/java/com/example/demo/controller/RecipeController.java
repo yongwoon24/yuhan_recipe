@@ -253,7 +253,7 @@ public class RecipeController {
             @RequestParam("file1") List<MultipartFile> file1,
             @RequestParam(name ="tags", required = false) String tags)
 			throws Exception {
-
+		recipe.setRecipeVerified(true);//레시피 검토 안해도 되도록 임시@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@22
 		String loggedInNickname = (String) session.getAttribute("loggedInNickname");
 		recipe.setNickname(loggedInNickname);
 		recipeservice.write(recipe, file);

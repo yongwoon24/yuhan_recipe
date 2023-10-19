@@ -142,7 +142,11 @@
 				</div>
 				
 				<div class="e17_1213_1">
-		
+					<form th:action="'/a/'+${recipe.recipe_id}" method="post">
+						<div th:if="${session.loggedInNickname == '관리자'}" class="confirm_btn">
+				            	<button type="submit">승인</button>
+				    	</div>
+						</form>		
 					
 					<div class="step_item2" th:if="${(tagss != null) && (!tagss.isEmpty())}">태그&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<div class="tag-container">
@@ -151,13 +155,6 @@
 								<a th:href="@{|/search?keyword=${tag.content}|}" th:text="'#'+${tag.content}"></a>
 							</span>
 						</div>
-						<form th:action="'/a/'+${recipe.recipe_id}" method="post">
-						<div th:if="${session.loggedInNickname == '관리자'}" class="confirm_btn">
-
-				            	<button type="submit">레시피 검토</button>
-				        	
-				    	</div>
-						</form>
 					</div>
 					재료
 					<div class="ingredient-grid">
