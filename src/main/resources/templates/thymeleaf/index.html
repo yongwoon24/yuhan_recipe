@@ -92,5 +92,12 @@
 			<div class="footer_comment">@Yuhan University Group 3's Project</div>
 	</div>
 </div>
+
+ <script th:inline="javascript">
+        var sendMessage = /*[[${errorMessage}]]*/ "";
+        if (sendMessage) {
+            alert(sendMessage);
+        }
+    </script>
 </body>
 </html>
