@@ -54,21 +54,18 @@ td {
  height: 80px;
   border-bottom: 1px solid #c6c9cc;
 }
-td:first-child {
- 
-}
-/*tr:nth-child(even) td {
-  background: #eaeaed;
-}*/
+
+
 tr:last-child td:first-child {
   border-color: rgb(255, 255, 255);
 }
 tr:last-child td:last-child {
   border-color: rgb(255, 255, 255);
 }
-tr:hover{
-   background-color: aquamarine;
+td:hover{
+	background-color: rgb(226, 226, 226);
 }
+
 
 
 /* 페이지 버튼 */

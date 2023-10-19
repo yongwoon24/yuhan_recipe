@@ -220,8 +220,6 @@ public class UserController {
     	String loggedInNickname = (String) session.getAttribute("loggedInNickname");
     	
     	if (loggedInNickname != null) {
-    	User user = userRepository.findbynickname(loggedInNickname);
-    	String userId = user.getUser_id();
     	List<Recipe> recipes = recipeRepository.findByNicknameOrderByCreateddateDesc(loggedInNickname);
     	List<Board> boards = boardRepository.findByNickname(loggedInNickname);
     	List<Love> loves = loveRepository.findLovesByActivityNotEqualAndBoardInOrRecipeInOrderByDateAtDesc(boards, recipes);
@@ -232,7 +230,6 @@ public class UserController {
         int endIndex = Math.min(startIndex + pageSize, loves.size());
 
         List<Love> pagedBoards = loves.subList(startIndex, endIndex);
-        model.addAttribute("boardList", pagedBoards);
         model.addAttribute("currentPage", page);
 
         // 전체 페이지 수 계산
