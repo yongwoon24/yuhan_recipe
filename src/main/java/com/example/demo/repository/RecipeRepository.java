@@ -22,16 +22,24 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
 	String findMainPhotoByRecipeId(Long recipeId);
 
 	List<Recipe> findByCategoryNameOrderByTotalLoveDesc(String categoryName);
+	List<Recipe> findByRecipeVerifiedAndCategoryNameOrderByTotalLoveDesc(boolean recipeVerified, String categoryName);
 
 	List<Recipe> findByCategoryNameOrderByDailyLoveDesc(String categoryName);
+	List<Recipe> findByRecipeVerifiedAndCategoryNameOrderByDailyLoveDesc(boolean recipeVerified, String categoryName);
 
 	List<Recipe> findByCategoryNameOrderByWeeklyLoveDesc(String categoryName);
+	List<Recipe> findByRecipeVerifiedAndCategoryNameOrderByWeeklyLoveDesc(boolean recipeVerified, String categoryName);
 
 	List<Recipe> findByCategoryNameOrderByMonthlyLoveDesc(String categoryName);
+	List<Recipe> findByRecipeVerifiedAndCategoryNameOrderByMonthlyLoveDesc(boolean recipeVerified, String categoryName);
 
 	List<Recipe> findTop10ByOrderByTotalLoveDesc();
+	
+	List<Recipe> findTop10ByRecipeVerifiedOrderByTotalLoveDesc(boolean recipeVerified);
 
 	List<Recipe> findByOrderByTotalLoveDesc();
+	
+	List<Recipe> findByRecipeVerifiedOrderByTotalLoveDesc(boolean recipeVerified);
 
 	Recipe findById(int recipe_id);
 	
@@ -61,36 +69,61 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
 			@Param("weeklyLove") int weeklyLove, @Param("monthlyLove") int monthlyLove);
 
 	List<Recipe> findByOrderByDailyLoveDesc();
+	
+	List<Recipe> findByRecipeVerifiedOrderByDailyLoveDesc(boolean recipeVerified);
 
 	List<Recipe> findByOrderByWeeklyLoveDesc();
+	
+	List<Recipe> findByRecipeVerifiedOrderByWeeklyLoveDesc(boolean recipeVerified);
 
 	List<Recipe> findByOrderByMonthlyLoveDesc();
+	
+	List<Recipe> findByRecipeVerifiedOrderByMonthlyLoveDesc(boolean recipeVerified);
 
 	List<Recipe> findByCategoryNameIn(List<String> categori);
 
 	List<Recipe> findByNicknameOrderByCreateddateDesc(String nickname);
+	
+	List<Recipe> findByRecipeVerifiedAndNicknameOrderByCreateddateDesc(boolean recipeVerified, String nickname);
 
 	List<Recipe> findByRecipeIngredientsIngredientIngredientNameIn(List<String> ingredientNames);
 
 	List<Recipe> findByRecipeIngredientsIngredientIngredientNameInOrderByCreateddateDesc(List<String> ingredientNames);
+	List<Recipe> findByRecipeVerifiedAndRecipeIngredientsIngredientIngredientNameInOrderByCreateddateDesc(boolean recipeVerified, List<String> ingredientNames);
 
 	List<Recipe> findByRecipeIngredientsIngredientIngredientNameInOrderByViewcountDesc(List<String> ingredientNames);
+	
+	List<Recipe> findByRecipeVerifiedAndRecipeIngredientsIngredientIngredientNameInOrderByViewcountDesc(boolean recipeVerified, List<String> ingredientNames);
 
 	List<Recipe> findByCategoryNameInAndRecipeIngredientsIngredientIngredientNameIn(List<String> categName,
 			List<String> ingredientName);
 
 	List<Recipe> findByCategoryNameInAndRecipeIngredientsIngredientIngredientNameInOrderByCreateddateDesc(
 			List<String> categName, List<String> ingredientName);
+	
+	List<Recipe> findByRecipeVerifiedAndCategoryNameInAndRecipeIngredientsIngredientIngredientNameInOrderByCreateddateDesc(
+			boolean recipeVerified, List<String> categName, List<String> ingredientName);
 
 	List<Recipe> findByCategoryNameInAndRecipeIngredientsIngredientIngredientNameInOrderByViewcountDesc(
 			List<String> categName, List<String> ingredientName);
+	
+	List<Recipe> findByRecipeVerifiedAndCategoryNameInAndRecipeIngredientsIngredientIngredientNameInOrderByViewcountDesc(
+			boolean recipeVerified, List<String> categName, List<String> ingredientName);
 
 	List<Recipe> findAllByOrderByCreateddateDesc();
+	
+	List<Recipe> findByRecipeVerifiedOrderByCreateddateDesc(boolean recipeVerified);
 
 	List<Recipe> findAllByOrderByViewcountDesc();
+	
+	List<Recipe> findByRecipeVerifiedOrderByViewcountDesc(boolean recipeVerified);
 
 	List<Recipe> findByCategoryNameInOrderByCreateddateDesc(List<String> categories);
+	List<Recipe> findByRecipeVerifiedAndCategoryNameInOrderByCreateddateDesc(boolean recipeVerified, List<String> categories);
+	
 	List<Recipe> findByCategoryNameInOrderByViewcountDesc(List<String> categories);
+	
+	List<Recipe> findByRecipeVerifiedAndCategoryNameInOrderByViewcountDesc(boolean recipeVerified, List<String> categories);
 	
 	@Transactional
 	@Modifying
@@ -103,6 +136,12 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
     List<Recipe> findRecipesScrapByUser(String userId);
 	
 	List<Recipe> findByTitleContaining(String title, Sort sort);
-	List<Recipe> findByTitleContainingOrTagContentContaining(String title, String tagcontent, Sort sort);
+	List<Recipe> findByTitleContainingOrTagContent(String title, String tagcontent, Sort sort);
+	
+	List<Recipe> findByTitleContainingAndRecipeVerifiedOrTagContentAndRecipeVerified(String title,boolean recipeVerified, String tagcontent, Sort sort, boolean recipeVerified1);
+	
+	void deleteByNickname(String nickname);
+	
+	
 	
 }

@@ -872,6 +872,19 @@ text[name='ingd'] {
 	height: 35px;
 	position: absolute;
 	left: 43%;
+	
+	font-family: Inter;
+	text-align: center;
+	font-size: 12px;
+	letter-spacing: 0;
+	display: flex;
+}
+.e12_5_1 {
+	color: rgba(0, 0, 0, 1);
+	width: 469px;
+	height: 35px;
+	position: absolute;
+	left: 43%;
 	top: 30px;
 	font-family: Inter;
 	text-align: center;
@@ -1014,7 +1027,7 @@ text[name='ingd'] {
 	position: absolute;
 	width: 150px;
 	height: 50px;
-	top: 700px;
+	transform: translateX(-50%);
 	left: 900px;
 }
 

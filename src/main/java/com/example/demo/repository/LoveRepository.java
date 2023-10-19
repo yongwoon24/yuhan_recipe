@@ -15,6 +15,8 @@ import com.example.demo.entity.User;
 public interface LoveRepository extends JpaRepository<Love, Long>{
     List<Love> findByOrderByActivityId();
     
+    List<Love> findByRecipe(Recipe recipe);
+    
     
     @Query("SELECT COUNT(l) FROM Love l WHERE l.recipe.recipe_id = :recipe_id AND l.activity = '좋아요'")
     int countLovesByRecipeId(@Param("recipe_id") int recipe_id);
@@ -34,5 +36,7 @@ public interface LoveRepository extends JpaRepository<Love, Long>{
     	//int countLovesByRecipe_id(int recipeId);
     
     //Optional<Love> findByRecipeAndUser(Recipe recipe, User user);
+    
+    void deleteByUser(User user);
     
 }

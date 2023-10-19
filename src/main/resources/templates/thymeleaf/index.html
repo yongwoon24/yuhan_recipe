@@ -43,6 +43,19 @@
 		</div>
 		
 		
+    	<div th:if="${session.loggedInNickname == '관리자'}" class="confirm_btn">
+        	<a href="/reviewRecipes">
+            	<button>레시피 검토</button>
+        	</a>
+    	</div>
+
+		<div th:if="${session.loggedInNickname == '관리자'}" class="user_btn">
+		    <a href="/user">
+        		<button>회원 관리</button>
+        	</a>
+    	</div>
+		
+		
 		<!-- 여기부터 body에 추가할 코드 입력 -->
 		<div class="slide_wrapper">
 			<ul class="img_slide">
@@ -79,5 +92,12 @@
 			<div class="footer_comment">@Yuhan University Group 3's Project</div>
 	</div>
 </div>
+
+ <script th:inline="javascript">
+        var sendMessage = /*[[${errorMessage}]]*/ "";
+        if (sendMessage) {
+            alert(sendMessage);
+        }
+    </script>
 </body>
 </html>

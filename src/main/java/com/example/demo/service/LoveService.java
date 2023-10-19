@@ -47,7 +47,7 @@ public class LoveService {
 	public void saveLove(Love love) {
 		loverepository.save(love);
 		updateTotalLikes(love.getRecipe().getRecipe_id());
-		updateAllPeriodLikes(love.getDate());
+		//updateAllPeriodLikes(love.getDate());
 	}
 	
 	private void updateTotalLikes(int recipeId) {

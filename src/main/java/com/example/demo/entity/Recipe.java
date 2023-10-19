@@ -25,13 +25,6 @@ public class Recipe {
 	@Column(name = "recipe_id") // Column 매핑 추가
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int recipe_id;
-	public List<Recipe_Ingredient> getRecipeIngredients() {
-		return recipeIngredients;
-	}
-	public void setRecipeIngredients(List<Recipe_Ingredient> recipeIngredients) {
-		this.recipeIngredients = recipeIngredients;
-	}
-
 	private String title;
 	private String main_photo;
 	
@@ -43,13 +36,6 @@ public class Recipe {
 	@JoinColumn(name = "user_id")
 	User user;
 	
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
-
 	@Column(name = "category_name")
 	private String categoryName;
 
@@ -67,13 +53,6 @@ public class Recipe {
 	private String nickname;
 	
 
-	public String getNickname() {
-		return nickname;
-	}
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
-
 	private String main_photo_path;
 	@Column(name = "recipe_subtext")
 	private String recipesubtxt;
@@ -81,7 +60,11 @@ public class Recipe {
 	//@OneToMany(mappedBy = "love", cascade = CascadeType.ALL, orphanRemoval = true)
 	@OneToMany
 	@JoinColumn(name = "recipe_id")
-	private List<Love> loves = new ArrayList<>();
+	private List<Love> loves;
+	
+	@OneToMany
+	@JoinColumn(name = "recipe_id")
+	private List<Scrap> scraps;
 	
 	@OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
     private List<Recipe_Ingredient> recipeIngredients;
@@ -91,7 +74,41 @@ public class Recipe {
     
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
     private List<Tag> tag;
+    
+    //레시피 승인 관련
+    private boolean recipeVerified;
 	
+	
+	public boolean isRecipeVerified() {
+		return recipeVerified;
+	}
+	public void setRecipeVerified(boolean recipeVerified) {
+		this.recipeVerified = recipeVerified;
+	}
+	public List<Recipe_Ingredient> getRecipeIngredients() {
+		return recipeIngredients;
+	}
+	public void setRecipeIngredients(List<Recipe_Ingredient> recipeIngredients) {
+		this.recipeIngredients = recipeIngredients;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public void setScraps(List<Scrap> scraps) {
+		this.scraps = scraps;
+	}
+	public List<Scrap> getScraps() {
+		return scraps;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	public String getNickname() {
+		return nickname;
+	}
 	public LocalDateTime getCreateddate() {
 		return createddate;
 	}
@@ -146,21 +163,9 @@ public class Recipe {
 	public void setCreated_date(LocalDateTime createddate) {
 		this.createddate = createddate;
 	}
-//	public String getUser_id() {
-//		return user_id;
-//	}
-//	public void setUser_id(String user_id) {
-//		this.user_id = user_id;
-//	}
 	public String getCategoryName() {
 		return categoryName;
 	}
-//	public List<User> getUser() {
-//		return users;
-//	}
-//	public void setUser(List<User> users) {
-//		this.users = users;
-//	}
 	public List<Love> getLoves() {
 		return loves;
 	}
@@ -217,18 +222,8 @@ public class Recipe {
 				+ createddate + ", user=" + user + ", categoryName=" + categoryName + ", totalLove=" + totalLove
 				+ ", viewcount=" + viewcount + ", dailyLove=" + dailyLove + ", weeklyLove=" + weeklyLove
 				+ ", monthlyLove=" + monthlyLove + ", nickname=" + nickname + ", main_photo_path=" + main_photo_path
-				+ ", recipesubtxt=" + recipesubtxt + ", loves=" + loves + ", recipeIngredients=" + recipeIngredients
-				+ ", steps=" + steps + ", tag=" + tag + "]";
-	}
-	
-	public void updateRecipe(RecipeFormDto recipeFormDto) {
-		this.recipe_id=recipeFormDto.getRecipe_id();
-		this.title=recipeFormDto.getTitle();
-		//this.createddate=recipeFormDto.getCreated_date();
-		//this.user_id=recipeFormDto.getUser_id();
-		this.categoryName=recipeFormDto.getCategory_name();
-		this.viewcount=recipeFormDto.getView_count();
-		this.totalLove=recipeFormDto.getTotalLove();
+				+ ", recipesubtxt=" + recipesubtxt + ", loves=" + loves + ", scraps=" + scraps + ", recipeIngredients="
+				+ recipeIngredients + ", steps=" + steps + ", tag=" + tag + "]";
 	}
 	
 	@PrePersist
@@ -240,12 +235,4 @@ public class Recipe {
 	
 
 }
-	
-
-
-
-
-	
-	
-	
 	

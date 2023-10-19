@@ -265,6 +265,28 @@ li > a > img{
    
 }
 
+.confirm_btn{
+	width:100px;
+	height:55px;
+	position:absolute;
+	right: 20%;
+	top:30px;
+	text-align:center;
+	font-size:40px;
+	letter-spacing:0;
+} 
+
+.user_btn {
+    width:100px;
+	height:55px;
+	position:absolute;
+	right: 15%;
+	top:30px;
+	text-align:center;
+	font-size:40px;
+	letter-spacing:0;
+}
+
 .menu1 > a, .menu2 > a, .menu3 > a, .menu4 > a {
 	color: rgb(254, 255, 238);
 	text-shadow: 1px 1px 1px rgb(38, 193, 50);
