@@ -74,18 +74,18 @@
 			<!-- 로그아웃 주소 입력 -->
 			<div class="logout_icon"><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></div>
 
-			<div class="searchbar">	
-			<div class="searchradius">
-				<form action="/search" method="get"> <!-- 검색창 주소 입력 --> 
-					<input type="text" name="keyword" class="search_txt" required>
-					<button type="submit" class="search_btn">
-						<span class="searchicon">
-							<i class="fa-solid fa-magnifying-glass"></i>
-						</span>
-					</button>
-				</form>
-			</div>	
-		</div>
+			<div class="searchbar">
+				<div class="searchradius">
+					<form action="/search" method="get"> <!-- 검색창 주소 입력 -->
+						<input type="text" name="keyword" class="search_txt" required>
+						<button type="submit" class="search_btn">
+							<span class="searchicon">
+								<i class="fa-solid fa-magnifying-glass"></i>
+							</span>
+						</button>
+					</form>
+				</div>
+			</div>
 
 			<!-- 여기부터 body에 추가할 코드 입력 -->
 
@@ -126,14 +126,17 @@
 								name="scapbtn" value="스크랩"></span>
 					</form>
 
-<a th:if="${#strings.equals(recipe.nickname, session.loggedInNickname) or session.loggedInNickname == '관리자'}" th:href="@{/deleteRecipe/{recipe_id}(recipe_id=${recipe.recipe_id})}">Delete</a><br>
-					<a th:if="${#strings.equals(recipe.nickname, session.loggedInNickname)}" th:href="@{/editRecipe/{recipe_id}(recipe_id=${recipe.recipe_id})}">수정</a>
+					<a th:if="${#strings.equals(recipe.nickname, session.loggedInNickname) or session.loggedInNickname == '관리자'}"
+						th:href="@{/deleteRecipe/{recipe_id}(recipe_id=${recipe.recipe_id})}">Delete</a><br>
+					<a th:if="${#strings.equals(recipe.nickname, session.loggedInNickname)}"
+						th:href="@{/editRecipe/{recipe_id}(recipe_id=${recipe.recipe_id})}">수정</a>
 				</div>
-				
+
 				<div class="e17_1213_1">
-		
-					
-					<div class="step_item2" th:if="${(tagss != null) && (!tagss.isEmpty())}">태그&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+					<div class="step_item2" th:if="${(tagss != null) && (!tagss.isEmpty())}">
+						태그&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<div class="tag-container">
 
 							<span class="tag" th:each="tag : ${tagss}">
@@ -205,7 +208,7 @@
 								</div>
 							</div>
 						</div>
-					</div>		
+					</div>
 				</div>
 			</div>
 		</div>
@@ -220,11 +223,11 @@
 		}
 	</script>
 	<script>
-    function redirectToSearch(keyword) {
-        var url = "/search?keyword=" + keyword;
-        window.location.href = url;
-    }
-</script>
+		function redirectToSearch(keyword) {
+			var url = "/search?keyword=" + keyword;
+			window.location.href = url;
+		}
+	</script>
 
 	</div>
 	<div class="footer">
