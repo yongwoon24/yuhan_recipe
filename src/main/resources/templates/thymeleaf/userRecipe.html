@@ -87,6 +87,17 @@
 			</div>	
 		</div>
 
+		<div th:if="${session.loggedInNickname == '관리자'}" class="confirm_btn">
+        	<a href="/reviewRecipes">
+            	<button>레시피 검토</button>
+        	</a>
+    	</div>
+
+		<div th:if="${session.loggedInNickname == '관리자'}" class="user_btn">
+		    <a href="/user">
+        		<button>회원 관리</button>
+        	</a>
+    	</div>
 			<!-- 여기부터 body에 추가할 코드 입력 -->
 
 			<div class="slide_wrapper">
@@ -126,7 +137,7 @@
 								name="scapbtn" value="스크랩"></span>
 					</form>
 
-<a th:if="${#strings.equals(recipe.nickname, session.loggedInNickname) or session.loggedInNickname == '관리자'}" th:href="@{/deleteRecipe/{recipe_id}(recipe_id=${recipe.recipe_id})}">Delete</a><br>
+<a th:if="${#strings.equals(recipe.nickname, session.loggedInNickname) or session.loggedInNickname == '관리자'}" th:href="@{/deleteRecipe/{recipe_id}(recipe_id=${recipe.recipe_id}) }" onclick="return confirm('정말로 삭제하시겠습니까?');">Delete</a><br>
 					<a th:if="${#strings.equals(recipe.nickname, session.loggedInNickname)}" th:href="@{/editRecipe/{recipe_id}(recipe_id=${recipe.recipe_id})}">수정</a>
 				</div>
 				
@@ -140,6 +151,13 @@
 								<a th:href="@{|/search?keyword=${tag.content}|}" th:text="'#'+${tag.content}"></a>
 							</span>
 						</div>
+						<form th:action="'/a/'+${recipe.recipe_id}" method="post">
+						<div th:if="${session.loggedInNickname == '관리자'}" class="confirm_btn">
+
+				            	<button type="submit">레시피 검토</button>
+				        	</a>
+				    	</div>
+						</form>
 					</div>
 					재료
 					<div class="ingredient-grid">
@@ -210,7 +228,7 @@
 			</div>
 		</div>
 	</div>
-
+		
 
 	<script th:src="@{/../js/main.js}"></script>
 	<script th:inline="javascript">

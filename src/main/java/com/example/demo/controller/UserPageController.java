@@ -34,7 +34,8 @@ public class UserPageController {
 	
 	@GetMapping("/userpage_R/{nickname}")
 	public String showUserPage(Model model, @PathVariable String nickname, @RequestParam(required = false, defaultValue = "1") int page) {
-		List<Recipe> recipe = recipeRepository.findByNicknameOrderByCreateddateDesc(nickname);
+		boolean a = true;
+		List<Recipe> recipe = recipeRepository.findByRecipeVerifiedAndNicknameOrderByCreateddateDesc(a, nickname);
 		 
 	       if (recipe != null) {
 	    	int totalRecipes = recipe.size();

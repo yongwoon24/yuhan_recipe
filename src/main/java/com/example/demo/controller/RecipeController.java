@@ -88,6 +88,7 @@ public class RecipeController {
 	    String encodedCategories = encodeCategories(categories);
 	    String encodedingredientNames = encodeCategories(ingredientNames);
 	    List<Recipe> recipes;
+	    Boolean a = true;
 	    
 	    
 	    
@@ -96,54 +97,54 @@ public class RecipeController {
             // submitForm 폼의 데이터 처리
         	if ((categories == null || categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty())) {
     	        // 카테고리와 재료 이름이 모두 제공되지 않은 경우 모든 레시피를 가져옵니다.
-    	        recipes = recipeRepository.findAllByOrderByCreateddateDesc();
+        		recipes = recipeRepository.findByRecipeVerifiedOrderByCreateddateDesc(a);
     	    } else {
     	        // 카테고리와 재료 이름 중 하나라도 제공된 경우 검색을 수행합니다.
     	        if (categories != null && !categories.isEmpty() && ingredientNames != null && !ingredientNames.isEmpty()) {
     	            // 카테고리와 재료 이름 모두 제공된 경우
-    	            recipes = recipeRepository.findByCategoryNameInAndRecipeIngredientsIngredientIngredientNameInOrderByCreateddateDesc(categories, ingredientNames);
+    	        	recipes = recipeRepository.findByRecipeVerifiedAndCategoryNameInAndRecipeIngredientsIngredientIngredientNameInOrderByCreateddateDesc(a, categories, ingredientNames);
     	        } else if (categories != null && !categories.isEmpty()) {
     	            // 카테고리만 제공된 경우
-    	            recipes = recipeRepository.findByCategoryNameInOrderByCreateddateDesc(categories);
+    	        	recipes = recipeRepository.findByRecipeVerifiedAndCategoryNameInOrderByCreateddateDesc(a, categories);
     	        } else {
     	            // 재료 이름만 제공된 경우
-    	            recipes = recipeRepository.findByRecipeIngredientsIngredientIngredientNameInOrderByCreateddateDesc(ingredientNames);
+    	        	recipes = recipeRepository.findByRecipeVerifiedAndRecipeIngredientsIngredientIngredientNameInOrderByCreateddateDesc(a, ingredientNames);
     	        }
     	    }
         } else if ("views".equals(sort)) {
             // VCdescForm 폼의 데이터 처리
         	if ((categories == null || categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty())) {
     	        // 카테고리와 재료 이름이 모두 제공되지 않은 경우 모든 레시피를 가져옵니다.
-    	        recipes = recipeRepository.findAllByOrderByViewcountDesc();
+    	        recipes = recipeRepository.findByRecipeVerifiedOrderByViewcountDesc(a);
     	    } else {
     	        // 카테고리와 재료 이름 중 하나라도 제공된 경우 검색을 수행합니다.
     	        if (categories != null && !categories.isEmpty() && ingredientNames != null && !ingredientNames.isEmpty()) {
     	            // 카테고리와 재료 이름 모두 제공된 경우
-    	            recipes = recipeRepository.findByCategoryNameInAndRecipeIngredientsIngredientIngredientNameInOrderByViewcountDesc(categories, ingredientNames);
+    	            recipes = recipeRepository.findByRecipeVerifiedAndCategoryNameInAndRecipeIngredientsIngredientIngredientNameInOrderByViewcountDesc(a, categories, ingredientNames);
     	        } else if (categories != null && !categories.isEmpty()) {
     	            // 카테고리만 제공된 경우
-    	            recipes = recipeRepository.findByCategoryNameInOrderByViewcountDesc(categories);
+    	            recipes = recipeRepository.findByRecipeVerifiedAndCategoryNameInOrderByViewcountDesc(a, categories);
     	        } else {
     	            // 재료 이름만 제공된 경우
-    	            recipes = recipeRepository.findByRecipeIngredientsIngredientIngredientNameInOrderByViewcountDesc(ingredientNames);
+    	            recipes = recipeRepository.findByRecipeVerifiedAndRecipeIngredientsIngredientIngredientNameInOrderByViewcountDesc(a, ingredientNames);
     	        }
         }
         }
         else {
         	if ((categories == null || categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty())) {
     	        // 카테고리와 재료 이름이 모두 제공되지 않은 경우 모든 레시피를 가져옵니다.
-    	        recipes = recipeRepository.findAllByOrderByCreateddateDesc();
+    	        recipes = recipeRepository.findByRecipeVerifiedOrderByCreateddateDesc(a);
     	    } else {
     	        // 카테고리와 재료 이름 중 하나라도 제공된 경우 검색을 수행합니다.
     	        if (categories != null && !categories.isEmpty() && ingredientNames != null && !ingredientNames.isEmpty()) {
     	            // 카테고리와 재료 이름 모두 제공된 경우
-    	            recipes = recipeRepository.findByCategoryNameInAndRecipeIngredientsIngredientIngredientNameInOrderByCreateddateDesc(categories, ingredientNames);
+    	            recipes = recipeRepository.findByRecipeVerifiedAndCategoryNameInAndRecipeIngredientsIngredientIngredientNameInOrderByCreateddateDesc(a, categories, ingredientNames);
     	        } else if (categories != null && !categories.isEmpty()) {
     	            // 카테고리만 제공된 경우
-    	            recipes = recipeRepository.findByCategoryNameInOrderByCreateddateDesc(categories);
+    	            recipes = recipeRepository.findByRecipeVerifiedAndCategoryNameInOrderByCreateddateDesc(a, categories);
     	        } else {
     	            // 재료 이름만 제공된 경우
-    	            recipes = recipeRepository.findByRecipeIngredientsIngredientIngredientNameInOrderByCreateddateDesc(ingredientNames);
+    	            recipes = recipeRepository.findByRecipeVerifiedAndRecipeIngredientsIngredientIngredientNameInOrderByCreateddateDesc(a, ingredientNames);
     	        }
     	    }
         }
@@ -585,20 +586,20 @@ public class RecipeController {
 	    ) {
 	
 	    List<Recipe> recipes;
-	    
+	    boolean b = true;
 	    
 	    
 	    if (keyword != null && !keyword.isEmpty()) {
 	    	
 	        if ("latest".equals(sort)) {
-	        	recipes = recipeRepository.findByTitleContainingOrTagContent(keyword, keyword, Sort.by(Sort.Order.desc("createddate")));
+	        	recipes = recipeRepository.findByTitleContainingAndRecipeVerifiedOrTagContentAndRecipeVerified(keyword,b, keyword, Sort.by(Sort.Order.desc("createddate")), b);
 	        } else if ("views".equals(sort)) {
-	        	recipes = recipeRepository.findByTitleContainingOrTagContent(keyword, keyword, Sort.by(Sort.Order.desc("viewcount")));
+	        	recipes = recipeRepository.findByTitleContainingAndRecipeVerifiedOrTagContentAndRecipeVerified(keyword, b, keyword, Sort.by(Sort.Order.desc("viewcount")), b);
 	        } else {
-	        	recipes = recipeRepository.findByTitleContainingOrTagContent(keyword, keyword, Sort.by(Sort.Order.desc("createddate")));
+	        	recipes = recipeRepository.findByTitleContainingAndRecipeVerifiedOrTagContentAndRecipeVerified(keyword,b, keyword, Sort.by(Sort.Order.desc("createddate")), b);
 	        }
 	    } else {
-	    	recipes = recipeRepository.findByTitleContainingOrTagContent(keyword, keyword, Sort.by(Sort.Order.desc("createddate")));
+	    	recipes = recipeRepository.findByTitleContainingAndRecipeVerifiedOrTagContentAndRecipeVerified(keyword,b, keyword, Sort.by(Sort.Order.desc("createddate")), b);
 	    }
 	    
 	    

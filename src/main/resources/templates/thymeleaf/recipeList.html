@@ -41,6 +41,18 @@
 				</form>
 			</div>	
 		</div>
+		
+		<div th:if="${session.loggedInNickname == '관리자'}" class="confirm_btn">
+        	<a href="/reviewRecipes">
+            	<button>레시피 검토</button>
+        	</a>
+    	</div>
+
+		<div th:if="${session.loggedInNickname == '관리자'}" class="user_btn">
+		    <a href="/user">
+        		<button>회원 관리</button>
+        	</a>
+    	</div>
 			<!-- 여기부터 body에 추가할 코드 입력 -->
 
 			<div class="slide_wrapper">
@@ -75,13 +87,13 @@
 							th:href="@{|/recipe?&amp;sort=latest|}">최신순</a>
 
 						<a th:if="${(categories != null && !categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty())}"
-							th:href="@{|/recipe?&amp;categoryName=${categories}&amp;ingredientNames=${ingredientNames}&amp;sort=views|}">조회수순</a>
+							th:href="@{|/recipe?&amp;categoryName=${categories}&amp;ingredientNames=${ingredientNames}&amp;sort=views|}">조회순</a>
 						<a th:if="${(categories == null || categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty())}"
-							th:href="@{|/recipe?&amp;ingredientNames=${ingredientNames}&amp;sort=views|}">조회수순</a>
+							th:href="@{|/recipe?&amp;ingredientNames=${ingredientNames}&amp;sort=views|}">조회순</a>
 						<a th:if="${(categories != null && !categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty())}"
-							th:href="@{|/recipe?&amp;categoryName=${categories}&amp;sort=views|}">조회수순</a>
+							th:href="@{|/recipe?&amp;categoryName=${categories}&amp;sort=views|}">조회순</a>
 						<a th:if="${(categories == null || categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty())}"
-							th:href="@{|/recipe?&amp;sort=views|}">조회수순</a>
+							th:href="@{|/recipe?&amp;sort=views|}">조회순</a>
 					</p>
 				</div>
 				<ul class="img_slide1">

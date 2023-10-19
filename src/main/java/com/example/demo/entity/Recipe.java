@@ -74,7 +74,17 @@ public class Recipe {
     
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
     private List<Tag> tag;
+    
+    //레시피 승인 관련
+    private boolean recipeVerified;
 	
+	
+	public boolean isRecipeVerified() {
+		return recipeVerified;
+	}
+	public void setRecipeVerified(boolean recipeVerified) {
+		this.recipeVerified = recipeVerified;
+	}
 	public List<Recipe_Ingredient> getRecipeIngredients() {
 		return recipeIngredients;
 	}
@@ -153,21 +163,9 @@ public class Recipe {
 	public void setCreated_date(LocalDateTime createddate) {
 		this.createddate = createddate;
 	}
-//	public String getUser_id() {
-//		return user_id;
-//	}
-//	public void setUser_id(String user_id) {
-//		this.user_id = user_id;
-//	}
 	public String getCategoryName() {
 		return categoryName;
 	}
-//	public List<User> getUser() {
-//		return users;
-//	}
-//	public void setUser(List<User> users) {
-//		this.users = users;
-//	}
 	public List<Love> getLoves() {
 		return loves;
 	}
@@ -228,16 +226,6 @@ public class Recipe {
 				+ recipeIngredients + ", steps=" + steps + ", tag=" + tag + "]";
 	}
 	
-	public void updateRecipe(RecipeFormDto recipeFormDto) {
-		this.recipe_id=recipeFormDto.getRecipe_id();
-		this.title=recipeFormDto.getTitle();
-		//this.createddate=recipeFormDto.getCreated_date();
-		//this.user_id=recipeFormDto.getUser_id();
-		this.categoryName=recipeFormDto.getCategory_name();
-		this.viewcount=recipeFormDto.getView_count();
-		this.totalLove=recipeFormDto.getTotalLove();
-	}
-	
 	@PrePersist
     protected void onCreate() {
 		LocalDateTime now = LocalDateTime.now().withNano(0);
@@ -248,12 +236,3 @@ public class Recipe {
 
 }
 	
-
-
-
-
-	
-	
-	
-	
-
