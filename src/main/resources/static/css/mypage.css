@@ -87,7 +87,7 @@ left:50%
 
 
 .slide_wrapper{
-	top: 250px;
+	
 	position: relative;
 	margin:0 auto;
 	height: 100%;
@@ -164,58 +164,7 @@ tr:hover{
 .text-center {
   text-align: center;
 }
-.menu4 {
-	color: rgba(0, 0, 0, 1);
-	width: 200px;
-	height: 36px;
-	position: absolute;
-	left: 1334px;
-	top: 161px;
-	text-align: left;
-	font-size: 25px;
-	letter-spacing: 0;
 
-}
-
-.menu3 {
-	color: rgba(0, 0, 0, 1);
-	width: 70px;
-	height: 36px;
-	position: absolute;
-	left: 1178px;
-	top: 161px;
-
-	text-align: left;
-	font-size: 25px;
-	letter-spacing: 0;
-
-}
-
-.menu2 {
-	color: rgba(0, 0, 0, 1);
-	width: 70px;
-	height: 36px;
-	position: absolute;
-	left: 1022px;
-	top: 161px;
-
-	text-align: left;
-	font-size: 25px;
-	letter-spacing: 0;
-
-}
-
-.menu1 {
-	color: rgba(0, 0, 0, 1);
-	width: 70px;
-	height: 36px;
-	position: absolute;
-	left: 846px;
-	top: 161px;
-	text-align: left;
-	font-size: 25px;
-	letter-spacing: 0;
-}
 .menu55 {
 	color: rgba(0, 0, 0, 1);
 	width: 70px;
@@ -552,7 +501,7 @@ li > img{
 .slide_control span.prev{font-size: 50px; right:calc(100% - 30px); text-shadow: 1px 1px 0px #ffffff, 3px 3px 2px #663333;}
 .slide_control span.next{font-size: 50px; left:calc(100% - 140px); text-shadow: 1px 1px 0px #ffffff, 3px 3px 2px #663333;}
 .body_wrapper { 
-   
+ 
    width:100%;
    
    position:absolute;
