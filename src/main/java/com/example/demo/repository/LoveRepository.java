@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import com.example.demo.entity.Board;
 import com.example.demo.entity.Love;
 import com.example.demo.entity.Recipe;
 import com.example.demo.entity.User;
@@ -16,6 +17,11 @@ public interface LoveRepository extends JpaRepository<Love, Long>{
     List<Love> findByOrderByActivityId();
     
     List<Love> findByRecipe(Recipe recipe);
+    List<Love> findByRecipeIn(List<Recipe> recipe);
+    List<Love> findByBoardInOrRecipeIn(List<Board> board, List<Recipe> recipe);
+    //List<Love> findByBoardInAndActivityNotInOrRecipeInAndActivityNotIn(List<Board> board, String acttivity, List<Recipe> recipe, String acttivity1);
+    @Query("SELECT l FROM Love l WHERE (l.activity <> '조회') AND (l.board IN :boards OR l.recipe IN :recipes) ORDER BY l.date DESC")
+    List<Love> findLovesByActivityNotEqualAndBoardInOrRecipeInOrderByDateAtDesc(@Param("boards") List<Board> boards, @Param("recipes") List<Recipe> recipes);
     
     
     @Query("SELECT COUNT(l) FROM Love l WHERE l.recipe.recipe_id = :recipe_id AND l.activity = '좋아요'")
