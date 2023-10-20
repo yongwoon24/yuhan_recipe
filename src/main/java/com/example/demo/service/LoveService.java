@@ -47,6 +47,8 @@ public class LoveService {
 	public void saveLove(Love love) {
 		loverepository.save(love);
 		updateTotalLikes(love.getRecipe().getRecipe_id());
+		updatePeriodLikes(love.getRecipe().getRecipe_id(), LocalDate.now());
+		updateUserTotalLikes(love.getRecipe().getNickname());
 		//updateAllPeriodLikes(love.getDate());
 	}
 	
@@ -54,6 +56,20 @@ public class LoveService {
         int totalLikes = loverepository.countLovesByRecipeId(recipeId);
         reciperepository.updateTotalLoves(recipeId, totalLikes);
     }
+	private void updateUserTotalLikes(String nickname) {
+		int totalLikes = 0;
+		List<Recipe> recipes = reciperepository.findByNickname(nickname);
+		for (Recipe recipe : recipes) {
+			int recipeLikes = recipe.getTotalLove();
+			totalLikes += recipeLikes;
+		}
+		User user = userrepository.findbynickname(nickname);
+		
+		if(user != null) {
+			user.setUsertotallikes(totalLikes);
+			userrepository.save(user);
+		}
+	}
 	
 	//모든 레시피의 모든 좋아요 항목 업데이트
 	private void updateAllPeriodLikes(LocalDate date) {
