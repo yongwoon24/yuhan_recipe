@@ -370,6 +370,13 @@ public class RecipeController {
 				scrap.setUser(user);
 				scrap.setRecipe(recipe);
 				//love.setActivity(activity);
+				
+				Love love = new Love();
+				love.setUser(user);
+				love.setRecipe(recipe);
+				love.setActivity("스크랩");
+
+				loveservice.saveLove(love);
 
 				scraprepository.save(scrap);
 

@@ -8,6 +8,7 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
+@EnableAspectJAutoProxy
 public class WebMvcConfig implements WebMvcConfigurer{
 	
 	@Override
