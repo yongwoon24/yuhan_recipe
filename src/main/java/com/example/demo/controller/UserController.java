@@ -218,6 +218,7 @@ public class UserController {
     public String alarm(Model model, HttpSession session, @RequestParam(required = false, defaultValue = "0") int page,RedirectAttributes redirectAttributes) {
     	
     	String loggedInNickname = (String) session.getAttribute("loggedInNickname");
+    	String loggedInUserId = (String) session.getAttribute("loggedInUserId");
     	
     	if (loggedInNickname != null) {
     	List<Recipe> recipes = recipeRepository.findByNicknameOrderByCreateddateDesc(loggedInNickname);
@@ -245,6 +246,22 @@ public class UserController {
     	model.addAttribute("session",session);
     	model.addAttribute("loves",pagedBoards);
     	
+    	List<Love> lovesT = loveRepository.findLovesByActivityNotEqualAndBoardInOrRecipeInOrderByDateAtDesc1(boards, recipes, loggedInUserId);
+    	//읽지 않은 알람이 있을때 
+    	if(!lovesT.isEmpty() && lovesT != null) {
+    		
+    		session.setAttribute("alarm", 1);
+    		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    		for (int i = 0; i < lovesT.size(); i++) {
+				System.out.println(lovesT.get(i).getActivityId());
+			}
+    		
+    	}else {
+    	session.setAttribute("alarm", 2);
+    	System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+    	}
+    	
+    	
     	
     	
     	return "alarm";
@@ -254,6 +271,17 @@ public class UserController {
     	}
     }
     
+    @PostMapping("/updateToken")
+    public void updateToken(@RequestParam Long notificationId, HttpSession session) {
+        // notificationId를 사용하여 데이터베이스에서 알림을 식별하고 "token" 값을 업데이트합니다.
+        System.out.println(notificationId+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        // 업데이트가 성공한 경우 응답을 반환합니다.
+        String loggedInNickname = (String) session.getAttribute("loggedInNickname");  
+        Love love = loveRepository.findByActivityId(notificationId);
+        love.setToken(true);
+        loveRepository.save(love);
+        
+    }
     
     
     

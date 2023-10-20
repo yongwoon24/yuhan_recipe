@@ -19,64 +19,65 @@
 		<div class="body_content">
 			<div class="menubar"></div>
 			<span class="menu4"><a href="/mypage">마이페이지</a></span>
-      <span class="menu3"><a href="/recipe">분류</a></span>
-      <span class="menu2"><a href="/board">게시판</a></span>
-      <span class="menu1"><a href="/rank">랭킹</a></span>
-      <span><a class="mainicon" href="/">모두의레시피</a></span>
+			<span class="menu3"><a href="/recipe">분류</a></span>
+			<span class="menu2"><a href="/board">게시판</a></span>
+			<span class="menu1"><a href="/rank">랭킹</a></span>
+			<span><a class="mainicon" href="/">모두의레시피</a></span>
 
 			<!-- 마이페이지 주소 입력 -->
-			<div class="alarm-icon"><a href="/alarm"><i class="fas fa-bell"></i></a></div>
+			<div class="alarm-icon"><a href="/alarm"><i class="fas fa-bell"></i></a><span th:if="${session.alarm == 1}"
+					style="font-size: 80px; color: red;">.</span></div>
 			<div class="write-icon"><a href="/createRecipe"><i class="fas fa-pencil-alt"></i></a></div>
 			<div class="usericon"><a href="/mypage"><i class="fa-solid fa-user"></i></a></div>
 			<!-- 로그아웃 주소 입력 -->
 			<div class="logout_icon"><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></div>
 
-			<div class="searchbar">	
-			<div class="searchradius">
-				<form action="/search" method="get"> <!-- 검색창 주소 입력 --> 
-					<input type="text" th:value="${keyword}" name="keyword" class="search_txt" required>
-					<button type="submit" class="search_btn">
-						<span class="searchicon">
-							<i class="fa-solid fa-magnifying-glass"></i>
-						</span>
-					</button>
-				</form>
-			</div>	
-		</div>
-		
-		<div th:if="${session.loggedInNickname == '관리자'}" class="confirm_btn">
-        	<a href="/reviewRecipes">
-            	<button>레시피 검토</button>
-        	</a>
-    	</div>
+			<div class="searchbar">
+				<div class="searchradius">
+					<form action="/search" method="get"> <!-- 검색창 주소 입력 -->
+						<input type="text" th:value="${keyword}" name="keyword" class="search_txt" required>
+						<button type="submit" class="search_btn">
+							<span class="searchicon">
+								<i class="fa-solid fa-magnifying-glass"></i>
+							</span>
+						</button>
+					</form>
+				</div>
+			</div>
 
-		<div th:if="${session.loggedInNickname == '관리자'}" class="user_btn">
-		    <a href="/user">
-        		<button>회원 관리</button>
-        	</a>
-    	</div>
-		
+			<div th:if="${session.loggedInNickname == '관리자'}" class="confirm_btn">
+				<a href="/reviewRecipes">
+					<button>레시피 검토</button>
+				</a>
+			</div>
+
+			<div th:if="${session.loggedInNickname == '관리자'}" class="user_btn">
+				<a href="/user">
+					<button>회원 관리</button>
+				</a>
+			</div>
+
 			<!-- 여기부터 body에 추가할 코드 입력 -->
 
 			<div class="slide_wrapper">
-			
+
 				<div class="btn1" th:if="${not recipes.isEmpty()}">
 					<p>
-						
+
 						<a th:href="@{|/search?sort=latest&keyword=${keyword}|}">최신순</a>
 
 
-						
+
 						<a th:href="@{|/search?sort=views&keyword=${keyword}|}">조회순</a>
 					</p>
 				</div>
-				
+
 				<!-- 검색 결과가 없을 때의 메시지를 추가 -->
-			    <div th:if="${recipes.isEmpty()}">
-			        <h2>검색 결과가 없습니다.</h2>
-			    </div>
-			    
-			     <!-- 검색 결과가 있는 경우 레시피를 표시 -->
+				<div th:if="${recipes.isEmpty()}">
+					<h2>검색 결과가 없습니다.</h2>
+				</div>
+
+				<!-- 검색 결과가 있는 경우 레시피를 표시 -->
 				<ul class="img_slide1" th:if="${not recipes.isEmpty()}">
 					<li class="recipe-item" th:each="recipe, recipeIndex : ${recipes}">
 						<div class="recipe-container">
@@ -94,7 +95,7 @@
 				<!-- 페이지네이션을 추가한 부분 -->
 
 				<div class="pagination">
-					
+
 					<a th:if="${hasPreviousPage && (sort == null) && (!recipes.isEmpty())}"
 						th:href="@{|/search?page=${currentPage - 1}&keyword=${keyword}|}">
 						&laquo; 이전
@@ -219,7 +220,7 @@
 				document.body.appendChild(form);
 				form.submit();
 			}
-			
+
 		</script>
 
 </body>
