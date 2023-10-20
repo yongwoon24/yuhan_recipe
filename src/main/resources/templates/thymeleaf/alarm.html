@@ -9,11 +9,14 @@
 
 	</style>
 	<script src="https://kit.fontawesome.com/2636adf573.js" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<link rel="stylesheet" type="text/css" th:href="@{/../css/style.css}" />
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="stylesheet" type="text/css" th:href="@{/../css/alarm.css}">
 	<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+	
+	
 </head>
 
 <body>
@@ -26,7 +29,7 @@
 			<span class="menu1"><a href="/rank">랭킹</a></span>
 			<span><a class="mainicon" href="/">모두의레시피</a></span>
 			<!-- 마이페이지 주소 입력 -->
-			<div class="alarm-icon"><a href="/alarm"><i class="fas fa-bell"></i></a></div>
+			<div class="alarm-icon"><a href="/alarm"><i class="fas fa-bell"></i></a><span th:if="${session.alarm == 1}" style="font-size: 80px; color: red;">.</span></div>
 			<div class="write-icon"><a href="/createRecipe"><i class="fas fa-pencil-alt"></i></a></div>
 			<div class="usericon"><a href="/mypage"><i class="fa-solid fa-user"></i></a></div>
 			<!-- 로그아웃 주소 입력 -->
@@ -72,28 +75,33 @@
 					<tbody>
 						<tr th:each="love : ${loves}">
 							<td th:if="${love.activity == '좋아요' && love.user.nickname != session.loggedInNickname}">
-								<a th:href="@{|/recipe/${love.recipe.recipe_id}|}"> 
-									<span th:text="${love.user.nickname}+'님이 레시피에 '+${love.activity}+'를 누르셨습니다.'"></span>
+								<a th:href="@{|/recipe/${love.recipe.recipe_id}|}" th:onclick="'confirmNotification('+${love.activityId}+')'"> 
+									<span th:if="${love.Token}" th:text="${love.user.nickname}+'님이 레시피에 '+${love.activity}+'를 누르셨습니다.'" style="color:darkgrey"></span>
+									<span th:if="${!love.Token}" th:text="${love.user.nickname}+'님이 레시피에 '+${love.activity}+'를 누르셨습니다.'"></span>
 								</a>
 							</td>
 							<td th:if="${love.activity == '댓글' && love.recipe != null && love.user.nickname != session.loggedInNickname}">
-								<a th:href="@{|/recipe/${love.recipe.recipe_id}|}"> 
-									<span th:text="${love.user.nickname}+'님이 레시피에 '+${love.activity}+'를 달았습니다.'"></span>
+								<a th:href="@{|/recipe/${love.recipe.recipe_id}|}" th:onclick="'confirmNotification('+${love.activityId}+')'"> 
+									<span th:if="${love.Token}" th:text="${love.user.nickname}+'님이 레시피에 '+${love.activity}+'를 달았습니다.'" style="color:darkgrey"></span>
+									<span th:if="${!love.Token}" th:text="${love.user.nickname}+'님이 레시피에 '+${love.activity}+'를 달았습니다.'"></span>
 								</a>
 							</td>
 							<td th:if="${love.activity == '댓글' && love.recipe == null && love.user.nickname != session.loggedInNickname}">
-								<a th:href="@{|/board/${love.board.postId}|}"> 
-									<span th:text="${love.user.nickname}+'님이 게시물에 '+${love.activity}+'를 달았습니다.'"></span>
+								<a th:href="@{|/board/${love.board.postId}|}" th:onclick="'confirmNotification('+${love.activityId}+')'"> 
+									<span th:if="${love.Token}" th:text="${love.user.nickname}+'님이 게시물에 '+${love.activity}+'를 달았습니다.'" style="color:darkgrey"></span>
+									<span th:if="${!love.Token}" th:text="${love.user.nickname}+'님이 게시물에 '+${love.activity}+'를 달았습니다.'"></span>
 								</a>
 							</td>
 							<td th:if="${love.activity == '스크랩' && love.user.nickname != session.loggedInNickname}">
-								<a th:href="@{|/recipe/${love.recipe.recipe_id}|}"> 
-									<span th:text="${love.user.nickname}+'님이 레시피에 '+${love.activity}+'을 누르셨습니다.'"></span>
+								<a th:href="@{|/recipe/${love.recipe.recipe_id}|}" th:onclick="'confirmNotification('+${love.activityId}+')'"> 
+									<span th:if="${love.Token}" th:text="${love.user.nickname}+'님이 레시피에 '+${love.activity}+'을 누르셨습니다.'" style="color:darkgrey"></span>
+									<span th:if="${!love.Token}" th:text="${love.user.nickname}+'님이 레시피에 '+${love.activity}+'을 누르셨습니다.'"></span>
 								</a>
 							</td>
 							<td th:if="${love.activity == '레시피 승인' && love.user.nickname != session.loggedInNickname}">
-								<a th:href="@{|/recipe/${love.recipe.recipe_id}|}"> 
-									<span th:text="${love.activity}+'이 되셨습니다.'"></span>
+								<a th:href="@{|/recipe/${love.recipe.recipe_id}|}" th:onclick="'confirmNotification('+${love.activityId}+')'"> 
+									<span th:if="${love.Token}" th:text="${love.activity}+'이 되셨습니다.'" style="color:darkgrey"></span>
+									<span th:if="${!love.Token}" th:text="${love.activity}+'이 되셨습니다.'"></span>
 								</a>
 							</td>
 						</tr>
@@ -101,6 +109,7 @@
 				</table>
 				<hr />
 			</div>
+			<form action="/updateToken" method="post"></form>
 			         <div class="text-center">
 			            <div class="pagination">
 			    <a th:if="${currentPage > firstPage}" th:href="@{|/alarm?page=${currentPage - 1}|}">&laquo; 이전</a>
@@ -127,6 +136,25 @@
 			alert(boarddeleteMessage);
 		}
 	</script>
+	<script>
+        // AJAX 요청을 보내는 함수
+        function confirmNotification(notificationId, activity) {
+            // XMLHttpRequest 객체 생성
+            var xhr = new XMLHttpRequest();
+
+            // 요청 설정
+            xhr.open("POST", "/updateToken", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            // 요청 완료 시 실행할 함수 지정
+            xhr.onreadystatechange = function() {
+                
+            };
+
+            // 요청 보내기
+            xhr.send("notificationId=" + notificationId);
+        }
+    </script>
 
 </body>
 

@@ -40,6 +40,8 @@ public class Love {
     @ManyToOne
     @JoinColumn(name = "postId")
     private Board board;
+    
+    private boolean Token;
 
 	public Long getActivityId() {
 		return activityId;
@@ -94,5 +96,13 @@ public class Love {
 
 	public void setBoard(Board board) {
 		this.board = board;
+	}
+
+	public boolean isToken() {
+		return Token;
+	}
+
+	public void setToken(boolean token) {
+		Token = token;
 	}
 }
