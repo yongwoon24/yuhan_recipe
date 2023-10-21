@@ -29,6 +29,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.entity.Love;
 import com.example.demo.entity.Recipe;
+import com.example.demo.entity.RecipeComment;
 import com.example.demo.entity.Recipe_Ingredient;
 import com.example.demo.entity.Scrap;
 import com.example.demo.entity.Step;
@@ -36,6 +37,7 @@ import com.example.demo.entity.Tag;
 import com.example.demo.entity.User;
 
 import com.example.demo.repository.LoveRepository;
+import com.example.demo.repository.RecipeCommentRepository;
 import com.example.demo.repository.RecipeIngredientRepository;
 import com.example.demo.repository.RecipeRepository;
 import com.example.demo.repository.ScrapRepository;
@@ -70,6 +72,8 @@ public class RecipeController {
 	private RecipeIngredientRepository recipeingredientrepository;
 	@Autowired
 	private TagRepository tagrepository;
+	@Autowired
+	private RecipeCommentRepository recipecommentrepository;
 	
 	
 	List<Recipe> recipes1;
@@ -430,6 +434,7 @@ public class RecipeController {
 		Recipe recipe = recipeRepository.findById(recipe_id);
 		String loggedInNickname = (String) session.getAttribute("loggedInNickname");
 		String Nickname = recipe.getNickname();
+		List<RecipeComment> recipecomment = recipecommentrepository.findByRecipe(recipe);
 		
 		
 		if (recipe != null) {
@@ -468,6 +473,8 @@ public class RecipeController {
 				model.addAttribute("recipe", recipe);
 				model.addAttribute("loggedInNickname", loggedInNickname);
 				model.addAttribute("Nickname", Nickname);
+				model.addAttribute("comment", recipecomment);
+				model.addAttribute("session",session);
 				return "userRecipe"; // 레시피 페이지 템플릿
 			} else {
 				
@@ -488,6 +495,8 @@ public class RecipeController {
 				model.addAttribute("recipe", recipe);
 				model.addAttribute("loggedInNickname", loggedInNickname);
 				model.addAttribute("Nickname", Nickname);
+				model.addAttribute("comment", recipecomment);
+				model.addAttribute("session",session);
 				return "userRecipe"; // 레시피 페이지 템플릿
 			}
 		}
