@@ -1,6 +1,7 @@
 package com.example.demo.repository;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,13 +40,13 @@ public interface LoveRepository extends JpaRepository<Love, Long>{
     int countLovesByRecipeId1(@Param("recipe_id") int recipe_id, User user);
     
     @Query("SELECT COUNT(l) FROM Love l WHERE l.recipe.recipe_id = :recipe_id AND l.date = :date AND l.activity = '좋아요'")
-    int countDailyLikesByRecipeIdAndDate(@Param("recipe_id") int recipe_id, @Param("date") LocalDate date);
+    int countDailyLikesByRecipeIdAndDate(@Param("recipe_id") int recipe_id, @Param("date") LocalDateTime date);
 
     @Query("SELECT COUNT(l) FROM Love l WHERE l.recipe.recipe_id = :recipe_id AND l.date BETWEEN :startOfWeek AND :endOfWeek AND l.activity = '좋아요'")
-    int countWeeklyLikesByRecipeIdAndDateRange(@Param("recipe_id") int recipe_id, @Param("startOfWeek") LocalDate startOfWeek, @Param("endOfWeek") LocalDate endOfWeek);
+    int countWeeklyLikesByRecipeIdAndDateRange(@Param("recipe_id") int recipe_id, @Param("startOfWeek") LocalDateTime startOfWeek, @Param("endOfWeek") LocalDateTime endOfWeek);
 
     @Query("SELECT COUNT(l) FROM Love l WHERE l.recipe.recipe_id = :recipe_id AND YEAR(l.date) = YEAR(:date) AND MONTH(l.date) = MONTH(:date) AND l.activity = '좋아요'")
-    int countMonthlyLikesByRecipeIdAndMonth(@Param("recipe_id") int recipe_id, @Param("date") LocalDate date);
+    int countMonthlyLikesByRecipeIdAndMonth(@Param("recipe_id") int recipe_id, @Param("date") LocalDateTime date);
 
     	//int countLovesByRecipe_id(int recipeId);
     
