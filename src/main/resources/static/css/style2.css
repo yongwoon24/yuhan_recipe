@@ -31,16 +31,29 @@ li > a > img{
    
 }
 .alarm-icon{
-   color:rgba(0, 0, 0, 1);
-   width:64px;
-   height:55px;
-   position:absolute;
-   right:12%;
-   top:30px;
-   font-family:Font Awesome 5 Free;
-   text-align:center;
-   font-size:40px;
-   letter-spacing:0;
+	color: rgba(0, 0, 0, 1);
+	width: 65px;
+	height: 59px;
+	position: absolute;
+	right: 263px;
+	top: 28px;
+	font-family: Font Awesome 5 Free;
+	text-align: center;
+	font-size: 40px;
+	letter-spacing: 0;
+   
+}
+.alarm-icon-jum{
+	color: rgba(0, 0, 0, 1);
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	right: 309px;
+	top: -9px;
+	font-family: Font Awesome 5 Free;
+	text-align: center;
+	font-size: 40px;
+	letter-spacing: 0;
    
 }
 .slide_wrapper{
@@ -204,17 +217,17 @@ li > a > img{
 	transform: translate(-50%,0%);
 	
 }
-.searchradius { 
-	background-color:rgba(244.3749949336052, 244.3749949336052, 244.3749949336052, 1);
-	width:740px;
-	height:50px;
-	position:absolute;
-	left:0px;
-	top:0px;
-	border-top-left-radius:20px;
-	border-top-right-radius:20px;
-	border-bottom-left-radius:20px;
-	border-bottom-right-radius:20px;
+.searchradius {
+	background-color: rgba(244.3749949336052, 244.3749949336052, 244.3749949336052, 1);
+	width: 740px;
+	height: 50px;
+	position: absolute;
+	left: 1px;
+	top: 0px;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
 	box-shadow: #949494 5px 5px 10px;
 }
 .searchicon { 
@@ -279,26 +292,39 @@ li > a > img{
 }
 
 .confirm_btn{
-	width:100px;
-	height:55px;
-	position:absolute;
-	right: 20%;
-	top:30px;
-	text-align:center;
-	font-size:40px;
-	letter-spacing:0;
+	width: 100px;
+	height: 55px;
+	position: absolute;
+	right: 1544px;
+	top: 24px;
+	text-align: center;
+	font-size: 40px;
+	letter-spacing: 0;
 } 
 
 .user_btn {
-    width:100px;
-	height:55px;
-	position:absolute;
-	right: 15%;
-	top:30px;
-	text-align:center;
-	font-size:40px;
-	letter-spacing:0;
+	width: 100px;
+	height: 55px;
+	position: absolute;
+	right: 1433px;
+	top: 28px;
+	text-align: center;
+	font-size: 40px;
+	letter-spacing: 0;
 }
+
+.menu1 > a, .menu2 > a, .menu3 > a, .menu4 > a {
+	color: rgb(254, 255, 238);
+	text-shadow: 1px 1px 1px rgb(38, 193, 50);
+	letter-spacing:2px;
+}
+
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
 
 .menu1 > a, .menu2 > a, .menu3 > a, .menu4 > a {
 	color: rgb(254, 255, 238);

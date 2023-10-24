@@ -68,6 +68,13 @@ public class UserController {
         model.addAttribute("user", new User());
         return "signup";
     }
+    
+    @GetMapping("/1")
+    public String createUserForm1(Model model) {
+        model.addAttribute("user", new User());
+        return "index2";
+    }
+   
    
     @PostMapping("/signup")
     public String createUser(@ModelAttribute User user, RedirectAttributes redirectAttributes) {
