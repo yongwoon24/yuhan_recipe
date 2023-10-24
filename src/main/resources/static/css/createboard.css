@@ -62,5 +62,8 @@
 		color:#01DFA5;
 		background-color: white;
 	}
-	
+	.comment_content_a {
+		/*span위에 있는 div의 속성들 때문에 영향을 안 받는 건지 확인해보자 class가 아닌 직접 스타일을 입력하면 적용이 되고 있음. 즉, class가 안 먹는 것.*/
+		display:inline-block; width:50%;
+	}
 	
