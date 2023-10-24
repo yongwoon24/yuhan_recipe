@@ -20,11 +20,12 @@
    <div class="body_content">
       <div class="menubar"></div>
       <span class="menu4"><a href="/mypage">마이페이지</a></span>
-      <span class="menu3"><a href="/recipe">분류</a></span>
-      <span class="menu2"><a href="/board">게시판</a></span>
+     <span class="menu3"><a href="/board">게시판</a></span>
+      <span class="menu2"><a href="/recipe">분류</a></span>
       <span class="menu1"><a href="/rank">랭킹</a></span>
       <span><a class="mainicon" href="/">모두의레시피</a></span>
       <!-- 마이페이지 주소 입력 --> 
+      <div class="alarm-icon"><a href="/alarm"><i class="fas fa-bell"></i></a><span th:if="${session.alarm == 1}" style="font-size: 80px; color: red;">.</span></div>
       <div class="write-icon"><a href="/createRecipe"><i class="fas fa-pencil-alt"></i></a></div>
       <div class="usericon"><a href="/mypage"><i class="fa-solid fa-user"></i></a></div>
       <!-- 로그아웃 주소 입력 --> 

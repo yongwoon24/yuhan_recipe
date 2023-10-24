@@ -124,6 +124,7 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
 	List<Recipe> findByCategoryNameInOrderByViewcountDesc(List<String> categories);
 	
 	List<Recipe> findByRecipeVerifiedAndCategoryNameInOrderByViewcountDesc(boolean recipeVerified, List<String> categories);
+	List<Recipe> findByNickname(String nickname);
 	
 	@Transactional
 	@Modifying
@@ -145,4 +146,3 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
 	
 	
 }
-

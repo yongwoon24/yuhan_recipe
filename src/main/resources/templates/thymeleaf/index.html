@@ -8,22 +8,23 @@
 
 </style>
 <script src="https://kit.fontawesome.com/2636adf573.js" crossorigin="anonymous"></script>
-<link rel="stylesheet" type="text/css" th:href="@{/../css/style.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/../css/style2.css}" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+<link href="file:///D|/prioject2/src/main/resources/static/css/style2.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <div class="body_wrapper">
 	<div class="body_content">
-		<div class="menubar"></div>
+	  <div class="menubar"></div>
 		<span class="menu4"><a href="/mypage">마이페이지</a></span>
-      <span class="menu3"><a href="/recipe">분류</a></span>
-      <span class="menu2"><a href="/board">게시판</a></span>
+		<span class="menu3"><a href="/board">게시판</a></span>
+      <span class="menu2"><a href="/recipe">분류</a></span>
       <span class="menu1"><a href="/rank">랭킹</a></span>
       <span><a class="mainicon" href="/">모두의레시피</a></span>
-		<!-- 마이페이지 주소 입력 --> 
+		<!-- 마이페이지 주소 입력 --><div class="alarm-icon"><a href="/alarm"><i class="fas fa-bell"></i></a></div>
 		<div class="write-icon"><a href="/createRecipe"><i class="fas fa-pencil-alt"></i></a></div>
 		<div class="usericon"><a href="/mypage"><i class="fa-solid fa-user"></i></a></div>
 		<!-- 로그아웃 주소 입력 --> 
@@ -38,20 +39,21 @@
 							<i class="fa-solid fa-magnifying-glass"></i>
 						</span>
 					</button>
-				</form>
-			</div>	
+			  </form>
+		  </div>	
 		</div>
+  		<div class="alarm-icon-jum"><span th:if="${session.alarm == 1}" style="font-size: 80px; color: red;">.</span></div>
 		
 		
     	<div th:if="${session.loggedInNickname == '관리자'}" class="confirm_btn">
         	<a href="/reviewRecipes">
-            	<button>레시피 검토</button>
+           	<button>레시피 검토</button>
         	</a>
     	</div>
 
 		<div th:if="${session.loggedInNickname == '관리자'}" class="user_btn">
 		    <a href="/user">
-        		<button>회원 관리</button>
+       		<button>회원 관리</button>
         	</a>
     	</div>
 		

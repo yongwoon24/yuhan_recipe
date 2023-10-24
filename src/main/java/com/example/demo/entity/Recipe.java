@@ -75,6 +75,9 @@ public class Recipe {
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
     private List<Tag> tag;
     
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
+    private List<RecipeComment> recipecomment;
+    
     //레시피 승인 관련
     private boolean recipeVerified;
 	

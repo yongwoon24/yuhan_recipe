@@ -1,0 +1,86 @@
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	font-family: 'Jua', sans-serif;
+	font-size: 20px;
+}
+
+.body_wrapper {
+	background: linear-gradient(#90E4B3, #DBFE74);
+	position: relative;
+	margin: 0;
+	padding-top: 15px;
+	height: 100%;
+}
+
+.mainicon {
+	color:rgba(23.58367010951042, 96.68749898672104, 11.683072540909052, 1);
+	width:253px;
+	height:100px;
+	position:relative;
+	font-size:40px;
+	letter-spacing:0;
+}
+
+.mainicon_wrapper {
+	text-align: center;
+	padding-bottom: 15px;
+}
+
+.signup_wrapper { 
+	background-color: rgb(244, 255, 245);
+	width:800px;
+	height:830px;
+	position:relative;
+	border: 2px solid;
+	border-radius: 8px;
+	margin:0 auto;
+}
+
+a {
+	text-decoration-line: none;
+}
+
+.signup_form {
+	position: relative;
+	/*text-align: center;*/
+	padding-left: 245px;
+}
+
+label {
+	margin-top: 50px;
+	font-size:22px;
+	letter-spacing:3px;
+}
+
+input {
+	margin-top: 1px;
+	margin-bottom: 12px;
+	width: 300px;
+	height: 35px;
+	border-radius: 5px;
+	font-size: 25px;
+}
+
+input[type="submit"] {
+	background-color: #44E0A7;
+	margin-top: 10px;
+	margin-bottom: 7px;
+	width: 308px;
+	height: 40px;
+	color: white;
+	border-radius: 5px;
+	font-family: 'Jua', sans-serif;
+	font-size: 23px;
+	letter-spacing:5px;
+}
+
+h1 {
+	padding-left: 25px;
+	padding-top: 25px;
+	padding-bottom: 15px;
+	letter-spacing:3px;
+	color:rgb(34, 200, 138);
+	margin:0;
+}

@@ -13,6 +13,7 @@
 	<script th:src="@{/../static/js/editrecipe.js}"></script>
 	<script src="https://kit.fontawesome.com/2636adf573.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" th:href="@{/../css/editRecipe.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/../css/style.css}" />
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
@@ -117,6 +118,25 @@
 
 
 	</script>
+	
+	<script>
+  // HTML 문서가 로드될 때 실행
+  document.addEventListener("DOMContentLoaded", function () {
+    // 모든 클래스가 text2, text3, text4를 가진 textarea 및 입력 요소를 찾음
+    var elements = document.querySelectorAll(".text2, .text3, .text4");
+
+    // 각 요소에 대해 이벤트 리스너를 추가
+    elements.forEach(function (element) {
+      // 요소가 포커스를 잃었을 때 이벤트를 리스닝
+      element.addEventListener("blur", function () {
+        // 요소의 값이 빈 문자열이라면 기본값 ""을 설정
+        if (element.value === "") {
+          element.value = "";
+        }
+      });
+    });
+  });
+</script>
 	<script th:inline="javascript">
 		var stepCount = /*[[${stepssize}]]*/ 0;
 		function handleClick1(event) {
@@ -160,7 +180,7 @@
                 <img src="/img/대표이미지.PNG" width="200px" height="200px">
             </div>
         </button>
-        <input type="button" class="remove-button1" value="삭제" onclick="removeStep1('r${stepCount}')"><br>
+        <input type="button" class="remove-button1" value="삭제" onclick="removeStep1('r${stepCount}',${stepCount})"><br>
         <img src="/img/carrot.png" class="carrot">
         <input type="text" class="text3" name="Singtxt" placeholder="재료에 대해 적어주세요! 예 ) 감자 1개, 소금 2큰술, 물 2컵"><br>
         <img src="/img/냄비.png" class="carrot">
@@ -177,16 +197,8 @@
 			//console.log("Button clicked, but form submission prevented.");
 
 		}
-		function removeStep1(stepId) {
-			const stepToRemove = document.getElementById(stepId);
-			if (stepToRemove) {
-				stepToRemove.remove();
-				stepCount--;
-				// 중간의 스텝이 제거되면 다시 스텝 숫자를 정렬
-				reorganizeStepLabels();
-				//adjustContainerHeight1();
-			}
-		}
+		
+		
 
 
 		function reorganizeStepLabels() {
@@ -301,6 +313,7 @@
 
 
 			<!-- 마이페이지 주소 입력 -->
+			<div class="alarm-icon"><a href="/alarm"><i class="fas fa-bell"></i></a><span th:if="${session.alarm == 1}" style="font-size: 80px; color: red;">.</span></div>
 			<div class="write-icon"><a href="/createRecipe"><i class="fas fa-pencil-alt"></i></a></div>
 			<div class="usericon"><a href="/mypage"><i class="fa-solid fa-user"></i></a></div>
 			<!-- 로그아웃 주소 입력 -->
@@ -403,7 +416,7 @@
 									</div>
 								</button>
 								<input type="button" class="remove-button1"
-									th:onclick="'removeStep1(\'r' + ${status.index + 1} + '\')'" value="삭제"><br>
+									th:onclick="'removeStep1(\'r' + ${status.index + 1} +'\','+ ${status.index + 1}+')'" value="삭제"><br>
 								<img src="/img/carrot.png" class="carrot">
 								<input type="text" class="text3" name="Singtxt" th:value="${step.Singtxt}"
 									placeholder="재료에 대해 적어주세요! 예 ) 감자 1개, 소금 2큰술, 물 2컵"><br>
@@ -421,7 +434,7 @@
 						</div>
 						<br>
 
-						<input type="submit" class="Rsubmit" value="게시">
+						<input type="submit" class="Rsubmit" onclick="sendChangesToServer()" value="게시">
 					</div>
 
 				</form>
@@ -445,7 +458,30 @@
 		<div class="footer">
 			<div class="footer_comment">@Yuhan University Group 3's Project</div>
 		</div>
+<script th:inline="javascript">
+	var deletedSteps = [];
+	function removeStep1(stepId,index) {
+	const stepToRemove = document.getElementById(stepId);
+	const con = document.getElementById("container1");
+	var input = document.createElement("input");
+					input.type = "hidden";
+					input.name = "deleteindex";
+					input.value = index
+					con.appendChild(input);
+	deletedSteps.push(index);
+	alert(deletedSteps);
+	if (stepToRemove) {
+		stepToRemove.remove();
+		stepCount--;
+		// 중간의 스텝이 제거되면 다시 스텝 숫자를 정렬
+		reorganizeStepLabels();
+		//adjustContainerHeight1();
+	}
+}
+	
 
+
+</script>
 </body>
 
 </html>

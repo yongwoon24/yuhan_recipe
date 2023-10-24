@@ -1,0 +1,209 @@
+
+.table-container {
+  max-width: 1100px; /* 최대 너비 지정 (조정 가능) */
+  margin: 0 auto; /* 가운데 정렬을 위해 좌우 여백을 자동으로 설정 */
+  padding: 0 20px; /* 좌우 여백 설정 (조정 가능) */
+}
+
+/* 테이블 제목 스타일 */
+.table-container caption {
+  font-size: 24px; /* 원하는 제목 폰트 크기 설정 */
+  font-weight: bold; /* 제목 글꼴 굵게 설정 */
+  margin-bottom: 20px; /* 테이블 아래 여백 추가 */
+}
+
+.write-icon{
+   color:rgba(0, 0, 0, 1);
+   width:64px;
+   height:55px;
+   position:absolute;
+   right:9%;
+   top:30px;
+   font-family:Font Awesome 5 Free;
+   text-align:center;
+   font-size:40px;
+   letter-spacing:0;
+   
+}
+
+body {
+  color: #000000;
+  font: 16px/24px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif;
+}
+table {
+  margin: 300px auto;   
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+}
+th{
+   padding: 6px 15px;
+}
+td {
+  padding: 0 10px;
+}
+th {
+  
+  color: #000000;
+  text-align: center;
+}
+
+td {
+ margin-top: 20px;
+ margin-bottom: 20px;
+ height: 80px;
+  border-bottom: 1px solid #c6c9cc;
+}
+
+
+tr:last-child td:first-child {
+  border-color: rgb(255, 255, 255);
+}
+tr:last-child td:last-child {
+  border-color: rgb(255, 255, 255);
+}
+td:hover{
+	background-color: rgb(226, 226, 226);
+}
+
+
+
+/* 페이지 버튼 */
+.text-center {
+  text-align: center;
+}
+
+
+.pagination {
+  list-style-type: none; /* 목록 스타일 제거 */
+  padding: 0;
+  text-align: center; 
+}
+
+.pagination li {
+  display: inline-block;
+  margin-right: 5px; 
+}
+
+.pagination li a {
+  text-decoration: none; /* 하이퍼링크 밑줄 제거 */
+  padding: 5px 10px; /* 페이지 번호 패딩 설정 */
+  background-color: #f0f0f0; /* 페이지 번호 배경색 */
+  border: 1px solid #ccc; /* 페이지 번호 테두리 스타일 */
+  color: #333; /* 페이지 번호 텍스트 색상 */
+}
+
+.pagination li a:hover {
+  background-color: #333; /* 호버 시 배경색 변경 */
+  color: #fff; /* 호버 시 텍스트 색상 변경 */
+}
+
+/*글쓰기 버튼*/
+
+.button-container {
+  display: flex;
+  justify-content: flex-end; /* 자식 요소를 오른쪽으로 정렬 */
+}
+
+a.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* 버튼 호버 효과 */
+a.button:hover {
+  background-color: #333;
+  color: #fff;
+}
+/* 검색 바 스타일 */
+.searchbar { 
+	width:740px;
+	height:50px;
+	position:relative;
+	left:50%;
+	top:32px;
+	transform: translate(-50%,0%);
+	
+}
+.searchradius { 
+	background-color:rgba(244.3749949336052, 244.3749949336052, 244.3749949336052, 1);
+	width:740px;
+	height:50px;
+	position:absolute;
+	left:0px;
+	top:0px;
+	border-top-left-radius:20px;
+	border-top-right-radius:20px;
+	border-bottom-left-radius:20px;
+	border-bottom-right-radius:20px;
+	box-shadow: #949494 5px 5px 10px;
+}
+.searchicon { 
+	color:rgba(153.00000607967377, 153.00000607967377, 153.00000607967377, 1);
+	width:34px;
+	height:19px;
+	position:absolute;
+	left:685px;
+	top:8px;
+	font-family:Font Awesome 5 Free;
+	text-align:center;
+	font-size:30px;
+	letter-spacing:0;
+}
+.search_txt{
+	position: relative;
+	top: 10px;
+	left: 5%;
+	width: 600px;
+	padding: 0;
+	background: transparent;
+	border: none;
+	outline: none;
+	float: left;
+	font-size: 1rem;
+	line-height: 30px;
+}
+.search_btn{
+	border: none;
+	background-color: rgba(244.3749949336052, 244.3749949336052, 244.3749949336052, 1);;
+}
+
+/* 검색 바 스타일 */
+.search-form {
+    display: flex; /* 요소들을 가로로 배치 */
+    align-items: center; /* 세로 중앙 정렬 */
+}
+
+.search-left {
+    flex: 1; /* 왼쪽 요소들이 가능한 모든 공간을 차지 */
+    display: flex; /* 왼쪽 요소들을 가로로 배치 */
+    align-items: center; /* 세로 중앙 정렬 */
+}
+
+.search-label {
+    margin-right: 10px; /* 라벨과 선택 상자 사이 간격 설정 */
+}
+
+.search-right {
+    flex: 2; /* 오른쪽 요소들이 가능한 모든 공간을 차지 */
+    display: flex; /* 오른쪽 요소들을 가로로 배치 */
+    align-items: center; /* 세로 중앙 정렬 */
+}
+
+/* 나머지 검색 바 스타일 (검색어 입력 필드, 검색 버튼)는 이전과 동일하게 유지 */
+
+
+.search {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 200px 20px 0; /* 위쪽 여백 추가 */
+}

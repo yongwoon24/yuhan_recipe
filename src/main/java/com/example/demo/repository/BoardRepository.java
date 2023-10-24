@@ -27,5 +27,3 @@ public interface BoardRepository extends JpaRepository<Board, Long>{
     @Query("SELECT b FROM Board b ORDER BY CASE WHEN b.nickname = '관리자' THEN 0 ELSE 1 END, b.created_date DESC")
     List<Board> findAllOrderedByAdminFirst();
 }
-
-

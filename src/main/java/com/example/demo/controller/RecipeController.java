@@ -29,6 +29,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.entity.Love;
 import com.example.demo.entity.Recipe;
+import com.example.demo.entity.RecipeComment;
 import com.example.demo.entity.Recipe_Ingredient;
 import com.example.demo.entity.Scrap;
 import com.example.demo.entity.Step;
@@ -36,6 +37,7 @@ import com.example.demo.entity.Tag;
 import com.example.demo.entity.User;
 
 import com.example.demo.repository.LoveRepository;
+import com.example.demo.repository.RecipeCommentRepository;
 import com.example.demo.repository.RecipeIngredientRepository;
 import com.example.demo.repository.RecipeRepository;
 import com.example.demo.repository.ScrapRepository;
@@ -70,6 +72,8 @@ public class RecipeController {
 	private RecipeIngredientRepository recipeingredientrepository;
 	@Autowired
 	private TagRepository tagrepository;
+	@Autowired
+	private RecipeCommentRepository recipecommentrepository;
 	
 	
 	List<Recipe> recipes1;
@@ -370,6 +374,13 @@ public class RecipeController {
 				scrap.setUser(user);
 				scrap.setRecipe(recipe);
 				//love.setActivity(activity);
+				
+				Love love = new Love();
+				love.setUser(user);
+				love.setRecipe(recipe);
+				love.setActivity("스크랩");
+
+				loveservice.saveLove(love);
 
 				scraprepository.save(scrap);
 
@@ -423,6 +434,7 @@ public class RecipeController {
 		Recipe recipe = recipeRepository.findById(recipe_id);
 		String loggedInNickname = (String) session.getAttribute("loggedInNickname");
 		String Nickname = recipe.getNickname();
+		List<RecipeComment> recipecomment = recipecommentrepository.findByRecipe(recipe);
 		
 		
 		if (recipe != null) {
@@ -461,6 +473,8 @@ public class RecipeController {
 				model.addAttribute("recipe", recipe);
 				model.addAttribute("loggedInNickname", loggedInNickname);
 				model.addAttribute("Nickname", Nickname);
+				model.addAttribute("comment", recipecomment);
+				model.addAttribute("session",session);
 				return "userRecipe"; // 레시피 페이지 템플릿
 			} else {
 				
@@ -481,6 +495,8 @@ public class RecipeController {
 				model.addAttribute("recipe", recipe);
 				model.addAttribute("loggedInNickname", loggedInNickname);
 				model.addAttribute("Nickname", Nickname);
+				model.addAttribute("comment", recipecomment);
+				model.addAttribute("session",session);
 				return "userRecipe"; // 레시피 페이지 템플릿
 			}
 		}
@@ -519,7 +535,8 @@ public class RecipeController {
             @RequestParam("ingredientName") List<String> ingredientName,
             @RequestParam("mensuration") List<String> mensuration,
             @RequestParam(name ="tags", required = false) String tags,
-            @RequestParam("file") MultipartFile file) throws Exception {
+            @RequestParam("file") MultipartFile file,
+            @RequestParam(name = "deleteindex", required = false) List<Integer> deleteindex) throws Exception {
 	    recipe.setRecipe_id(recipe_id); // Set the ID to the path variable value for updating the correct recipe
 	    Recipe recipe1 = recipeRepository.findById(recipe_id);
 	    String nickname = recipe1.getNickname();
@@ -541,6 +558,10 @@ public class RecipeController {
 	    recipe.setScraps(scraps);
 	    
 	    List<Step> evsteps = steprepository.findByRecipe(recipe1);
+	    if(deleteindex != null) {
+	    for (int i = 0; i < deleteindex.size(); i++) {
+			steprepository.delete(evsteps.get(deleteindex.get(i)-1));
+		}}
 	    List<String> photo = new ArrayList<>();
 	    List<String> photopath = new ArrayList<>();
 	    for (int i = 0; i < evsteps.size(); i++) {
