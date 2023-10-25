@@ -152,4 +152,3 @@ public class BoardController {
 	    return "redirect:/board/" + postId; // 글쓰기 성공 후 게시판 목록 페이지로 리다이렉트
     }
 }
-
