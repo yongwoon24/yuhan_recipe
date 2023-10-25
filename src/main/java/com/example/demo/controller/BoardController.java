@@ -40,18 +40,19 @@ public class BoardController {
 	
 	List<Board> boardList;
 
-    if (keyword != null && !keyword.isEmpty()) {
+	if (keyword != null && !keyword.isEmpty()) {
         // 검색어와 검색 조건에 따라 게시물 검색
         if ("title".equals(searchBy)) {
             boardList = boardRepository.findByTitleContaining(keyword, Sort.by(Sort.Order.desc("postId")));
         } else if ("nickname".equals(searchBy)) {
             boardList = boardRepository.findByNicknameContaining(keyword, Sort.by(Sort.Order.desc("postId")));
         } else {
-            boardList = boardRepository.findAll(Sort.by(Sort.Order.desc("postId")));
+            boardList = boardRepository.findAllOrderedByAdminFirst();
         }
     } else {
-        boardList = boardRepository.findAll(Sort.by(Sort.Order.desc("postId")));
+        boardList = boardRepository.findAllOrderedByAdminFirst();
     }
+
 
     int startIndex = page * pageSize;
     int endIndex = Math.min(startIndex + pageSize, boardList.size());
@@ -71,7 +72,7 @@ public class BoardController {
     int lastPage = totalPageCount - 1;
     model.addAttribute("firstPage", firstPage);
     model.addAttribute("lastPage", lastPage);
-
+    
     return "board"; // board.html 파일을 보여줄 뷰 이름
 }
    

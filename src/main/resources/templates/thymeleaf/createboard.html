@@ -33,6 +33,7 @@
       <span class="menu1"><a href="/rank">랭킹</a></span>
       <span><a class="mainicon" href="/">모두의레시피</a></span>
       <!-- 마이페이지 주소 입력 --> 
+      <div class="alarm-icon"><a href="/alarm"><i class="fas fa-bell"></i></a><span th:if="${session.alarm == 1}" style="font-size: 80px; color: red;">.</span></div>
       <div class="write-icon"><a href="/createRecipe"><i class="fas fa-pencil-alt"></i></a></div>
       <div class="usericon"><a href="/mypage"><i class="fa-solid fa-user"></i></a></div>
       <!-- 로그아웃 주소 입력 --> 
@@ -50,6 +51,18 @@
          </div>   
       </div>
       
+      <div th:if="${session.loggedInNickname == '관리자'}" class="confirm_btn">
+        	<a href="/reviewRecipes">
+            	<button>레시피 검토</button>
+        	</a>
+    	</div>
+
+		<div th:if="${session.loggedInNickname == '관리자'}" class="user_btn">
+		    <a href="/user">
+        		<button>회원 관리</button>
+        	</a>
+    	</div>
+    	
       <!-- 여기부터 body에 추가할 코드 입력 -->
 	<div class="contents">
 		<form action="/createboard" method="POST"> <!-- action을 "/createboard"로 수정 -->

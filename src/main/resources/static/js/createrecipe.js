@@ -1,6 +1,6 @@
 const addButton = document.getElementById('addButton');
 const container = document.getElementById('container');
-const container1 = document.getElementById('container1');
+
 const removebutton1 = document.getElementById('removebutton');
 const removebutton2 = document.getElementById('removebutton1');
 const removebutton3 = document.getElementById('removebutton2');
@@ -85,7 +85,10 @@ function adjustContainerHeight() {
 
 }
 
+
+
 //요리스텝 스크립트
+const container2 = document.getElementById('container1');
 let stepCount = 1;
 let steptxtindex = 1;
 const steptext = ['예 ) 다 볶았으면 접시에 옮겨 담고 마지막으로 참깨가루를 뿌려주세요.',
@@ -101,7 +104,7 @@ const addButton1 = document.getElementById("addButton1");
 
 addButton1.addEventListener("click", () => {
 
-
+    
 	stepCount++;
 	steptxtindex++;
 	if (steptxtindex == 7) {
@@ -132,8 +135,10 @@ addButton1.addEventListener("click", () => {
 								<textarea class="text4" name="Stip" placeholder="팁이 있다면 적어주세요! 예 ) 삶은 감자를 2분 정도 식혀주세요"></textarea>
             `;
 
-	container1.appendChild(newStep);
+	container2.appendChild(newStep);
 	adjustContainerHeight1();
+	
+	
 });
 
 function removeStep1(stepId) {
@@ -238,8 +243,6 @@ function createListItem(text) {
             const listItem = document.createElement("div");
             listItem.className = "list-item";
 
-            
-            
             const inputHidden = document.createElement("input");
             inputHidden.type = "hidden";
             inputHidden.name = "tags";

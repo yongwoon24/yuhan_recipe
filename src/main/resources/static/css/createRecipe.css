@@ -83,7 +83,7 @@ li > img{
 	height: 100%;
 	overflow: hidden;
 	align-items: center;
-	box-shadow: #949494 5px 5px 10px;
+
 
 }
 
@@ -821,8 +821,8 @@ div[name="preview"] {
 div[name="preview1"] {
 	max-width: 200px;
 	max-height: 200px;
-}
 
+}
 
 button[id="addButton"] {
 	width: 150px;
@@ -867,6 +867,19 @@ text[name='ingd'] {
 }
 
 .e12_5 {
+	color: rgba(0, 0, 0, 1);
+	width: 469px;
+	height: 35px;
+	position: absolute;
+	left: 43%;
+	
+	font-family: Inter;
+	text-align: center;
+	font-size: 12px;
+	letter-spacing: 0;
+	display: flex;
+}
+.e12_5_1 {
 	color: rgba(0, 0, 0, 1);
 	width: 469px;
 	height: 35px;
@@ -1014,7 +1027,7 @@ text[name='ingd'] {
 	position: absolute;
 	width: 150px;
 	height: 50px;
-	top: 700px;
+	transform: translateX(-50%);
 	left: 900px;
 }
 

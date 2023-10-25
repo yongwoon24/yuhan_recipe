@@ -20,11 +20,12 @@
    <div class="body_content">
       <div class="menubar"></div>
       <span class="menu4"><a href="/mypage">마이페이지</a></span>
-      <span class="menu3"><a href="/recipe">분류</a></span>
-      <span class="menu2"><a href="/board">게시판</a></span>
+      <span class="menu3"><a href="/board">게시판</a></span>
+      <span class="menu2"><a href="/recipe">분류</a></span>
       <span class="menu1"><a href="/rank">랭킹</a></span>
       <span><a class="mainicon" href="/">모두의레시피</a></span>
       <!-- 마이페이지 주소 입력 --> 
+      <div class="alarm-icon"><a href="/alarm"><i class="fas fa-bell"></i></a><span th:if="${session.alarm == 1}" style="font-size: 80px; color: red;">.</span></div>
       <div class="write-icon"><a href="/createRecipe"><i class="fas fa-pencil-alt"></i></a></div>
       <div class="usericon"><a href="/mypage"><i class="fa-solid fa-user"></i></a></div>
       <!-- 로그아웃 주소 입력 --> 
@@ -42,14 +43,26 @@
 			</div>	
 		</div>
       
+      <div th:if="${session.loggedInNickname == '관리자'}" class="confirm_btn">
+        	<a href="/reviewRecipes">
+            	<button>레시피 검토</button>
+        	</a>
+    	</div>
+
+		<div th:if="${session.loggedInNickname == '관리자'}" class="user_btn">
+		    <a href="/user">
+        		<button>회원 관리</button>
+        	</a>
+    	</div>
+    	
       <!-- 여기부터 body에 추가할 코드 입력 -->
 <div class="slide_wrapper">
 	<div class="menu-container">
-	  <span class="menu44"><a href="/mypage_L">My Like</a></span>
-      <span class="menu33"><a href="/mypage_B">My Board</a></span>
-      <span class="menu22"><a href="/mypage_R">My Recipe</a></span>
-      <span class="menu11"><a href="/mypage">User Edit</a></span>
-      <span class="menu55"><a href="/mypage_S">My Scrap</a></span></div>
+	  <span class="menu44"><a href="/mypage_L">좋아요한 레시피</a></span>
+      <span class="menu33"><a href="/mypage_B">작성한 게시글</a></span>
+      <span class="menu22"><a href="/mypage_R">작성한 레시피</a></span>
+      <span class="menu11"><a href="/mypage">회원정보수정</a></span>
+      <span class="menu55"><a href="/mypage_S">스크랩한 레시피</a></span></div>
    <div class="table-container">
           <table class="table">
 			

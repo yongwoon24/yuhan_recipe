@@ -3,16 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>비밀번호 찾기</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/../css/findIdPs.css}" />
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h2>비밀번호 찾기</h2>
-
-    <form th:action="@{/findps}" method="post">
-        <label for="email">이메일:</label>
-        <input type="email" id="email" name="email" required><br>
-        
-        <button type="submit">인증하기</button>
-    </form>
+	<div class="body_wrapper">
+		<div class="mainicon_wrapper">
+			<a class="mainicon" href="/">모두의레시피</a>
+		</div>
+		<div class="findps_wrapper">
+		    <h2>비밀번호 찾기</h2>
+		    <div class="findps_form">
+			    <form th:action="@{/findps}" method="post">
+			        <label for="email">이메일</label>
+			        <input type="email" id="email" name="email" required><br>
+			        
+			        <button type="submit">인증하기</button>
+			    </form>
+		    </div><hr>
+		    <table>
+				<tr>
+				     <td><p><a href="/login">로그인&nbsp; / </a></p></td>
+				     <td><p><a href="/findid">&nbsp;아이디 찾기&nbsp; / </a></p></td>
+				     <td><p><a href="/signup">&nbsp;회원가입</a></p></td>
+			     </tr>
+		    </table>
+		</div>
+    </div>
     
      <script th:inline="javascript">
         var errorMessage = /*[[${errorMessage}]]*/ "";
