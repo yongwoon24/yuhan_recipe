@@ -9,11 +9,19 @@
     <form th:action="@{/editRecipe/{recipe_id}(recipe_id=${recipe.recipe_id})}" th:object="${recipe}" method="post">
         <input type="hidden" th:field="*{recipe_id}" />
         <label>title: <input type="text" th:field="*{title}" /></label><br/>
+<<<<<<< HEAD
+        <label>main_photo: <input type="text" th:field="*{main_photo}" /></label><br/>
+        <label>created_date: <input type="date" th:field="*{created_date}" /></label><br/>
+        <label>user_id: <input type="text" th:field="*{user_id}" readonly/></label><br/>
+         <label>Category Name:
+            <select name="category_name">
+=======
         <label>Main Photo: <input multiple type="file" name="file" /></label><br/>
         <label>created_date: <input type="date" th:field="*{created_date}" /></label><br/>
         <label>user_id: <input type="text" th:field="*{user_id}" readonly/></label><br/>
          <label>Category Name:
             <select name="categoryName">
+>>>>>>> a81dc367ec064973a149017e6309ee0077be3a5d
                 <option value="파티">파티</option>
                 <option value="가정">가정</option>
                 <option value="디저트">디저트</option>

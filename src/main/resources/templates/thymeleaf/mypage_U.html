@@ -1,0 +1,202 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta content="text/html; charset=euc-kr">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>모두의레시피</title>
+<style type="text/css">   
+   
+</style>
+<script src="https://kit.fontawesome.com/2636adf573.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" th:href="@{/../css/style.css}" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" type="text/css" th:href="@{/../css/mypage.css}">
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<div class="body_wrapper">
+   <div class="body_content">
+      <div class="menubar"></div>
+      <span class="menu4"><a href="/mypage">마이페이지</a></span>
+      <span class="menu3"><a href="/board">게시판</a></span>
+      <span class="menu2"><a href="/recipe">분류</a></span>
+      <span class="menu1"><a href="/rank">랭킹</a></span>
+      <span><a class="mainicon" href="/">모두의레시피</a></span>
+      <!-- 마이페이지 주소 입력 --> 
+      <div class="alarm-icon"><a href="/alarm"><i class="fas fa-bell" th:if="${session.alarm == 1}" style="color: red;"></i></a></div>
+      <div class="write-icon"><a href="/createRecipe"><i class="fas fa-pencil-alt"></i></a></div>
+      <div class="usericon"><a href="/mypage"><i class="fa-solid fa-user"></i></a></div>
+      <!-- 로그아웃 주소 입력 --> 
+      <div class="logout_icon"><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></div>
+        <div class="searchbar">	
+			<div class="searchradius">
+				<form action="/search" method="get"> <!-- 검색창 주소 입력 --> 
+					<input type="text" name="keyword" class="search_txt" required>
+					<button type="submit" class="search_btn">
+						<span class="searchicon">
+							<i class="fa-solid fa-magnifying-glass"></i>
+						</span>
+					</button>
+				</form>
+			</div>	
+		</div>
+		
+		<div th:if="${session.loggedInNickname == '관리자'}" class="confirm_btn">
+        	<a href="/reviewRecipes">
+            	<button>레시피 검토</button>
+        	</a>
+    	</div>
+
+		<div th:if="${session.loggedInNickname == '관리자'}" class="user_btn">
+		    <a href="/user">
+        		<button>회원 관리</button>
+        	</a>
+    	</div>
+      
+      
+<div class="slide_wrapper">
+	<div class="menu-container">
+	<span class="menu44"><a href="/mypage_L">좋아요한 레시피</a></span>
+      <span class="menu33"><a href="/mypage_B">작성한 게시글</a></span>
+      <span class="menu22"><a href="/mypage_R">작성한 레시피</a></span>
+      <span class="menu11"><a href="/mypage">회원정보수정</a></span>
+      <span class="menu55"><a href="/mypage_S">스크랩한 레시피</a></span></div>
+<!-- 여기부터 body에 추가할 코드 입력 -->
+       <div class="useredit">
+       <h1>회원 정보 수정</h1>
+       
+    <form action="/mypage" method="POST" enctype="multipart/form-data">
+		<label for="userImage">프로필 이미지:</label>
+		
+        <input type="button" id="uploadButton" value="이미지 업로드"><input multiple type="file" id="file" name="file" style="display: none;"></input>
+        
+        <br>
+        <div id="preview" name="preview" class="preview" style="width: 100px;height: 100px;">
+            <img th:src="@{${photo}}" name="preview1" class="preview1"   style="width: 100px;height: 100px;">
+        </div>
+        <label for="user_id">아이디:</label>
+        <input type="text" class="text1" id="user_id" name="user_id" th:value="*{user_id}" readonly>
+        <br>
+
+        <label for="name">이름:</label>
+        <input type="text"  class="text1" id="name" name="name" th:value="*{name}" required readonly>
+        <br>
+
+        <label for="email">이메일:</label>
+        <input type="email" id="email" name="email" th:value="*{email}" readonly>
+        <br>
+
+        <label for="birthdate">생년월일:</label>
+        <input type="date" id="birthdate" name="birthdate" th:value="*{birthdate}" readonly>
+        <br>
+
+        <label for="phone_number">전화번호:</label>
+        <input type="tel" id="phone_number" name="phone_number" th:value="*{phone}" required>
+        <br>
+
+        <label for="nickname">닉네임:</label>
+        <input type="text" class="text1" id="nickname" name="nickname" th:value="*{nickname}" required readonly>
+        <br>
+        
+        <label for="userpr">자기소개:</label>
+        <input type="text"  class="text1" id="pr" name="pr" th:value="*{pr}" required>
+        <br>
+
+        <!-- 비밀번호 수정 -->
+
+        
+        <label for="currentPassword">현재 비밀번호:</label>
+        <input type="password" id="currentPassword" name="password" required>
+        <br>
+
+        <label for="newPassword">새 비밀번호:</label>
+        <input type="password" id="newPassword" name="newpassword" required>
+        <br>
+
+        <label for="confirmNewPassword">새 비밀번호 확인:</label>
+        <input type="password" id="confirmNewPassword" name="confirmnewpassword" required>
+        <br>
+
+        <input type="submit" value="수정">
+    </form>
+    </div>
+</div>
+       </div>
+       
+   <div class="footer">
+         <div class="footer_comment">@Yuhan University Group 3's Project</div>
+   </div>
+</div>
+
+	<script th:inline="javascript">
+	        var boarddeleteMessage = /*[[${boarddeleteMessage}]]*/ "";
+	        if (boarddeleteMessage) {
+	            alert(boarddeleteMessage);
+	        }
+    </script>
+    <script>
+        function previewImage(input) {
+            var preview = document.getElementById('preview');
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                };
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                preview.src = '';
+            }
+        }
+    </script>
+    <script th:inline="javascript">
+        var sendMessage = /*[[${errorMessage1}]]*/ "";
+        if (sendMessage) {
+            alert(sendMessage);
+        }
+    </script>
+    <script th:inline="javascript">
+        var sendMessage = /*[[${errorMessage2}]]*/ "";
+        if (sendMessage) {
+            alert(sendMessage);
+        }
+    </script>
+     <script th:inline="javascript">
+        var sendMessage = /*[[${errorMessage3}]]*/ "";
+        if (sendMessage) {
+            alert(sendMessage);
+        }
+    </script>
+    <script>
+		const imageInput = document.getElementById('file');
+const uploadButton = document.getElementById('uploadButton');
+const preview = document.getElementById('preview');
+
+uploadButton.addEventListener('click', () => {
+	imageInput.click();
+});
+
+imageInput.addEventListener('change', (event) => {
+	const file = event.target.files[0];
+	if (file) {
+		const reader = new FileReader();
+
+		reader.onload = (e) => {
+			const image = new Image();
+			image.src = e.target.result;
+			image.style.maxWidth = '100px';
+			image.style.maxHeight = '100px';
+			preview.innerHTML = '';
+			preview.appendChild(image);
+		};
+
+		reader.readAsDataURL(file);
+	}
+});
+
+
+	</script>
+   
+</body>
+</html>

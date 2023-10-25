@@ -1,0 +1,66 @@
+.contents{
+	   margin-top: 300px;
+	   text-align: center;
+	   font-size: 30px;
+   }
+   hr {
+	   width: 65%;
+	   margin-bottom: 80px;
+   }
+   h1 {
+	   margin-bottom: 70px;
+   }
+    .text_title {
+	   margin-right: 10px;
+	   margin-bottom: 20px;
+	   position: relative;
+	   top: -1.5px;
+   }
+   label[for="content"]{
+	   margin-right: 10px;
+	   position: relative;
+	   top: -480px;
+   }
+   input[type=text] {
+	   border-radius:5px;
+	   font-family: 'Gowun Batang', serif;
+	   font-family: 'Noto Sans KR', sans-serif;
+	   border-width: medium;
+	   font-size: 15px;
+	   position: relative;
+	   top: -5.5px;
+	   right: -0.5%;
+	   width: 50%;
+	   margin-bottom: 20px;
+	}
+	textarea {
+		border-radius:5px;
+		border-width: medium;
+		font-family: 'Gowun Batang', serif;
+		font-family: 'Noto Sans KR', sans-serif;
+		wrap: hard;
+		font-size: 15px;
+		position: relative;
+		right: 0.05%;
+		width:50%; 
+		height:500px; 
+		resize: none;
+	}
+	.btn_submit {
+		font-family: 'Jua', sans-serif;	
+		margin-top: 30px;
+		position: relative;
+		left: 25%;
+		font-size: 25px;
+		height: 40px;
+		border-radius: 4px;
+		background-color: #01DFA5;
+		color: white;
+		border: none;
+		border-radius: 10px;
+		box-shadow: 0px 0px 2px 2px rgb(174,248,223);
+	}
+	.btn_submit:hover {
+		color:#01DFA5;
+		background-color: white;
+	}

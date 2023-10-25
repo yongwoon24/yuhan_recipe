@@ -34,11 +34,11 @@ public class LoginController {
 	         if (!users.isEmpty()) {
 	             User user = users.get(0); // 첫 번째 사용자를 선택합니다.
 	
-	             if (!user.isEmailVerified()) {
-	                 // 이메일 인증이 완료되지 않은 상태일 때 처리
-	                 redirectAttributes.addFlashAttribute("errorMessage", "이메일 인증이 완료되지 않았습니다!");
-	                 return "redirect:/login"; // 이메일 인증 실패 시 표시할 페이지
-	             }
+					/* @@@@@@@@@@@@@@@@@@인증 안하고 로그인 가능하게 임시로 바꿨습니다@@@@@@@@@@@@@@@@@@@@@
+					 * if (!user.isEmailVerified()) { // 이메일 인증이 완료되지 않은 상태일 때 처리
+					 * redirectAttributes.addFlashAttribute("errorMessage", "이메일 인증이 완료되지 않았습니다!");
+					 * return "redirect:/login"; // 이메일 인증 실패 시 표시할 페이지 }
+					 */
 	
 	             if (password.equals(user.getPassword())) {
 	                 // 비밀번호가 일치하는 경우 로그인 성공 처리
@@ -67,6 +67,7 @@ public class LoginController {
 	         if (loggedInNickname != null) {
 	             // 세션에 로그인 정보가 있을 경우, 세션 삭제 후 로그인 페이지로 이동
 	             session.removeAttribute("loggedInNickname");
+	             session.removeAttribute("loggedInUserId");
 	             return "redirect:/";
 	         } else {
 	             // 세션에 로그인 정보가 없을 경우, signup 페이지로 이동

@@ -19,31 +19,77 @@
 <div class="body_wrapper">
    <div class="body_content">
       <div class="menubar"></div>
-      <span class="menu4"><a href="recipe">분류</a></span>
-      <span class="menu3"><a href="rank">랭크</a></span>
-      <span class="menu2"><a href="board">게시판</a></span>
-      <span class="menu1"><a href="rank">랭킹</a></span>
+      <span class="menu4"><a href="/mypage">마이페이지</a></span>
+      <span class="menu3"><a href="/board">게시판</a></span>
+      <span class="menu2"><a href="/recipe">분류</a></span>
+      <span class="menu1"><a href="/rank">랭킹</a></span>
       <span><a class="mainicon" href="/">모두의레시피</a></span>
       <!-- 마이페이지 주소 입력 --> 
+      <div class="alarm-icon"><a href="/alarm"><i class="fas fa-bell"></i></a><span th:if="${session.alarm == 1}" style="font-size: 80px; color: red;">.</span></div>
+      <div class="write-icon"><a href="/createRecipe"><i class="fas fa-pencil-alt"></i></a></div>
       <div class="usericon"><a href="/mypage"><i class="fa-solid fa-user"></i></a></div>
       <!-- 로그아웃 주소 입력 --> 
       <div class="logout_icon"><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></div>
-        <div class="searchbar">   
-         <div class="searchradius">
-            <form action="" method=""> <!-- 검색창 주소 입력 --> 
-               <input type="text" class="search_txt">
-               <button type="submit" class="search_btn">
-                  <span class="searchicon">
-                     <i class="fa-solid fa-magnifying-glass"></i>
-                  </span>
-               </button>
-            </form>
-         </div>   
-      </div>
-      
+        <div class="searchbar">	
+			<div class="searchradius">
+				<form action="/search" method="get"> <!-- 검색창 주소 입력 --> 
+					<input type="text" name="keyword" class="search_txt" required>
+					<button type="submit" class="search_btn">
+						<span class="searchicon">
+							<i class="fa-solid fa-magnifying-glass"></i>
+						</span>
+					</button>
+				</form>
+			</div>	
+		</div>
+		
+		<div th:if="${session.loggedInNickname == '관리자'}" class="confirm_btn">
+        	<a href="/reviewRecipes">
+            	<button>레시피 검토</button>
+        	</a>
+    	</div>
+
+		<div th:if="${session.loggedInNickname == '관리자'}" class="user_btn">
+		    <a href="/user">
+        		<button>회원 관리</button>
+        	</a>
+    	</div>
+    	
+      	<!-- 검색 결과가 없을 때의 메시지를 추가 -->
+		<div class="search" th:if="${boardList.isEmpty()}">
+			<h2>검색 결과가 없습니다.</h2>
+			<div class="searchbar">
+			    <div class="searchradius">
+			        <form th:action="@{/board}" method="get" class="search-form">
+			            <div class="search-left">
+			                <label for="searchBy" class="search-label"></label>
+			                <select name="searchBy" id="searchBy" class="search-select">
+			                    <option value="title">제목</option>
+			                    <option value="nickname">작성자</option>
+			                </select>
+			            </div>
+			            <div class="search-right">
+			                <input type="text" th:value="${keyword}" name="keyword" class="search_txt" placeholder="검색어를 입력하세요" required>
+			                <button type="submit" class="search_btn">
+			                    <span class="searchicon">
+			                        <i class="fa-solid fa-magnifying-glass"></i>
+			                    </span>
+			                </button>
+			            </div>
+			        </form>
+			    </div>
+			</div>
+         <div class="button-container">
+         <a href="/createboard" class="button">글쓰기</a>
+         </div>
+         <div class="text-center">
+			<script th:src="@{/../js/rank.js}"></script>
+         </div>
+		</div>
+		
       <!-- 여기부터 body에 추가할 코드 입력 -->
 <!--<div class="content">-->
-   <div class="table-container">
+   <div class="table-container" th:if="${!boardList.isEmpty()}">
           <table class="table">
             <thead>
                <tr>
@@ -55,23 +101,39 @@
             </thead>
             <tbody>
               <tr th:each="board : ${boardList}">
-               <td style=text-align:center; th:text="${board.postId}"></td>
-               <td>
-                <a th:href="@{'/board/' + ${board.postId}}">
-                    <span th:text="${board.title}"></span>
-                </a>
-            </td>
-            	<td style=text-align:center;>
-					<a th:href="@{'/userpage/' + ${board.nickname}}">
-	                <span th:text="${board.nickname}"></span>
-                </a>
-				</td>
-               <td style=text-align:center; >
-                <p th:if="${#temporals.format(board.created_date, 'yyyy-MM-dd') == #temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}"
-                   th:text="${#temporals.format(board.created_date, 'HH:mm')}"></p>
-                <p th:if="${#temporals.format(board.created_date, 'yyyy-MM-dd') != #temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}"
-                   th:text="${#temporals.format(board.created_date, 'MM-dd')}"></p>
-            </td>
+	               <td th:if="${board.nickname != '관리자'}" style=text-align:center; th:text="${board.postId}"></td>
+	               <td th:if="${board.nickname == '관리자'}" style="text-align: center; color: red; font-size:18px">공지</td>
+	               <td th:if="${board.nickname != '관리자'}">
+		                <a th:href="@{'/board/' + ${board.postId}}">
+		                    <span th:text="${board.title}"></span>
+		                </a>
+				   </td>
+				   <td th:if="${board.nickname == '관리자'}">
+		                <a th:href="@{'/board/' + ${board.postId}}">
+		                    <span th:text="${board.title}" style="color:red; font-size:18px"></span>
+		                </a>
+				   </td>
+              	   <td th:if="${board.nickname != '관리자'}" style=text-align:center;>
+		               <a th:href="@{'/userpage_R/' + ${board.nickname}}">
+		                   <span th:text="${board.nickname}"></span>
+		               </a>
+           		   </td>
+           		    <td th:if="${board.nickname == '관리자'}" style=text-align:center;>
+		                   <span th:text="${board.nickname}" style="color:red; font-size:18px"></span>
+		               </a>
+           		   </td>
+                   <td th:if="${board.nickname != '관리자'}" style=text-align:center; >
+		                <p th:if="${#temporals.format(board.created_date, 'yyyy-MM-dd') == #temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}"
+		                   th:text="${#temporals.format(board.created_date, 'HH:mm')}"></p>
+		                <p th:if="${#temporals.format(board.created_date, 'yyyy-MM-dd') != #temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}"
+		                   th:text="${#temporals.format(board.created_date, 'MM-dd')}"></p>
+		           </td>
+		            <td th:if="${board.nickname == '관리자'}" style=text-align:center; >
+		                <p th:if="${#temporals.format(board.created_date, 'yyyy-MM-dd') == #temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}"
+		                   th:text="${#temporals.format(board.created_date, 'HH:mm')}" style="color:red; font-size:18px"></p>
+		                <p th:if="${#temporals.format(board.created_date, 'yyyy-MM-dd') != #temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}"
+		                   th:text="${#temporals.format(board.created_date, 'MM-dd')}" style="color:red; font-size:18px"></p>
+		           </td>
               </tr>
                
             </tbody>    
@@ -90,7 +152,7 @@
                 </select>
             </div>
             <div class="search-right">
-                <input type="text" name="keyword" class="search_txt" placeholder="검색어를 입력하세요">
+                <input type="text" th:value="${keyword}" name="keyword" class="search_txt" placeholder="검색어를 입력하세요" required>
                 <button type="submit" class="search_btn">
                     <span class="searchicon">
                         <i class="fa-solid fa-magnifying-glass"></i>
@@ -105,12 +167,12 @@
          </div>
          <div class="text-center">
             <div class="pagination">
-    <a th:if="${currentPage > firstPage}" th:href="@{|/board?page=${currentPage - 1}|}">&laquo; 이전</a>
+    <a th:if="${currentPage > firstPage}" th:href="@{|/board?page=${currentPage - 1}&searchBy=${searchBy}&keyword=${keyword}|}">&laquo; 이전</a>
     <span th:each="pageNumber : ${#numbers.sequence(currentPage - 5, currentPage + 4)}" th:if="${pageNumber >= firstPage && pageNumber <= lastPage}">
-        <a th:href="@{|/board?page=${pageNumber}|}"
-           th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber + 1}"></a>
-    </span>
-    <a th:if="${currentPage < lastPage}" th:href="@{|/board?page=${currentPage + 1}|}">다음 &raquo;</a>
+	    <a th:href="@{|/board?page=${pageNumber}&searchBy=${searchBy}&keyword=${keyword == null ? '' : keyword}|}"
+	       th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber + 1}"></a>
+	</span>
+    <a th:if="${currentPage < lastPage}" th:href="@{|/board?page=${currentPage + 1}&searchBy=${searchBy}&keyword=${keyword == null ? '' : keyword}|}">&raquo; 다음</a>
 </div>
 <script th:src="@{/../js/rank.js}"></script>
          </div>
@@ -122,11 +184,11 @@
    </div>
 </div>
 
-	<script th:inline="javascript">
-	        var boarddeleteMessage = /*[[${boarddeleteMessage}]]*/ "";
-	        if (boarddeleteMessage) {
-	            alert(boarddeleteMessage);
-	        }
+   <script th:inline="javascript">
+           var boarddeleteMessage = /*[[${boarddeleteMessage}]]*/ "";
+           if (boarddeleteMessage) {
+               alert(boarddeleteMessage);
+           }
     </script>
    
 </body>

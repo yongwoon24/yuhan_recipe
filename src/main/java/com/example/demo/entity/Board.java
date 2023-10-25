@@ -1,10 +1,14 @@
 package com.example.demo.entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 @Entity
 public class Board {
    @Id
@@ -15,7 +19,7 @@ public class Board {
    private LocalDateTime created_date;
    private String user_id;
    private String nickname;
-   
+    
    public int getPostId() {
       return postId;
    }
