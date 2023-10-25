@@ -894,6 +894,7 @@ label {
 
 
 .text1{
+	
 	 width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -972,6 +973,6 @@ h2 {
 	position: absolute;
 	margin-top: 50px;
 	width: 1000px;
-	margin-left: 800px; 
+	margin-left: 500px; 
     margin-right: 600px;
 }
