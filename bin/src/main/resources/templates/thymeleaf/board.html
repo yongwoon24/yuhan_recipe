@@ -50,6 +50,18 @@
                     <th style="width: 50px;">번호</th>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+                  <th style="width: 300px;">제목</th>
+                  <th style="width: 100px;">작성자</th>
+                  <th style="width: 100px;">작성일</th>
+=======
+		            <th style="width: 300px;">제목</th>
+		            <th style="width: 100px;">작성자</th>
+		            <th style="width: 100px;">작성일</th>
+>>>>>>> 48a1b7e7cdce8bc0fd9cb3c27b5ec6786e9f8be9
+=======
+=======
+>>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
 		            <th style="width: 300px;">제목</th>
 		            <th style="width: 100px;">작성자</th>
 		            <th style="width: 100px;">작성일</th>
@@ -58,17 +70,25 @@
                   <th style="width: 100px;">작성자</th>
                   <th style="width: 100px;">작성일</th>
 >>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
+<<<<<<< HEAD
+>>>>>>> c966e8d82e00050f2714d5d828d13bec97f02bd9
+=======
 =======
                   <th style="width: 300px;">제목</th>
                   <th style="width: 100px;">작성자</th>
                   <th style="width: 100px;">작성일</th>
 >>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
+>>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
                </tr>
             </thead>
             <tbody>
               <tr th:each="board : ${boardList}">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
             	<td style=text-align:center; th:text="${board.post_id}"></td>
             	<td th:text="${board.title}"></td>
             	<td th:text="${board.user_id}"></td>
@@ -80,8 +100,12 @@
 				</td>
       		  </tr>
 =======
+<<<<<<< HEAD
+>>>>>>> c966e8d82e00050f2714d5d828d13bec97f02bd9
+=======
 =======
 >>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
+>>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
                <td style=text-align:center; th:text="${board.postId}"></td>
                <td>
                 <a th:href="@{'/board/' + ${board.postId}}">
@@ -97,9 +121,27 @@
             </td>
               </tr>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+            	<td style=text-align:center; th:text="${board.post_id}"></td>
+            	<td th:text="${board.title}"></td>
+            	<td th:text="${board.user_id}"></td>
+            	<td style=text-align:center; >
+				    <p th:if="${#temporals.format(board.created_date, 'yyyy-MM-dd') == #temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}"
+				       th:text="${#temporals.format(board.created_date, 'HH:mm')}"></p>
+				    <p th:if="${#temporals.format(board.created_date, 'yyyy-MM-dd') != #temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}"
+				       th:text="${#temporals.format(board.created_date, 'MM-dd')}"></p>
+				</td>
+      		  </tr>
+>>>>>>> 48a1b7e7cdce8bc0fd9cb3c27b5ec6786e9f8be9
+=======
+>>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
+>>>>>>> c966e8d82e00050f2714d5d828d13bec97f02bd9
+=======
 >>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
 =======
 >>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
+>>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
                
             </tbody>    
          </table>
@@ -108,7 +150,11 @@
 <<<<<<< HEAD
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> c966e8d82e00050f2714d5d828d13bec97f02bd9
+=======
 >>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
+>>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
 
 
 <div class="searchbar">
@@ -133,15 +179,27 @@
     </div>
 </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 48a1b7e7cdce8bc0fd9cb3c27b5ec6786e9f8be9
+=======
+>>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
+>>>>>>> c966e8d82e00050f2714d5d828d13bec97f02bd9
+=======
 >>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
 =======
 >>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
+>>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
          <div class="button-container">
          <a href="/createboard" class="button">글쓰기</a>
          </div>
          <div class="text-center">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
             <ul class="pagination">
                <li><a href = "">1</a></li>
                <li><a href = "">2</a></li>
@@ -149,8 +207,12 @@
                <li><a href = "">4</a></li>
             </ul>
 =======
+<<<<<<< HEAD
+>>>>>>> c966e8d82e00050f2714d5d828d13bec97f02bd9
+=======
 =======
 >>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
+>>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
             <div class="pagination">
     <a th:if="${currentPage > firstPage}" th:href="@{|/board?page=${currentPage - 1}|}">&laquo; 이전</a>
     <span th:each="pageNumber : ${#numbers.sequence(currentPage - 5, currentPage + 4)}" th:if="${pageNumber >= firstPage && pageNumber <= lastPage}">
@@ -161,9 +223,23 @@
 </div>
 <script th:src="@{/../js/rank.js}"></script>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+            <ul class="pagination">
+               <li><a href = "">1</a></li>
+               <li><a href = "">2</a></li>
+               <li><a href = "">3</a></li>
+               <li><a href = "">4</a></li>
+            </ul>
+>>>>>>> 48a1b7e7cdce8bc0fd9cb3c27b5ec6786e9f8be9
+=======
+>>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
+>>>>>>> c966e8d82e00050f2714d5d828d13bec97f02bd9
+=======
 >>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
 =======
 >>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
+>>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
          </div>
    </div>
    </div>
@@ -176,7 +252,11 @@
 <<<<<<< HEAD
 =======
 =======
+<<<<<<< HEAD
+>>>>>>> c966e8d82e00050f2714d5d828d13bec97f02bd9
+=======
 >>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
+>>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
 
 	<script th:inline="javascript">
 	        var boarddeleteMessage = /*[[${boarddeleteMessage}]]*/ "";
@@ -186,8 +266,16 @@
     </script>
    
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 48a1b7e7cdce8bc0fd9cb3c27b5ec6786e9f8be9
+=======
+>>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
+>>>>>>> c966e8d82e00050f2714d5d828d13bec97f02bd9
+=======
 >>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
 =======
 >>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
+>>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
 </body>
 </html>

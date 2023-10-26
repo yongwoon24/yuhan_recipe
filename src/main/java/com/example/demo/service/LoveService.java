@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,7 +48,7 @@ public class LoveService {
 	public void saveLove(Love love) {
 		loverepository.save(love);
 		updateTotalLikes(love.getRecipe().getRecipe_id());
-		updatePeriodLikes(love.getRecipe().getRecipe_id(), LocalDate.now());
+		updatePeriodLikes(love.getRecipe().getRecipe_id(), LocalDateTime.now());
 		updateUserTotalLikes(love.getRecipe().getNickname());
 		//updateAllPeriodLikes(love.getDate());
 	}
@@ -72,7 +73,7 @@ public class LoveService {
 	}
 	
 	//모든 레시피의 모든 좋아요 항목 업데이트
-	private void updateAllPeriodLikes(LocalDate date) {
+	private void updateAllPeriodLikes(LocalDateTime date) {
         List<Recipe> recipes = reciperepository.findAll();
 
         for (Recipe recipe : recipes) {
@@ -81,11 +82,11 @@ public class LoveService {
         }
     }
 	
-	private void updatePeriodLikes(int recipeId, LocalDate date) {
+	private void updatePeriodLikes(int recipeId, LocalDateTime date) {
         int dailyLikes = loverepository.countDailyLikesByRecipeIdAndDate(recipeId, date);
 
-        LocalDate weekStart = date.minusDays(date.getDayOfWeek().getValue() - 1);
-        LocalDate weekEnd = weekStart.plusDays(6);
+        LocalDateTime weekStart = date.minusDays(date.getDayOfWeek().getValue() - 1);
+        LocalDateTime weekEnd = weekStart.plusDays(6);
         int weeklyLikes = loverepository.countWeeklyLikesByRecipeIdAndDateRange(recipeId, weekStart, weekEnd);
 
         int monthlyLikes = loverepository.countMonthlyLikesByRecipeIdAndMonth(recipeId, date);
