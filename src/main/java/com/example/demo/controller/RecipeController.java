@@ -200,7 +200,7 @@ public class RecipeController {
 	    
 	    System.out.println(categories);
 	    System.out.println(encodedCategories);
-	    return "recipeList";
+	    return "recipeList2";
         }
 	
 	
@@ -259,6 +259,8 @@ public class RecipeController {
 			throws Exception {
 		recipe.setRecipeVerified(true);//레시피 검토 안해도 되도록 임시@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@22
 		String loggedInNickname = (String) session.getAttribute("loggedInNickname");
+		User user = userrepository.findbynickname(loggedInNickname);
+		recipe.setUser(user);
 		recipe.setNickname(loggedInNickname);
 		recipeservice.write(recipe, file);
 		recipeservice.createRecipe(recipe, ingredientName, mensuration);
