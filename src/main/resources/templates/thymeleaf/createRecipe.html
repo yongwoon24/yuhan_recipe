@@ -78,8 +78,8 @@
 						<div class=e10_3>
 							<span class="e10_7">레시피제목</span>
 							<span class="e10_8">요리 소개</span>
-							<span class="e10_10"><textarea name="title"></textarea></span>
-							<span class="e10_11"><textarea name="recipesubtxt"></textarea></span>
+							<span class="e10_10"><textarea name="title" required></textarea></span>
+							<span class="e10_11"><textarea name="recipesubtxt" required></textarea></span>
 						</div>
 						<div class=e10_4>
 							<span class="e10_15">
@@ -120,8 +120,8 @@
 							<button id="addButton" onclick="handleClick(event)" width="150px" height="50px"
 								cursor="pointer">재료 추가</button>
 							<div class='textRow' id="t1">
-								<input type="text" class='text1' name="ingredientName" placeholder="예 ) 간 장">
-								<input type="text" class='text1' name="mensuration" placeholder="예 ) 한 큰 술">
+								<input type="text" class='text1' name="ingredientName" placeholder="예 ) 간 장" required>
+								<input type="text" class='text1' name="mensuration" placeholder="예 ) 한 큰 술" required>
 								<input type="button" id="removebutton" class="remove-button" value="삭제">
 							</div>
 							<div class='textRow' id="t2">
@@ -145,7 +145,7 @@
 								cursor="pointer">스텝 추가</button>
 							<div class='textRow1' id="r1">
 								<label class="step">STEP 1</label><br>
-								<textarea class='text2' name="SContent" placeholder='예 ) 김치 반 포기를 잘게 썰어주세요.'></textarea>
+								<textarea class='text2' name="SContent" placeholder='예 ) 김치 반 포기를 잘게 썰어주세요.' required></textarea>
 								<input multiple type="file" id="file1" name="file1" style="display: none;">
 								<button id="uploadButton1" name="uploadButton1"
 									onclick="handleClick(event); handleUploadClick(1)">
