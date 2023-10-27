@@ -477,7 +477,7 @@ public class RecipeController {
 				model.addAttribute("Nickname", Nickname);
 				model.addAttribute("comment", recipecomment);
 				model.addAttribute("session",session);
-				return "userRecipe"; // 레시피 페이지 템플릿
+				return "userRecipe2"; // 레시피 페이지 템플릿
 			} else {
 				
 				user.setUser_id(loggedInUserId);
@@ -499,10 +499,10 @@ public class RecipeController {
 				model.addAttribute("Nickname", Nickname);
 				model.addAttribute("comment", recipecomment);
 				model.addAttribute("session",session);
-				return "userRecipe"; // 레시피 페이지 템플릿
+				return "userRecipe2"; // 레시피 페이지 템플릿
 			}
 		}
-		return "userRecipe";
+		return "userRecipe2";
 	}
 
 	@GetMapping("/editRecipe/{recipe_id}")

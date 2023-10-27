@@ -36,8 +36,10 @@
 			<div class=e2_8><span class="e2_11"><a href="/recipe">분류</a></span><span class="e2_12"><a
 						href="/rank">랭킹</a></span><span class="e2_13"><a href="/board">게시판</a></span><span
 					class="e2_14"><a href="/mypage">마이페이지</a></span>
-				<div class="e2_22"><a href="/alarm" style="width:30px; height:30px;"><i class="fas fa-bell"
-							style="width:30px; height:30px;"></i></a></div>
+				<div class="e2_22"><a href="/alarm" style="width:30px; height:30px;"><i th:if="${session.alarm != 1}" class="fas fa-bell"
+							style="width:30px; height:30px;"></i>
+							<i th:if="${session.alarm == 1}" class="fas fa-bell"
+							style="width:30px; height:30px; color: red;"></i></a></div>
 				<div class="e2_23"><a href="/createRecipe"><i class="fas fa-pencil-alt"></i></a></div>
 				<div class="e2_24"><a href="/logout"><i class="fas fa-sign-in-alt"></i></a></div>
 			</div>
@@ -134,6 +136,7 @@
 				<div class="e3_169"></div><span class="e3_170">제목</span>
 			</div>
 		</div>
+<!--		여기까지-->
 	</div>
 	<div class=e3_173><span class="e3_175">2023 yuhan University</span></div>
 	</div>

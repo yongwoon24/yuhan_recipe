@@ -46,10 +46,11 @@ public class LoveService {
     }*/
 	
 	public void saveLove(Love love) {
-		loverepository.save(love);
+		
 		updateTotalLikes(love.getRecipe().getRecipe_id());
 		updatePeriodLikes(love.getRecipe().getRecipe_id(), LocalDateTime.now());
 		updateUserTotalLikes(love.getRecipe().getNickname());
+		loverepository.save(love);
 		//updateAllPeriodLikes(love.getDate());
 	}
 	

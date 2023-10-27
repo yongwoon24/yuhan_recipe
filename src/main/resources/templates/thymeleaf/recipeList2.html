@@ -32,8 +32,10 @@
 			<div class=e2_8><span class="e2_11"><a href="/recipe">분류</a></span><span class="e2_12"><a
 						href="/rank">랭킹</a></span><span class="e2_13"><a href="/board">게시판</a></span><span
 					class="e2_14"><a href="/mypage">마이페이지</a></span>
-				<div class="e2_22"><a href="/alarm" style="width:30px; height:30px;"><i class="fas fa-bell"
-							style="width:30px; height:30px;"></i></a></div>
+				<div class="e2_22"><a href="/alarm" style="width:30px; height:30px;"><i th:if="${session.alarm != 1}" class="fas fa-bell"
+							style="width:30px; height:30px;"></i>
+							<i th:if="${session.alarm == 1}" class="fas fa-bell"
+							style="width:30px; height:30px; color: red;"></i></a></div>
 				<div class="e2_23"><a href="/createRecipe"><i class="fas fa-pencil-alt"></i></a></div>
 				<div class="e2_24"><a href="/logout"><i class="fas fa-sign-in-alt"></i></a></div>
 			</div>
@@ -58,7 +60,7 @@
 				<div class=e56_24 th:each="recipe, recipeIndex : ${recipes}">
 					<div class="e56_25">
 						<a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}">
-							<img th:src="@{${recipe.main_photo_path}}" width="100%" height="100%"></a>
+							<img th:src="@{${recipe.main_photo_path}}" width="100%" height="100%" style="border-radius: 10px;"></a>
 					</div>
 					<a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}"><span class="e56_26" th:text="${recipe.title}"></span></a>
 					<a th:href="@{'/userpage_R/'+${recipe.nickname}}"><div class="e56_27"><img th:src="${recipe.user.userphotopath}" width="100%" height="100%"
