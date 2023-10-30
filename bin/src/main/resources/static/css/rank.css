@@ -2,6 +2,19 @@ a{
 	text-decoration: none;
 	color: rgba(0, 0, 0, 1);
 }
+.alarm-icon{
+   color:rgba(0, 0, 0, 1);
+   width:64px;
+   height:55px;
+   position:absolute;
+   right:12%;
+   top:30px;
+   font-family:Font Awesome 5 Free;
+   text-align:center;
+   font-size:40px;
+   letter-spacing:0;
+   
+}
 .likes{
 	position: absolute;
     top: 0px;
@@ -45,7 +58,7 @@ select {
 	height: 100%;
 	overflow: hidden;
 	align-items: center;
-	box-shadow: #949494 5px 5px 10px;
+	
 }
 
 .img_slide{
@@ -117,7 +130,7 @@ select {
 }
 .menubar { 
 	box-shadow: #949494 5px 5px 10px;
-	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	background: linear-gradient(to right,  rgb(150, 231, 150), rgb(152, 228, 143));
 	width:100%;
 	height:128px;
 	position:absolute;
@@ -126,53 +139,55 @@ select {
 }
 .menu4 { 
 	color:rgba(0, 0, 0, 1);
-	width:70px;
-	height:36px;
+	width:170px;
+	height:40px;
 	position:absolute;
-	left:558px;
+	left: 75%;
 	top:161px;
-	text-align:left;
-	font-size:25px;
+	text-align:center;
+	font-size:35px;
 	letter-spacing:0;
+	
 }
+
 .menu3 { 
-	color:rgba(0, 0, 0, 1);
-	width:70px;
-	height:36px;
+	color:rgb(0, 0, 0, 1);
+	width:170px;
+	height:40px;
 	position:absolute;
-	left:402px;
+	left: 55%;
 	top:161px;
 	
-	text-align:left;
-	font-size:25px;
+	text-align:center;
+	font-size:35px;
 	letter-spacing:0;
 	
 }
+
 .menu2 { 
 	color:rgba(0, 0, 0, 1);
-	width:70px;
-	height:36px;
+	width:170px;
+	height:40px;
 	position:absolute;
-	left:246px;
+	left: 35%;
 	top:161px;
-	
-	text-align:left;
-	font-size:25px;
+		
+	text-align:center;
+	font-size:35px;
 	letter-spacing:0;
 	
 }
+
 .menu1 { 
 	color:rgba(0, 0, 0, 1);
-	width:70px;
-	height:36px;
+	width:170px;
+	height:40px;
 	position:absolute;
-	left:90px;
+	left: 15%;
 	top:161px;
-	
-	text-align:left;
-	font-size:25px;
+	text-align:center;
+	font-size:35px;
 	letter-spacing:0;
-	
 }
 .mainicon { 
 	color:rgba(23.58367010951042, 96.68749898672104, 11.683072540909052, 1);
@@ -364,17 +379,6 @@ select {
 	position: relative;
 	top: -2px;
 }
-<<<<<<< HEAD
-<<<<<<< HEAD
-.pagination{
-	text-align: center;
-	position: relative;
-	font-size: 100px;
-	justify-content: center;
-}
-=======
-=======
->>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
 .pagination {
     display: flex;
     justify-content: center;
@@ -394,7 +398,16 @@ select {
     color: #fff;
     border-radius: 50%;
 }
-<<<<<<< HEAD
->>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
-=======
->>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
+.write-icon{
+   color:rgba(0, 0, 0, 1);
+   width:64px;
+   height:55px;
+   position:absolute;
+   right:9%;
+   top:30px;
+   font-family:Font Awesome 5 Free;
+   text-align:center;
+   font-size:40px;
+   letter-spacing:0;
+   
+}
