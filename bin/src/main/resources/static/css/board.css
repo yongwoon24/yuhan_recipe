@@ -37,7 +37,31 @@ table {
   width: 100%;
 }
 th{
+<<<<<<< HEAD
 	padding: 6px 15px;
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+   padding: 6px 15px;
+=======
+	padding: 6px 15px;
+>>>>>>> 48a1b7e7cdce8bc0fd9cb3c27b5ec6786e9f8be9
+=======
+=======
+>>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
+	padding: 6px 15px;
+=======
+   padding: 6px 15px;
+>>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
+<<<<<<< HEAD
+>>>>>>> c966e8d82e00050f2714d5d828d13bec97f02bd9
+=======
+=======
+   padding: 6px 15px;
+>>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
+>>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
+>>>>>>> 50c25ad0400af2c974ed8121e680ce92b5ed8d9c
 }
 td {
   padding: 0 10px;
@@ -129,6 +153,22 @@ a.button {
 a.button:hover {
   background-color: #333;
   color: #fff;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+}
+=======
+>>>>>>> c966e8d82e00050f2714d5d828d13bec97f02bd9
+=======
+}
+=======
+=======
+>>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
+>>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
+>>>>>>> 50c25ad0400af2c974ed8121e680ce92b5ed8d9c
 }
 /* 검색 바 스타일 */
 .searchbar { 
@@ -206,6 +246,7 @@ a.button:hover {
 }
 
 /* 나머지 검색 바 스타일 (검색어 입력 필드, 검색 버튼)는 이전과 동일하게 유지 */
+<<<<<<< HEAD
 
 
 .search {
@@ -213,3 +254,18 @@ a.button:hover {
   margin: 0 auto;
   padding: 200px 20px 0; /* 위쪽 여백 추가 */
 }
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+}
+>>>>>>> 48a1b7e7cdce8bc0fd9cb3c27b5ec6786e9f8be9
+=======
+>>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
+>>>>>>> c966e8d82e00050f2714d5d828d13bec97f02bd9
+=======
+>>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
+=======
+>>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
+>>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
+>>>>>>> 50c25ad0400af2c974ed8121e680ce92b5ed8d9c
