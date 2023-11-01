@@ -44,22 +44,33 @@ public class LoveController {
     	List<Recipe> topLove = recipeRepository.findTop10ByRecipeVerifiedOrderByTotalLoveDesc(a);
     	model.addAttribute("topLove", topLove);
     	
-    	List<Recipe> recipes =new ArrayList<>();
+    	
     	String loggedInUserId = (String) session.getAttribute("loggedInUserId"); 
     	User user = userR.findByUser_id1(loggedInUserId);
-    	Today today = todayR.findByUser(user);
-    	recipes.add(recipeRepository.findById(today.getNo1()));
-    	recipes.add(recipeRepository.findById(today.getNo2()));
-    	recipes.add(recipeRepository.findById(today.getNo3()));
-    	recipes.add(recipeRepository.findById(today.getNo4()));
-    	recipes.add(recipeRepository.findById(today.getNo5()));
-    	recipes.add(recipeRepository.findById(today.getNo6()));
-    	recipes.add(recipeRepository.findById(today.getNo7()));
-    	recipes.add(recipeRepository.findById(today.getNo8()));
-    	recipes.add(recipeRepository.findById(today.getNo9()));
-    	recipes.add(recipeRepository.findById(today.getNo10()));
     	
-    	model.addAttribute("recipes", recipes);
+    	//오늘의 추천메뉴
+    	List<Recipe> todayrecipes =new ArrayList<>();
+    	Today today = todayR.findByUser(user);
+    	todayrecipes.add(recipeRepository.findById(today.getNo1()));
+    	todayrecipes.add(recipeRepository.findById(today.getNo2()));
+    	todayrecipes.add(recipeRepository.findById(today.getNo3()));
+    	todayrecipes.add(recipeRepository.findById(today.getNo4()));
+    	todayrecipes.add(recipeRepository.findById(today.getNo5()));
+    	todayrecipes.add(recipeRepository.findById(today.getNo6()));
+    	todayrecipes.add(recipeRepository.findById(today.getNo7()));
+    	todayrecipes.add(recipeRepository.findById(today.getNo8()));
+    	todayrecipes.add(recipeRepository.findById(today.getNo9()));
+    	todayrecipes.add(recipeRepository.findById(today.getNo10()));
+    	
+    	model.addAttribute("todayrecipes", todayrecipes);
+    	
+    	//최근본 레시피
+    	List<Recipe> lastrecipes = loveRepository.findUserActivitiesWithdesc(user);
+    	model.addAttribute("lastrecipes", lastrecipes);
+    	
+    	//유저랭킹
+    	List<User> userRank = userR.findByOrderByUsertotallikes();
+    	model.addAttribute("userRank",userRank);
     	
     	return "index2";
 

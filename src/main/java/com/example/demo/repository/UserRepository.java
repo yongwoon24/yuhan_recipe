@@ -27,6 +27,7 @@ public interface UserRepository extends JpaRepository<User, String> {
   
    @Query(value = "SELECT * FROM user WHERE user_id = :user_id ", nativeQuery = true)
    User findByUser_id1(String user_id);
-
+   
+   List<User> findByOrderByUsertotallikes();
    
 }
