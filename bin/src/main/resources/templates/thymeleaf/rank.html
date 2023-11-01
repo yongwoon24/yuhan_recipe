@@ -82,7 +82,54 @@
 			        <button id="submitBtn" type="submit" hidden>선택</button>
 
 			    </form>
+<<<<<<< HEAD
 			    
+=======
+<<<<<<< HEAD
+			    
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+			    
+=======
+=======
+>>>>>>> c966e8d82e00050f2714d5d828d13bec97f02bd9
+=======
+>>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
+			    <div class="option-buttons">
+				    <table class="whole-table">
+				        <tr>
+				            <td>
+				                <a href="#" class="table-button" data-period="all">전체</a>
+				            </td>
+				            <td>
+				                <a href="#" class="table-button" data-period="daily">일간</a>
+				            </td>
+				            <td>
+				                <a href="#" class="table-button" data-period="weekly">주간</a>
+				            </td>
+				            <td>
+				                <a href="#" class="table-button" data-period="monthly">월간</a>
+				            </td>
+				        </tr>
+				    </table>
+				</div>
+<<<<<<< HEAD
+>>>>>>> 48a1b7e7cdce8bc0fd9cb3c27b5ec6786e9f8be9
+=======
+=======
+			    
+>>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
+<<<<<<< HEAD
+>>>>>>> c966e8d82e00050f2714d5d828d13bec97f02bd9
+=======
+=======
+			    
+>>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
+>>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
+>>>>>>> 50c25ad0400af2c974ed8121e680ce92b5ed8d9c
+>>>>>>> 2635114c7fb3f0ba032d4776b8e184a832ed6b1e
 			</div>
 			<ul class="img_slide">
 			    <li class="recipe-item" th:each="recipe, recipeIndex : ${topLove}">
@@ -101,6 +148,29 @@
 			
 			</ul>
 			<div class="pagination">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
+		    	<a th:if="${currentPage > 0}" th:href="@{|/rank?page=${currentPage - 1}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}">&laquo;</a>
+		    	<!--<span th:text="${currentPage + 1}"></span>-->
+				<a th:if="${topLove.size() > (currentPage * 20)}" th:href="@{|/rank?page=${currentPage + 1}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}">&raquo;</a>
+			</div>
+=======
+<<<<<<< HEAD
+>>>>>>> c966e8d82e00050f2714d5d828d13bec97f02bd9
+=======
+=======
+>>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
+>>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
+>>>>>>> 50c25ad0400af2c974ed8121e680ce92b5ed8d9c
+>>>>>>> 2635114c7fb3f0ba032d4776b8e184a832ed6b1e
     <a th:if="${currentPage > firstPage}" th:href="@{|/rank?page=${currentPage - 1}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}">&laquo; 이전</a>
     <span th:each="pageNumber : ${#numbers.sequence(currentPage - 5, currentPage + 4)}" th:if="${pageNumber >= firstPage && pageNumber <= lastPage}">
         <a th:href="@{|/rank?page=${pageNumber}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}"
@@ -111,6 +181,28 @@
 
 
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+		    	<a th:if="${currentPage > 0}" th:href="@{|/rank?page=${currentPage - 1}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}">&laquo;</a>
+		    	<!--<span th:text="${currentPage + 1}"></span>-->
+				<a th:if="${topLove.size() > (currentPage * 20)}" th:href="@{|/rank?page=${currentPage + 1}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}">&raquo;</a>
+			</div>
+>>>>>>> 48a1b7e7cdce8bc0fd9cb3c27b5ec6786e9f8be9
+=======
+>>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
+>>>>>>> c966e8d82e00050f2714d5d828d13bec97f02bd9
+=======
+>>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
+=======
+>>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
+>>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
+>>>>>>> 50c25ad0400af2c974ed8121e680ce92b5ed8d9c
+>>>>>>> 2635114c7fb3f0ba032d4776b8e184a832ed6b1e
 			
 			
 						

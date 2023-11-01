@@ -1,14 +1,21 @@
 package com.example.demo.entity;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class User {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String user_id;
 	private String name;
 	private String email;
@@ -24,6 +31,9 @@ public class User {
     private String verificationToken;
 
     private boolean emailVerified;
+    
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<Recipe> recipe;
 
 	public String getUser_id() {
 		return user_id;

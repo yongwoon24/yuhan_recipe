@@ -23,7 +23,7 @@ public class LoginController {
 	  @GetMapping("/login")
 	     public String showLoginForm(Model model) {
 	         model.addAttribute("user", new User());
-	         return "login2";
+	         return "login";
 	     }
 	     
 	     @PostMapping("/login")
@@ -59,7 +59,7 @@ public class LoginController {
 	     }
 	
 	     @GetMapping("/logout")
-	     public String logout(HttpSession session, RedirectAttributes redirectAttributes) {
+	     public String logout(HttpSession session) {
 	         // 세션에서 사용자 정보 가져오기
 	         String loggedInNickname = (String) session.getAttribute("loggedInNickname");
 	
@@ -71,7 +71,6 @@ public class LoginController {
 	             return "redirect:/";
 	         } else {
 	             // 세션에 로그인 정보가 없을 경우, signup 페이지로 이동
-	            redirectAttributes.addFlashAttribute("loginMessage", "로그인 상태가 아닙니다!");
 	             return "redirect:/login";
 	         }
 	     }

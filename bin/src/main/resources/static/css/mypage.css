@@ -894,7 +894,10 @@ label {
 
 
 .text1{
+<<<<<<< HEAD
 	
+=======
+>>>>>>> 2635114c7fb3f0ba032d4776b8e184a832ed6b1e
 	 width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -973,6 +976,10 @@ h2 {
 	position: absolute;
 	margin-top: 50px;
 	width: 1000px;
+<<<<<<< HEAD
 	margin-left: 500px; 
+=======
+	margin-left: 800px; 
+>>>>>>> 2635114c7fb3f0ba032d4776b8e184a832ed6b1e
     margin-right: 600px;
 }

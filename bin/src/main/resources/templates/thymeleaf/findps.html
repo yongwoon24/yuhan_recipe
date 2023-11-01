@@ -2,11 +2,27 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
+>>>>>>> 50c25ad0400af2c974ed8121e680ce92b5ed8d9c
+>>>>>>> 2635114c7fb3f0ba032d4776b8e184a832ed6b1e
     <title>비밀번호 찾기</title>
     <link rel="stylesheet" type="text/css" th:href="@{/../css/findIdPs.css}" />
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 </head>
 <body>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 2635114c7fb3f0ba032d4776b8e184a832ed6b1e
 	<div class="body_wrapper">
 		<div class="mainicon_wrapper">
 			<a class="mainicon" href="/">모두의레시피</a>
@@ -30,6 +46,47 @@
 		    </table>
 		</div>
     </div>
+<<<<<<< HEAD
+=======
+=======
+    <h2>비밀번호 찾기</h2>
+
+    <form th:action="@{/findps}" method="post">
+        <label for="email">이메일:</label>
+        <input type="email" id="email" name="email" required><br>
+        
+        <button type="submit">인증하기</button>
+    </form>
+</body>
+</html>
+=======
+<<<<<<< HEAD
+>>>>>>> c966e8d82e00050f2714d5d828d13bec97f02bd9
+=======
+=======
+>>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
+>>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
+    <title>비밀번호 재설정</title>
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+
+   </style>
+     <script>
+         function psCheck() {
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("confirmpassword").value;
+        var checkMsg = document.getElementById("checkMsg");
+        
+        if (password === confirmPassword) {
+            checkMsg.style.color = "green";
+            checkMsg.innerHTML = "비밀번호가 일치합니다.";
+        } else {
+            checkMsg.style.color = "red";
+            checkMsg.innerHTML = "비밀번호가 일치하지 않습니다.";
+        }
+    }
+>>>>>>> 50c25ad0400af2c974ed8121e680ce92b5ed8d9c
+>>>>>>> 2635114c7fb3f0ba032d4776b8e184a832ed6b1e
     
      <script th:inline="javascript">
         var errorMessage = /*[[${errorMessage}]]*/ "";
@@ -38,4 +95,38 @@
         }
     </script>
 </body>
+<<<<<<< HEAD
 </html>
+=======
+<<<<<<< HEAD
+</html>
+=======
+<<<<<<< HEAD
+</html>
+<<<<<<< HEAD
+=======
+    <title>비밀번호 찾기</title>
+</head>
+<body>
+    <h2>비밀번호 찾기</h2>
+
+    <form th:action="@{/findps}" method="post">
+        <label for="email">이메일:</label>
+        <input type="email" id="email" name="email" required><br>
+        
+        <button type="submit">인증하기</button>
+    </form>
+</body>
+</html>
+>>>>>>> 48a1b7e7cdce8bc0fd9cb3c27b5ec6786e9f8be9
+=======
+>>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
+<<<<<<< HEAD
+>>>>>>> c966e8d82e00050f2714d5d828d13bec97f02bd9
+=======
+=======
+</html>
+>>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
+>>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
+>>>>>>> 50c25ad0400af2c974ed8121e680ce92b5ed8d9c
+>>>>>>> 2635114c7fb3f0ba032d4776b8e184a832ed6b1e
