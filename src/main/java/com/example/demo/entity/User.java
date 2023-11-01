@@ -11,11 +11,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class User {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String user_id;
 	private String name;
 	private String email;
@@ -34,6 +34,28 @@ public class User {
     
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Recipe> recipe;
+
+    @OneToOne
+    @JoinColumn(name="tId")
+    private Today today;
+    
+    
+    
+	public List<Recipe> getRecipe() {
+		return recipe;
+	}
+
+	public void setRecipe(List<Recipe> recipe) {
+		this.recipe = recipe;
+	}
+
+	public Today getToday() {
+		return today;
+	}
+
+	public void setToday(Today today) {
+		this.today = today;
+	}
 
 	public String getUser_id() {
 		return user_id;

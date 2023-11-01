@@ -8,9 +8,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Love;
 import com.example.demo.entity.Recipe;
+import com.example.demo.entity.Today;
+import com.example.demo.entity.User;
 import com.example.demo.repository.LoveRepository;
 import com.example.demo.repository.RecipeRepository;
+import com.example.demo.repository.TodayRepository;
+import com.example.demo.repository.UserRepository;
 
+import jakarta.servlet.http.HttpSession;
+
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -19,70 +26,42 @@ import java.util.stream.Collectors;
 
 @Controller
 public class LoveController {
-
-    private final LoveRepository loveRepository;
-    private final RecipeRepository recipeRepository;
-
+	@Autowired
+    private LoveRepository loveRepository;
+	@Autowired
+    private RecipeRepository recipeRepository;
     @Autowired
-    public LoveController(LoveRepository loveRepository, RecipeRepository recipeRepository) {
-        this.loveRepository = loveRepository;
-        this.recipeRepository = recipeRepository;
-    }
+    private UserRepository userR;
+    @Autowired
+    private TodayRepository todayR;
+
+    
+    
     boolean a = true;
 
-    @GetMapping("/2")
-    public String getTopRecipes(Model model, @RequestParam(required = false) String category_name) {
+    @GetMapping("/")
+    public String getTopRecipes(Model model, @RequestParam(required = false) String category_name, HttpSession session) {
     	List<Recipe> topLove = recipeRepository.findTop10ByRecipeVerifiedOrderByTotalLoveDesc(a);
     	model.addAttribute("topLove", topLove);
+    	
+    	List<Recipe> recipes =new ArrayList<>();
+    	String loggedInUserId = (String) session.getAttribute("loggedInUserId"); 
+    	User user = userR.findByUser_id1(loggedInUserId);
+    	Today today = todayR.findByUser(user);
+    	recipes.add(recipeRepository.findById(today.getNo1()));
+    	recipes.add(recipeRepository.findById(today.getNo2()));
+    	recipes.add(recipeRepository.findById(today.getNo3()));
+    	recipes.add(recipeRepository.findById(today.getNo4()));
+    	recipes.add(recipeRepository.findById(today.getNo5()));
+    	recipes.add(recipeRepository.findById(today.getNo6()));
+    	recipes.add(recipeRepository.findById(today.getNo7()));
+    	recipes.add(recipeRepository.findById(today.getNo8()));
+    	recipes.add(recipeRepository.findById(today.getNo9()));
+    	recipes.add(recipeRepository.findById(today.getNo10()));
+    	
+    	model.addAttribute("recipes", recipes);
+    	
     	return "index2";
-        /*if (category_name == null || category_name.isEmpty()) {
-            topLove = loveRepository.findByOrderByLoveId();
-        } else {
-            topLove = loveRepository.findByCategoryOrderByLoveId(category_name);
-        }*/
-    	/*
-        // Create a map to store recipe IDs and their corresponding like counts
-        Map<Long, Long> recipeLikeCounts = topLove.stream()
-        s        .collect(Collectors.groupingBy(
-                        love -> (long)love.getRecipe().getRecipe_id(),
-                        Collectors.counting()
-                ));
 
-        // Sort the map by value (like counts) in descending order
-        Map<Long, Long> sortedRecipeLikeCounts = recipeLikeCounts.entrySet()
-                .stream()
-                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
-                .collect(Collectors.toMap(
-                        Map.Entry::getKey,
-                        Map.Entry::getValue,
-                        (e1, e2) -> e1,
-                        LinkedHashMap::new
-                ));
-
-        Map<Long, Long> top10RecipeLikeCounts = sortedRecipeLikeCounts.entrySet().stream()
-                .limit(10)
-                .collect(Collectors.toMap(
-                        Map.Entry::getKey,
-                        Map.Entry::getValue,
-                        (e1, e2) -> e1,
-                        LinkedHashMap::new
-                ));
-
-        Map<Long, String> recipeTitles = top10RecipeLikeCounts.entrySet().stream()
-                .collect(Collectors.toMap(
-                        Map.Entry::getKey,
-                        entry -> recipeRepository.findTitleByRecipeId(entry.getKey())
-                ));
-        Map<Long, String> recipeImages = top10RecipeLikeCounts.entrySet().stream()
-                .collect(Collectors.toMap(
-                        Map.Entry::getKey,
-                        entry -> "img/" + recipeRepository.findMainPhotoByRecipeId(entry.getKey()) // Assuming image file names are based on recipe IDs
-                ));
-        
-        model.addAttribute("top10RecipeLikeCounts", top10RecipeLikeCounts);
-        model.addAttribute("recipeTitles", recipeTitles);
-        model.addAttribute("recipeImages", recipeImages);
-*/
-         // return the name of your HTML template
     }
 }

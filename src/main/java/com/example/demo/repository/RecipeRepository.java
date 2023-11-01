@@ -43,6 +43,8 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
 
 	Recipe findById(int recipe_id);
 	
+
+	
 	//List<Recipe> findByTitle(Stiring title);
 
 	@Transactional
@@ -143,6 +145,8 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
 	
 	void deleteByNickname(String nickname);
 	
+	@Query("SELECT MAX(r.id) FROM Recipe r")
+	int maxRecipeId();
 	
 	
 }

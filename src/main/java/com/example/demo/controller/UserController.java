@@ -20,12 +20,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.demo.entity.Board;
 import com.example.demo.entity.Love;
 import com.example.demo.entity.Recipe;
+import com.example.demo.entity.Today;
 import com.example.demo.entity.User;
 import com.example.demo.repository.BoardRepository;
 import com.example.demo.repository.CommentRepository;
 import com.example.demo.repository.LoveRepository;
 import com.example.demo.repository.RecipeRepository;
 import com.example.demo.repository.ScrapRepository;
+import com.example.demo.repository.TodayRepository;
 import com.example.demo.repository.UserRepository;
 
 import jakarta.mail.MessagingException;
@@ -50,6 +52,8 @@ public class UserController {
     //여기도 추가함!!!!!!!!!!!!!!!!!!!!!
     @Autowired
     private JavaMailSender javaMailSender;
+    @Autowired
+    private TodayRepository todayrepository;
     
     @GetMapping("/user")
     public String listUsers(Model model, HttpSession session, RedirectAttributes redirectAttributes) {
@@ -69,11 +73,7 @@ public class UserController {
         return "signup";
     }
     
-    @GetMapping("/1")
-    public String createUserForm1(Model model) {
-        model.addAttribute("user", new User());
-        return "index2";
-    }
+    
    
    
     @PostMapping("/signup")
@@ -86,8 +86,23 @@ public class UserController {
             user.setVerificationToken(verificationToken);
             String photo = "/img/기본유저1.jpg";
             user.setUserphotopath(photo);
+            user.setUsertotallikes(0);
+            Today today = new Today();
+            today.setUser(user);
+            today.setNo1(0);
+            today.setNo2(0);
+            today.setNo3(0);
+            today.setNo4(0);
+            today.setNo5(0);
+            today.setNo6(0);
+            today.setNo7(0);
+            today.setNo8(0);
+            today.setNo9(0);
+            today.setNo10(0);
+            
             userRepository.save(user);
-
+            todayrepository.save(today);
+            
             // 인증 링크 생성
             String verificationLink = "http://localhost:8080/verifyEmail/" + verificationToken;
 
