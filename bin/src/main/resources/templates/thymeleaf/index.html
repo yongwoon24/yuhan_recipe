@@ -4,47 +4,66 @@
 <meta content="text/html; charset=euc-kr">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>모두의레시피</title>
-<style type="text/css">	
-	
+<style type="text/css">
+
 </style>
 <script src="https://kit.fontawesome.com/2636adf573.js" crossorigin="anonymous"></script>
-<link rel="stylesheet" type="text/css" th:href="@{/../css/style.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/../css/style2.css}" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+<link href="file:///D|/prioject2/src/main/resources/static/css/style2.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <div class="body_wrapper">
 	<div class="body_content">
-		<div class="menubar"></div>
-		<span class="menu4"><a href="recipe">분류</a></span>
-		<span class="menu3"><a href="rank">랭크</a></span>
-		<span class="menu2"><a href="board">게시판</a></span>
-		<span class="menu1"><a href="rank">랭킹</a></span>
-		<span><a class="mainicon" href="/">모두의레시피</a></span>
-		<!-- 마이페이지 주소 입력 --> 
-		<div class="usericon"><a href="마이페이지.html"><i class="fa-solid fa-user"></i></a></div>
+	  <div class="menubar"></div>
+		<span class="menu4"><a href="/mypage">마이페이지</a></span>
+		<span class="menu3"><a href="/board">게시판</a></span>
+      <span class="menu2"><a href="/recipe">분류</a></span>
+      <span class="menu1"><a href="/rank">랭킹</a></span>
+      <span><a class="mainicon" href="/">모두의레시피</a></span>
+		<!-- 마이페이지 주소 입력 --><div class="alarm-icon"><a href="/alarm"><i class="fas fa-bell"></i></a></div>
+		<div class="write-icon"><a href="/createRecipe"><i class="fas fa-pencil-alt"></i></a></div>
+		<div class="usericon"><a href="/mypage"><i class="fa-solid fa-user"></i></a></div>
 		<!-- 로그아웃 주소 입력 --> 
 		<div class="logout_icon"><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></div>
+		
   		<div class="searchbar">	
 			<div class="searchradius">
-				<form action="" method=""> <!-- 검색창 주소 입력 --> 
-					<input type="text" class="search_txt">
+				<form action="/search" method="get"> <!-- 검색창 주소 입력 --> 
+					<input type="text" name="keyword" class="search_txt" required>
 					<button type="submit" class="search_btn">
 						<span class="searchicon">
 							<i class="fa-solid fa-magnifying-glass"></i>
 						</span>
 					</button>
-				</form>
-			</div>	
+			  </form>
+		  </div>	
 		</div>
+  		<div class="alarm-icon-jum"><span th:if="${session.alarm == 1}" style="font-size: 80px; color: red;">.</span></div>
+		
+		
+    	<div th:if="${session.loggedInNickname == '관리자'}" class="confirm_btn">
+        	<a href="/reviewRecipes">
+           	<button>레시피 검토</button>
+        	</a>
+    	</div>
+
+		<div th:if="${session.loggedInNickname == '관리자'}" class="user_btn">
+		    <a href="/user">
+       		<button>회원 관리</button>
+        	</a>
+    	</div>
+		
+		
 		<!-- 여기부터 body에 추가할 코드 입력 -->
 		<div class="slide_wrapper">
 			<ul class="img_slide">
 				<li th:each="recipe : ${topLove}">
-					<a href="recipe"><img th:src="@{/img/__${recipe.main_photo}__.jpg}"></a>
-					<a href="recipe"><ol th:text="${recipe.title}">asd</ol></a>
+					<a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}"><img th:src="@{${recipe.main_photo_path}}"></a>
+					<a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}"><ol th:text="${recipe.title}">asd</ol></a>
 					<ol class="likes">
     					<li>
 							<i class="fas fa-heart"></i>
@@ -75,5 +94,12 @@
 			<div class="footer_comment">@Yuhan University Group 3's Project</div>
 	</div>
 </div>
+
+ <script th:inline="javascript">
+        var sendMessage = /*[[${errorMessage}]]*/ "";
+        if (sendMessage) {
+            alert(sendMessage);
+        }
+    </script>
 </body>
 </html>

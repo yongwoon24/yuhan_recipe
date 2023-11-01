@@ -19,142 +19,126 @@
 <div class="body_wrapper">
    <div class="body_content">
       <div class="menubar"></div>
-      <span class="menu4"><a href="recipe">분류</a></span>
-      <span class="menu3"><a href="rank">랭크</a></span>
-      <span class="menu2"><a href="board">게시판</a></span>
-      <span class="menu1"><a href="rank">랭킹</a></span>
+      <span class="menu4"><a href="/mypage">마이페이지</a></span>
+      <span class="menu3"><a href="/board">게시판</a></span>
+      <span class="menu2"><a href="/recipe">분류</a></span>
+      <span class="menu1"><a href="/rank">랭킹</a></span>
       <span><a class="mainicon" href="/">모두의레시피</a></span>
       <!-- 마이페이지 주소 입력 --> 
-      <div class="usericon"><a href="마이페이지.html"><i class="fa-solid fa-user"></i></a></div>
+      <div class="alarm-icon"><a href="/alarm"><i class="fas fa-bell"></i></a><span th:if="${session.alarm == 1}" style="font-size: 80px; color: red;">.</span></div>
+      <div class="write-icon"><a href="/createRecipe"><i class="fas fa-pencil-alt"></i></a></div>
+      <div class="usericon"><a href="/mypage"><i class="fa-solid fa-user"></i></a></div>
       <!-- 로그아웃 주소 입력 --> 
       <div class="logout_icon"><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></div>
-        <div class="searchbar">   
-         <div class="searchradius">
-            <form action="" method=""> <!-- 검색창 주소 입력 --> 
-               <input type="text" class="search_txt">
-               <button type="submit" class="search_btn">
-                  <span class="searchicon">
-                     <i class="fa-solid fa-magnifying-glass"></i>
-                  </span>
-               </button>
-            </form>
-         </div>   
-      </div>
-      
+        <div class="searchbar">	
+			<div class="searchradius">
+				<form action="/search" method="get"> <!-- 검색창 주소 입력 --> 
+					<input type="text" name="keyword" class="search_txt" required>
+					<button type="submit" class="search_btn">
+						<span class="searchicon">
+							<i class="fa-solid fa-magnifying-glass"></i>
+						</span>
+					</button>
+				</form>
+			</div>	
+		</div>
+		
+		<div th:if="${session.loggedInNickname == '관리자'}" class="confirm_btn">
+        	<a href="/reviewRecipes">
+            	<button>레시피 검토</button>
+        	</a>
+    	</div>
+
+		<div th:if="${session.loggedInNickname == '관리자'}" class="user_btn">
+		    <a href="/user">
+        		<button>회원 관리</button>
+        	</a>
+    	</div>
+    	
+      	<!-- 검색 결과가 없을 때의 메시지를 추가 -->
+		<div class="search" th:if="${boardList.isEmpty()}">
+			<h2>검색 결과가 없습니다.</h2>
+			<div class="searchbar">
+			    <div class="searchradius">
+			        <form th:action="@{/board}" method="get" class="search-form">
+			            <div class="search-left">
+			                <label for="searchBy" class="search-label"></label>
+			                <select name="searchBy" id="searchBy" class="search-select">
+			                    <option value="title">제목</option>
+			                    <option value="nickname">작성자</option>
+			                </select>
+			            </div>
+			            <div class="search-right">
+			                <input type="text" th:value="${keyword}" name="keyword" class="search_txt" placeholder="검색어를 입력하세요" required>
+			                <button type="submit" class="search_btn">
+			                    <span class="searchicon">
+			                        <i class="fa-solid fa-magnifying-glass"></i>
+			                    </span>
+			                </button>
+			            </div>
+			        </form>
+			    </div>
+			</div>
+         <div class="button-container">
+         <a href="/createboard" class="button">글쓰기</a>
+         </div>
+         <div class="text-center">
+			<script th:src="@{/../js/rank.js}"></script>
+         </div>
+		</div>
+		
       <!-- 여기부터 body에 추가할 코드 입력 -->
 <!--<div class="content">-->
-   <div class="table-container">
+   <div class="table-container" th:if="${!boardList.isEmpty()}">
           <table class="table">
             <thead>
                <tr>
                     <th style="width: 50px;">번호</th>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
                   <th style="width: 300px;">제목</th>
                   <th style="width: 100px;">작성자</th>
                   <th style="width: 100px;">작성일</th>
-=======
-		            <th style="width: 300px;">제목</th>
-		            <th style="width: 100px;">작성자</th>
-		            <th style="width: 100px;">작성일</th>
->>>>>>> 48a1b7e7cdce8bc0fd9cb3c27b5ec6786e9f8be9
-=======
-=======
->>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
-		            <th style="width: 300px;">제목</th>
-		            <th style="width: 100px;">작성자</th>
-		            <th style="width: 100px;">작성일</th>
-=======
-                  <th style="width: 300px;">제목</th>
-                  <th style="width: 100px;">작성자</th>
-                  <th style="width: 100px;">작성일</th>
->>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
-<<<<<<< HEAD
->>>>>>> c966e8d82e00050f2714d5d828d13bec97f02bd9
-=======
-=======
-                  <th style="width: 300px;">제목</th>
-                  <th style="width: 100px;">작성자</th>
-                  <th style="width: 100px;">작성일</th>
->>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
->>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
                </tr>
             </thead>
             <tbody>
               <tr th:each="board : ${boardList}">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
-            	<td style=text-align:center; th:text="${board.post_id}"></td>
-            	<td th:text="${board.title}"></td>
-            	<td th:text="${board.user_id}"></td>
-            	<td style=text-align:center; >
-				    <p th:if="${#temporals.format(board.created_date, 'yyyy-MM-dd') == #temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}"
-				       th:text="${#temporals.format(board.created_date, 'HH:mm')}"></p>
-				    <p th:if="${#temporals.format(board.created_date, 'yyyy-MM-dd') != #temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}"
-				       th:text="${#temporals.format(board.created_date, 'MM-dd')}"></p>
-				</td>
-      		  </tr>
-=======
-<<<<<<< HEAD
->>>>>>> c966e8d82e00050f2714d5d828d13bec97f02bd9
-=======
-=======
->>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
->>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
-               <td style=text-align:center; th:text="${board.postId}"></td>
-               <td>
-                <a th:href="@{'/board/' + ${board.postId}}">
-                    <span th:text="${board.title}"></span>
-                </a>
-            </td>
-               <td style=text-align:center; th:text="${board.nickname}"></td>
-               <td style=text-align:center; >
-                <p th:if="${#temporals.format(board.created_date, 'yyyy-MM-dd') == #temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}"
-                   th:text="${#temporals.format(board.created_date, 'HH:mm')}"></p>
-                <p th:if="${#temporals.format(board.created_date, 'yyyy-MM-dd') != #temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}"
-                   th:text="${#temporals.format(board.created_date, 'MM-dd')}"></p>
-            </td>
+	               <td th:if="${board.nickname != '관리자'}" style=text-align:center; th:text="${board.postId}"></td>
+	               <td th:if="${board.nickname == '관리자'}" style="text-align: center; color: red; font-size:18px">공지</td>
+	               <td th:if="${board.nickname != '관리자'}">
+		                <a th:href="@{'/board/' + ${board.postId}}">
+		                    <span th:text="${board.title}"></span>
+		                </a>
+				   </td>
+				   <td th:if="${board.nickname == '관리자'}">
+		                <a th:href="@{'/board/' + ${board.postId}}">
+		                    <span th:text="${board.title}" style="color:red; font-size:18px"></span>
+		                </a>
+				   </td>
+              	   <td th:if="${board.nickname != '관리자'}" style=text-align:center;>
+		               <a th:href="@{'/userpage_R/' + ${board.nickname}}">
+		                   <span th:text="${board.nickname}"></span>
+		               </a>
+           		   </td>
+           		    <td th:if="${board.nickname == '관리자'}" style=text-align:center;>
+		                   <span th:text="${board.nickname}" style="color:red; font-size:18px"></span>
+		               </a>
+           		   </td>
+                   <td th:if="${board.nickname != '관리자'}" style=text-align:center; >
+		                <p th:if="${#temporals.format(board.created_date, 'yyyy-MM-dd') == #temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}"
+		                   th:text="${#temporals.format(board.created_date, 'HH:mm')}"></p>
+		                <p th:if="${#temporals.format(board.created_date, 'yyyy-MM-dd') != #temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}"
+		                   th:text="${#temporals.format(board.created_date, 'MM-dd')}"></p>
+		           </td>
+		            <td th:if="${board.nickname == '관리자'}" style=text-align:center; >
+		                <p th:if="${#temporals.format(board.created_date, 'yyyy-MM-dd') == #temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}"
+		                   th:text="${#temporals.format(board.created_date, 'HH:mm')}" style="color:red; font-size:18px"></p>
+		                <p th:if="${#temporals.format(board.created_date, 'yyyy-MM-dd') != #temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}"
+		                   th:text="${#temporals.format(board.created_date, 'MM-dd')}" style="color:red; font-size:18px"></p>
+		           </td>
               </tr>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-            	<td style=text-align:center; th:text="${board.post_id}"></td>
-            	<td th:text="${board.title}"></td>
-            	<td th:text="${board.user_id}"></td>
-            	<td style=text-align:center; >
-				    <p th:if="${#temporals.format(board.created_date, 'yyyy-MM-dd') == #temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}"
-				       th:text="${#temporals.format(board.created_date, 'HH:mm')}"></p>
-				    <p th:if="${#temporals.format(board.created_date, 'yyyy-MM-dd') != #temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}"
-				       th:text="${#temporals.format(board.created_date, 'MM-dd')}"></p>
-				</td>
-      		  </tr>
->>>>>>> 48a1b7e7cdce8bc0fd9cb3c27b5ec6786e9f8be9
-=======
->>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
->>>>>>> c966e8d82e00050f2714d5d828d13bec97f02bd9
-=======
->>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
-=======
->>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
->>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
                
             </tbody>    
          </table>
          <hr/>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
-<<<<<<< HEAD
->>>>>>> c966e8d82e00050f2714d5d828d13bec97f02bd9
-=======
->>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
->>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
 
 
 <div class="searchbar">
@@ -168,7 +152,7 @@
                 </select>
             </div>
             <div class="search-right">
-                <input type="text" name="keyword" class="search_txt" placeholder="검색어를 입력하세요">
+                <input type="text" th:value="${keyword}" name="keyword" class="search_txt" placeholder="검색어를 입력하세요" required>
                 <button type="submit" class="search_btn">
                     <span class="searchicon">
                         <i class="fa-solid fa-magnifying-glass"></i>
@@ -178,68 +162,19 @@
         </form>
     </div>
 </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 48a1b7e7cdce8bc0fd9cb3c27b5ec6786e9f8be9
-=======
->>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
->>>>>>> c966e8d82e00050f2714d5d828d13bec97f02bd9
-=======
->>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
-=======
->>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
->>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
          <div class="button-container">
          <a href="/createboard" class="button">글쓰기</a>
          </div>
          <div class="text-center">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
-            <ul class="pagination">
-               <li><a href = "">1</a></li>
-               <li><a href = "">2</a></li>
-               <li><a href = "">3</a></li>
-               <li><a href = "">4</a></li>
-            </ul>
-=======
-<<<<<<< HEAD
->>>>>>> c966e8d82e00050f2714d5d828d13bec97f02bd9
-=======
-=======
->>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
->>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
             <div class="pagination">
-    <a th:if="${currentPage > firstPage}" th:href="@{|/board?page=${currentPage - 1}|}">&laquo; 이전</a>
+    <a th:if="${currentPage > firstPage}" th:href="@{|/board?page=${currentPage - 1}&searchBy=${searchBy}&keyword=${keyword}|}">&laquo; 이전</a>
     <span th:each="pageNumber : ${#numbers.sequence(currentPage - 5, currentPage + 4)}" th:if="${pageNumber >= firstPage && pageNumber <= lastPage}">
-        <a th:href="@{|/board?page=${pageNumber}|}"
-           th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber + 1}"></a>
-    </span>
-    <a th:if="${currentPage < lastPage}" th:href="@{|/board?page=${currentPage + 1}|}">다음 &raquo;</a>
+	    <a th:href="@{|/board?page=${pageNumber}&searchBy=${searchBy}&keyword=${keyword == null ? '' : keyword}|}"
+	       th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber + 1}"></a>
+	</span>
+    <a th:if="${currentPage < lastPage}" th:href="@{|/board?page=${currentPage + 1}&searchBy=${searchBy}&keyword=${keyword == null ? '' : keyword}|}">&raquo; 다음</a>
 </div>
 <script th:src="@{/../js/rank.js}"></script>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-            <ul class="pagination">
-               <li><a href = "">1</a></li>
-               <li><a href = "">2</a></li>
-               <li><a href = "">3</a></li>
-               <li><a href = "">4</a></li>
-            </ul>
->>>>>>> 48a1b7e7cdce8bc0fd9cb3c27b5ec6786e9f8be9
-=======
->>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
->>>>>>> c966e8d82e00050f2714d5d828d13bec97f02bd9
-=======
->>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
-=======
->>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
->>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
          </div>
    </div>
    </div>
@@ -248,34 +183,13 @@
          <div class="footer_comment">@Yuhan University Group 3's Project</div>
    </div>
 </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
-<<<<<<< HEAD
->>>>>>> c966e8d82e00050f2714d5d828d13bec97f02bd9
-=======
->>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
->>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
 
-	<script th:inline="javascript">
-	        var boarddeleteMessage = /*[[${boarddeleteMessage}]]*/ "";
-	        if (boarddeleteMessage) {
-	            alert(boarddeleteMessage);
-	        }
+   <script th:inline="javascript">
+           var boarddeleteMessage = /*[[${boarddeleteMessage}]]*/ "";
+           if (boarddeleteMessage) {
+               alert(boarddeleteMessage);
+           }
     </script>
    
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 48a1b7e7cdce8bc0fd9cb3c27b5ec6786e9f8be9
-=======
->>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
->>>>>>> c966e8d82e00050f2714d5d828d13bec97f02bd9
-=======
->>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
-=======
->>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
->>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
 </body>
 </html>
