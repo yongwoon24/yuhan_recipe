@@ -51,6 +51,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 =======
@@ -59,6 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
 =======
 >>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
 >>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
+>>>>>>> 50c25ad0400af2c974ed8121e680ce92b5ed8d9c
 
 // 페이지 변수 가져오기
 var paginationDiv = document.getElementById(".pagination");
@@ -102,6 +105,8 @@ function generatePagination() {
 generatePagination();
 
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 >>>>>>> 48a1b7e7cdce8bc0fd9cb3c27b5ec6786e9f8be9
@@ -113,3 +118,4 @@ generatePagination();
 =======
 >>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
 >>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
+>>>>>>> 50c25ad0400af2c974ed8121e680ce92b5ed8d9c

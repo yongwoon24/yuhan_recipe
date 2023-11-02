@@ -3,8 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>로그인</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/../css/login.css}" />
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 </head>
 <body>
+<<<<<<< HEAD
+	<div class="body_wrapper">
+		<div class="mainicon_wrapper">
+			<a class="mainicon" href="/">모두의레시피</a>
+		</div>
+	    <div class="login_wrapper">
+			<div class="login_form">
+			    <form action="#" th:action="@{/login}" th:object="${user}" method="post">
+			        <label for="user_id">아이디</label><br>
+			        <input type="text" id="user_id" name="user_id" required autofocus><br>
+			        
+			        <label for="password">비밀번호</label><br>
+			        <input type="password" id="password" name="password" required><br>
+			        
+			        <button type="submit">로그인</button>
+			    </form>
+		    </div><hr>
+		    <table>
+				<tr>
+				     <td><p><a href="/findid">아이디 찾기&nbsp; / </a></p></td>
+				     <td><p><a href="/findps">&nbsp;비밀번호 찾기&nbsp; / </a></p></td>
+				     <td><p><a href="/signup">&nbsp;회원가입</a></p></td>
+			     </tr>
+		    </table>
+	    </div>
+    </div>
+=======
     <h2>모두의 레시피 로그인</h2>
     
     <form action="#" th:action="@{/login}" th:object="${user}" method="post">
@@ -58,6 +87,7 @@
 >>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
 >>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
     </table>
+>>>>>>> 50c25ad0400af2c974ed8121e680ce92b5ed8d9c
     
     <script th:inline="javascript">
         var successMessage = /*[[${successMessage}]]*/ "";
@@ -88,6 +118,9 @@
     </script>
 </body>
 <<<<<<< HEAD
+</html>
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 </html>
 =======
@@ -103,3 +136,4 @@
 </html>
 >>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
 >>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
+>>>>>>> 50c25ad0400af2c974ed8121e680ce92b5ed8d9c

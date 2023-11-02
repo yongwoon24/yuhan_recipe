@@ -1,0 +1,1049 @@
+.text-container {
+    display: flex;
+    flex-direction: column; /* 요소들을 세로로 배치 */
+    align-items: flex-start; /* 왼쪽 정렬로 변경 */
+}
+
+#textList {
+    list-style: none;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+#textList li {
+    background-color: #f0f0f0;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 5px;
+    font-size: 16px;
+}
+
+.delete-button {
+    cursor: pointer;
+    margin-left: 10px;
+    padding: 0 5px;
+    background-color: rgb(189, 196, 194);
+    color: white;
+    border: none;
+}
+
+.delete-button::after {
+    content: "   x";
+    color: red;
+}
+
+#textInput {
+    margin-right: 5px;
+    width:500px;
+    border-radius: 4px;
+    padding: 5px;
+    
+}
+
+#textInput:focus {
+    
+}
+
+a {
+	text-decoration: none;
+	color: rgba(0, 0, 0, 1);
+}
+
+.likes {
+	position: absolute;
+	float: right;
+	text-align: right;
+	color: rgb(255, 128, 255);
+	font-size: 20px;
+}
+
+/*li{
+   list-style: none;
+}
+
+li > img{
+   width: 400px;
+   height: 400px;
+}
+
+.li > a > img{
+	width: 400px;
+	height: 400px;
+}*/
+
+.slide_wrapper {
+	top: 250px;
+	position: relative;
+	margin: 0 auto;
+	height: 100%;
+	overflow: hidden;
+	align-items: center;
+
+
+}
+
+.img_slide {
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 500px;
+	transition: left 0.5s ease-out;
+	font-size: 30px;
+}
+
+.img_slide li {
+	float: left;
+	margin-right: 30px;
+}
+
+.img_slide ol {
+	max-width: 350px;
+}
+
+.slide_control {
+	position: absolute;
+	width: 100%;
+	top: 35%;
+	left: 2%;
+	text-align: center;
+
+}
+
+.slide_control span {
+	position: absolute;
+	background: none;
+	color: #000;
+	padding: 10px 20px;
+	margin: 0 10px;
+	top: -100%;
+	text-shadow: #000;
+	font-size: 40px;
+
+}
+
+.slide_control span.prev {
+	font-size: 50px;
+	right: calc(100% - 30px);
+	text-shadow: 1px 1px 0px #ffffff, 3px 3px 2px #663333;
+}
+
+.slide_control span.next {
+	font-size: 50px;
+	left: calc(100% - 140px);
+	text-shadow: 1px 1px 0px #ffffff, 3px 3px 2px #663333;
+}
+
+.body_wrapper {
+	background-color: rgba(255, 255, 255, 1);
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	font-family: 'Jua', sans-serif;
+}
+
+.menubar {
+	box-shadow: #949494 5px 5px 10px;
+	background-color: rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width: 100%;
+	height: 128px;
+	position: absolute;
+	left: 0px;
+	top: 115px;
+	display: flex;
+}
+
+.menu4 {
+	color: rgba(0, 0, 0, 1);
+	width: 200px;
+	height: 36px;
+	position: absolute;
+	left: 1334px;
+	top: 161px;
+	text-align: left;
+	font-size: 25px;
+	letter-spacing: 0;
+
+}
+
+.menu3 {
+	color: rgba(0, 0, 0, 1);
+	width: 70px;
+	height: 36px;
+	position: absolute;
+	left: 1178px;
+	top: 161px;
+
+	text-align: left;
+	font-size: 25px;
+	letter-spacing: 0;
+
+}
+
+.menu2 {
+	color: rgba(0, 0, 0, 1);
+	width: 70px;
+	height: 36px;
+	position: absolute;
+	left: 1022px;
+	top: 161px;
+
+	text-align: left;
+	font-size: 25px;
+	letter-spacing: 0;
+
+}
+
+.menu1 {
+	color: rgba(0, 0, 0, 1);
+	width: 70px;
+	height: 36px;
+	position: absolute;
+	left: 846px;
+	top: 161px;
+	text-align: left;
+	font-size: 25px;
+	letter-spacing: 0;
+}
+
+.mainicon {
+	color: rgba(23.58367010951042, 96.68749898672104, 11.683072540909052, 1);
+	width: 253px;
+	height: 100px;
+	position: absolute;
+	left: 5%;
+	top: 30px;
+
+	text-align: center;
+	font-size: 40px;
+	letter-spacing: 0;
+}
+
+.usericon {
+	color: rgba(0, 0, 0, 1);
+	width: 64px;
+	height: 55px;
+	position: absolute;
+	right: 6%;
+	top: 30px;
+	font-family: Font Awesome 5 Free;
+	text-align: center;
+	font-size: 40px;
+	letter-spacing: 0;
+}
+
+.logout_icon {
+	color: rgba(0, 0, 0, 1);
+	width: 64px;
+	height: 55px;
+	position: absolute;
+	right: 3%;
+	top: 30px;
+	font-family: Font Awesome 5 Free;
+	text-align: center;
+	font-size: 40px;
+	letter-spacing: 0;
+
+}
+
+.searchbar {
+	width: 740px;
+	height: 50px;
+	position: relative;
+	left: 50%;
+	top: 32px;
+	transform: translate(-50%, 0%);
+
+}
+
+.searchradius {
+	background-color: rgba(244.3749949336052, 244.3749949336052, 244.3749949336052, 1);
+	width: 740px;
+	height: 50px;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+	box-shadow: #949494 5px 5px 10px;
+}
+
+.searchicon {
+	color: rgba(153.00000607967377, 153.00000607967377, 153.00000607967377, 1);
+	width: 34px;
+	height: 19px;
+	position: absolute;
+	left: 685px;
+	top: 8px;
+	font-family: Font Awesome 5 Free;
+	text-align: center;
+	font-size: 30px;
+	letter-spacing: 0;
+}
+
+.search_txt {
+	position: relative;
+	top: 10px;
+	left: 5%;
+	width: 600px;
+	padding: 0;
+	background: transparent;
+	border: none;
+	outline: none;
+	float: left;
+	font-size: 1rem;
+	line-height: 30px;
+}
+
+.search_btn {
+	border: none;
+	background-color: rgba(244.3749949336052, 244.3749949336052, 244.3749949336052, 1);
+	;
+}
+
+.e2_14 {
+	opacity: 0.800000011920929;
+	width: 590px;
+	height: 0px;
+	position: absolute;
+	left: 56.5px;
+	top: 40px;
+}
+
+.footer {
+	background-color: rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width: 100%;
+	height: 150px;
+	position: relative;
+	left: 0;
+	bottom: 0;
+	transform: translateY(-100%);
+}
+
+.footer_comment {
+	text-align: center;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.body_content {
+	height: 9999px;
+	position: relative;
+	padding-bottom: 400px;
+
+}
+
+.check {
+	width: 100%;
+	height: 55px;
+	font-size: 15px;
+	letter-spacing: 0;
+	position: relative;
+	display: inline-block;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: 255px;
+}
+
+.checklist {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 10px;
+	/* Adjust the spacing between checkboxes as needed */
+	margin-bottom: 20px;
+}
+
+.btn1 {
+	width: 87%;
+	height: 30px;
+	position: relative;
+	display: inline-block;
+
+	text-align: right;
+	align-items: center;
+	/* 수직 가운데 정렬을 설정합니다 */
+}
+
+
+.body_wrapper2 {
+	background-color: rgba(255, 255, 255, 1);
+	width: 80%;
+	height: 95%;
+	top: 50%;
+	/* 수직 가운데 위치 */
+	left: 50%;
+	/* 수평 가운데 위치 */
+	transform: translate(-50%, -50%);
+	/* 가운데 정렬 */
+	position: absolute;
+	font-family: 'Jua', sans-serif;
+	/* 여기에 추가로 스타일을 적용해보세요 */
+}
+
+.body_wrapper4 {
+	background-color: rgba(255, 255, 255, 1);
+	width: 100%;
+	height: 100%;
+	top: 700px;
+	position: absolute;
+	font-family: 'Jua', sans-serif;
+}
+
+
+
+.classification_wrap {
+	width: 1325px;
+	height: 3000px;
+	border: 1px solid black;
+	margin: 0 auto;
+	overflow: hidden;
+	padding-top: 20px;
+	position: relative;
+	top: 300px;
+}
+
+.recipe_list {
+	float: left;
+	margin-left: 25px;
+	padding-bottom: 75px;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+
+
+.array_list {
+	position: relative;
+	top: 280px;
+	float: right;
+}
+
+.recipe-card {
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 그리드 칼럼의 간격을 조정합니다. */
+.recipe_list .col-md-4 {
+	margin-bottom: 20px;
+}
+
+/* 레시피 아이템에 박스 쉐도우 효과를 추가합니다. */
+.recipe_item {
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	padding: 10px;
+	background-color: #fff;
+}
+
+/* 레시피 아이템의 제목 스타일을 조정합니다. */
+.recipe_item h2 {
+	font-size: 1.25rem;
+	margin-top: 10px;
+}
+
+/* 레시피 아이템의 작성자, 좋아요, 조회수 스타일을 조정합니다. */
+.recipe_item p {
+	margin-bottom: 5px;
+}
+
+.img_slide1 {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	/* 4열 그리드, 1fr은 동일한 너비로 설정 */
+	/*justify-content: center; /* 가운데 정렬 */
+	gap: 20px;
+	/* 열 간격 */
+	max-width: 1800px;
+	margin: 0 auto;
+	/* 가운데 정렬 */
+	margin-top: 50px;
+}
+
+.img_slide1 li {
+	float: left;
+	margin-right: 30px;
+}
+
+.img_slide1 ol {
+	max-width: 350px;
+}
+
+.recipe-item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+}
+
+.recipe-item img {
+	width: 400px;
+	/* 이미지의 가로 너비를 일정한 크기로 설정 */
+	height: 400px;
+	/* 세로 높이를 자동으로 조절하여 비율 유지 */
+}
+
+.recipe-item span {
+	margin-top: 10px;
+	font-size: 20px;
+}
+
+.recipe-item .likes {
+	margin-top: 5px;
+	font-size: 20px;
+	color: rgb(255, 128, 255);
+}
+
+.recipe-container {
+	position: relative;
+}
+
+.ranking {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	background-color: rgba(255, 255, 255, 1);
+	border-radius: 30%;
+	width: 60px;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 20px;
+	font-weight: bold;
+	color: #333;
+	box-shadow: #949494 5px 5px 10px;
+}
+
+.ranking>span {
+	position: relative;
+	top: -2px;
+}
+
+.main_img {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 20px;
+	margin-bottom: 50px;
+}
+
+h1 {
+	font-size: 50px;
+	text-align: center;
+}
+
+h2 {
+	font-weight: lighter;
+	/* 얇게 설정 */
+	text-align: center;
+}
+
+.like_quer_zone {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 20px;
+}
+
+.createRecipe_zone_1 {
+	width: 80%;
+	height: 1000px;
+	background-color: #663333;
+	position: relative;
+	top: 550px;
+	/* 화면의 수직 중앙 위치에서부터 반 이동 */
+	left: 50%;
+	/* 화면의 수평 중앙 위치에서부터 반 이동 */
+	transform: translate(-50%, -50%);
+	/* 실제 요소를 정중앙으로 이동 */
+	display: flex;
+	justify-content: flex-start;
+	/* 왼쪽 정렬 */
+	align-items: center;
+	/* 수직 가운데 정렬 */
+
+}
+
+.createRecipe_zone_2 {
+	width: 60%;
+	height: 600px;
+	background-color: rgb(255, 255, 128);
+	position: absolute;
+	top: 32%;
+	/* 화면의 수직 중앙 위치에서부터 반 이동 */
+	left: 32%;
+	/* 화면의 수평 중앙 위치에서부터 반 이동 */
+	transform: translate(-50%, -50%);
+	/* 실제 요소를 정중앙으로 이동 */
+}
+
+.createRecipe_zone_3 {
+	width: 35%;
+	height: 600px;
+	background-color: rgb(128, 255, 128);
+	position: absolute;
+	top: 32%;
+	/* 화면의 수직 중앙 위치에서부터 반 이동 */
+	left: 81%;
+	/* 화면의 수평 중앙 위치에서부터 반 이동 */
+	transform: translate(-50%, -50%);
+	/* 실제 요소를 정중앙으로 이동 */
+}
+
+.createRecipe_category {
+	width: 96.5%;
+	height: 350px;
+	background-color: rgb(128, 255, 255);
+	position: absolute;
+	top: 82%;
+	/* 화면의 수직 중앙 위치에서부터 반 이동 */
+	left: 50.3%;
+	/* 화면의 수평 중앙 위치에서부터 반 이동 */
+	transform: translate(-50%, -50%);
+	/* 실제 요소를 정중앙으로 이동 */
+}
+
+.r10_2 {
+	overflow: hidden;
+}
+
+.e10_2 {
+	background-color: rgba(255, 255, 255, 1);
+	width: 1368px;
+	height: 790px;
+	position: absolute;
+}
+
+.e10_3 {
+	width: 885px;
+	height: 531px;
+	position: absolute;
+	left: 13px;
+	top: 23px;
+}
+
+.e10_7 {
+	color: rgba(0, 0, 0, 1);
+	width: 64px;
+	height: 71px;
+	position: absolute;
+	left: 29px;
+	top: 15px;
+	font-family: Inter;
+	text-align: left;
+	font-size: 12px;
+	letter-spacing: 0;
+}
+
+.e10_8 {
+	color: rgba(0, 0, 0, 1);
+	width: 64px;
+	height: 71px;
+	position: absolute;
+	left: 29px;
+	top: 110px;
+	font-family: Inter;
+	text-align: left;
+	font-size: 12px;
+	letter-spacing: 0;
+}
+
+.e10_8_1 {
+	color: rgba(0, 0, 0, 1);
+	width: 64px;
+	height: 71px;
+	position: absolute;
+	left: 29px;
+	top: 400px;
+	font-family: Inter;
+	text-align: left;
+	font-size: 12px;
+	letter-spacing: 0;
+}
+
+.e10_10 {
+	color: rgba(0, 0, 0, 1);
+	width: 729px;
+	height: 60px;
+	position: absolute;
+	left: 140px;
+	top: 18px;
+	font-family: Inter;
+	text-align: left;
+	font-size: 12px;
+	letter-spacing: 0;
+}
+
+.e10_11 {
+	color: rgba(0, 0, 0, 1);
+	width: 702px;
+	height: 368px;
+	position: absolute;
+	left: 141px;
+	top: 139px;
+	font-family: Inter;
+	text-align: left;
+	font-size: 12px;
+	letter-spacing: 0;
+}
+
+.e10_11_1 {
+	color: rgba(0, 0, 0, 1);
+	width: 1200px;
+	height: 368px;
+	position: absolute;
+	left: 141px;
+	top: 400px;
+	font-family: Inter;
+	text-align: left;
+	font-size: 12px;
+	letter-spacing: 0;
+}
+
+.e10_4 {
+	width: 456px;
+	height: 531px;
+	position: absolute;
+	left: 898px;
+	top: 23px;
+}
+
+.e10_15 {
+	color: rgba(0, 0, 0, 1);
+	width: 367px;
+	height: 257px;
+	position: absolute;
+	left: 51px;
+	top: 46px;
+	font-family: Inter;
+	text-align: left;
+	font-size: 12px;
+	letter-spacing: 0;
+}
+
+.e10_5 {
+	width: 1346px;
+	height: 204px;
+	position: absolute;
+	left: 13px;
+	top: 563px;
+}
+
+.e10_9 {
+	color: rgba(0, 0, 0, 1);
+	width: 64px;
+	height: 71px;
+	position: absolute;
+	left: 30px;
+	top: 66px;
+	font-family: Inter;
+	text-align: left;
+	font-size: 12px;
+	letter-spacing: 0;
+}
+
+.e10_13 {
+	color: rgba(0, 0, 0, 1);
+	width: 1155px;
+	height: 83px;
+	position: absolute;
+	left: 140px;
+	top: 56px;
+	font-family: Inter;
+	text-align: left;
+	font-size: 12px;
+	letter-spacing: 0;
+}
+
+textarea[name="title"] {
+	width: 740px;
+	/* 원하는 너비로 조정 */
+	height: 100px;
+	resize: none;
+}
+
+textarea[name="recipesubtxt"] {
+	width: 740px;
+	/* 원하는 너비로 조정 */
+	height: 400px;
+	/* 원하는 높이로 조정 */
+	resize: none;
+}
+
+textarea[name="recipetip"] {
+	width: 740px;
+	/* 원하는 너비로 조정 */
+	height: 200px;
+	/* 원하는 높이로 조정 */
+	resize: none;
+}
+
+select[name="categoryName"] {
+	width: 740px;
+	text-align: center;
+}
+
+button[name="uploadButton"] {
+
+	border: #ffffff;
+	background-color: #ffffff;
+	cursor: pointer;
+}
+
+button[name="uploadButton1"] {
+
+	border: #ffffff;
+	background-color: #ffffff;
+	cursor: pointer;
+}
+
+div[name="preview"] {
+	max-width: 400px;
+	max-height: 400px;
+}
+
+div[name="preview1"] {
+	max-width: 200px;
+	max-height: 200px;
+}
+
+
+button[id="addButton"] {
+	width: 150px;
+	height: 50px;
+	margin-bottom: 20px;
+}
+
+button[id="addButton1"] {
+	width: 150px;
+	height: 50px;
+	margin-bottom: 20px;
+}
+
+button[id="addButton2"] {
+	width: 150px;
+	height: 50px;
+	margin-bottom: 20px;
+}
+
+text[name='ingd'] {
+	width: 150px;
+	height: 50px;
+}
+
+.e10_2_1 {
+	background-color: rgba(255, 255, 255, 1);
+	width: 100%;
+	
+	position: absolute;
+	top: 800px;
+
+}
+
+.e10_2_2 {
+	background-color: rgba(255, 255, 255, 1);
+	width: 100%;
+	height: 1500px;
+	position: absolute;
+	top: 1200px;
+}
+
+.e10_2_3 {
+	background-color: rgba(255, 255, 255, 1);
+	width: 100%;
+	height: 1500px;
+	position: absolute;
+
+}
+
+.e12_5 {
+	color: rgba(0, 0, 0, 1);
+	width: 469px;
+	height: 35px;
+	position: absolute;
+	left: 43%;
+	
+	font-family: Inter;
+	text-align: center;
+	font-size: 12px;
+	letter-spacing: 0;
+	display: flex;
+}
+.e12_5_1 {
+	color: rgba(0, 0, 0, 1);
+	width: 469px;
+	height: 35px;
+	position: absolute;
+	left: 43%;
+	top: 30px;
+	font-family: Inter;
+	text-align: center;
+	font-size: 12px;
+	letter-spacing: 0;
+	display: flex;
+}
+
+
+#container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 50px;
+}
+
+#container1 {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 50px;
+}
+
+#container2 {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 50px;
+}
+
+.text-row {
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+.text {
+	width: 200px;
+	height: 50px;
+	padding: 5px;
+	border: 1px solid #ccc;
+	margin-right: 10px;
+}
+
+.text1 {
+	width: 200px;
+	height: 50px;
+	padding: 5px;
+	border: 1px solid #ccc;
+	margin-right: 4px;
+	margin-bottom: 10px;
+}
+
+.remove-button {
+	background-color: #ff0000;
+	color: #fff;
+	border: none;
+	padding: 5px 10px;
+	cursor: pointer;
+}
+
+.text2 {
+	width: 500px;
+	height: 200px;
+	border: 1px solid #ccc;
+	margin-right: 4px;
+	resize: none;
+}
+
+.write-icon {
+	color: rgba(0, 0, 0, 1);
+	width: 64px;
+	height: 55px;
+	position: absolute;
+	right: 9%;
+	top: 30px;
+	font-family: Font Awesome 5 Free;
+	text-align: center;
+	font-size: 40px;
+	letter-spacing: 0;
+
+}
+
+.text3 {
+	width: 470px;
+	height: 25px;
+	border: 1px solid #ccc;
+	margin-right: 4px;
+	margin-bottom: 10px;
+	resize: none;
+	left: 500px;
+}
+
+.text4 {
+	width: 470px;
+	height: 50px;
+	border: 1px solid #ccc;
+	margin-right: 4px;
+	margin-bottom: 10px;
+	resize: none;
+	left: 500px;
+}
+
+.carrot {
+	width: 25px;
+	height: 25px;
+	margin-top: 5px;
+	left: 500px;
+}
+
+.carrot1 {
+	width: 25px;
+	height: 25px;
+	margin-top: 5px;
+	left: 500px;
+	vertical-align: top;
+}
+
+.step {
+	font-size: 50px;
+	color: chartreuse;
+	vertical-align: top;
+}
+
+.textRow {
+	position: relative;
+	opacity: 1;
+	transition: opacity 0.3s ease;
+}
+
+.textRow1 {
+	position: relative;
+	opacity: 1;
+	transition: opacity 0.3s ease;
+}
+
+
+.remove-button1 {
+	background-color: #ff0000;
+	color: #fff;
+	border: none;
+	padding: 5px 10px;
+	cursor: pointer;
+}
+
+.Rsubmit {
+	position: absolute;
+	width: 150px;
+	height: 50px;
+	transform: translateX(-50%);
+	left: 900px;
+}
+
+.cn {
+	width: 745px;
+}

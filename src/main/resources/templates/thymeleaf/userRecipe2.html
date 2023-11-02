@@ -1,0 +1,292 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta content="text/html; charset=euc-kr">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>모두의레시피</title>
+	<style type="text/css">
+
+	</style>
+	<script src="https://kit.fontawesome.com/2636adf573.js" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" type="text/css" th:href="@{/../css/userRecipe2.css}" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+	<div class=e2_2>
+		<div class=e2_3>
+			<div class="e2_4">
+
+				<img src="../img/레시피.jpg" style="width: 100%; height: 100%;">
+				<div class="t"><span class="e2_26">모두의 레시피 </span><span class="e2_27">쉽고 간편하게 레시피를 공유해보세요</span>
+
+				</div>
+			</div>
+		</div>
+		<div class=e2_5><span class="e2_6"><a class="mainicon" href="/1">모두의 레시피</a></span>
+			<div class=e2_8><span class="e2_11"><a href="/recipe">분류</a></span><span class="e2_12"><a
+						href="/rank">랭킹</a></span><span class="e2_13"><a href="/board">게시판</a></span><span
+					class="e2_14"><a href="/mypage">마이페이지</a></span>
+				<div class="e2_22"><a href="/alarm" style="width:30px; height:30px;"><i th:if="${session.alarm != 1}" class="fas fa-bell"
+							style="width:30px; height:30px;"></i>
+							<i th:if="${session.alarm == 1}" class="fas fa-bell"
+							style="width:30px; height:30px; color: red;"></i></a></div>
+				<div class="e2_23"><a href="/createRecipe"><i class="fas fa-pencil-alt"></i></a></div>
+				<div class="e2_24"><a href="/logout"><i class="fas fa-sign-in-alt"></i></a></div>
+			</div>
+			<div class=e3_172>
+				<form action="/search" method="get"> <!-- 검색창 주소 입력 -->
+					<div class="e2_7"><input type="text" name="keyword" class="search_txt" required></div>
+					<div class="e3_171">
+						<button type="submit" class="search_btn">
+							<span class="searchicon">
+								<i class="fa-solid fa-magnifying-glass" style="max-width:25px; max-height:25px;"></i>
+							</span>
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class=e2_28>
+		<!--			여기에 내용을 입력하세요-->
+		<div class=e2_28_1>
+			<div>
+				<span class="e52_751" th:text="'작성일자 ' + ${#temporals.format(recipe.createddate, 'yyyy-MM-dd')}"></span>
+				<a th:if="${#strings.equals(recipe.nickname, session.loggedInNickname)}"
+					th:href="@{/editRecipe/{recipe_id}(recipe_id=${recipe.recipe_id})}"><span
+						class="e52_752">수정</span></a>
+				<a th:if="${#strings.equals(recipe.nickname, session.loggedInNickname) or session.loggedInNickname == '관리자'}"
+					th:href="@{/deleteRecipe/{recipe_id}(recipe_id=${recipe.recipe_id})}"><span
+						class="e52_753">삭제</span></a>
+				<div class=e52_755>
+					<div class="e52_754"><img th:src="@{${recipe.main_photo_path}}" width="100%" height="100%" style="border-radius: 10px;"></div>
+					<div class="e52_756"><a th:href="@{'/userpage_R/'+${recipe.nickname}}"><img th:src="@{${photo}}" class=e17_1217_1 width="100%" height="100%"
+							style="border-radius:500px;"></a></div>
+					<a th:href="@{'/userpage_R/'+${recipe.nickname}}"><span class="e52_757" th:text="${recipe.nickname}"></span></a>
+					<div class="e52_760"><span class="e52_761" th:text="'View '+${recipe.view_count+1}"></span></div>
+				</div><span class="e52_763" th:text="'카테고리 : '+${recipe.categoryName}"></span><span class="e52_759"
+					th:text="${recipe.recipesubtxt}"></span><span class="e52_758" th:text="${recipe.title}"></span>
+				<div class="e52_764"><img src="../img/좋아요.jpg" width="100%" height="100%"></div>
+				<div class="e52_765"><img src="../img/북마크2.png" width="100%" height="100%"></div>
+				<form id="loveform" th:action="@{/like}" method="post"><span class="e52_766"><input type="hidden" id="recipe_id" name="recipe_id"
+								th:value="@{{recipeId}(recipeId=${recipe.recipe_id})}"><input type="submit" th:onclick="'javascript:increaseLoves(\''+${recipe_id}+'\')'"
+								name="lovebtn" class="lbtn" value="좋아요"></span></form>
+				<form id="scapform" th:action="@{/scap}" method="post"><span class="e52_767"><input type="hidden" id="recipe_id" name="recipe_id"
+							th:value="@{{recipe_id}(recipe_id=${recipe.recipe_id})}">
+						<span class="e17_1226"><input type="hidden" id="recipe_id" name="recipe_id"
+								th:value="@{{recipe_id}(recipe_id=${recipe.recipe_id})}"><input type="submit"
+								name="scapbtn" class="lbtn" value="스크랩"></span></span></form>
+			</div>
+			<div class=e52_783><span class="e52_784">tag</span><span class="e52_785">태그</span></div>
+			<div class=e52_783_1>
+				<span class="e52_787" th:each="tag : ${tagss}"><a th:href="@{|/search?keyword=${tag.content}|}"
+						th:text="'#'+${tag.content}" class="ac"></a></span>
+			</div>
+			<br>
+			<div class=e52_771>
+
+				<span class="e52_770">ingredient</span>
+				<span class="e52_768">재료</span><br><br>
+				<div class="item">
+					<div class="e52_772">
+						<div class="e52_787" th:each="ingredient : ${recipeings}">
+							<span th:text="${ingredient.ingredient.ingredient_name}"></span>
+							<span th:text="${ingredient.mensuration}"></span><span>&nbsp;&nbsp;&nbsp;</span>
+							<span class="ingsch"><a th:href="@{|/search?keyword=${ingredient.ingredient.ingredient_name}|}" class="ac2"><i class="fa-solid fa-magnifying-glass" style="max-width:20px; max-height:20px;"></i></a></span>
+							<hr>
+						</div>
+					</div>
+				</div>
+				<span class="e52_773">step</span><span class="e52_774">조리단계</span><br><br>
+				<div class="step_grid">
+					<div class="item2" th:each="steps, status : ${steps}">
+
+						<div class=e52_775>
+							<div class="e52_776">
+								<h3 th:text="${status.index + 1}" class="carrot1"></h3>
+							</div>
+							<div class="e52_777">
+								<h3 th:text="${steps.SContent}" class="Scontent"></h3>
+							</div>
+							<div class="e52_782"><img th:if="${(steps.Sphotopath != null)}"
+									th:src="@{${steps.Sphotopath}}" width="100%" height="100%"><br>
+								<img th:if="${(steps.Sphotopath == null)}" src="/img/흰색.png" width="100%"
+									height="100%"><br>
+							</div>
+							<div class="e52_778" th:if="${(steps.Singtxt != '')}"><span
+									th:text="${steps.Singtxt}"></span></div>
+							<div class="e56_227" th:if="${(steps.Singtxt != '')}"><img src="../img/carrot.png"
+									width="100%" height="100%"></div>
+							<div class="e56_228" th:if="${(steps.Stooltxt != '')}"><img src="../img/냄비.png" width="100%"
+									height="100%"></div>
+							<div class="e56_229" th:if="${(steps.Scontroltxt != '')}"><img src="../img/불.png"
+									width="100%" height="100%"></div>
+							<div class="e56_230" th:if="${(steps.Stip != '')}"><img src="../img/전구.png" width="100%"
+									height="100%"></div>
+							<div class="e52_779" th:if="${(steps.Stooltxt != '')}"><span
+									th:text="${steps.Stooltxt}"></span></div>
+							<div class="e52_780" th:if="${(steps.Scontroltxt != '')}"><span
+									th:text="${steps.Scontroltxt}"></span></div>
+							<div class="e52_781" th:if="${(steps.Stip != '')}"><span th:text="${steps.Stip}"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<span class="e52_791">user
+					information</span><span class="e52_792">작성자 정보</span><br><br>
+
+				<div class="item3">
+					<div class=e52_793>
+						<div class="e52_794">
+							<a th:href="@{'/userpage_R/'+${recipe.nickname}}">
+							<img th:src="@{${photo}}" class=e17_1217_1 width="100%" height="100%" style="border-radius:20px;"></a>
+							</div>
+							<a th:href="@{'/userpage_R/'+${recipe.nickname}}">
+							<span class="e52_796" th:text="${recipe.nickname}"></span></a>
+							<span class="e52_797" th:text="${recipe.user.userpr}"></span>
+					</div>
+				</div>
+				<span class="e53_804">댓글</span><span class="e53_803">comment</span><br><br>
+
+				<div class=e53_806>
+					<form th:action="@{/addRecipeComment}" method="post">
+						<div class="e53_807"><input type="hidden" th:name="recipe_id" th:value="${recipe.recipe_id}" />
+							<textarea class="content" name="content" placeholder="댓글 내용" styler="width:100%; height:100%;"></textarea>
+						</div>
+						<div class="e53_808"><button class="btn_comment_submit" type="submit" spellcheck="false">댓글
+								작성</button></div>
+					</form>
+					<div class=e53_809>
+						<div class=e53_810  th:each="comment : ${comment}">
+							<span class="e53_811" th:text="${comment.content}"></span>
+							<span class="e53_813" th:text="${#temporals.format(comment.created_date, 'yyyy-MM-dd HH:mm')}"></span>
+							<span class="e53_812" th:text="${comment.user.nickname}"></span>
+							<div class="e53_815">
+								<button th:onclick="|if(confirm('정말로 삭제하시겠습니까?')) location.href='@{/deleterecipecomment/{commentId}/{recipe_id}(commentId=${comment.commentId}, 
+								recipe_id=${comment.recipe.recipe_id})}'|" class="button-style">삭제</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+			<!--		여기까지입니다-->
+		</div>
+
+	</div>
+	<div class=e3_173><span class="e3_175">2023 yuhan University</span></div>
+	</div>
+	<script th:inline="javascript">
+		var sendMessage = /*[[${errorMessage}]]*/ "";
+		if (sendMessage) {
+			alert(sendMessage);
+		}
+	</script>
+
+	<script>
+		var ingredientNames = [];
+
+		function init() {
+			var tags = document.getElementById("t1").value;
+			if (tags !== "") {
+				ingredientNames.push(tags);
+				createButton(tags);
+				document.getElementById("t1").value = "";
+			}
+		}
+
+		function createButton(ingredientName) {
+			var btns = document.createElement("input");
+			btns.type = "button";
+			btns.name = "ingredientName";
+			btns.value = ingredientName + "    X";
+			btns.id = ingredientName;
+			btns.style.cursor = "hand";
+			btns.style.width = "auto";
+			btns.style.marginRight = "5px";
+			btns.onclick = function () {hideInfo(this)};
+			//alert(ingredientNames);
+
+			var hidns = document.createElement("input");
+			hidns.type = "hidden";
+			hidns.name = "ingredientName";
+			hidns.value = ingredientName;
+			hidns.id = ingredientName;
+
+			var clas = document.getElementById("ing_res");
+			clas.appendChild(btns);
+			clas.appendChild(hidns);
+		}
+
+		function hideInfo(e) {
+			var clas1 = document.getElementById("ing_res");
+			//alert("삭제됨");
+			var i = 0;
+			for (i = 0; i < ingredientNames.length - 1; i++) {
+				if (ingredientNames[i] == e.id) {
+					break;
+				}
+			}
+			ingredientNames.splice(i, 1);
+			e.remove();
+			//alert(ingredientNames);
+
+			// 삭제한 재료에 대한 hidden input도 함께 삭제
+			var hiddenInput = document.getElementById(e.id);
+			if (hiddenInput) {
+				hiddenInput.remove();
+			}
+		}
+
+		function submitForm() {
+			var form = document.createElement("form");
+			form.action = "/recipe"; // 서버 컨트롤러 주소
+			form.method = "GET"; // HTTP 메서드 (GET 또는 POST)
+			form.name = "submitForm";
+
+			// 카테고리 체크박스 값을 폼에 추가
+			var selectedCategories = document.querySelectorAll('input[name="categoryName"]:checked');
+			for (var i = 0; i < selectedCategories.length; i++) {
+				var input = document.createElement("input");
+				input.type = "hidden";
+				input.name = "categoryName";
+				input.value = selectedCategories[i].value;
+				form.appendChild(input);
+			}
+
+			// 재료 이름들을 폼에 추가
+			for (var i = 0; i < ingredientNames.length; i++) {
+				var input = document.createElement("input");
+				input.type = "hidden";
+				input.name = "ingredientNames";
+				input.value = ingredientNames[i];
+				form.appendChild(input);
+			}
+
+			// 폼을 body에 추가하고 전송
+			document.body.appendChild(form);
+			form.submit();
+		}
+
+
+
+	</script>
+
+	<script th:inline="javascript">
+		var successMessage = /*[[${asd}]]*/ "";
+		if (successMessage) {
+			alert(successMessage);
+		}
+	</script>
+
+</body>
+
+</html>

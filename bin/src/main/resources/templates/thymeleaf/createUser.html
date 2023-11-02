@@ -10,19 +10,11 @@
     <form th:action="@{/createUser}" th:object="${user}" method="post">
         <label>User ID: <input type="text" th:field="*{user_id}" /></label><br/>
         <label>Name: <input type="text" th:field="*{name}" /></label><br/>
-<<<<<<< HEAD
-        <label>Email: <input type="text" th:field="*{email}" /></label><br/>
-=======
         <label>Email: <input type="email" th:field="*{email}" /></label><br/>
->>>>>>> a81dc367ec064973a149017e6309ee0077be3a5d
         <label>Password: <input type="password" th:field="*{password}" /></label><br/>
         <label>Birthdate: <input type="date" th:field="*{birthdate}" /></label><br/>
         <label>Phone Number: <input type="text" th:field="*{phone_number}" /></label><br/>
         <input type="submit" value="Create" />
     </form>
 </body>
-<<<<<<< HEAD
 </html>
-=======
-</html>
->>>>>>> a81dc367ec064973a149017e6309ee0077be3a5d

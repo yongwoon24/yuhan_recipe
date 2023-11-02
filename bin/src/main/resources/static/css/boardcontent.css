@@ -1,0 +1,112 @@
+ 
+.contents{
+	   margin-top: 300px;
+	   text-align: center;
+	   font-size: 20px;
+   }
+   .button-style {
+	   		  position: relative;
+			  right: 320%;
+	   		  font-family: 'Jua', sans-serif;
+		      display: inline-block;
+			  padding: 10px 20px;
+			  background-color: #f0f0f0;
+			  border: 1px solid #ccc;
+			  color: #333;
+			  text-decoration: none;
+			  font-weight: bold;
+			  border-radius: 4px;
+			  text-align: center;
+			  cursor: pointer;
+			  transition: background-color 0.3s, color 0.3s;
+		}
+		.button-style:hover {
+		     background-color: #333;
+  			 color: #fff;
+		}
+	h1 {
+		margin-bottom: 40px;
+	}
+	hr {
+		width: 65%;
+	}
+	.write_date {
+		font-family: 'Gowun Batang', serif;
+	    font-family: 'Noto Sans KR', sans-serif;
+		margin-left: 35%;
+		font-size: 18px;
+		color: grey;
+	}
+	.writer {	
+		font-family: 'Gowun Batang', serif;
+	    font-family: 'Noto Sans KR', sans-serif;	
+		font-size: 18px;
+		margin-left: -43%;
+		font-size: 25px;
+		margin-top: 100px;
+		margin-bottom: 1px;
+		position: relative;
+		bottom: -25px;
+	}
+	
+	.content {
+		word-wrap:break-word;/*영문,숫자 줄바꿈*/
+		word-break:break-all;
+		white-space: pre-wrap;/*엔터저장+자동줄바꿈*/
+		text-align: left;
+		margin-bottom: 60px;
+		margin-top: 20px;
+		margin-left: 25%;
+		width: 50%;
+		font-family: 'Gowun Batang', serif;
+	    font-family: 'Noto Sans KR', sans-serif;
+	}
+	.button {
+		position: relative;
+		left: 25%;
+	}
+	h2 {
+		position: relative;
+		right: 23%;
+	}
+	textarea {
+		border-radius:5px;
+		border-width: medium;
+		font-family: 'Gowun Batang', serif;
+		font-family: 'Noto Sans KR', sans-serif;
+		wrap: hard;
+		font-size: 15px;
+		width:50%; 
+		height:80px; 
+		resize: none;
+	}
+	p {
+		position: relative;
+		right: -25%;
+		text-align: left;
+	}
+	.write_date {
+		font-size: 15px;
+		display: block;
+	}
+	.comment_content {
+		display:block;
+	}
+	.btn_comment_submit {
+	   	font-family: 'Jua', sans-serif;
+		display: inline-block;
+		padding: 10px 20px;
+		background-color: #f0f0f0;
+		border: 1px solid #ccc;
+		color: #333;
+		text-decoration: none;
+		font-weight: bold;
+		border-radius: 4px;
+		text-align: center;
+		cursor: pointer;
+		transition: background-color 0.3s, color 0.3s
+	}
+	.btn_comment_submit:hover {
+		background-color: #333;
+  		color: #fff;
+	}
