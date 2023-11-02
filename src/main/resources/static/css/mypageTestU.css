@@ -509,10 +509,6 @@ a.active {
   color: rgb(255, 255, 255);
 }
 
- .menu-link1.current {
-  background-color: #FFD700; /* 또는 다른 원하는 색상 */
-  color: #000; /* 또는 다른 원하는 색상 */
-}
 .e3_98 { 
 	color:rgba(0, 0, 0, 1);
 	width:120px;
@@ -536,10 +532,6 @@ a.active {
   color: rgb(255, 255, 255);
 }
 
-.menu-link2.current {
-  background-color: #FFD700; /* 또는 다른 원하는 색상 */
-  color: #000; /* 또는 다른 원하는 색상 */
-}
 .e3_99 { 
 	color:rgba(0, 0, 0, 1);
 	width:120px;
@@ -562,10 +554,6 @@ a.active {
 	 background-color: rgb(0, 0, 0); /* 또는 다른 원하는 색상 */
   color: rgb(255, 255, 255);
 }
-.menu-link3.current {
-  background-color: #FFD700; /* 또는 다른 원하는 색상 */
-  color: #000; /* 또는 다른 원하는 색상 */
-}
 .e3_100 { 
 	color:rgba(0, 0, 0, 1);
 	height:23px;
@@ -587,10 +575,6 @@ a.active {
 	text-decoration: none;
 }
 
-.menu-link4.current {
-  background-color: #FFD700; /* 또는 다른 원하는 색상 */
-  color: #000; /* 또는 다른 원하는 색상 */
-}
 .e3_101 { 
 	color:rgba(0, 0, 0, 1);
 	width:130px;
@@ -612,10 +596,7 @@ a.active {
 	 background-color: rgb(0, 0, 0); /* 또는 다른 원하는 색상 */
   color: rgb(255, 255, 255);
 }
-.menu-link5.current {
-  background-color: #FFD700; /* 또는 다른 원하는 색상 */
-  color: #000; /* 또는 다른 원하는 색상 */
-}
+
 .e3_102 { 
 	color:rgba(0, 0, 0, 1);
 	width:130px;
