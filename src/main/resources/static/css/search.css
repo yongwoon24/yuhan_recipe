@@ -1729,7 +1729,7 @@
 	height: 200px;
 	position: absolute;
 	left: 0px;
-	top: 150px;
+	top: 200px;
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	/* 5개의 열을 동일한 너비로 만듭니다. */
@@ -1748,10 +1748,10 @@
 
 .e56_25 {
 	width: 310px;
-	height: 160px;
+	height: 200px;
 	position: absolute;
 	left: 10px;
-	top: 16px;
+	top: -25px;
 	
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -1778,7 +1778,7 @@
 	height: 24px;
 	position: absolute;
 	left: 14px;
-	top: 250px;
+	top: 217px;
 }
 
 .e56_28 {
@@ -1787,7 +1787,7 @@
 	height: 18px;
 	position: absolute;
 	left: 45px;
-	top: 253px;
+	top: 220px;
 	font-family: Alumni Sans Collegiate One;
 	text-align: left;
 	font-size: 15px;
@@ -1799,8 +1799,8 @@
 	width: 27px;
 	height: 26px;
 	position: absolute;
-	left: 105px;
-	top: 249px;
+	left: 140px;
+	top: 217px;
 }
 
 .e56_35 {
@@ -1808,8 +1808,8 @@
 	width: 27px;
 	height: 17px;
 	position: absolute;
-	left: 135px;
-	top: 253px;
+	left: 170px;
+	top: 220px;
 	font-family: Almarai;
 	text-align: left;
 	font-size: 15px;
@@ -1821,8 +1821,8 @@
 	width: 27px;
 	height: 26px;
 	position: absolute;
-	left: 180px;
-	top: 249px;
+	left: 260px;
+	top: 217px;
 }
 
 .e56_37 {
@@ -1830,8 +1830,8 @@
 	width: 27px;
 	height: 17px;
 	position: absolute;
-	left: 210px;
-	top: 253px;
+	left: 290px;
+	top: 220px;
 	font-family: Almarai;
 	text-align: left;
 	font-size: 15px;
