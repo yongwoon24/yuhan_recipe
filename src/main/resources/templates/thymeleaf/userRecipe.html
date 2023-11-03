@@ -159,7 +159,6 @@
 					<div class="total-location">
 						태그
 						<div class="step_item2" th:if="${(tagss != null) && (!tagss.isEmpty())}">
-					
 						<div class="tag-container">
 							<span class="tag" th:each="tag : ${tagss}">
 								<a th:href="@{|/search?keyword=${tag.content}|}" th:text="'#'+${tag.content}"></a>

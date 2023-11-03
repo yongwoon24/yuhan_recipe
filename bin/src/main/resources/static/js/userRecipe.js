@@ -15,3 +15,4 @@ function increaseLikeCount() {
         console.log("서버 응답:", data);
     });
 }
+

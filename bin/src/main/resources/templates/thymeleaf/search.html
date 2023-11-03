@@ -1,0 +1,228 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta content="text/html" charset="utf-8">
+	<title>모두의레시피</title>
+	<style type="text/css">
+	</style>
+	<script src="https://kit.fontawesome.com/2636adf573.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" th:href="@{/../css/recipeList.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/../css/style.css}" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	<div class="body_wrapper">
+		<div class="body_content">
+			<div class="menubar"></div>
+			<span class="menu4"><a href="/mypage">마이페이지</a></span>
+			<span class="menu3"><a href="/recipe">분류</a></span>
+			<span class="menu2"><a href="/board">게시판</a></span>
+			<span class="menu1"><a href="/rank">랭킹</a></span>
+			<span><a class="mainicon" href="/">모두의레시피</a></span>
+
+			<!-- 마이페이지 주소 입력 -->
+			<div class="alarm-icon"><a href="/alarm"><i class="fas fa-bell"></i></a><span th:if="${session.alarm == 1}"
+					style="font-size: 80px; color: red;">.</span></div>
+			<div class="write-icon"><a href="/createRecipe"><i class="fas fa-pencil-alt"></i></a></div>
+			<div class="usericon"><a href="/mypage"><i class="fa-solid fa-user"></i></a></div>
+			<!-- 로그아웃 주소 입력 -->
+			<div class="logout_icon"><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></div>
+
+			<div class="searchbar">
+				<div class="searchradius">
+					<form action="/search" method="get"> <!-- 검색창 주소 입력 -->
+						<input type="text" th:value="${keyword}" name="keyword" class="search_txt" required>
+						<button type="submit" class="search_btn">
+							<span class="searchicon">
+								<i class="fa-solid fa-magnifying-glass"></i>
+							</span>
+						</button>
+					</form>
+				</div>
+			</div>
+
+			<div th:if="${session.loggedInNickname == '관리자'}" class="confirm_btn">
+				<a href="/reviewRecipes">
+					<button>레시피 검토</button>
+				</a>
+			</div>
+
+			<div th:if="${session.loggedInNickname == '관리자'}" class="user_btn">
+				<a href="/user">
+					<button>회원 관리</button>
+				</a>
+			</div>
+
+			<!-- 여기부터 body에 추가할 코드 입력 -->
+
+			<div class="slide_wrapper">
+
+				<div class="btn1" th:if="${not recipes.isEmpty()}">
+					<p>
+
+						<a th:href="@{|/search?sort=latest&keyword=${keyword}|}">최신순</a>
+
+
+
+						<a th:href="@{|/search?sort=views&keyword=${keyword}|}">조회순</a>
+					</p>
+				</div>
+
+				<!-- 검색 결과가 없을 때의 메시지를 추가 -->
+				<div th:if="${recipes.isEmpty()}">
+					<h2>검색 결과가 없습니다.</h2>
+				</div>
+
+				<!-- 검색 결과가 있는 경우 레시피를 표시 -->
+				<ul class="img_slide1" th:if="${not recipes.isEmpty()}">
+					<li class="recipe-item" th:each="recipe, recipeIndex : ${recipes}">
+						<div class="recipe-container">
+							<a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}">
+								<img th:src="@{${recipe.main_photo_path}}" width="300px" height="300px"><br>
+								<h2 th:text="'제목  :  '+${recipe.title}"></h2>
+								<p th:text="'작성자  :  '+${recipe.nickname}"></p>
+								<p th:text="'좋아요  :  '+${recipe.totalLove}"></p>
+								<p th:text="'조회  :  '+${recipe.view_count}"></p>
+							</a>
+						</div>
+					</li>
+
+				</ul>
+				<!-- 페이지네이션을 추가한 부분 -->
+
+				<div class="pagination">
+
+					<a th:if="${hasPreviousPage && (sort == null) && (!recipes.isEmpty())}"
+						th:href="@{|/search?page=${currentPage - 1}&keyword=${keyword}|}">
+						&laquo; 이전
+					</a>
+					<a th:if="${hasPreviousPage && (sort != null) && (!recipes.isEmpty())}"
+						th:href="@{|/search?page=${currentPage - 1}&amp;sort=${sort}&keyword=${keyword}|}">
+						&laquo; 이전
+					</a>
+					<span th:each="pageNumber : ${#numbers.sequence(1, totalPages)}">
+						<a th:if="${(sort == null) && (!recipes.isEmpty())}"
+							th:href="@{|/search?page=${pageNumber}&keyword=${keyword}|}"
+							th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber}"></a>
+
+
+						<a th:if="${(sort != null) && (!recipes.isEmpty())}"
+							th:href="@{|/search?page=${pageNumber}&amp;sort=${sort}&keyword=${keyword}|}"
+							th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber}"></a>
+					</span>
+					<a th:if="${hasNextPage && (sort == null) && (!recipes.isEmpty())}"
+						th:href="@{|/search?page=${currentPage + 1}&keyword=${keyword}|}">
+						다음 &raquo;
+					</a>
+
+
+					<a th:if="${hasNextPage && (sort != null) && (!recipes.isEmpty())}"
+						th:href="@{|/search?page=${currentPage + 1}&amp;sort=${sort}&keyword=${keyword}|}">
+						다음 &raquo;
+					</a>
+				</div>
+
+
+			</div>
+
+
+			<script th:src="@{/../js/main.js}"></script>
+
+		</div>
+		<div class="footer">
+			<div class="footer_comment">@Yuhan University Group 3's Project</div>
+		</div>
+		<script>
+			var ingredientNames = [];
+
+			function init() {
+				var tags = document.getElementById("t1").value;
+				if (tags !== "") {
+					ingredientNames.push(tags);
+					createButton(tags);
+					document.getElementById("t1").value = "";
+				}
+			}
+
+			function createButton(ingredientName) {
+				var btns = document.createElement("input");
+				btns.type = "button";
+				btns.name = "ingredientName";
+				btns.value = ingredientName + "    X";
+				btns.id = ingredientName;
+				btns.style.cursor = "hand";
+				btns.style.width = "auto";
+				btns.style.marginRight = "5px";
+				btns.onclick = function () {hideInfo(this)};
+				alert(ingredientNames);
+
+				var hidns = document.createElement("input");
+				hidns.type = "hidden";
+				hidns.name = "ingredientName";
+				hidns.value = ingredientName;
+				hidns.id = ingredientName;
+
+				var clas = document.getElementById("body_wrapper4");
+				clas.appendChild(btns);
+				clas.appendChild(hidns);
+			}
+
+			function hideInfo(e) {
+				var clas1 = document.getElementById("body_wrapper4");
+				alert("삭제됨");
+				var i = 0;
+				for (i = 0; i < ingredientNames.length - 1; i++) {
+					if (ingredientNames[i] == e.id) {
+						break;
+					}
+				}
+				ingredientNames.splice(i, 1);
+				e.remove();
+				alert(ingredientNames);
+
+				// 삭제한 재료에 대한 hidden input도 함께 삭제
+				var hiddenInput = document.getElementById(e.id);
+				if (hiddenInput) {
+					hiddenInput.remove();
+				}
+			}
+
+			function submitForm() {
+				var form = document.createElement("form");
+				form.action = "/recipe"; // 서버 컨트롤러 주소
+				form.method = "GET"; // HTTP 메서드 (GET 또는 POST)
+				form.name = "submitForm";
+
+				// 카테고리 체크박스 값을 폼에 추가
+				var selectedCategories = document.querySelectorAll('input[name="categoryName"]:checked');
+				for (var i = 0; i < selectedCategories.length; i++) {
+					var input = document.createElement("input");
+					input.type = "hidden";
+					input.name = "categoryName";
+					input.value = selectedCategories[i].value;
+					form.appendChild(input);
+				}
+
+				// 재료 이름들을 폼에 추가
+				for (var i = 0; i < ingredientNames.length; i++) {
+					var input = document.createElement("input");
+					input.type = "hidden";
+					input.name = "ingredientNames";
+					input.value = ingredientNames[i];
+					form.appendChild(input);
+				}
+
+				// 폼을 body에 추가하고 전송
+				document.body.appendChild(form);
+				form.submit();
+			}
+
+		</script>
+
+</body>
+
+</html>

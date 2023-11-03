@@ -1,7 +1,9 @@
 package com.example.demo.repository;
 
+import java.awt.print.Pageable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,5 +55,8 @@ public interface LoveRepository extends JpaRepository<Love, Long>{
     //Optional<Love> findByRecipeAndUser(Recipe recipe, User user);
     
     void deleteByUser(User user);
+    
+    @Query("SELECT ua.recipe FROM Love ua WHERE ua.user = :user AND ua.activity = '조회' ORDER BY ua.date DESC")
+    List<Recipe> findUserActivitiesWithdesc(User user);
     
 }

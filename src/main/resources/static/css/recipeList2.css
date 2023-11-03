@@ -1,0 +1,1500 @@
+.e56_22 {
+
+	width: 80%;
+	height: 1770px;
+	position: absolute;
+	left: 10%;
+	margin-top: 30px;
+}
+
+.e56_23 {
+	width: 100%;
+	height: 270px;
+	position: absolute;
+	left: 0px;
+	top: 234px;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	/* 5개의 열을 동일한 너비로 만듭니다. */
+	grid-template-rows: repeat(5, 1fr); /* 4행 그리드 */
+	gap: 10px;
+	/* 열 사이의 간격을 설정합니다. */
+}
+
+.e56_24 {
+	width: 320px;
+	height: 300px;
+	position: relative;
+	grid-row: span 1; /* 그리드 아이템의 높이를 2개의 그리드 행에 걸쳐 확장 */
+
+}
+
+.e56_25 {
+	width: 310px;
+	height: 160px;
+	position: absolute;
+	left: 10px;
+	top: 16px;
+	
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.e56_26 {
+	color: rgba(0, 0, 0, 1);
+	width: 310px;
+	height: 54px;
+	position: absolute;
+	left: 10px;
+	top: 187px;
+	font-family: Alumni Sans Collegiate One;
+	text-align: left;
+	font-size: 16px;
+	font-weight: bold;
+	letter-spacing: 0;
+}
+
+.e56_27 {
+	border-radius: 500px;
+	background-color: rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width: 25px;
+	height: 24px;
+	position: absolute;
+	left: 14px;
+	top: 250px;
+}
+
+.e56_28 {
+	color: rgba(0, 0, 0, 1);
+	width: 100%;
+	height: 18px;
+	position: absolute;
+	left: 45px;
+	top: 253px;
+	font-family: Alumni Sans Collegiate One;
+	text-align: left;
+	font-size: 15px;
+	letter-spacing: 0;
+}
+
+.e56_29 {
+	width: 240px;
+	height: 348px;
+	position: absolute;
+	left: 247px;
+	top: 0px;
+}
+
+.e56_30 {
+	width: 220px;
+	height: 130px;
+	position: absolute;
+	left: 10px;
+	top: 76px;
+	background-image: url(images/rimg1_2.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.e56_31 {
+	color: rgba(0, 0, 0, 1);
+	width: 220px;
+	height: 54px;
+	position: absolute;
+	left: 10px;
+	top: 217px;
+	font-family: Alumni Sans Collegiate One;
+	text-align: left;
+	font-size: 20px;
+	letter-spacing: 0;
+}
+
+.e56_32 {
+	border-radius: 500px;
+	background-color: rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width: 25px;
+	height: 24px;
+	position: absolute;
+	left: 14px;
+	top: 280px;
+}
+
+.e56_33 {
+	color: rgba(0, 0, 0, 1);
+	width: 42px;
+	height: 18px;
+	position: absolute;
+	left: 45px;
+	top: 283px;
+	font-family: Alumni Sans Collegiate One;
+	text-align: left;
+	font-size: 15px;
+	letter-spacing: 0;
+}
+
+.e56_34 {
+
+	width: 27px;
+	height: 26px;
+	position: absolute;
+	left: 150px;
+	top: 249px;
+}
+
+.e56_35 {
+	color: rgba(0, 0, 0, 1);
+	width: 27px;
+	height: 17px;
+	position: absolute;
+	left: 180px;
+	top: 253px;
+	font-family: Almarai;
+	text-align: left;
+	font-size: 15px;
+	letter-spacing: 0;
+}
+
+.e56_36 {
+	width: 240px;
+	height: 348px;
+	position: absolute;
+	left: 727px;
+	top: 0px;
+}
+
+.e56_37 {
+	width: 220px;
+	height: 130px;
+	position: absolute;
+	left: 10px;
+	top: 76px;
+	background-image: url(images/rimg1_2.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.e56_38 {
+	color: rgba(0, 0, 0, 1);
+	width: 220px;
+	height: 54px;
+	position: absolute;
+	left: 10px;
+	top: 217px;
+	font-family: Alumni Sans Collegiate One;
+	text-align: left;
+	font-size: 20px;
+	letter-spacing: 0;
+}
+
+.e56_39 {
+	border-radius: 500px;
+	background-color: rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width: 25px;
+	height: 24px;
+	position: absolute;
+	left: 14px;
+	top: 280px;
+}
+
+.e56_40 {
+	color: rgba(0, 0, 0, 1);
+	width: 42px;
+	height: 18px;
+	position: absolute;
+	left: 45px;
+	top: 283px;
+	font-family: Alumni Sans Collegiate One;
+	text-align: left;
+	font-size: 15px;
+	letter-spacing: 0;
+}
+
+.e56_41 {
+	background-color: rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width: 27px;
+	height: 26px;
+	position: absolute;
+	left: 150px;
+	top: 279px;
+}
+
+.e56_42 {
+	color: rgba(0, 0, 0, 1);
+	width: 27px;
+	height: 17px;
+	position: absolute;
+	left: 183px;
+	top: 284px;
+	font-family: Almarai;
+	text-align: left;
+	font-size: 15px;
+	letter-spacing: 0;
+}
+
+.e56_43 {
+	width: 240px;
+	height: 348px;
+	position: absolute;
+	left: 487px;
+	top: 0px;
+}
+
+.e56_44 {
+	width: 220px;
+	height: 130px;
+	position: absolute;
+	left: 10px;
+	top: 76px;
+	background-image: url(images/rimg1_2.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.e56_45 {
+	color: rgba(0, 0, 0, 1);
+	width: 220px;
+	height: 54px;
+	position: absolute;
+	left: 10px;
+	top: 217px;
+	font-family: Alumni Sans Collegiate One;
+	text-align: left;
+	font-size: 20px;
+	letter-spacing: 0;
+}
+
+.e56_46 {
+	border-radius: 500px;
+	background-color: rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width: 25px;
+	height: 24px;
+	position: absolute;
+	left: 14px;
+	top: 280px;
+}
+
+.e56_47 {
+	color: rgba(0, 0, 0, 1);
+	width: 42px;
+	height: 18px;
+	position: absolute;
+	left: 45px;
+	top: 283px;
+	font-family: Alumni Sans Collegiate One;
+	text-align: left;
+	font-size: 15px;
+	letter-spacing: 0;
+}
+
+.e56_48 {
+	background-color: rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width: 27px;
+	height: 26px;
+	position: absolute;
+	left: 150px;
+	top: 279px;
+}
+
+.e56_49 {
+	color: rgba(0, 0, 0, 1);
+	width: 27px;
+	height: 17px;
+	position: absolute;
+	left: 183px;
+	top: 284px;
+	font-family: Almarai;
+	text-align: left;
+	font-size: 15px;
+	letter-spacing: 0;
+}
+
+.e56_50 {
+	width: 240px;
+	height: 348px;
+	position: absolute;
+	left: 7px;
+	top: 348px;
+}
+
+.e56_51 {
+	width: 220px;
+	height: 130px;
+	position: absolute;
+	left: 10px;
+	top: 76px;
+	background-image: url(images/rimg1_2.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.e56_52 {
+	color: rgba(0, 0, 0, 1);
+	width: 220px;
+	height: 54px;
+	position: absolute;
+	left: 10px;
+	top: 217px;
+	font-family: Alumni Sans Collegiate One;
+	text-align: left;
+	font-size: 20px;
+	letter-spacing: 0;
+}
+
+.e56_53 {
+	border-radius: 500px;
+	background-color: rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width: 25px;
+	height: 24px;
+	position: absolute;
+	left: 14px;
+	top: 280px;
+}
+
+.e56_54 {
+	color: rgba(0, 0, 0, 1);
+	width: 42px;
+	height: 18px;
+	position: absolute;
+	left: 45px;
+	top: 283px;
+	font-family: Alumni Sans Collegiate One;
+	text-align: left;
+	font-size: 15px;
+	letter-spacing: 0;
+}
+
+.e56_55 {
+	width: 240px;
+	height: 348px;
+	position: absolute;
+	left: 247px;
+	top: 348px;
+}
+
+.e56_56 {
+	width: 220px;
+	height: 130px;
+	position: absolute;
+	left: 10px;
+	top: 76px;
+	background-image: url(images/rimg1_2.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.e56_57 {
+	color: rgba(0, 0, 0, 1);
+	width: 220px;
+	height: 54px;
+	position: absolute;
+	left: 10px;
+	top: 217px;
+	font-family: Alumni Sans Collegiate One;
+	text-align: left;
+	font-size: 20px;
+	letter-spacing: 0;
+}
+
+.e56_58 {
+	border-radius: 500px;
+	background-color: rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width: 25px;
+	height: 24px;
+	position: absolute;
+	left: 14px;
+	top: 280px;
+}
+
+.e56_59 {
+	color: rgba(0, 0, 0, 1);
+	width: 42px;
+	height: 18px;
+	position: absolute;
+	left: 45px;
+	top: 283px;
+	font-family: Alumni Sans Collegiate One;
+	text-align: left;
+	font-size: 15px;
+	letter-spacing: 0;
+}
+
+.e56_60 {
+	background-color: rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width: 27px;
+	height: 26px;
+	position: absolute;
+	left: 150px;
+	top: 279px;
+}
+
+.e56_61 {
+	color: rgba(0, 0, 0, 1);
+	width: 27px;
+	height: 17px;
+	position: absolute;
+	left: 183px;
+	top: 284px;
+	font-family: Almarai;
+	text-align: left;
+	font-size: 15px;
+	letter-spacing: 0;
+}
+
+.e56_62 {
+	width: 240px;
+	height: 348px;
+	position: absolute;
+	left: 727px;
+	top: 348px;
+}
+
+.e56_63 {
+	width: 220px;
+	height: 130px;
+	position: absolute;
+	left: 10px;
+	top: 76px;
+	background-image: url(images/rimg1_2.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.e56_64 {
+	color: rgba(0, 0, 0, 1);
+	width: 220px;
+	height: 54px;
+	position: absolute;
+	left: 10px;
+	top: 217px;
+	font-family: Alumni Sans Collegiate One;
+	text-align: left;
+	font-size: 20px;
+	letter-spacing: 0;
+}
+
+.e56_65 {
+	border-radius: 500px;
+	background-color: rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width: 25px;
+	height: 24px;
+	position: absolute;
+	left: 14px;
+	top: 280px;
+}
+
+.e56_66 {
+	color: rgba(0, 0, 0, 1);
+	width: 42px;
+	height: 18px;
+	position: absolute;
+	left: 45px;
+	top: 283px;
+	font-family: Alumni Sans Collegiate One;
+	text-align: left;
+	font-size: 15px;
+	letter-spacing: 0;
+}
+
+.e56_67 {
+	background-color: rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width: 27px;
+	height: 26px;
+	position: absolute;
+	left: 150px;
+	top: 279px;
+}
+
+.e56_68 {
+	color: rgba(0, 0, 0, 1);
+	width: 27px;
+	height: 17px;
+	position: absolute;
+	left: 183px;
+	top: 284px;
+	font-family: Almarai;
+	text-align: left;
+	font-size: 15px;
+	letter-spacing: 0;
+}
+
+.e56_69 {
+	width: 240px;
+	height: 348px;
+	position: absolute;
+	left: 487px;
+	top: 348px;
+}
+
+.e56_70 {
+	width: 220px;
+	height: 130px;
+	position: absolute;
+	left: 10px;
+	top: 76px;
+	background-image: url(images/rimg1_2.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.e56_71 {
+	color: rgba(0, 0, 0, 1);
+	width: 220px;
+	height: 54px;
+	position: absolute;
+	left: 10px;
+	top: 217px;
+	font-family: Alumni Sans Collegiate One;
+	text-align: left;
+	font-size: 20px;
+	letter-spacing: 0;
+}
+
+.e56_72 {
+	border-radius: 500px;
+	background-color: rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width: 25px;
+	height: 24px;
+	position: absolute;
+	left: 14px;
+	top: 280px;
+}
+
+.e56_73 {
+	color: rgba(0, 0, 0, 1);
+	width: 42px;
+	height: 18px;
+	position: absolute;
+	left: 45px;
+	top: 283px;
+	font-family: Alumni Sans Collegiate One;
+	text-align: left;
+	font-size: 15px;
+	letter-spacing: 0;
+}
+
+.e56_74 {
+	background-color: rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width: 27px;
+	height: 26px;
+	position: absolute;
+	left: 150px;
+	top: 279px;
+}
+
+.e56_75 {
+	color: rgba(0, 0, 0, 1);
+	width: 27px;
+	height: 17px;
+	position: absolute;
+	left: 183px;
+	top: 284px;
+	font-family: Almarai;
+	text-align: left;
+	font-size: 15px;
+	letter-spacing: 0;
+}
+
+.e56_76 {
+	width: 240px;
+	height: 348px;
+	position: absolute;
+	left: 7px;
+	top: 696px;
+}
+
+.e56_77 {
+	width: 220px;
+	height: 130px;
+	position: absolute;
+	left: 10px;
+	top: 76px;
+	background-image: url(images/rimg1_2.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.e56_78 {
+	color: rgba(0, 0, 0, 1);
+	width: 220px;
+	height: 54px;
+	position: absolute;
+	left: 10px;
+	top: 217px;
+	font-family: Alumni Sans Collegiate One;
+	text-align: left;
+	font-size: 20px;
+	letter-spacing: 0;
+}
+
+.e56_79 {
+	border-radius: 500px;
+	background-color: rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width: 25px;
+	height: 24px;
+	position: absolute;
+	left: 14px;
+	top: 280px;
+}
+
+.e56_80 {
+	color: rgba(0, 0, 0, 1);
+	width: 42px;
+	height: 18px;
+	position: absolute;
+	left: 45px;
+	top: 283px;
+	font-family: Alumni Sans Collegiate One;
+	text-align: left;
+	font-size: 15px;
+	letter-spacing: 0;
+}
+
+.e56_81 {
+	width: 240px;
+	height: 348px;
+	position: absolute;
+	left: 247px;
+	top: 696px;
+}
+
+.e56_82 {
+	width: 220px;
+	height: 130px;
+	position: absolute;
+	left: 10px;
+	top: 76px;
+	background-image: url(images/rimg1_2.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.e56_83 {
+	color: rgba(0, 0, 0, 1);
+	width: 220px;
+	height: 54px;
+	position: absolute;
+	left: 10px;
+	top: 217px;
+	font-family: Alumni Sans Collegiate One;
+	text-align: left;
+	font-size: 20px;
+	letter-spacing: 0;
+}
+
+.e56_84 {
+	border-radius: 500px;
+	background-color: rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width: 25px;
+	height: 24px;
+	position: absolute;
+	left: 14px;
+	top: 280px;
+}
+
+.e56_85 {
+	color: rgba(0, 0, 0, 1);
+	width: 42px;
+	height: 18px;
+	position: absolute;
+	left: 45px;
+	top: 283px;
+	font-family: Alumni Sans Collegiate One;
+	text-align: left;
+	font-size: 15px;
+	letter-spacing: 0;
+}
+
+.e56_86 {
+	background-color: rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width: 27px;
+	height: 26px;
+	position: absolute;
+	left: 150px;
+	top: 279px;
+}
+
+.e56_87 {
+	color: rgba(0, 0, 0, 1);
+	width: 27px;
+	height: 17px;
+	position: absolute;
+	left: 183px;
+	top: 284px;
+	font-family: Almarai;
+	text-align: left;
+	font-size: 15px;
+	letter-spacing: 0;
+}
+
+.e56_88 {
+	width: 240px;
+	height: 348px;
+	position: absolute;
+	left: 727px;
+	top: 696px;
+}
+
+.e56_89 {
+	width: 220px;
+	height: 130px;
+	position: absolute;
+	left: 10px;
+	top: 76px;
+	background-image: url(images/rimg1_2.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.e56_90 {
+	color: rgba(0, 0, 0, 1);
+	width: 220px;
+	height: 54px;
+	position: absolute;
+	left: 10px;
+	top: 217px;
+	font-family: Alumni Sans Collegiate One;
+	text-align: left;
+	font-size: 20px;
+	letter-spacing: 0;
+}
+
+.e56_91 {
+	border-radius: 500px;
+	background-color: rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width: 25px;
+	height: 24px;
+	position: absolute;
+	left: 14px;
+	top: 280px;
+}
+
+.e56_92 {
+	color: rgba(0, 0, 0, 1);
+	width: 42px;
+	height: 18px;
+	position: absolute;
+	left: 45px;
+	top: 283px;
+	font-family: Alumni Sans Collegiate One;
+	text-align: left;
+	font-size: 15px;
+	letter-spacing: 0;
+}
+
+.e56_93 {
+	background-color: rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width: 27px;
+	height: 26px;
+	position: absolute;
+	left: 150px;
+	top: 279px;
+}
+
+.e56_94 {
+	color: rgba(0, 0, 0, 1);
+	width: 27px;
+	height: 17px;
+	position: absolute;
+	left: 183px;
+	top: 284px;
+	font-family: Almarai;
+	text-align: left;
+	font-size: 15px;
+	letter-spacing: 0;
+}
+
+.e56_95 {
+	width: 240px;
+	height: 348px;
+	position: absolute;
+	left: 487px;
+	top: 696px;
+}
+
+.e56_96 {
+	width: 220px;
+	height: 130px;
+	position: absolute;
+	left: 10px;
+	top: 76px;
+	background-image: url(images/rimg1_2.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.e56_97 {
+	color: rgba(0, 0, 0, 1);
+	width: 220px;
+	height: 54px;
+	position: absolute;
+	left: 10px;
+	top: 217px;
+	font-family: Alumni Sans Collegiate One;
+	text-align: left;
+	font-size: 20px;
+	letter-spacing: 0;
+}
+
+.e56_98 {
+	border-radius: 500px;
+	background-color: rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width: 25px;
+	height: 24px;
+	position: absolute;
+	left: 14px;
+	top: 280px;
+}
+
+.e56_99 {
+	color: rgba(0, 0, 0, 1);
+	width: 42px;
+	height: 18px;
+	position: absolute;
+	left: 45px;
+	top: 283px;
+	font-family: Alumni Sans Collegiate One;
+	text-align: left;
+	font-size: 15px;
+	letter-spacing: 0;
+}
+
+.e56_100 {
+	background-color: rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width: 27px;
+	height: 26px;
+	position: absolute;
+	left: 150px;
+	top: 279px;
+}
+
+.e56_101 {
+	color: rgba(0, 0, 0, 1);
+	width: 27px;
+	height: 17px;
+	position: absolute;
+	left: 183px;
+	top: 284px;
+	font-family: Almarai;
+	text-align: left;
+	font-size: 15px;
+	letter-spacing: 0;
+}
+
+.e56_102 {
+	width: 240px;
+	height: 348px;
+	position: absolute;
+	left: 7px;
+	top: 1044px;
+}
+
+.e56_103 {
+	width: 220px;
+	height: 130px;
+	position: absolute;
+	left: 10px;
+	top: 76px;
+	background-image: url(images/rimg1_2.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.e56_104 {
+	color: rgba(0, 0, 0, 1);
+	width: 220px;
+	height: 54px;
+	position: absolute;
+	left: 10px;
+	top: 217px;
+	font-family: Alumni Sans Collegiate One;
+	text-align: left;
+	font-size: 20px;
+	letter-spacing: 0;
+}
+
+.e56_105 {
+	border-radius: 500px;
+	background-color: rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width: 25px;
+	height: 24px;
+	position: absolute;
+	left: 14px;
+	top: 280px;
+}
+
+.e56_106 {
+	color: rgba(0, 0, 0, 1);
+	width: 42px;
+	height: 18px;
+	position: absolute;
+	left: 45px;
+	top: 283px;
+	font-family: Alumni Sans Collegiate One;
+	text-align: left;
+	font-size: 15px;
+	letter-spacing: 0;
+}
+
+.e56_107 {
+	width: 240px;
+	height: 348px;
+	position: absolute;
+	left: 247px;
+	top: 1044px;
+}
+
+.e56_108 {
+	width: 220px;
+	height: 130px;
+	position: absolute;
+	left: 10px;
+	top: 76px;
+	background-image: url(images/rimg1_2.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.e56_109 {
+	color: rgba(0, 0, 0, 1);
+	width: 220px;
+	height: 54px;
+	position: absolute;
+	left: 10px;
+	top: 217px;
+	font-family: Alumni Sans Collegiate One;
+	text-align: left;
+	font-size: 20px;
+	letter-spacing: 0;
+}
+
+.e56_110 {
+	border-radius: 500px;
+	background-color: rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width: 25px;
+	height: 24px;
+	position: absolute;
+	left: 14px;
+	top: 280px;
+}
+
+.e56_111 {
+	color: rgba(0, 0, 0, 1);
+	width: 42px;
+	height: 18px;
+	position: absolute;
+	left: 45px;
+	top: 283px;
+	font-family: Alumni Sans Collegiate One;
+	text-align: left;
+	font-size: 15px;
+	letter-spacing: 0;
+}
+
+.e56_112 {
+	background-color: rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width: 27px;
+	height: 26px;
+	position: absolute;
+	left: 150px;
+	top: 279px;
+}
+
+.e56_113 {
+	color: rgba(0, 0, 0, 1);
+	width: 27px;
+	height: 17px;
+	position: absolute;
+	left: 183px;
+	top: 284px;
+	font-family: Almarai;
+	text-align: left;
+	font-size: 15px;
+	letter-spacing: 0;
+}
+
+.e56_114 {
+	width: 240px;
+	height: 348px;
+	position: absolute;
+	left: 727px;
+	top: 1044px;
+}
+
+.e56_115 {
+	width: 220px;
+	height: 130px;
+	position: absolute;
+	left: 10px;
+	top: 76px;
+	background-image: url(images/rimg1_2.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.e56_116 {
+	color: rgba(0, 0, 0, 1);
+	width: 220px;
+	height: 54px;
+	position: absolute;
+	left: 10px;
+	top: 217px;
+	font-family: Alumni Sans Collegiate One;
+	text-align: left;
+	font-size: 20px;
+	letter-spacing: 0;
+}
+
+.e56_117 {
+	border-radius: 500px;
+	background-color: rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width: 25px;
+	height: 24px;
+	position: absolute;
+	left: 14px;
+	top: 280px;
+}
+
+.e56_118 {
+	color: rgba(0, 0, 0, 1);
+	width: 42px;
+	height: 18px;
+	position: absolute;
+	left: 45px;
+	top: 283px;
+	font-family: Alumni Sans Collegiate One;
+	text-align: left;
+	font-size: 15px;
+	letter-spacing: 0;
+}
+
+.e56_119 {
+	background-color: rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width: 27px;
+	height: 26px;
+	position: absolute;
+	left: 150px;
+	top: 279px;
+}
+
+.e56_120 {
+	color: rgba(0, 0, 0, 1);
+	width: 27px;
+	height: 17px;
+	position: absolute;
+	left: 183px;
+	top: 284px;
+	font-family: Almarai;
+	text-align: left;
+	font-size: 15px;
+	letter-spacing: 0;
+}
+
+.e56_121 {
+	width: 240px;
+	height: 348px;
+	position: absolute;
+	left: 487px;
+	top: 1044px;
+}
+
+.e56_122 {
+	width: 220px;
+	height: 130px;
+	position: absolute;
+	left: 10px;
+	top: 76px;
+	background-image: url(images/rimg1_2.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.e56_123 {
+	color: rgba(0, 0, 0, 1);
+	width: 220px;
+	height: 54px;
+	position: absolute;
+	left: 10px;
+	top: 217px;
+	font-family: Alumni Sans Collegiate One;
+	text-align: left;
+	font-size: 20px;
+	letter-spacing: 0;
+}
+
+.e56_124 {
+	border-radius: 500px;
+	background-color: rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width: 25px;
+	height: 24px;
+	position: absolute;
+	left: 14px;
+	top: 280px;
+}
+
+.e56_125 {
+	color: rgba(0, 0, 0, 1);
+	width: 42px;
+	height: 18px;
+	position: absolute;
+	left: 45px;
+	top: 283px;
+	font-family: Alumni Sans Collegiate One;
+	text-align: left;
+	font-size: 15px;
+	letter-spacing: 0;
+}
+
+.e56_126 {
+	background-color: rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width: 27px;
+	height: 26px;
+	position: absolute;
+	left: 150px;
+	top: 279px;
+}
+
+.e56_127 {
+	color: rgba(0, 0, 0, 1);
+	width: 27px;
+	height: 17px;
+	position: absolute;
+	left: 183px;
+	top: 284px;
+	font-family: Almarai;
+	text-align: left;
+	font-size: 15px;
+	letter-spacing: 0;
+}
+
+.e56_128 {
+	width: 100%;
+	height: 92px;
+	position: absolute;
+	left: 0px;
+	top: 1758px;
+}
+
+.e56_129 {
+
+	width: 650px;
+	height: 41px;
+	position: absolute;
+	left: 25%;
+	top: 24px;
+	text-align: center;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
+
+.e56_129 a {
+    padding: 5px 10px;
+    margin: 0 5px;
+    text-decoration: none;
+    color: rgb(38, 36, 36);
+    font-size: 15px;
+}
+
+.e56_129 a.active {
+    background-color: rgb(38, 36, 36);
+    color: #fff;
+    border-radius: 50%;
+    font-size: 15px;
+}
+
+.e56_130 {
+	width: 100%;
+	height: 244px;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	
+}
+
+.e56_131 {
+	width: 827px;
+	height: 57px;
+	position: absolute;
+	left: 0px;
+	top: 10px;
+}
+
+.e56_132 {
+	color: rgba(0, 0, 0, 1);
+	width: 60px;
+	height: 18px;
+	position: absolute;
+	
+	top: 16px;
+	font-family: Alumni Sans Collegiate One;
+	text-align: left;
+	font-size: 23px;
+	
+	letter-spacing: 0;
+}
+
+.e56_133 {
+
+	width: 70px;
+	height: 21px;
+	position: absolute;
+	left: 121px;
+	top: 18px;
+}
+
+.e56_134 {
+	border-radius: 20px;
+	width: 94px;
+	height: 21px;
+	position: absolute;
+	left: 205px;
+	top: 18px;
+}
+
+.e56_135 {
+
+	width: 94px;
+	height: 21px;
+	position: absolute;
+	left: 275px;
+	top: 18px;
+}
+
+.e56_136 {
+
+	width: 94px;
+	height: 21px;
+	position: absolute;
+	left: 345px;
+	top: 18px;
+}
+
+.e56_137 {
+
+	width: 94px;
+	height: 21px;
+	position: absolute;
+	left: 415px;
+	top: 18px;
+}
+
+.e56_138 {
+
+	width: 94px;
+	height: 21px;
+	position: absolute;
+	left: 500px;
+	top: 18px;
+}
+
+.e56_139 {
+	width: 706px;
+	height: 122px;
+	position: absolute;
+	left: 1px;
+	top: 73px;
+}
+
+.e56_140 {
+	
+	width: 281px;
+	height: 29px;
+	position: absolute;
+	left: 121px;
+	top: 7px;
+}
+
+.e56_141 {
+	
+	width: 82px;
+	height: 29px;
+	position: absolute;
+	left: 415px;
+	top: 9px;
+}
+
+.e56_142 {
+	color: rgba(0, 0, 0, 1);
+	width: 100px;
+	height: 17px;
+	position: absolute;
+
+	top: 9px;
+	font-family: Alumni Sans Collegiate One;
+	text-align: left;
+	font-size: 23px;
+	letter-spacing: 0;
+}
+
+.e56_143 {
+	background-color: rgba(239.0625, 230.09765625, 230.09765625, 1);
+	width: 376px;
+	height: 71px;
+	position: absolute;
+	left: 121px;
+	top: 43px;
+}
+
+.e56_144 {
+
+	width: 112px;
+	height: 30px;
+	position: absolute;
+	left: 512px;
+	top: 84px;
+}
+
+.e56_145 {
+	width: 158px;
+	height: 25px;
+	position: absolute;
+	left: 88%;
+	top: 202px;
+}
+
+.e56_146 {
+	color: rgba(0, 0, 0, 1);
+	width: 100%;
+	height: 18px;
+	position: absolute;
+	left: 37px;
+	top: 7px;
+	font-family: Alumni Sans Collegiate One;
+	text-align: left;
+	font-size: 15px;
+	letter-spacing: 0;
+}
+
+.e56_147 {
+	color: rgba(0, 0, 0, 1);
+	width: 100%;
+	height: 18px;
+	position: absolute;
+	left: 93px;
+	top: 7px;
+	font-family: Alumni Sans Collegiate One;
+	text-align: left;
+	font-size: 15px;
+	letter-spacing: 0;
+}
+
+
+
+/* 체크박스 숨기기 */
+.e56_133 input[type="checkbox"],
+.e56_134 input[type="checkbox"],
+.e56_135 input[type="checkbox"],
+.e56_136 input[type="checkbox"],
+.e56_137 input[type="checkbox"],
+.e56_138 input[type="checkbox"] {
+  display: none;
+}
+
+/* 레이블 스타일 설정 */
+.e56_133 label,
+.e56_134 label,
+.e56_135 label,
+.e56_136 label,
+.e56_137 label,
+.e56_138 label {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: rgb(255, 255, 255); /* 원하는 배경색 설정 */
+  cursor: pointer;
+}
+
+/* 체크되었을 때 레이블의 스타일 변경 */
+.e56_133 input[type="checkbox"]:checked + label,
+.e56_134 input[type="checkbox"]:checked + label,
+.e56_135 input[type="checkbox"]:checked + label,
+.e56_136 input[type="checkbox"]:checked + label,
+.e56_137 input[type="checkbox"]:checked + label,
+.e56_138 input[type="checkbox"]:checked + label {
+  background-color: rgb(33.00000183284283, 33.00000183284283, 35.00000171363354);
+  color: beige;
+  border-radius: 20px;
+}
+
+.e56_133 label,
+.e56_134 label,
+.e56_135 label,
+.e56_136 label,
+.e56_137 label,
+.e56_138 label {
+  border: 1px solid #999; /* 테두리 추가 */
+  background-color: rgb(255, 255, 255);
+  color: rgb(33.00000183284283, 33.00000183284283, 35.00000171363354);
+  border-radius: 20px;
+}
+
+.e56_140 input[type="text"] { 
+	width: 100%;
+	height: 100%;
+	border-radius: 10px;
+	border: 2px solid #999; /* 테두리 추가 */
+}
+
+.e56_141 input[type="button"] {
+	width: 100%;
+	height: 100%;
+	border-radius: 10px;
+	border: 2px solid #999; /* 테두리 추가 */
+}
+
+.e56_145 a {
+	color: rgb(0, 0, 0);
+    text-decoration: none;
+}
+
+.e56_144 input[type="button"] {
+	width: 100%;
+	height: 100%;
+	border-radius: 10px;
+	border: 2px solid #999; /* 테두리 추가 */
+}
+
+.ing_res {
+
+	width: 378px;
+	height: 70px;
+	position: relative;
+	top:40%;
+	left: 17%;
+}
+
+.ing_res input[type="button"] {
+	width: 100%;
+	border-radius: 10px;
+	border: 1px solid #999; /* 테두리 추가 */
+	background-color: rgb(33.00000183284283, 33.00000183284283, 35.00000171363354);
+    color: beige;
+}
+.e2_28 { 
+	border-top-left-radius:20px;
+	border-top-right-radius:20px;
+	border-bottom-left-radius:20px;
+	border-bottom-right-radius:20px;
+
+	width:1680px;
+	height:1880px;
+	position:absolute;
+	left:15%;
+	top:80%;
+}
+
+.e2_2 { 
+	background-image:linear-gradient(0deg, rgba(33.00000183284283, 33.00000183284283, 35.00000171363354, 1) 100%,rgba(33.00000183284283, 33.00000183284283, 35.00000171363354, 0.510869562625885) 0.625%,rgba(33.00000183284283, 33.00000183284283, 35.00000171363354, 0.03999999910593033) 0%) ;
+	background-color:rgba(0, 0, 0, 0.20000000298023224);
+	width:100%;
+	height:3200px;
+	position:absolute;
+}
+
+.e3_173 { 
+	background-color:rgba(75.43749645352364, 74.80885058641434, 74.80885058641434, 1);
+	width:100%;
+	height:135px;
+	position:absolute;
+	top:3065px;
+}
