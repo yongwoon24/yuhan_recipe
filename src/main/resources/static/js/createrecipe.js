@@ -105,7 +105,7 @@ addButton1.addEventListener("click", () => {
 										onclick="removeStep1('r${stepCount}')" value="삭제"></div>
 								<div class="e56_214">
 									<input multiple type="file" id="file${stepCount}" name="file1" style="display: none;">
-									<button id="uploadButton${stepCount}" name="uploadButton1" onclick="handleClick(event); handleUploadClick(1)">
+									<button id="uploadButton${stepCount}" name="uploadButton1" onclick="handleClick(event); handleUploadClick(${stepCount})">
 										<div id="preview${stepCount}" name="preview1">
 											<img src="/img/대표이미지.PNG" style="width: 363px; height: 234px;">
 										</div>
