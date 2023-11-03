@@ -57,7 +57,7 @@
 		<div class="category-buttons">
 			    <form id="myForm" th:action="@{/rank}" method="get">
 			        <label for="categoryName">카테고리 선택:</label>
-			        <select id="categoryName" name="categoryName">
+			        <select id="categoryName" name="categoryName" style="font-size: 25px;">
 			            <option value="">전체</option>
 			            <option value="파티">파티용</option>
 			            <option value="혼밥">혼밥용</option>
@@ -67,7 +67,7 @@
 			            <option value="야식/안주">야식/안주용</option> 
 			        </select> &nbsp;&nbsp;
 			        <label for="categoryName">기간 선택:</label>
-			        <select id="period" name="period">
+			        <select id="period" name="period" style="font-size: 25px;">
 			            <option value="">전체</option>
 			            <option value="d">일간</option>
 			            <option value="w">주간</option>
@@ -78,23 +78,24 @@
 			    </form>
 			    
 			</div>
-
-				<ul class="img_slide">
-			    <li class="recipe-item" th:each="recipe, recipeIndex : ${topLove}">
-					<div class="recipe-container">
-						<div class="ranking">
-                			<span class="rank-number" th:text="${(currentPage * 20) + recipeIndex.index + 1}+'위'"></span>
-            			</div>
-				        <a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}"><img th:src="@{${recipe.main_photo_path}}">
-				        <span th:text="${recipe.title}">asd</span></a>
-				        <div class="likes">
-				            <i class="fas fa-heart"></i>
-				            <span th:text="${recipe.totalLove}"></span>
-				        </div>
-			        </div>  
-			    </li>
 			
-			</ul>
+			<div class="e56_23">
+					<div class=e56_24 th:each="recipe, recipeIndex : ${topLove}">
+						<div class="e56_25">
+							<span class="rank-number" th:text="${(currentPage * 20) + recipeIndex.index + 1}+'위'"></span>
+							<a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}">
+								<img th:src="@{${recipe.main_photo_path}}" width="100%" height="100%" style="border-radius: 10px;"></a>
+						</div>
+						<a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}"><span class="e56_26" th:text="${recipe.title}"></span></a>
+						<a th:href="@{'/userpage_R/'+${recipe.nickname}}"><div class="e56_27"><img th:src="${recipe.user.userphotopath}" width="100%" height="100%"
+							style="border-radius: 500px;"></div><span class="e56_28"
+							th:text="${recipe.nickname}"></span></a>
+						<div class="e56_34"><img src="img/좋아요.jpg" width="100%" height="100%" style="border-radius: 500px;">
+						</div><span class="e56_35" th:text="${recipe.totalLove}"></span>
+						<div class="e56_36"><img src="img/조회수.png" width="100%" height="100%" style="border-radius: 500px;">
+						</div><span class="e56_37" th:text="${recipe.view_count}"></span>
+					</div>
+				</div>
 				
 				<!-- 페이지네이션을 추가한 부분 -->
 
