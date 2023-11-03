@@ -1734,7 +1734,7 @@
 	grid-template-columns: repeat(4, 1fr);
 	/* 5개의 열을 동일한 너비로 만듭니다. */
 	grid-template-rows: repeat(5, 1fr); /* 4행 그리드 */
-	gap: 10px;
+	gap: 30px;
 	/* 열 사이의 간격을 설정합니다. */
 }
 
@@ -1778,7 +1778,7 @@
 	height: 24px;
 	position: absolute;
 	left: 14px;
-	top: 217px;
+	top: 250px;
 }
 
 .e56_28 {
@@ -1787,7 +1787,7 @@
 	height: 18px;
 	position: absolute;
 	left: 45px;
-	top: 220px;
+	top: 253px;
 	font-family: Alumni Sans Collegiate One;
 	text-align: left;
 	font-size: 15px;
@@ -1800,7 +1800,7 @@
 	height: 26px;
 	position: absolute;
 	left: 140px;
-	top: 217px;
+	top: 250px;
 }
 
 .e56_35 {
@@ -1809,7 +1809,7 @@
 	height: 17px;
 	position: absolute;
 	left: 170px;
-	top: 220px;
+	top: 253px;
 	font-family: Almarai;
 	text-align: left;
 	font-size: 15px;
@@ -1822,7 +1822,7 @@
 	height: 26px;
 	position: absolute;
 	left: 260px;
-	top: 217px;
+	top: 250px;
 }
 
 .e56_37 {
@@ -1831,7 +1831,7 @@
 	height: 17px;
 	position: absolute;
 	left: 290px;
-	top: 220px;
+	top: 253px;
 	font-family: Almarai;
 	text-align: left;
 	font-size: 15px;
