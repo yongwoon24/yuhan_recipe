@@ -56,7 +56,7 @@ public class RecipeUpdateService {
         int min = 1;
         
         int usermax = todayrepository.maxTodayId();
-        System.out.println("aaaaaaaaaaaaaaaaa"+max);
+        //System.out.println("aaaaaaaaaaaaaaaaa"+max);
         
         for (int i = 1; i <= usermax; i++) {
 			Today today = todayrepository.findById(i);
@@ -72,7 +72,7 @@ public class RecipeUpdateService {
 			        
 			        nums[j] = randomnum;
 			    }
-			if(today !=null) {
+			if(today != null) {
 			today.setNo1(nums[0]);
 			today.setNo2(nums[1]);
 			today.setNo3(nums[2]);
@@ -86,20 +86,5 @@ public class RecipeUpdateService {
 			todayrepository.save(today);}
 			}
 			
-		
-
-//        // 모든 레시피의 daily, weekly, monthly 좋아요 수 업데이트
-//        List<Recipe> allRecipes = recipeRepository.findAll();
-//        for (Recipe recipe : allRecipes) {
-//            //int dailyLikes = loveRepository.countDailyLikesByRecipeIdAndDate(recipe.getRecipe_id(), currentDate);
-//            //int weeklyLikes = loveRepository.countWeeklyLikesByRecipeIdAndDateRange(recipe.getRecipe_id(), weekStart, weekEnd);
-//            //int monthlyLikes = loveRepository.countMonthlyLikesByRecipeIdAndMonth(recipe.getRecipe_id(), currentDate);
-//
-//            //recipe.setDailyLove(dailyLikes);
-//            //recipe.setWeeklyLove(weeklyLikes);
-//            //recipe.setMonthlyLove(monthlyLikes);
-//
-//            recipeRepository.save(recipe);
-//        }
     }
 }

@@ -237,6 +237,17 @@ public class RecipeController {
 			return "redirect:/login";
 		}else {
 		model.addAttribute("recipe", new Recipe());
+		return "createRecipe2";}
+	}
+	
+	@GetMapping("/createRecipe1")
+	public String createRecipeForm1(Model model,HttpSession session,RedirectAttributes redirectAttributes) {
+		String loggedInUserId = (String) session.getAttribute("loggedInUserId");
+		if(loggedInUserId==null) {
+			redirectAttributes.addFlashAttribute("errorMessage", "로그인을 해주세요");
+			return "redirect:/login";
+		}else {
+		model.addAttribute("recipe", new Recipe());
 		return "createRecipe";}
 	}
 

@@ -1487,6 +1487,7 @@ html, body {
 	width: 100%;
 	height: 100%;
 	resize: none;
+	border: 1px solid #ccc;
 }
 .e56_176 { 
 	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
@@ -1501,6 +1502,7 @@ html, body {
 	width: 100%;
 	height: 100%;
 	resize: none;
+	border: 1px solid #ccc;
 }
 .e56_177 { 
 	color:rgba(0, 0, 0, 1);
@@ -1549,6 +1551,7 @@ html, body {
 .e56_180 select{
 	width: 100%;
 	height: 50%;
+	border: 1px solid #ccc;
 }
 .e56_181 { 
 	color:rgba(0, 0, 0, 1);
@@ -1577,19 +1580,88 @@ html, body {
 	
 }
 .e56_183 { 
-	width:973px;
-	height:1253px;
+	width:100%;
+	
 	position:absolute;
-	left:0px;
+	
 	top:542px;
 }
+
+#container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+#container1 {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+#container2 {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+#container4 {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+.textRow {
+	position: relative;
+	opacity: 1;
+	transition: opacity 0.3s ease;
+}
+
+.text1 {
+	width: 200px;
+	height: 50px;
+	padding: 5px;
+	border: 1px solid #ccc;
+	margin-right: 4px;
+	margin-bottom: 10px;
+}
+
+.text-row {
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+.text {
+	width: 200px;
+	height: 50px;
+	padding: 5px;
+	border: 1px solid #ccc;
+	margin-right: 10px;
+}
+
+.remove-button {
+	background-color: rgb(192, 192, 192);
+	color: #fff;
+	border: none;
+	padding: 5px 10px;
+	cursor: pointer;
+}
+
 .e56_184 { 
 	color:rgba(0, 0, 0, 1);
-	width:37px;
+	width:60px;
 	height:24px;
 	position:absolute;
 	left:469px;
-	top:5px;
+	
 	font-family:Alumni Sans Collegiate One;
 	text-align:left;
 	font-size:20px;
@@ -1597,23 +1669,24 @@ html, body {
 }
 .e56_185 { 
 	color:rgba(0, 0, 0, 1);
-	width:74px;
+	width:100px;
 	height:24px;
 	position:absolute;
 	left:452px;
-	top:337px;
+	
 	font-family:Alumni Sans Collegiate One;
 	text-align:left;
 	font-size:20px;
 	letter-spacing:0;
+	
 }
 .e56_186 { 
 	color:rgba(0, 0, 0, 1);
-	width:37px;
+	width:100px;
 	height:24px;
 	position:absolute;
 	left:470px;
-	top:942px;
+	
 	font-family:Alumni Sans Collegiate One;
 	text-align:left;
 	font-size:20px;
@@ -1621,11 +1694,11 @@ html, body {
 }
 .e56_187 { 
 	color:rgba(0, 0, 0, 1);
-	width:146px;
+	width:200px;
 	height:12px;
 	position:absolute;
 	left:415px;
-	top:29px;
+	margin-top: 3px;
 	font-family:Alumni Sans Collegiate One;
 	text-align:left;
 	font-size:10px;
@@ -1633,11 +1706,11 @@ html, body {
 }
 .e56_188 { 
 	color:rgba(0, 0, 0, 1);
-	width:144px;
+	width:200px;
 	height:12px;
 	position:absolute;
 	left:414px;
-	top:361px;
+	margin-top: 3px;
 	font-family:Alumni Sans Collegiate One;
 	text-align:left;
 	font-size:10px;
@@ -1645,24 +1718,31 @@ html, body {
 }
 .e56_189 { 
 	color:rgba(0, 0, 0, 1);
-	width:95px;
+	width:200px;
 	height:12px;
 	position:absolute;
 	left:441px;
-	top:966px;
+	margin-top: 3px;
 	font-family:Alumni Sans Collegiate One;
 	text-align:left;
 	font-size:10px;
 	letter-spacing:0;
 }
 .e56_190 { 
-	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	
 	width:100px;
 	height:41px;
 	position:absolute;
 	left:437px;
 	top:48px;
 }
+
+.e56_190 button {
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+}
+
 .e56_191 { 
 	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
 	width:100px;
@@ -1770,29 +1850,39 @@ html, body {
 	height:37px;
 	position:absolute;
 	left:403px;
-	top:1194px;
+	
 }
 .e56_205 { 
-	width:400px;
-	height:206px;
+
+	
 	position:absolute;
 	left:285px;
-	top:979px;
+	display: flex;
+    flex-direction: column; /* 요소들을 세로로 배치 */
+    align-items: flex-start; /* 왼쪽 정렬로 변경 */
+    
+	margin-top: 50px;
+	margin-bottom: 50px;
 }
 .e56_206 { 
 	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
-	width:362px;
+	width:500px;
 	height:26px;
-	position:absolute;
-	left:20px;
-	top:18px;
+	
+	left:230px;
+	
+	position: relative;
+	opacity: 1;
+	transition: opacity 0.3s ease;
+	
 }
 .e56_207 { 
-	width:374px;
-	height:148px;
-	position:absolute;
-	left:14px;
-	top:51px;
+	width:500px;
+	left:230px;
+	position: relative;
+	opacity: 1;
+	transition: opacity 0.3s ease;
+	margin-top:10px;
 }
 .e56_208 { 
 	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
@@ -1831,26 +1921,28 @@ html, body {
 	letter-spacing:0;
 }
 .e56_212 { 
-	width:463px;
-	height:488px;
-	position:absolute;
-	left:294px;
-	top:439px;
+	width:900px;
+	height:300px;
+	
+	left:60px;
+	position: relative;
+	opacity: 1;
+	transition: opacity 0.3s ease;
 }
 .e56_213 { 
-	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	
 	width:64px;
 	height:32px;
 	position:absolute;
-	left:386px;
-	top:10px;
+	left:750px;
+	top:43px;
 }
 .e56_214 { 
 	width:363px;
 	height:234px;
 	position:absolute;
-	left:11px;
-	top:10px;
+	left:380px;
+	top:40px;
 	background-image:url(images/rimg1_3.png);
 	background-repeat:no-repeat;
 	background-size:cover;
@@ -1861,7 +1953,7 @@ html, body {
 	height:96px;
 	position:absolute;
 	left:12px;
-	top:251px;
+	top:40px;
 }
 .e56_216 { 
 	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
@@ -1869,7 +1961,7 @@ html, body {
 	height:26px;
 	position:absolute;
 	left:44px;
-	top:354px;
+	top:143px;
 }
 .e56_217 { 
 	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
@@ -1877,7 +1969,7 @@ html, body {
 	height:26px;
 	position:absolute;
 	left:44px;
-	top:387px;
+	top:176px;
 }
 .e56_218 { 
 	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
@@ -1885,7 +1977,7 @@ html, body {
 	height:26px;
 	position:absolute;
 	left:44px;
-	top:420px;
+	top:209px;
 }
 .e56_219 { 
 	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
@@ -1893,39 +1985,39 @@ html, body {
 	height:26px;
 	position:absolute;
 	left:44px;
-	top:453px;
+	top:242px;
 }
 .e56_220 { 
-	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	
 	width:26px;
 	height:26px;
 	position:absolute;
 	left:11px;
-	top:354px;
+	top:143px;
 }
 .e56_221 { 
-	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+
 	width:26px;
 	height:26px;
 	position:absolute;
 	left:11px;
-	top:387px;
+	top:176px;
 }
 .e56_222 { 
-	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+
 	width:26px;
 	height:26px;
 	position:absolute;
 	left:11px;
-	top:420px;
+	top:209px;
 }
 .e56_223 { 
-	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+
 	width:26px;
 	height:26px;
 	position:absolute;
 	left:11px;
-	top:453px;
+	top:242px;
 }
 .e56_224 { 
 	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
@@ -1933,5 +2025,113 @@ html, body {
 	height:19px;
 	position:absolute;
 	left:355px;
-	top:10px;
+	top:40px;
+}
+
+.textRow11 {
+	position: relative;
+	opacity: 1;
+	transition: opacity 0.3s ease;
+}
+
+.step {
+	font-size: 30px;
+	color: rgb(128, 128, 128);
+	vertical-align: top;
+	left: 20px;
+}
+
+.remove-button1 {
+	background-color: rgb(192, 192, 192);
+	color: #fff;
+	border: none;
+	padding: 5px 10px;
+	cursor: pointer;
+}
+
+div[name="preview1"] {
+	width:363px;
+	height:234px;
+
+}
+
+button[name="uploadButton1"] {
+	width:363px;
+	height:234px;
+	border: #ffffff;
+	background-color: #ffffff;
+	cursor: pointer;
+}
+
+.text2 {
+	width: 100%;
+	height: 100%;
+	border: 1px solid #ccc;
+	margin-right: 4px;
+	resize: none;
+}
+
+.text3 {
+	width: 100%;
+	height: 100%;
+	border: 1px solid #ccc;
+	margin-right: 4px;
+	margin-bottom: 10px;
+	resize: none;
+	left: 500px;
+}
+
+#textList {
+    list-style: none;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 10px;
+}
+.text-container {
+    display: flex;
+    flex-direction: column; /* 요소들을 세로로 배치 */
+    align-items: flex-start; /* 왼쪽 정렬로 변경 */
+}
+#textList {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+#textList li {
+    
+    padding: 5px;
+    border: 0;
+    border-radius: 4px;
+    margin-right: 5px;
+    font-size: 16px;
+}
+
+.list-item {
+	background-color: rgb(255, 255, 255);
+    
+    border: 0;
+    border-radius: 4px;
+    margin-right: 5px;
+    font-size: 16px;
+}
+
+.delete-button {
+    cursor: pointer;
+    margin-left: 7px;
+    padding: 0 5px;
+    background-color: rgb(192, 192, 192);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 20px;
+    margin-top: 7px;
 }
