@@ -67,23 +67,7 @@ removebutton2.addEventListener('click', () => {
 	adjustContainerHeight();
 });
 
-function adjustContainerHeight() {
 
-	const e10_2_1Bottom = container.getBoundingClientRect().bottom;
-
-	const e10_2_2Bottom = container1.getBoundingClientRect().bottom;
-
-	// e10_2_2 요소의 상단 위치 구하기
-	const e10_2_2Top = e10_2_2d.getBoundingClientRect().top;
-
-	// e10_2_3 요소의 상단 위치 구하기
-	const e10_2_3Top = e10_2_3d.getBoundingClientRect().top;
-
-	// e10_2_2와 e10_2_3의 상단 위치를 e10_2_1의 하단 위치와 맞춥니다.
-	e10_2_2d.style.top = (e10_2_1Bottom + window.scrollY) + (-200) + 'px';
-	e10_2_3d.style.top = (e10_2_2Bottom + window.scrollY) + (-200) + 'px';
-
-}
 
 
 
@@ -112,31 +96,38 @@ addButton1.addEventListener("click", () => {
 	}
 
 	const newStep = document.createElement("div");
-	newStep.className = "textRow1";
+	newStep.className = "e56_212";
 	newStep.id = "r" + stepCount;
 
 	newStep.innerHTML = `
-                <label class="step">STEP ${stepCount}</label><br>
-								<textarea class='text2' name="SContent" placeholder="${steptext[steptxtindex]}"></textarea>
-								<input multiple type="file" id="file${stepCount}" name="file1" style="display: none;">
-								<button id="uploadButton${stepCount}" name="uploadButton1" onclick="handleClick(event); handleUploadClick(${stepCount})">
-									<div id="preview${stepCount}" name="preview1">
-										<img src="/img/대표이미지.PNG" width="200px" height="200px">
+               <label class="step">STEP ${stepCount}</label><br>
+								<div class="e56_213"><input type="button" class="remove-button1"
+										onclick="removeStep1('r${stepCount}')" value="삭제"></div>
+								<div class="e56_214">
+									<input multiple type="file" id="file${stepCount}" name="file1" style="display: none;">
+									<button id="uploadButton${stepCount}" name="uploadButton1" onclick="handleClick(event); handleUploadClick(${stepCount})">
+										<div id="preview${stepCount}" name="preview1">
+											<img src="/img/대표이미지.PNG" style="width: 363px; height: 234px;">
 										</div>
-								</button>
-								<input type="button" class="remove-button1" value="삭제" onclick="removeStep1('r${stepCount}')"><br>
-								<img src="/img/carrot.png" class="carrot">
-								<input type="text" class="text3" name="Singtxt" placeholder="재료에 대해 적어주세요! 예 ) 감자 1개, 소금 2큰술, 물 2컵"><br>
-								<img src="/img/냄비.png" class="carrot">
-								<input type="text" class="text3" name="Stooltxt" placeholder="재료도구에 대해 적어주세요! 예 ) 냄비, 프라이팬, 국자"><br>
-								<img src="/img/불.png" class="carrot">
-								<input type="text" class="text3" name="Scontroltxt" placeholder="불 세기나 도구 사용시간에 대해 적어주세요! 예 ) 약불, 전자레인지 2분"><br>
-								<img src="/img/전구.png" class="carrot1">
-								<textarea class="text4" name="Stip" placeholder="팁이 있다면 적어주세요! 예 ) 삶은 감자를 2분 정도 식혀주세요"></textarea>
+								</div>
+								<div class="e56_215"><textarea class='text2' name="SContent" placeholder="${steptext[steptxtindex]}" required></textarea></div>
+								<div class="e56_216"><input type="text" class="text3" name="Singtxt"
+									placeholder="재료에 대해 적어주세요! 예 ) 감자 1개, 소금 2큰술">
+									</div>
+								<div class="e56_217"><input type="text" class="text3" name="Stooltxt"
+									placeholder="재료도구에 대해 적어주세요! 예 ) 냄비, 프라이팬, 국자"></div>
+								<div class="e56_218"><input type="text" class="text3" name="Scontroltxt"
+									placeholder="불 세기나 도구 사용시간에 대해 적어주세요! 예 ) 약불"></div>
+								<div class="e56_219"><input type="text" class="text3" name="Stip"
+									placeholder="팁이 있다면 적어주세요! 예 ) 삶은 감자를 2분 정도 식혀주세요"></div>
+								<div class="e56_220"><img src="/img/carrot.png" style="width: 100%; height: 100%;"></div>
+								<div class="e56_221"><img src="/img/냄비.png" style="width: 100%; height: 100%;"></div>
+								<div class="e56_222"><img src="/img/불.png" style="width: 100%; height: 100%;"></div>
+								<div class="e56_223"><img src="/img/전구.png" style="width: 100%; height: 100%;"></div>
             `;
 
 	container2.appendChild(newStep);
-	adjustContainerHeight1();
+
 	
 	
 });
@@ -148,7 +139,7 @@ function removeStep1(stepId) {
 		stepCount--;
 		// 중간의 스텝이 제거되면 다시 스텝 숫자를 정렬
 		reorganizeStepLabels();
-		adjustContainerHeight1();
+		
 	}
 }
 
@@ -160,23 +151,7 @@ function reorganizeStepLabels() {
 	});
 }
 
-function adjustContainerHeight1() {
 
-	const e10_2_1Bottom = container.getBoundingClientRect().bottom;
-
-	const e10_2_2Bottom = container1.getBoundingClientRect().bottom;
-
-	// e10_2_2 요소의 상단 위치 구하기
-	const e10_2_2Top = e10_2_2d.getBoundingClientRect().top;
-
-	// e10_2_3 요소의 상단 위치 구하기
-	const e10_2_3Top = e10_2_3d.getBoundingClientRect().top;
-
-	// e10_2_2와 e10_2_3의 상단 위치를 e10_2_1의 하단 위치와 맞춥니다.
-	e10_2_2d.style.top = (e10_2_1Bottom + window.scrollY) + (-200) + 'px';
-	e10_2_3d.style.top = (e10_2_2Bottom + window.scrollY) + (-200) + 'px';
-
-}
 let stepnum2=0;
 function handleUploadClick(stepNumber) {
 	const imageInput1 = document.getElementById(`file${stepNumber}`);
@@ -198,8 +173,10 @@ function handleUploadClick(stepNumber) {
 			reader.onload = (e) => {
 				const image1 = new Image();
 				image1.src = e.target.result;
-				image1.style.maxWidth = '200px';
-				image1.style.maxHeight = '200px';
+				image1.style.maxWidth = '363px';
+				image1.style.maxHeight = '234px';
+				image1.style.minWidth='363px';
+				image1.style.minHeight = '234px';
 				preview1.innerHTML = '';
 				preview1.appendChild(image1);
 			};
@@ -229,8 +206,10 @@ imageInput.addEventListener('change', (event) => {
 		reader.onload = (e) => {
 			const image = new Image();
 			image.src = e.target.result;
-			image.style.maxWidth = '400px';
-			image.style.maxHeight = '400px';
+			image.style.maxWidth = '360px';
+			image.style.maxHeight = '234px';
+			image.style.minWidth='360px';
+			image.style.minHeight = '234px';
 			preview.innerHTML = '';
 			preview.appendChild(image);
 		};
@@ -251,7 +230,7 @@ function createListItem(text) {
 
             const deleteButton = document.createElement("button");
             deleteButton.className = "delete-button";
-            deleteButton.textContent = text; // 버튼 내용을 입력값(text)으로 설정
+            deleteButton.textContent = text+"          X"; // 버튼 내용을 입력값(text)으로 설정
             deleteButton.onclick = function() {
                 listItem.remove();
             };

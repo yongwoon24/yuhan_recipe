@@ -237,6 +237,17 @@ public class RecipeController {
 			return "redirect:/login";
 		}else {
 		model.addAttribute("recipe", new Recipe());
+		return "createRecipe2";}
+	}
+	
+	@GetMapping("/createRecipe1")
+	public String createRecipeForm1(Model model,HttpSession session,RedirectAttributes redirectAttributes) {
+		String loggedInUserId = (String) session.getAttribute("loggedInUserId");
+		if(loggedInUserId==null) {
+			redirectAttributes.addFlashAttribute("errorMessage", "로그인을 해주세요");
+			return "redirect:/login";
+		}else {
+		model.addAttribute("recipe", new Recipe());
 		return "createRecipe";}
 	}
 
@@ -507,6 +518,27 @@ public class RecipeController {
 
 	@GetMapping("/editRecipe/{recipe_id}")
 	public String editRecipeForm(@PathVariable Integer recipe_id, Model model,
+			HttpSession session, RedirectAttributes redirectAttributes) {
+		String loggedInNickname = (String) session.getAttribute("loggedInNickname");
+		String loggedInUserId = (String) session.getAttribute("loggedInUserId");
+		Recipe recipe = recipeRepository.findById(recipe_id)
+				.orElseThrow(() -> new IllegalArgumentException("Invalid Recipe ID: " + recipe_id));
+		List<Recipe_Ingredient> recipeing = recipe.getRecipeIngredients();
+		List<Step> steps = recipe.getSteps();
+		int stepssize = steps.size();
+		List<Tag> tagss = recipe.getTag();
+		int tagsize = tagss.size();
+		model.addAttribute("stepssize",stepssize);
+		model.addAttribute("tagsize",tagsize);
+		model.addAttribute("steps",steps);
+		model.addAttribute("tagss",tagss);
+		model.addAttribute("recipeings",recipeing);
+		model.addAttribute("recipe", recipe);
+		return "editRecipe2";
+	}
+	
+	@GetMapping("/editRecipe2/{recipe_id}")
+	public String editRecipeForm2(@PathVariable Integer recipe_id, Model model,
 			HttpSession session, RedirectAttributes redirectAttributes) {
 		String loggedInNickname = (String) session.getAttribute("loggedInNickname");
 		String loggedInUserId = (String) session.getAttribute("loggedInUserId");

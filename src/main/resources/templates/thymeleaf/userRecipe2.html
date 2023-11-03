@@ -28,7 +28,7 @@
 				</div>
 			</div>
 		</div>
-		<div class=e2_5><span class="e2_6"><a class="mainicon" href="/1">모두의 레시피</a></span>
+		<div class=e2_5><span class="e2_6"><a class="mainicon" href="/">모두의 레시피</a></span>
 			<div class=e2_8><span class="e2_11"><a href="/recipe">분류</a></span><span class="e2_12"><a
 						href="/rank">랭킹</a></span><span class="e2_13"><a href="/board">게시판</a></span><span
 					class="e2_14"><a href="/mypage">마이페이지</a></span>
@@ -98,7 +98,7 @@
 						<div class="e52_787" th:each="ingredient : ${recipeings}">
 							<span th:text="${ingredient.ingredient.ingredient_name}"></span>
 							<span th:text="${ingredient.mensuration}"></span><span>&nbsp;&nbsp;&nbsp;</span>
-							<span class="ingsch"><a th:href="@{|/search?keyword=${ingredient.ingredient.ingredient_name}|}" class="ac2"><i class="fa-solid fa-magnifying-glass" style="max-width:20px; max-height:20px;"></i></a></span>
+							<span class="ingsch"><a th:href="@{|/recipe?ingredientNames=${ingredient.ingredient.ingredient_name}|}" class="ac2"><i class="fa-solid fa-magnifying-glass" style="max-width:20px; max-height:20px;"></i></a></span>
 							<hr>
 						</div>
 					</div>

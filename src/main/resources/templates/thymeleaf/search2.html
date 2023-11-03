@@ -44,7 +44,7 @@
 			</div>
 			<div class=e3_172>
 				<form action="/search" method="get"> <!-- 검색창 주소 입력 -->
-					<div class="e2_7"><input type="text" name="keyword" class="search_txt" required></div>
+					<div class="e2_7"><input type="text" name="keyword" class="search_txt" th:value="${keyword}" required></div>
 					<div class="e3_171">
 						<button type="submit" class="search_btn">
 							<span class="searchicon">
