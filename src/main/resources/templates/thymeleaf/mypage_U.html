@@ -8,14 +8,13 @@
    
 </style>
 <script src="https://kit.fontawesome.com/2636adf573.js" crossorigin="anonymous"></script>
-<!--<link rel="stylesheet" type="text/css" th:href="@{/../css/style.css}" />-->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" type="text/css" th:href="@{/../css/mypageTestU.css}">
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 </head>
 
-<div>
+<body>
   
 <div class=e2_2>
 		<div class=e2_3>
@@ -73,11 +72,11 @@
       
  <div class=e0_23>
 	<div class=e3_93>
-		<span class="e3_94"><a href="/mypage">회원정보관리</a></span>
-		<span class="e3_100"><a href="/mypage_L">좋아요한 레시피</a></span>
-		<span class="e3_99"><a href="/mypage_B">작성한 게시글</a></span>
-		<span class="e3_98"><a href="/mypage_R">작성한 레시피</a></span>
-		<span class="e3_101"><a href="/mypage_S">스크랩한 레시피</a></span>
+			<span class="e3_94"><a href="/mypage">작성한 레시피</a></span>
+			<span class="e3_98"><a href="/mypage_B">작성한 게시글</a></span>
+		<span class="e3_99"><a href="/mypage_L">좋아요한 레시피</a></span>
+		<span class="e3_100"><a href="/mypage_S">스크랩한 레시피</a></span>
+		<span class="e3_101"><a href="/mypage_U">회원정보관리</a></span>
 		<span class="e3_102">마이페이지</span>
 	</div>
 <!-- 여기부터 body에 추가할 코드 입력 -->
@@ -159,7 +158,6 @@
 </div>
    <div class=e0_133><span  class="e0_134">
          @Yuhan University Group 3's Project</div></span>
-</div>
 
 	<script th:inline="javascript">
 	        var boarddeleteMessage = /*[[${boarddeleteMessage}]]*/ "";
@@ -226,34 +224,6 @@ imageInput.addEventListener('change', (event) => {
 	}
 });
 
-const slider = document.querySelector(".e2_4");
-		const slides = document.querySelectorAll(".e2_4_1");
-		const slideWidth = slides[0].clientWidth; // 슬라이드 하나의 너비
-		let currentSlide = 0;
-		const interval = 5000; // 3초
-
-		function nextSlide() {
-			currentSlide = (currentSlide + 1) % slides.length;
-			const offset = -currentSlide * slideWidth;
-			slider.style.transition = "transform 1s ease-in-out";
-			slider.style.transform = `translateX(${offset}px)`;
-		}
-
-		function previousSlide() {
-			if (currentSlide === 0) {
-				currentSlide = slides.length - 1;
-			} else {
-				currentSlide--;
-			}
-			const offset = -currentSlide * slideWidth;
-			slider.style.transition = "transform 1s ease-in-out";
-			slider.style.transform = `translateX(${offset}px)`;
-		}
-
-		setInterval(nextSlide, interval);
-
-// 원하는 경우, "이전" 버튼을 클릭하면 previousSlide 함수를 호출하도록 추가할 수 있습니다.
-// 또는 사용자 입력(예: 화살표 키)에 반응할 수도 있습니다.
 
 	</script>
    
