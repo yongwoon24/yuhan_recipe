@@ -8,6 +8,7 @@ import com.example.demo.repository.LoveRepository;
 import com.example.demo.repository.RecipeRepository;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 
@@ -22,10 +23,10 @@ public class RecipeUpdateService {
 
     @Scheduled(cron = "0 0 0 * * *") // 매일 자정에 실행
     public void updateRecipeStats() {
-        LocalDate currentDate = LocalDate.now();
-        LocalDate weekStart = currentDate.with(TemporalAdjusters.previousOrSame(java.time.DayOfWeek.MONDAY));
-        LocalDate weekEnd = weekStart.plusDays(6);
-        LocalDate monthStart = currentDate.with(TemporalAdjusters.firstDayOfMonth());
+        LocalDateTime currentDate = LocalDateTime.now();
+        LocalDateTime weekStart = currentDate.with(TemporalAdjusters.previousOrSame(java.time.DayOfWeek.MONDAY));
+        LocalDateTime weekEnd = weekStart.plusDays(6);
+        LocalDateTime monthStart = currentDate.with(TemporalAdjusters.firstDayOfMonth());
 
         // 모든 레시피의 daily, weekly, monthly 좋아요 수 업데이트
         List<Recipe> allRecipes = recipeRepository.findAll();

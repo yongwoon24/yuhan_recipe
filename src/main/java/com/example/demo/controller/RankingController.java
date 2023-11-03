@@ -30,28 +30,28 @@ public class RankingController {
     public String getTopRecipes(Model model, @RequestParam(required = false, defaultValue = "0") int page,
                                 @RequestParam(required = false) String categoryName,
                                 @RequestParam(required = false) String period) {
-        int pageSize = 3; // 페이지당 레시피 수
-
+        int pageSize = 20; // 페이지당 레시피 수
+        boolean a = true;
         List<Recipe> topLove;
         if (categoryName == null || categoryName.isEmpty()) {
             if ("d".equals(period)) {
-                topLove = recipeRepository.findByOrderByDailyLoveDesc();
+                topLove = recipeRepository.findByRecipeVerifiedOrderByDailyLoveDesc(a);
             } else if ("w".equals(period)) {
-                topLove = recipeRepository.findByOrderByWeeklyLoveDesc();
+                topLove = recipeRepository.findByRecipeVerifiedOrderByWeeklyLoveDesc(a);
             } else if ("m".equals(period)) {
-                topLove = recipeRepository.findByOrderByMonthlyLoveDesc();
+                topLove = recipeRepository.findByRecipeVerifiedOrderByMonthlyLoveDesc(a);
             } else {
-                topLove = recipeRepository.findByOrderByTotalLoveDesc();
+                topLove = recipeRepository.findByRecipeVerifiedOrderByTotalLoveDesc(a);
             }
         } else {
             if ("d".equals(period)) {
-                topLove = recipeRepository.findByCategoryNameOrderByDailyLoveDesc(categoryName);
+                topLove = recipeRepository.findByRecipeVerifiedAndCategoryNameOrderByDailyLoveDesc(a, categoryName);
             } else if ("w".equals(period)) {
-                topLove = recipeRepository.findByCategoryNameOrderByWeeklyLoveDesc(categoryName);
+                topLove = recipeRepository.findByRecipeVerifiedAndCategoryNameOrderByWeeklyLoveDesc(a, categoryName);
             } else if ("m".equals(period)) {
-                topLove = recipeRepository.findByCategoryNameOrderByMonthlyLoveDesc(categoryName);
+                topLove = recipeRepository.findByRecipeVerifiedAndCategoryNameOrderByMonthlyLoveDesc(a, categoryName);
             } else {
-                topLove = recipeRepository.findByCategoryNameOrderByTotalLoveDesc(categoryName);
+                topLove = recipeRepository.findByRecipeVerifiedAndCategoryNameOrderByTotalLoveDesc(a, categoryName);
             }
             model.addAttribute("selectedCategory", categoryName);
         }

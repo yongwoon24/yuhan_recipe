@@ -1,10 +1,10 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
@@ -17,26 +17,50 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.demo.entity.Board;
+import com.example.demo.entity.Love;
+import com.example.demo.entity.Recipe;
 import com.example.demo.entity.User;
+import com.example.demo.repository.BoardRepository;
+import com.example.demo.repository.CommentRepository;
+import com.example.demo.repository.LoveRepository;
+import com.example.demo.repository.RecipeRepository;
+import com.example.demo.repository.ScrapRepository;
 import com.example.demo.repository.UserRepository;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import jakarta.servlet.http.HttpSession;
+import jakarta.transaction.Transactional;
 
 @Controller
 public class UserController {
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private BoardRepository boardRepository;
+    @Autowired
+    private CommentRepository commentRepository;
+    @Autowired
+    private ScrapRepository scrapRepository;
+    @Autowired
+    private LoveRepository loveRepository;
+    @Autowired
+    private RecipeRepository recipeRepository;
     //여기도 추가함!!!!!!!!!!!!!!!!!!!!!
     @Autowired
     private JavaMailSender javaMailSender;
     
     @GetMapping("/user")
-    public String listUsers(Model model) {
-        List<User> users = userRepository.findAll();
-        model.addAttribute("users", users);
-        return "userList";
+    public String listUsers(Model model, HttpSession session, RedirectAttributes redirectAttributes) {
+    	String loggedInNickname = (String) session.getAttribute("loggedInNickname");
+    	if("관리자".equals(loggedInNickname)) {
+	        List<User> users = userRepository.findAll();
+	        model.addAttribute("users", users);
+	        return "userList";
+    	}else {
+    		return "redirect:/";
+    	}
     }
     
     @GetMapping("/signup")
@@ -44,6 +68,13 @@ public class UserController {
         model.addAttribute("user", new User());
         return "signup";
     }
+    
+    @GetMapping("/1")
+    public String createUserForm1(Model model) {
+        model.addAttribute("user", new User());
+        return "index2";
+    }
+   
    
     @PostMapping("/signup")
     public String createUser(@ModelAttribute User user, RedirectAttributes redirectAttributes) {
@@ -85,9 +116,26 @@ public class UserController {
         return "redirect:/user";
     }
     
-    @GetMapping("/deleteUser/{user_id}")
-    public String deleteUser(@PathVariable String user_id) {
-        userRepository.deleteById(user_id);
+    @GetMapping("/deleteUser/{nickname}")
+    @Transactional // 트랜잭션 설정
+    public String deleteUser(@PathVariable String nickname) {
+        User user = userRepository.findbynickname(nickname);
+        List<Board> board = boardRepository.findByNickname(nickname);
+        List<Integer> postIds = new ArrayList<>();
+        
+        for (int i = 0; i < board.size(); i++) {
+			postIds.add(board.get(i).getPostId());
+		}
+        for (int i = 0; i < postIds.size(); i++) {
+			int postId = postIds.get(i);
+			commentRepository.deleteByPostId(postId);
+		}
+        
+        boardRepository.deleteByNickname(nickname);
+        scrapRepository.deleteByUser(user); // 사용자에 해당하는 스크랩 삭제
+        loveRepository.deleteByUser(user);
+        userRepository.deleteById(user.getUser_id());
+        recipeRepository.deleteByNickname(nickname);
         return "redirect:/user";
     }
    
@@ -173,7 +221,74 @@ public class UserController {
         }
     }
     
+    @GetMapping("/alarm")
+    public String alarm(Model model, HttpSession session, @RequestParam(required = false, defaultValue = "0") int page,RedirectAttributes redirectAttributes) {
+    	
+    	String loggedInNickname = (String) session.getAttribute("loggedInNickname");
+    	String loggedInUserId = (String) session.getAttribute("loggedInUserId");
+    	
+    	if (loggedInNickname != null) {
+    	List<Recipe> recipes = recipeRepository.findByNicknameOrderByCreateddateDesc(loggedInNickname);
+    	List<Board> boards = boardRepository.findByNickname(loggedInNickname);
+    	List<Love> loves = loveRepository.findLovesByActivityNotEqualAndBoardInOrRecipeInOrderByDateAtDesc(boards, recipes);
+    	//List<Love> loves = loveRepository.findAll();
+    	int pageSize = 20; // 페이지당 레시피 수
+    	
+    	int startIndex = page * pageSize;
+        int endIndex = Math.min(startIndex + pageSize, loves.size());
+
+        List<Love> pagedBoards = loves.subList(startIndex, endIndex);
+        model.addAttribute("currentPage", page);
+
+        // 전체 페이지 수 계산
+        int totalPageCount = (int) Math.ceil((double) loves.size() / pageSize);
+        model.addAttribute("totalPageCount", totalPageCount);
+
+        // 첫 페이지 번호와 끝 페이지 번호 계산
+        int firstPage = 0;
+        int lastPage = totalPageCount - 1;
+        model.addAttribute("firstPage", firstPage);
+        model.addAttribute("lastPage", lastPage);
+        
+    	model.addAttribute("session",session);
+    	model.addAttribute("loves",pagedBoards);
+    	
+    	List<Love> lovesT = loveRepository.findLovesByActivityNotEqualAndBoardInOrRecipeInOrderByDateAtDesc1(boards, recipes, loggedInUserId);
+    	//읽지 않은 알람이 있을때 
+    	if(!lovesT.isEmpty() && lovesT != null) {
+    		
+    		session.setAttribute("alarm", 1);
+    		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    		for (int i = 0; i < lovesT.size(); i++) {
+				System.out.println(lovesT.get(i).getActivityId());
+			}
+    		
+    	}else {
+    	session.setAttribute("alarm", 2);
+    	System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+    	}
+    	
+    	
+    	
+    	
+    	return "alarm";
+    	}else {
+    		redirectAttributes.addFlashAttribute("errorMessage", "로그인 상태가 아닙니다!");
+    		return "redirect:/";
+    	}
+    }
     
+    @PostMapping("/updateToken")
+    public void updateToken(@RequestParam Long notificationId, HttpSession session) {
+        // notificationId를 사용하여 데이터베이스에서 알림을 식별하고 "token" 값을 업데이트합니다.
+        System.out.println(notificationId+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        // 업데이트가 성공한 경우 응답을 반환합니다.
+        String loggedInNickname = (String) session.getAttribute("loggedInNickname");  
+        Love love = loveRepository.findByActivityId(notificationId);
+        love.setToken(true);
+        loveRepository.save(love);
+        
+    }
     
     
     

@@ -2,11 +2,13 @@
 <html>
 
 <head>
-	<meta content="text/html" charset="utf-8">
+	<meta content="text/html; charset=euc-kr">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>모두의레시피</title>
 	<style type="text/css">
 	</style>
 	<script src="https://kit.fontawesome.com/2636adf573.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" th:href="@{/../css/style.css}" />
 	<link rel="stylesheet" type="text/css" th:href="@{/../css/recipeList.css}" />
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,29 +20,42 @@
 		<div class="body_content">
 			<div class="menubar"></div>
 			<span class="menu4"><a href="/mypage">마이페이지</a></span>
-      <span class="menu3"><a href="/recipe">분류</a></span>
-      <span class="menu2"><a href="/board">게시판</a></span>
-      <span class="menu1"><a href="/rank">랭킹</a></span>
-      <span><a class="mainicon" href="/">모두의레시피</a></span>
+			<span class="menu3"><a href="/board">게시판</a></span>
+			<span class="menu2"><a href="/recipe">분류</a></span>
+			<span class="menu1"><a href="/rank">랭킹</a></span>
+			<span><a class="mainicon" href="/">모두의레시피</a></span>
 
 			<!-- 마이페이지 주소 입력 -->
+			<div class="alarm-icon"><a href="/alarm"><i class="fas fa-bell"></i></a><span th:if="${session.alarm == 1}"
+					style="font-size: 80px; color: red;">.</span></div>
 			<div class="write-icon"><a href="/createRecipe"><i class="fas fa-pencil-alt"></i></a></div>
 			<div class="usericon"><a href="/mypage"><i class="fa-solid fa-user"></i></a></div>
 			<!-- 로그아웃 주소 입력 -->
 			<div class="logout_icon"><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></div>
+			<div class="searchbar">
+				<div class="searchradius">
+					<form action="/search" method="get"> <!-- 검색창 주소 입력 -->
+						<input type="text" name="keyword" class="search_txt" required>
+						<button type="submit" class="search_btn">
+							<span class="searchicon">
+								<i class="fa-solid fa-magnifying-glass"></i>
+							</span>
+						</button>
+					</form>
+				</div>
+			</div>
 
-			<div class="searchbar">	
-			<div class="searchradius">
-				<form action="/search" method="get"> <!-- 검색창 주소 입력 --> 
-					<input type="text" name="keyword" class="search_txt" required>
-					<button type="submit" class="search_btn">
-						<span class="searchicon">
-							<i class="fa-solid fa-magnifying-glass"></i>
-						</span>
-					</button>
-				</form>
-			</div>	
-		</div>
+			<div th:if="${session.loggedInNickname == '관리자'}" class="confirm_btn">
+				<a href="/reviewRecipes">
+					<button>레시피 검토</button>
+				</a>
+			</div>
+
+			<div th:if="${session.loggedInNickname == '관리자'}" class="user_btn">
+				<a href="/user">
+					<button>회원 관리</button>
+				</a>
+			</div>
 			<!-- 여기부터 body에 추가할 코드 입력 -->
 
 			<div class="slide_wrapper">
@@ -56,10 +71,13 @@
 							<label><input type="checkbox" id="late_night_meal" name="categoryName"
 									value="야식/안주">야식/안주</label>
 						</div>
-						<p>재료</p>
-						<input type="text" id="t1" class="t11" value="">
-						<input type="button" onclick="init()" id="btn" value="생성"><br>
-						<div id="body_wrapper4"></div><br>
+						<div class="ingredient_wrapper">
+							<p>재료</p>
+							<input type="text" id="t1" class="t11" value="">
+							<input type="button" onclick="init()" id="btn" value="생성"><br>
+							<div id="body_wrapper4"></div><br>
+						</div>
+
 						<p><input type="button" value="검색" onclick="submitForm()"><input type="reset" value="초기화"></p>
 					</div>
 				</form>
@@ -75,13 +93,13 @@
 							th:href="@{|/recipe?&amp;sort=latest|}">최신순</a>
 
 						<a th:if="${(categories != null && !categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty())}"
-							th:href="@{|/recipe?&amp;categoryName=${categories}&amp;ingredientNames=${ingredientNames}&amp;sort=views|}">조회수순</a>
+							th:href="@{|/recipe?&amp;categoryName=${categories}&amp;ingredientNames=${ingredientNames}&amp;sort=views|}">조회순</a>
 						<a th:if="${(categories == null || categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty())}"
-							th:href="@{|/recipe?&amp;ingredientNames=${ingredientNames}&amp;sort=views|}">조회수순</a>
+							th:href="@{|/recipe?&amp;ingredientNames=${ingredientNames}&amp;sort=views|}">조회순</a>
 						<a th:if="${(categories != null && !categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty())}"
-							th:href="@{|/recipe?&amp;categoryName=${categories}&amp;sort=views|}">조회수순</a>
+							th:href="@{|/recipe?&amp;categoryName=${categories}&amp;sort=views|}">조회순</a>
 						<a th:if="${(categories == null || categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty())}"
-							th:href="@{|/recipe?&amp;sort=views|}">조회수순</a>
+							th:href="@{|/recipe?&amp;sort=views|}">조회순</a>
 					</p>
 				</div>
 				<ul class="img_slide1">
@@ -298,38 +316,38 @@
 				document.body.appendChild(form);
 				form.submit();
 			}
-			
+
 			var imagePaths = ["image1.jpg", "image2.jpg", "image3.jpg"];
-				var cachedImages = {};
+			var cachedImages = {};
 
-				// 이미지 캐싱
-				imagePaths.forEach(function (path) {
-					var image = new Image();
-					image.src = path;
-					cachedImages[path] = image;
-				});
+			// 이미지 캐싱
+			imagePaths.forEach(function (path) {
+				var image = new Image();
+				image.src = path;
+				cachedImages[path] = image;
+			});
 
-				// 이미지를 화면에 표시
-				function displayImage(path) {
-					var myImage = document.getElementById("myImage");
-					if (cachedImages[path]) {
-						myImage.src = cachedImages[path].src;
-					} else {
-						// 이미지가 캐시되어 있지 않으면 로딩 중 이미지를 표시할 수도 있습니다
-						myImage.src = "loading.gif";
-					}
+			// 이미지를 화면에 표시
+			function displayImage(path) {
+				var myImage = document.getElementById("myImage");
+				if (cachedImages[path]) {
+					myImage.src = cachedImages[path].src;
+				} else {
+					// 이미지가 캐시되어 있지 않으면 로딩 중 이미지를 표시할 수도 있습니다
+					myImage.src = "loading.gif";
 				}
+			}
 
 
-			</script>
-			
-			<script th:inline="javascript">
-        var successMessage = /*[[${asd}]]*/ "";
-        if (successMessage) {
-            alert(successMessage);
-        }
-    </script>
-    
+		</script>
+
+		<script th:inline="javascript">
+			var successMessage = /*[[${asd}]]*/ "";
+			if (successMessage) {
+				alert(successMessage);
+			}
+		</script>
+
 
 </body>
 

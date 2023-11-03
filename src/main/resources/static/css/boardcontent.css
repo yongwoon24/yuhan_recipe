@@ -6,7 +6,7 @@
    }
    .button-style {
 	   		  position: relative;
-			  right: 320%;
+			  right: 180%;
 	   		  font-family: 'Jua', sans-serif;
 		      display: inline-block;
 			  padding: 10px 20px;
@@ -109,4 +109,19 @@
 	.btn_comment_submit:hover {
 		background-color: #333;
   		color: #fff;
+	}
+	.writer_comment {
+		position: relative;
+		left: 0%;
+	}
+	.write_date {
+		position: relative;
+		right: -8%;
+	}	
+	.comment_content_a {
+		display:inline-block;
+		width:50%;
+		word-wrap:break-word;/*영문,숫자 줄바꿈*/
+		word-break:break-all;
+		white-space: pre-wrap;
 	}

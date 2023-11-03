@@ -28,10 +28,11 @@ public class LoveController {
         this.loveRepository = loveRepository;
         this.recipeRepository = recipeRepository;
     }
+    boolean a = true;
 
     @GetMapping("/")
     public String getTopRecipes(Model model, @RequestParam(required = false) String category_name) {
-    	List<Recipe> topLove = recipeRepository.findTop10ByOrderByTotalLoveDesc();
+    	List<Recipe> topLove = recipeRepository.findTop10ByRecipeVerifiedOrderByTotalLoveDesc(a);
     	model.addAttribute("topLove", topLove);
     	return "index";
         /*if (category_name == null || category_name.isEmpty()) {

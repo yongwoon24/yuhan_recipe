@@ -18,6 +18,7 @@ public class User {
 	private String nickname;
 	private String userphotopath;
 	private String userpr;
+	private Integer usertotallikes;
 	
 	@Column(length = 36, name = "verification_token")
     private String verificationToken;
@@ -113,6 +114,15 @@ public class User {
 
 	public void setUserpr(String userpr) {
 		this.userpr = userpr;
+	}
+	
+
+	public Integer getUsertotallikes() {
+		return usertotallikes;
+	}
+
+	public void setUsertotallikes(Integer usertotallikes) {
+		this.usertotallikes = usertotallikes;
 	}
 
 	@Override
