@@ -98,7 +98,7 @@
 						<div class="e52_787" th:each="ingredient : ${recipeings}">
 							<span th:text="${ingredient.ingredient.ingredient_name}"></span>
 							<span th:text="${ingredient.mensuration}"></span><span>&nbsp;&nbsp;&nbsp;</span>
-							<span class="ingsch"><a th:href="@{|/search?keyword=${ingredient.ingredient.ingredient_name}|}" class="ac2"><i class="fa-solid fa-magnifying-glass" style="max-width:20px; max-height:20px;"></i></a></span>
+							<span class="ingsch"><a th:href="@{|/recipe?ingredientNames=${ingredient.ingredient.ingredient_name}|}" class="ac2"><i class="fa-solid fa-magnifying-glass" style="max-width:20px; max-height:20px;"></i></a></span>
 							<hr>
 						</div>
 					</div>
