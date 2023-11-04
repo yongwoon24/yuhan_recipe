@@ -206,6 +206,8 @@
 	position:absolute;
 	left:15%;
 	top:20%;
+	overflow: hidden;
+	
 }
 .e3_29 { 
 	width:100%;
@@ -521,6 +523,8 @@
 	position:absolute;
 	left:0px;
 	top:410px;
+	display: flex; /* 내부 아이템을 가로로 배치하기 위해 추가 */
+    align-items: center; /* 수직 가운데 정렬 유지 */
 }
 .e3_70 { 
 	color:rgba(0, 0, 0, 1);
@@ -534,29 +538,34 @@
 	font-size:20px;
 	letter-spacing:0;
 }
-.e3_71 { 
-	width:973px;
-	height:347px;
-	position:absolute;
-	left:0px;
-	top:63px;
-}
 .e3_72 { 
 	width:240px;
 	height:348px;
-	position:absolute;
+	position:relative;
 	left:9px;
 	top:62px;
+	flex-direction: row; /* 수평 정렬을 위한 flex-direction 변경 */
+    align-items: center; /* 수직 가운데 정렬 유지 */
+    margin-right: 80px;
+    
 }
 .e3_73 { 
 	width:220px;
 	height:130px;
-	position:absolute;
+	position:relative;
 	left:10px;
 	top:76px;
 	background-image:url(images/rimg1_2.png);
 	background-repeat:no-repeat;
 	background-size:cover;
+}
+
+.e3_73 img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 .e3_74 { 
 	color:rgba(0, 0, 0, 1);
@@ -1343,22 +1352,26 @@ a {
 }
 .slide_wrapper{
 	top: 450px;
-	position: absolute;
+	position: relative;
+	height: auto;
 	margin:0 auto;
 	overflow: hidden;
 	align-items: center;
+	white-space: nowrap;
 	
 }
 .img_slide{
+	display: flex;
 	position: relative;
 	left: 0; top: 0;
-	height: 500px;
+	height: 300px;
 	transition: left 0.5s ease-out;
 	font-size: 10px;
+	white-space: nowrap;
 }
 .img_slide li{
-	float: left;
-	margin-right: 30px;
+	width: 280px; /* 또는 원하는 너비로 설정 */	
+    margin-right: 30px;
 }
 .img_slide ol{
 	max-width: 350px;
@@ -1368,6 +1381,60 @@ li{
 	list-style: none;
 }
 li > a > img{
-	width: 90px;
-	height: 90px;
+	width: 280px;
+	height: 250px;
+	overflow: hidden;
+}
+.img_slide li a {
+    
+    align-items: center;
+    text-align: center;
+    color: black;
+}
+
+.img_slide li a img {
+    max-width: 280px; /* 이미지가 부모 요소를 초과하지 않도록 수정 */
+   
+}
+
+.prev_button, .next_button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    padding: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+.prev_button {
+    left: 0;
+}
+
+.next_button {
+    right: 0;
+}
+
+img{
+	border-radius: 10px;
+ }
+ 
+ button {
+    background-color: rgba(0, 0, 0, 1);
+    color: rgba(255, 255, 255, 1);
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.button-icon {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+.button_div{
+	position: relative;
 }
