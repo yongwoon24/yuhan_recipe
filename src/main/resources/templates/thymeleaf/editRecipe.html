@@ -375,7 +375,7 @@
 										<div class="list-item" th:each="tag, status : ${tagss}"
 											th:id="'item-'+${status.index + 1}">
 											<input type="hidden" name="tags" id="tags" th:value="${tag.content}">
-											<button class="delete-button" onclick="" th:text="${tag.content}"
+											<button class="delete-button" onclick="" th:text="${tag.content}+'    X'"
 												th:onclick="'handleDeleteClick(\'item-' + ${status.index + 1} + '\', event);'"></button>
 										</div>
 									</ul>
@@ -407,6 +407,8 @@
 							<div class='textRow1' th:id="'r'+${status.index + 1}" th:each="step, status : ${steps}">
 								<label class="step" th:text="'STEP'+${status.index + 1}"></label><br>
 								<textarea class='text2' name="SContent" th:text="${step.SContent}"></textarea>
+								
+								
 								<input multiple type="file" th:id="'file'+${status.index + 1}" name="file1"
 									style="display: none;">
 								<button th:id="'uploadButton'+${status.index + 1}" name="uploadButton1"

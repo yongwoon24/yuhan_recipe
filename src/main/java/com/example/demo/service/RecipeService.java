@@ -57,37 +57,34 @@ public class RecipeService {
 	}
 
 	public void createRecipe(Recipe recipe, List<String> ingredientNames, List<String> mensurations) {
-		// Recipe newRecipe = new Recipe();
+	    List<Recipe_Ingredient> recipeIngredients = new ArrayList<>();
+	    for (int i = 0; i < ingredientNames.size(); i++) {
+	        String ingredientName = (i < ingredientNames.size()) ? ingredientNames.get(i) : null;
+	        String mensuration = (i < mensurations.size()) ? mensurations.get(i) : null;
 
-		List<Recipe_Ingredient> recipeIngredients = new ArrayList<>();
-		for (int i = 0; i < ingredientNames.size(); i++) {
-			String ingredientName = (i < ingredientNames.size()) ? ingredientNames.get(i) : null;
-			String mensuration = (i < mensurations.size()) ? mensurations.get(i) : null;
+	        if (ingredientName != null && !ingredientName.isEmpty()) { // Check if ingredientName is not empty
+	            Ingredient existingIngredient = ingredientRepository.findByIngredientName(ingredientName);
+	            if (existingIngredient != null) {
+	                Recipe_Ingredient recipeIngredient = new Recipe_Ingredient();
+	                recipeIngredient.setRecipe(recipe);
+	                recipeIngredient.setIngredient(existingIngredient);
+	                recipeIngredient.setMensuration(mensuration);
+	                recipeIngredients.add(recipeIngredient);
+	            } else {
+	                Ingredient newIngredient = new Ingredient();
+	                newIngredient.setIngredient_name(ingredientName);
+	                ingredientRepository.save(newIngredient);
 
-			Ingredient existingIngredient = ingredientRepository.findByIngredientName(ingredientName);
-			if (existingIngredient != null) {
-				// 이미 존재하는 재료 정보인 경우, 기존 재료 정보를 사용
-				Recipe_Ingredient recipeIngredient = new Recipe_Ingredient();
-				recipeIngredient.setRecipe(recipe);
-				recipeIngredient.setIngredient(existingIngredient);
-				recipeIngredient.setMensuration(mensuration);
-				recipeIngredients.add(recipeIngredient);
-			} else {
-				// 존재하지 않는 재료 정보인 경우, 새로운 재료 정보를 생성하여 저장
-				Ingredient newIngredient = new Ingredient();
-				newIngredient.setIngredient_name(ingredientName);
-				ingredientRepository.save(newIngredient);
+	                Recipe_Ingredient recipeIngredient = new Recipe_Ingredient();
+	                recipeIngredient.setRecipe(recipe);
+	                recipeIngredient.setIngredient(newIngredient);
+	                recipeIngredient.setMensuration(mensuration);
+	                recipeIngredients.add(recipeIngredient);
+	            }
+	        }
+	    }
 
-				Recipe_Ingredient recipeIngredient = new Recipe_Ingredient();
-				recipeIngredient.setRecipe(recipe);
-				recipeIngredient.setIngredient(newIngredient);
-				recipeIngredient.setMensuration(mensuration);
-				recipeIngredients.add(recipeIngredient);
-			}
-		}
-
-		recipe.setRecipeIngredients(recipeIngredients);
-
+	    recipe.setRecipeIngredients(recipeIngredients);
 	}
 
 	public void createtag(Recipe recipe, List<String> tag) {

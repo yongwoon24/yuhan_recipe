@@ -200,7 +200,7 @@ public class RecipeController {
 	    
 	    System.out.println(categories);
 	    System.out.println(encodedCategories);
-	    return "recipeList";
+	    return "recipeList2";
         }
 	
 	
@@ -237,6 +237,17 @@ public class RecipeController {
 			return "redirect:/login";
 		}else {
 		model.addAttribute("recipe", new Recipe());
+		return "createRecipe2";}
+	}
+	
+	@GetMapping("/createRecipe1")
+	public String createRecipeForm1(Model model,HttpSession session,RedirectAttributes redirectAttributes) {
+		String loggedInUserId = (String) session.getAttribute("loggedInUserId");
+		if(loggedInUserId==null) {
+			redirectAttributes.addFlashAttribute("errorMessage", "로그인을 해주세요");
+			return "redirect:/login";
+		}else {
+		model.addAttribute("recipe", new Recipe());
 		return "createRecipe";}
 	}
 
@@ -259,6 +270,8 @@ public class RecipeController {
 			throws Exception {
 		recipe.setRecipeVerified(true);//레시피 검토 안해도 되도록 임시@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@22
 		String loggedInNickname = (String) session.getAttribute("loggedInNickname");
+		User user = userrepository.findbynickname(loggedInNickname);
+		recipe.setUser(user);
 		recipe.setNickname(loggedInNickname);
 		recipeservice.write(recipe, file);
 		recipeservice.createRecipe(recipe, ingredientName, mensuration);
@@ -475,7 +488,7 @@ public class RecipeController {
 				model.addAttribute("Nickname", Nickname);
 				model.addAttribute("comment", recipecomment);
 				model.addAttribute("session",session);
-				return "userRecipe"; // 레시피 페이지 템플릿
+				return "userRecipe2"; // 레시피 페이지 템플릿
 			} else {
 				
 				user.setUser_id(loggedInUserId);
@@ -497,14 +510,35 @@ public class RecipeController {
 				model.addAttribute("Nickname", Nickname);
 				model.addAttribute("comment", recipecomment);
 				model.addAttribute("session",session);
-				return "userRecipe"; // 레시피 페이지 템플릿
+				return "userRecipe2"; // 레시피 페이지 템플릿
 			}
 		}
-		return "userRecipe";
+		return "userRecipe2";
 	}
 
 	@GetMapping("/editRecipe/{recipe_id}")
 	public String editRecipeForm(@PathVariable Integer recipe_id, Model model,
+			HttpSession session, RedirectAttributes redirectAttributes) {
+		String loggedInNickname = (String) session.getAttribute("loggedInNickname");
+		String loggedInUserId = (String) session.getAttribute("loggedInUserId");
+		Recipe recipe = recipeRepository.findById(recipe_id)
+				.orElseThrow(() -> new IllegalArgumentException("Invalid Recipe ID: " + recipe_id));
+		List<Recipe_Ingredient> recipeing = recipe.getRecipeIngredients();
+		List<Step> steps = recipe.getSteps();
+		int stepssize = steps.size();
+		List<Tag> tagss = recipe.getTag();
+		int tagsize = tagss.size();
+		model.addAttribute("stepssize",stepssize);
+		model.addAttribute("tagsize",tagsize);
+		model.addAttribute("steps",steps);
+		model.addAttribute("tagss",tagss);
+		model.addAttribute("recipeings",recipeing);
+		model.addAttribute("recipe", recipe);
+		return "editRecipe2";
+	}
+	
+	@GetMapping("/editRecipe2/{recipe_id}")
+	public String editRecipeForm2(@PathVariable Integer recipe_id, Model model,
 			HttpSession session, RedirectAttributes redirectAttributes) {
 		String loggedInNickname = (String) session.getAttribute("loggedInNickname");
 		String loggedInUserId = (String) session.getAttribute("loggedInUserId");
@@ -626,7 +660,7 @@ public class RecipeController {
 	    
 	    
 	    int totalRecipes = recipes.size();
-	    int pageSize = 20; // 페이지당 레시피 수
+	    int pageSize = 16; // 페이지당 레시피 수
 	    int totalPages = (int) Math.ceil((double) totalRecipes / pageSize);
 	    
 	    // 현재 페이지가 유효한 범위 내에 있는지 확인
@@ -667,7 +701,7 @@ public class RecipeController {
 	    model.addAttribute("sort", sort);
 	    model.addAttribute("keyword", keyword); // 검색어 추가
 	    
-	    return "search";
+	    return "search2";
         }
 
 }

@@ -39,7 +39,7 @@ public class MyPageController {
 	       this.recipeservice=recipeservice;
 	   }
 	 
-	 @GetMapping("/mypage")
+	 @GetMapping("/mypage_U")
 	 public String showMyPage(Model model, HttpSession session, RedirectAttributes redirectAttributes) {
 		 
 		 String loggedInNickname = (String) session.getAttribute("loggedInNickname");
@@ -67,7 +67,7 @@ public class MyPageController {
 		 return "mypage_U";
 	 }
 	 
-	 @PostMapping("/mypage")
+	 @PostMapping("/mypage_U")
 	 public String changeMyPage(Model model, HttpSession session, RedirectAttributes redirectAttributes,
 			 @RequestParam(name = "password") String password,
 	 		 @RequestParam(name = "newpassword") String newpassword,
@@ -132,7 +132,7 @@ public class MyPageController {
 		 
 	 }
 	 
-	 @GetMapping("/mypage_R")
+	 @GetMapping("/mypage")
 	 public String showMyPage2(Model model, HttpSession session, RedirectAttributes redirectAttributes,
 			 @RequestParam(required = false, defaultValue = "1") int page) {
 		 String loggedInNickname = (String) session.getAttribute("loggedInNickname");

@@ -30,7 +30,7 @@ public class RankingController {
     public String getTopRecipes(Model model, @RequestParam(required = false, defaultValue = "0") int page,
                                 @RequestParam(required = false) String categoryName,
                                 @RequestParam(required = false) String period) {
-        int pageSize = 20; // 페이지당 레시피 수
+        int pageSize = 16; // 페이지당 레시피 수
         boolean a = true;
         List<Recipe> topLove;
         if (categoryName == null || categoryName.isEmpty()) {
@@ -76,7 +76,7 @@ public class RankingController {
         model.addAttribute("firstPage", firstPage);
         model.addAttribute("lastPage", lastPage);
 
-        return "rank";
+        return "rank2";
     }
 
 }
