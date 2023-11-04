@@ -1,3 +1,5 @@
+																							/*상단 메뉴 및 검색창 css*/
+
 body {
     overflow-x: hidden; /* 가로 스크롤바 숨기기 */
 }
@@ -307,189 +309,8 @@ a.active {
 	letter-spacing:0;
 }
 
-.e0_3 { 
-	background-image:linear-gradient(0deg, rgba(216.75000607967377, 29.803125075995922, 29.803125075995922, 1) 0%,rgba(0, 0, 0, 0) 100%) ;
-	width:1471px;
-	height:2625px;
-	position:absolute;
-}
-.e0_4 { 
-	background-color:rgba(255, 255, 255, 1);
-	width:1471px;
-	height:946px;
-	position:absolute;
-	left:735px;
-	top:1307px;
-}
-.e0_5 { 
-	opacity:0.8999999761581421;
-	width:1471px;
-	height:946px;
-	position:absolute;
-	left:0px;
-	top:6px;
-	background-image:url(images/rimg1_1.png);
-	background-repeat:no-repeat;
-	background-size:cover;
-}
-.e0_5 { 
-	border:1px solid rgba(0, 0, 0, 1);
-}
-.e0_6 { 
-	width:1471px;
-	height:109px;
-	position:absolute;
-	left:0px;
-	top:0px;
-}
-.e0_7 { 
-	color:rgba(255, 255, 255, 1);
-	width:142px;
-	height:25px;
-	position:absolute;
-	left:43px;
-	top:24px;
-	font-family:Alumni Sans Collegiate One;
-	text-align:left;
-	font-size:24px;
-	letter-spacing:0;
-}
-.e0_8 { 
-	width:659px;
-	height:45px;
-	position:absolute;
-	left:822px;
-	top:15px;
-}
-.e0_9 { 
-	color:rgba(255, 255, 255, 1);
-	width:38px;
-	height:24px;
-	position:absolute;
-	left:20px;
-	top:10px;
-	font-family:Alumni Sans Collegiate One;
-	text-align:left;
-	font-size:20px;
-	letter-spacing:0;
-}
-.e0_10 { 
-	color:rgba(255, 255, 255, 1);
-	width:38px;
-	height:24px;
-	position:absolute;
-	left:117px;
-	top:10px;
-	font-family:Alumni Sans Collegiate One;
-	text-align:left;
-	font-size:20px;
-	letter-spacing:0;
-}
-.e0_11 { 
-	color:rgba(255, 255, 255, 1);
-	width:56px;
-	height:24px;
-	position:absolute;
-	left:214px;
-	top:10px;
-	font-family:Alumni Sans Collegiate One;
-	text-align:left;
-	font-size:20px;
-	letter-spacing:0;
-}
-.e0_12 { 
-	color:rgba(255, 255, 255, 1);
-	width:92px;
-	height:24px;
-	position:absolute;
-	left:311px;
-	top:10px;
-	font-family:Alumni Sans Collegiate One;
-	text-align:left;
-	font-size:20px;
-	letter-spacing:0;
-}
-.e0_13 { 
-	border-radius:500px;
-	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
-	width:49px;
-	height:30px;
-	position:absolute;
-	left:428px;
-	top:4px;
-}
-.e0_14 { 
-	border-radius:500px;
-	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
-	width:49px;
-	height:30px;
-	position:absolute;
-	left:497px;
-	top:4px;
-}
-.e0_15 { 
-	border-radius:500px;
-	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
-	width:49px;
-	height:30px;
-	position:absolute;
-	left:566px;
-	top:4px;
-}
-.e0_16 { 
-	width:567px;
-	height:59px;
-	position:absolute;
-	left:228px;
-	top:6px;
-}
-.e0_17 { 
-	background-color:rgba(255, 255, 255, 1);
-	width:540px;
-	height:33px;
-	position:absolute;
-	left:15px;
-	top:15px;
-	border-top-left-radius:20px;
-	border-top-right-radius:20px;
-	border-bottom-left-radius:20px;
-	border-bottom-right-radius:20px;
-}
-.e0_17 { 
-	border:1px solid rgba(189.12500202655792, 189.12500202655792, 189.12500202655792, 1);
-}
-.e0_18 { 
-	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
-	width:28px;
-	height:23px;
-	position:absolute;
-	left:507px;
-	top:20px;
-}
-.e0_19 { 
-	color:rgba(255, 255, 255, 1);
-	width:363px;
-	height:77px;
-	position:absolute;
-	left:135px;
-	top:258px;
-	font-family:Alumni Sans Collegiate One;
-	text-align:left;
-	font-size:100px;
-	letter-spacing:0;
-}
-.e0_20 { 
-	color:rgba(255, 255, 255, 1);
-	width:547px;
-	height:43px;
-	position:absolute;
-	left:135px;
-	top:341px;
-	font-family:Alumni Sans Collegiate One;
-	text-align:left;
-	font-size:36px;
-	letter-spacing:0;
-}
+																									/*마이페이지 메뉴 css*/
+
 .e0_23 { 
 	border-top-left-radius:20px;
 	border-top-right-radius:20px;
@@ -643,6 +464,7 @@ a.active {
 	 background-color: rgb(0, 0, 0); /* 또는 다른 원하는 색상 */
   color: rgb(255, 255, 255);
 }
+
 .e3_196 { 
 	width:1200px;
 	height:1289px;
@@ -663,253 +485,7 @@ a.active {
 	letter-spacing:0;
 	font-weight: bold;
 }
-.e3_194 { 
-	color:rgba(0, 0, 0, 1);
-	width:180px;
-	height:22px;
-	position:absolute;
-	left:70px;
-	top:93px;
-	font-family:Alumni Sans Collegiate One;
-	text-align:left;
-	font-size:18px;
-	letter-spacing:0;
-}
-.e3_195 { 
-/*	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);*/
-	width:134px;
-	height:134px;
-	position:absolute;
-	left:18px;
-	top:125px;
-}
-.e3_197 { 
-/*	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);*/
-	width:354px;
-	height:29px;
-	position:absolute;
-	left:18px;
-	top:332px;
-}
-.e3_201 { 
-/*	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);*/
-	width:354px;
-	height:29px;
-	position:absolute;
-	left:18px;
-	top:406px;
-}
-.e3_203 { 
-/*	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);*/
-	width:354px;
-	height:29px;
-	position:absolute;
-	left:18px;
-	top:480px;
-}
-.e3_205 { 
-/*	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);*/
-	width:354px;
-	height:29px;
-	position:absolute;
-	left:18px;
-	top:554px;
-}
-.e3_207 { 
-/*	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);*/
-	width:354px;
-	height:29px;
-	position:absolute;
-	left:18px;
-	top:628px;
-}
-.e3_210 { 
-/*	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);*/
-	width:354px;
-	height:29px;
-	position:absolute;
-	left:18px;
-	top:702px;
-}
-.e3_212 { 
-/*	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);*/
-	width:354px;
-	height:29px;
-	position:absolute;
-	left:18px;
-	top:776px;
-}
-.e3_214 { 
-/*	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);*/
-	width:354px;
-	height:29px;
-	position:absolute;
-	left:18px;
-	top:850px;
-}
-.e3_216 { 
-/*	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);*/
-	width:354px;
-	height:29px;
-	position:absolute;
-	left:18px;
-	top:924px;
-}
-.e3_218 { 
-/*	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);*/
-	width:354px;
-	height:29px;
-	position:absolute;
-	left:18px;
-	top:998px;
-}
-.e7_3 { 
-/*	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);*/
-	width:66px;
-	height:29px;
-	position:absolute;
-	left:18px;
-	top:1050px;
-}
-.e7_4 { 
-	color:rgba(0, 0, 0, 1);
-	width:34px;
-	height:22px;
-	position:absolute;
-	left:0px;
-	top:1110px;
-	font-family:Alumni Sans Collegiate One;
-	text-align:left;
-	font-size:18px;
-	letter-spacing:0;
-}
-
-.text1{
-	width: 800px;
-	height: 30px;
-}
-
-.e3_199 { 
-	color:rgba(0, 0, 0, 1);
-	width:80px;
-	height:22px;
-	position:absolute;
-	left:px;
-	top:310px;
-	font-family:Alumni Sans Collegiate One;
-	text-align:left;
-	font-size:20px;
-	letter-spacing:0;
-}
-
-.e3_202 { 
-	color:rgba(0, 0, 0, 1);
-	width:80px;
-	height:22px;
-	position:absolute;
-	left:0px;
-	top:390px;
-	font-family:Alumni Sans Collegiate One;
-	text-align:left;
-	font-size:18px;
-	letter-spacing:0;
-}
-.e3_204 { 
-	color:rgba(0, 0, 0, 1);
-	width:80px;
-	height:22px;
-	position:absolute;
-	left:0px;
-	top:470px;
-	font-family:Alumni Sans Collegiate One;
-	text-align:left;
-	font-size:18px;
-	letter-spacing:0;
-}
-.e3_206 { 
-	color:rgba(0, 0, 0, 1);
-	width:80px;
-	height:22px;
-	position:absolute;
-	left:0px;
-	top:550px;
-	font-family:Alumni Sans Collegiate One;
-	text-align:left;
-	font-size:18px;
-	letter-spacing:0;
-}
-.e3_208 { 
-	color:rgba(0, 0, 0, 1);
-	width:80px;
-	height:22px;
-	position:absolute;
-	left:0px;
-	top:630px;
-	font-family:Alumni Sans Collegiate One;
-	text-align:left;
-	font-size:18px;
-	letter-spacing:0;
-}
-.e3_211 { 
-	color:rgba(0, 0, 0, 1);
-	width:80px;
-	height:22px;
-	position:absolute;
-	left:0px;
-	top:710px;
-	font-family:Alumni Sans Collegiate One;
-	text-align:left;
-	font-size:18px;
-	letter-spacing:0;
-}
-.e3_213 { 
-	color:rgba(0, 0, 0, 1);
-	width:80px;
-	height:22px;
-	position:absolute;
-	left:0px;
-	top:790px;
-	font-family:Alumni Sans Collegiate One;
-	text-align:left;
-	font-size:18px;
-	letter-spacing:0;
-}
-.e3_215 { 
-	color:rgba(0, 0, 0, 1);
-	width:120x;
-	height:22px;
-	position:absolute;
-	left:0px;
-	top:870px;
-	font-family:Alumni Sans Collegiate One;
-	text-align:left;
-	font-size:18px;
-	letter-spacing:0;
-}
-.e3_217 { 
-	color:rgba(0, 0, 0, 1);
-	width:118px;
-	height:22px;
-	position:absolute;
-	left:0px;
-	top:950px;
-	font-family:Alumni Sans Collegiate One;
-	text-align:left;
-	font-size:18px;
-	letter-spacing:0;
-}
-.e3_219 { 
-	color:rgba(0, 0, 0, 1);
-	width:197px;
-	height:22px;
-	position:absolute;
-	left:0px;
-	top:1030px;
-	font-family:Alumni Sans Collegiate One;
-	text-align:left;
-	font-size:18px;
-	letter-spacing:0;
-}
+																														/*footer css*/
 .e0_133 { 
 	background-color:rgba(75.43749645352364, 74.80885058641434, 74.80885058641434, 1);
 	width:100%;
@@ -928,4 +504,94 @@ a.active {
 	text-align:left;
 	font-size:20px;
 	letter-spacing:0;
+}
+
+.e3_196 { 
+	width:1200px;
+	height:1289px;
+	position:absolute;
+	left:200px;
+	top:0px;
+}
+
+																						/*게시글 테이블 및 페이지네이션 css*/
+																						
+.e3_193 { 
+	color:rgba(0, 0, 0, 1);
+	width:200px;
+	height:36px;
+	position:absolute;
+	left:60px;
+	top:43px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:left;
+	font-size:30px;
+	letter-spacing:0;
+	font-weight: bold;
+}
+
+.pagination {
+	width: 100%;
+	height: 92px;
+	position: absolute;
+	left: 50%;
+	top: 1500px;
+	font-size: 20px;
+}
+
+.pagination a {
+	color: rgb(0, 0, 0);
+    text-decoration: none;
+}
+
+
+table {
+  margin-left: 300px auto; 
+  margin-right: 300px auto;  
+  border-collapse: separate;
+  border-spacing: 0;
+  width:110%;
+  padding-left: 10%;
+  padding-top: 12%;
+}
+
+th{
+   padding: 6px 15px;
+}
+td {
+  padding: 0 10px;
+}
+th {
+  background: #c6c9cc;
+  color: #000000;
+  text-align: center;
+}
+tr:first-child th:first-child {
+  border-top-left-radius: 6px;
+}
+tr:first-child th:last-child {
+  border-top-right-radius: 6px;
+}
+td {
+  border-right: 1px solid #c6c9cc;
+  border-bottom: 1px solid #c6c9cc;
+}
+td:first-child {
+  border-left: 1px solid #c6c9cc;
+}
+/*tr:nth-child(even) td {
+  background: #eaeaed;
+}*/
+tr:last-child td:first-child {
+  border-bottom-left-radius: 6px;
+}
+tr:last-child td:last-child {
+  border-bottom-right-radius: 6px;
+}
+tr:hover{
+   background-color: aquamarine;
+}
+
+td a{
+	color: #000000;
 }
