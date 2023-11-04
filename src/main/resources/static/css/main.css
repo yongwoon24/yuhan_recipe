@@ -259,20 +259,18 @@
 	height:1640px;
 	position:absolute;
 	left:15%;
-<<<<<<< HEAD
 	top:20%;
 	overflow: hidden;
-	
-=======
 	top:80%;
->>>>>>> 5194ab7c0416bd5501638f71a579d5e652cd4fde
 }
 .e3_29 { 
 	width:100%;
 	height:410px;
 	position:absolute;
-	left:0px;
+	left:20px;
 	top:0px;
+	display: flex; /* 내부 아이템을 가로로 배치하기 위해 추가 */
+    align-items: center; /* 수직 가운데 정렬 유지 */
 }
 .e3_30 { 
 	color:rgba(0, 0, 0, 1);
@@ -294,32 +292,43 @@
 	top:63px;
 }
 .e3_36 { 
-	width:240px;
+	width:300px;
 	height:348px;
-	position:absolute;
+	position:relative;
 	left:9px;
 	top:62px;
+	flex-direction: row; /* 수평 정렬을 위한 flex-direction 변경 */
+    align-items: center; /* 수직 가운데 정렬 유지 */
+    margin-right: 30px;
 }
 .e3_40 { 
-	width:220px;
-	height:130px;
-	position:absolute;
+	width:300px;
+	height:200px;
+	position:relative;
 	left:10px;
-	top:76px;
-	background-image:url(../img/rimg1_1.png);
+	top:0px;
+	
+	background-image:url(images/rimg1_2.png);
 	background-repeat:no-repeat;
 	background-size:cover;
 }
+.e3_40 img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
 .e3_42 { 
 	color:rgba(0, 0, 0, 1);
-	width:220px;
+	width:300px;
 	height:54px;
 	position:absolute;
 	left:10px;
 	top:217px;
 	font-family:Alumni Sans Collegiate One;
-	text-align:left;
-	font-size:20px;
+	text-align:center;
+	font-size:15px;
 	letter-spacing:0;
 }
 .e3_43 { 
@@ -329,7 +338,7 @@
 	height:24px;
 	position:absolute;
 	left:14px;
-	top:279px;
+	top:280px;
 }
 .e3_44 { 
 	color:rgba(0, 0, 0, 1);
@@ -348,7 +357,7 @@
 	width:27px;
 	height:26px;
 	position:absolute;
-	left:150px;
+	left:240px;
 	top:277px;
 	font-size: 20px;
 	color: chocolate;
@@ -358,8 +367,8 @@
 	width:27px;
 	height:17px;
 	position:absolute;
-	left:183px;
-	top:287px;
+	left:270px;
+	top:283px;
 	font-family:Almarai;
 	text-align:left;
 	font-size:15px;
@@ -579,7 +588,7 @@
 	width:973px;
 	height:410px;
 	position:absolute;
-	left:0px;
+	left:20px;
 	top:410px;
 	display: flex; /* 내부 아이템을 가로로 배치하기 위해 추가 */
     align-items: center; /* 수직 가운데 정렬 유지 */
@@ -597,22 +606,24 @@
 	letter-spacing:0;
 }
 .e3_72 { 
-	width:240px;
+	width:300px;
 	height:348px;
 	position:relative;
 	left:9px;
 	top:62px;
 	flex-direction: row; /* 수평 정렬을 위한 flex-direction 변경 */
     align-items: center; /* 수직 가운데 정렬 유지 */
-    margin-right: 80px;
+    margin-right: 30px;
+    
     
 }
 .e3_73 { 
-	width:220px;
-	height:130px;
+	width:300px;
+	height:200px;
 	position:relative;
 	left:10px;
-	top:76px;
+	top:0px;
+	
 	background-image:url(images/rimg1_2.png);
 	background-repeat:no-repeat;
 	background-size:cover;
@@ -627,14 +638,14 @@
 }
 .e3_74 { 
 	color:rgba(0, 0, 0, 1);
-	width:220px;
+	width:300px;
 	height:54px;
 	position:absolute;
 	left:10px;
 	top:217px;
 	font-family:Alumni Sans Collegiate One;
-	text-align:left;
-	font-size:20px;
+	text-align:center;
+	font-size: 15px;
 	letter-spacing:0;
 }
 .e3_75 { 
@@ -659,20 +670,21 @@
 	letter-spacing:0;
 }
 .e3_77 { 
-	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
 	width:27px;
 	height:26px;
 	position:absolute;
-	left:150px;
+	left:240px;
 	top:277px;
+	font-size: 20px;
+	color: chocolate;
 }
 .e3_78 { 
 	color:rgba(0, 0, 0, 1);
 	width:27px;
 	height:17px;
 	position:absolute;
-	left:183px;
-	top:287px;
+	left:270px;
+	top:280px;
 	font-family:Almarai;
 	text-align:left;
 	font-size:15px;
@@ -877,23 +889,20 @@
 	top:277px;
 }
 .e3_99 { 
-	color:rgba(0, 0, 0, 1);
-	width:27px;
-	height:17px;
+	width:973px;
+	height:410px;
 	position:absolute;
-	left:183px;
-	top:287px;
-	font-family:Almarai;
-	text-align:left;
-	font-size:15px;
-	letter-spacing:0;
+	left:20px;
+	top:830px;
+	display: flex; /* 내부 아이템을 가로로 배치하기 위해 추가 */
+    align-items: center; /* 수직 가운데 정렬 유지 */
 }
 .e3_100 { 
 	width:973px;
 	height:410px;
 	position:absolute;
 	left:0px;
-	top:820px;
+	top:420px;
 }
 .e3_101 { 
 	color:rgba(0, 0, 0, 1);
@@ -915,32 +924,44 @@
 	top:63px;
 }
 .e3_103 { 
-	width:240px;
+	width:300px;
 	height:348px;
-	position:absolute;
+	position:relative;
 	left:9px;
 	top:62px;
+	flex-direction: row; /* 수평 정렬을 위한 flex-direction 변경 */
+    align-items: center; /* 수직 가운데 정렬 유지 */
+    margin-right: 30px;
 }
 .e3_104 { 
-	width:220px;
-	height:130px;
-	position:absolute;
+	width:300px;
+	height:200px;
+	position:relative;
 	left:10px;
-	top:76px;
+	top:0px;
+	
 	background-image:url(images/rimg1_2.png);
 	background-repeat:no-repeat;
 	background-size:cover;
 }
+
+.e3_104 img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
 .e3_105 { 
 	color:rgba(0, 0, 0, 1);
-	width:220px;
+	width:300px;
 	height:54px;
 	position:absolute;
 	left:10px;
 	top:217px;
 	font-family:Alumni Sans Collegiate One;
-	text-align:left;
-	font-size:20px;
+	text-align:center;
+	font-size:15px;
 	letter-spacing:0;
 }
 .e3_106 { 
@@ -965,20 +986,21 @@
 	letter-spacing:0;
 }
 .e3_108 { 
-	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
 	width:27px;
 	height:26px;
 	position:absolute;
-	left:150px;
+	left:240px;
 	top:277px;
+	font-size: 20px;
+	color: chocolate;
 }
 .e3_109 { 
 	color:rgba(0, 0, 0, 1);
 	width:27px;
 	height:17px;
 	position:absolute;
-	left:183px;
-	top:287px;
+	left:270px;
+	top:280px;
 	font-family:Almarai;
 	text-align:left;
 	font-size:15px;
@@ -1198,8 +1220,8 @@
 	width:973px;
 	height:410px;
 	position:absolute;
-	left:0px;
-	top:1230px;
+	left:20px;
+	top:1290px;
 }
 .e3_132 { 
 	color:rgba(0, 0, 0, 1);
@@ -1224,7 +1246,7 @@
 	width:240px;
 	height:348px;
 	position:absolute;
-	left:9px;
+	left:400px;
 	top:62px;
 }
 .e3_135 { 
@@ -1439,7 +1461,6 @@ li{
 	list-style: none;
 }
 li > a > img{
-<<<<<<< HEAD
 	width: 280px;
 	height: 250px;
 	overflow: hidden;
@@ -1496,7 +1517,6 @@ img{
   }
 .button_div{
 	position: relative;
-=======
 	width: 90px;
 	height: 90px;
 }
@@ -1506,5 +1526,4 @@ body {
 html, body {
     margin: 0;
     padding: 0;
->>>>>>> 5194ab7c0416bd5501638f71a579d5e652cd4fde
 }
