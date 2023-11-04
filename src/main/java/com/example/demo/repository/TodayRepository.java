@@ -13,4 +13,6 @@ public interface TodayRepository extends JpaRepository<Today, Integer>{
 	Today findById(int tId);
 	
 	Today findByUser(User user);
+	
+	void deleteByUser(User user);
 }

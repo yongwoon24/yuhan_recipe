@@ -75,9 +75,11 @@
 		<span class="e3_102">마이페이지</span>
 	</div>
 <!-- 여기부터 body에 추가할 코드 입력 -->
-       <div class=e3_196><span  class="e3_193">회원정보관리</span>
+       <div class=e3_196><span  class="e3_193">회원정보관리</span> 
        
-    <span  class="e3_194"><form action="/mypage" method="POST" enctype="multipart/form-data">
+       <div class="userdelete_btn"><a th:href="@{'/deleteUserr/'+${nickname}}" onclick="return confirm('회원탈퇴 처리 하시겠습니까?');"><button>회원 탈퇴</button></a></div>
+       
+    <span  class="e3_194"><form action="/mypage_U" method="POST" enctype="multipart/form-data">
 		<label for="userImage">프로필 이미지:</label></span>
 		
         <input type="button" id="uploadButton" value="이미지 업로드"><input multiple type="file" id="file" name="file" style="display: none;"></input>

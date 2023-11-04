@@ -87,14 +87,14 @@ public class MyPageController {
 				 redirectAttributes.addFlashAttribute("errorMessage3", "회원정보 수정이 완료되었습니다!");
 			 }else {
 				 redirectAttributes.addFlashAttribute("errorMessage2", "새 비밀번호가 일치하지 않습니다!");
-				 return "redirect:/mypage";
+				 return "redirect:/mypage_U";
 			 }
 		 }else {
 			 redirectAttributes.addFlashAttribute("errorMessage1", "현재 비밀번호가 일치하지 않습니다!");
-			 return "redirect:/mypage";
+			 return "redirect:/mypage_U";
 			 }
 		 
-	       return "redirect:/mypage";
+	       return "redirect:/mypage_U";
 	 }
 	 
 	 @GetMapping("/mypage_B")

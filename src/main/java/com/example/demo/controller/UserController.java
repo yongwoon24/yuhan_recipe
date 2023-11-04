@@ -31,6 +31,7 @@ import com.example.demo.repository.TodayRepository;
 import com.example.demo.repository.UserRepository;
 
 import jakarta.mail.MessagingException;
+import jakarta.mail.Session;
 import jakarta.mail.internet.MimeMessage;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
@@ -145,13 +146,39 @@ public class UserController {
 			int postId = postIds.get(i);
 			commentRepository.deleteByPostId(postId);
 		}
-        
+        todayrepository.deleteByUser(user);
         boardRepository.deleteByNickname(nickname);
         scrapRepository.deleteByUser(user); // 사용자에 해당하는 스크랩 삭제
         loveRepository.deleteByUser(user);
         userRepository.deleteById(user.getUser_id());
         recipeRepository.deleteByNickname(nickname);
         return "redirect:/user";
+    }
+    
+    @GetMapping("/deleteUserr/{nickname}")
+    @Transactional // 트랜잭션 설정
+    public String deleteUserr(@PathVariable String nickname, HttpSession session, RedirectAttributes redirectAttributes) {
+        User user = userRepository.findbynickname(nickname);
+        List<Board> board = boardRepository.findByNickname(nickname);
+        List<Integer> postIds = new ArrayList<>();
+        
+        for (int i = 0; i < board.size(); i++) {
+			postIds.add(board.get(i).getPostId());
+		}
+        for (int i = 0; i < postIds.size(); i++) {
+			int postId = postIds.get(i);
+			commentRepository.deleteByPostId(postId);
+		}
+        todayrepository.deleteByUser(user);
+        boardRepository.deleteByNickname(nickname);
+        scrapRepository.deleteByUser(user); // 사용자에 해당하는 스크랩 삭제
+        loveRepository.deleteByUser(user);
+        userRepository.deleteById(user.getUser_id());
+        recipeRepository.deleteByNickname(nickname);
+        session.removeAttribute("loggedInNickname");
+        session.removeAttribute("loggedInUserId");
+        redirectAttributes.addFlashAttribute("deleteMessage", "회원탈퇴가 완료 되었습니다!");
+        return "redirect:/";
     }
    
     
