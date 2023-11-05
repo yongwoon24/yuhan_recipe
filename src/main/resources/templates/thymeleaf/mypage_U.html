@@ -8,14 +8,13 @@
    
 </style>
 <script src="https://kit.fontawesome.com/2636adf573.js" crossorigin="anonymous"></script>
-<!--<link rel="stylesheet" type="text/css" th:href="@{/../css/style.css}" />-->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" type="text/css" th:href="@{/../css/mypageTestU.css}">
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 </head>
 
-<div>
+<body>
   
 <div class=e2_2>
 		<div class=e2_3>
@@ -28,16 +27,22 @@
 			</div>
 		</div>
 <div class=e2_5><span class="e2_6"><a class="mainicon" href="/">모두의 레시피</a></span>
-			<div class=e2_8><span class="e2_11"><a href="/recipe">분류</a></span><span class="e2_12"><a
-						href="/rank">랭킹</a></span><span class="e2_13"><a href="/board">게시판</a></span><span
-					class="e2_14"><a href="/mypage">마이페이지</a></span>
-				<div class="e2_22"><a href="/alarm" style="width:30px; height:30px;"><i th:if="${session.alarm != 1}" class="fas fa-bell"
-							style="width:30px; height:30px;"></i>
-							<i th:if="${session.alarm == 1}" class="fas fa-bell"
-							style="width:30px; height:30px; color: red;"></i></a></div>
-				<div class="e2_23"><a href="/createRecipe"><i class="fas fa-pencil-alt"></i></a></div>
-				<div class="e2_24"><a href="/logout"><i class="fas fa-sign-in-alt"></i></a></div>
-			</div>
+			<div class=e2_8>
+         <span th:if="${session.loggedInNickname == '관리자'}" class="ad_1"><a href="/reviewRecipes">레시피 검토</a></span>
+         <span th:if="${session.loggedInNickname == '관리자'}" class="ad_2"><a href="/user">회원 관리</a></span>
+         <span class="e2_11"><a href="/recipe">레시피</a></span>
+         <span class="e2_12"><a href="/rank">랭킹</a></span>
+         <span class="e2_13"><a href="/board">게시판</a></span>
+         <span class="e2_14"><a href="/mypage">마이페이지</a></span>   
+            <div class="e2_22"><a href="/alarm" style="width:30px; height:30px;"><i th:if="${session.alarm != 1}" class="fas fa-bell"
+                     style="width:30px; height:30px;"></i>
+                     <i th:if="${session.alarm == 1}" class="fas fa-bell"
+                     style="width:30px; height:30px; color: red;"></i></a></div>
+            <div class="e2_23"><a href="/createRecipe"><i class="fas fa-pencil-alt"></i></a></div>
+            
+            <div th:if="${session.loggedInNickname != null}" class="e2_24"><a href="/logout">로그아웃</a></div>
+            <div th:if="${session.loggedInNickname == null}" class="e2_24"><a href="/logout">로그인</a></div>
+         </div>
 			<div class=e3_172>
 				<form action="/search" method="get"> <!-- 검색창 주소 입력 -->
 					<div class="e2_7"><input type="text" name="keyword" class="search_txt" required></div>
@@ -68,17 +73,19 @@
       
  <div class=e0_23>
 	<div class=e3_93>
-		<span class="e3_94"><a href="/mypage" class="menu-link1">회원정보관리</a></span>
-		<span class="e3_100"><a href="/mypage_L"class="menu-link2">좋아요한 레시피</a></span>
-		<span class="e3_99"><a href="/mypage_B" class="menu-link3">작성한 게시글</a></span>
-		<span class="e3_98"><a href="/mypage_R" class="menu-link4">작성한 레시피</a></span>
-		<span class="e3_101"><a href="/mypage_S" class="menu-link5">스크랩한 레시피</a></span>
+			<span class="e3_94"><a href="/mypage">작성한 레시피</a></span>
+			<span class="e3_98"><a href="/mypage_B">작성한 게시글</a></span>
+		<span class="e3_99"><a href="/mypage_L">좋아요한 레시피</a></span>
+		<span class="e3_100"><a href="/mypage_S">스크랩한 레시피</a></span>
+		<span class="e3_101"><a href="/mypage_U">회원정보관리</a></span>
 		<span class="e3_102">마이페이지</span>
 	</div>
 <!-- 여기부터 body에 추가할 코드 입력 -->
-       <div class=e3_196><span  class="e3_193">회원정보수정</span>
+       <div class=e3_196><span  class="e3_193">회원정보관리</span> 
        
-    <span  class="e3_194"><form action="/mypage" method="POST" enctype="multipart/form-data">
+       <div class="userdelete_btn"><a th:href="@{'/deleteUserr/'+${nickname}}" onclick="return confirm('회원탈퇴 처리 하시겠습니까?');"><button>회원 탈퇴</button></a></div>
+       
+    <span  class="e3_194"><form action="/mypage_U" method="POST" enctype="multipart/form-data">
 		<label for="userImage">프로필 이미지:</label></span>
 		
         <input type="button" id="uploadButton" value="이미지 업로드"><input multiple type="file" id="file" name="file" style="display: none;"></input>
@@ -154,7 +161,6 @@
 </div>
    <div class=e0_133><span  class="e0_134">
          @Yuhan University Group 3's Project</div></span>
-</div>
 
 	<script th:inline="javascript">
 	        var boarddeleteMessage = /*[[${boarddeleteMessage}]]*/ "";
@@ -221,90 +227,8 @@ imageInput.addEventListener('change', (event) => {
 	}
 });
 
-const slider = document.querySelector(".e2_4");
-		const slides = document.querySelectorAll(".e2_4_1");
-		const slideWidth = slides[0].clientWidth; // 슬라이드 하나의 너비
-		let currentSlide = 0;
-		const interval = 5000; // 3초
 
-		function nextSlide() {
-			currentSlide = (currentSlide + 1) % slides.length;
-			const offset = -currentSlide * slideWidth;
-			slider.style.transition = "transform 1s ease-in-out";
-			slider.style.transform = `translateX(${offset}px)`;
-		}
-
-		function previousSlide() {
-			if (currentSlide === 0) {
-				currentSlide = slides.length - 1;
-			} else {
-				currentSlide--;
-			}
-			const offset = -currentSlide * slideWidth;
-			slider.style.transition = "transform 1s ease-in-out";
-			slider.style.transform = `translateX(${offset}px)`;
-		}
-
-		setInterval(nextSlide, interval);
-
-// 원하는 경우, "이전" 버튼을 클릭하면 previousSlide 함수를 호출하도록 추가할 수 있습니다.
-// 또는 사용자 입력(예: 화살표 키)에 반응할 수도 있습니다.
-
-var currentPage = "mypage"; // 현재 페이지의 식별자 (예: "likedRecipes")
-
-var menuLinks = document.querySelectorAll('.menu-link1'); // 해당 메뉴 항목을 모두 선택
-
-menuLinks.forEach(function (link) {
-  var linkHref = link.getAttribute('href');
-  if (linkHref && linkHref.includes(currentPage)) {
-    link.classList.add('current'); // 현재 페이지와 일치하는 메뉴 항목에 'current' 클래스 추가
-  }
-});
-
-var currentPage = "mypage_L"; // 현재 페이지의 식별자 (예: "likedRecipes")
-
-var menuLinks = document.querySelectorAll('.menu-link2'); // 해당 메뉴 항목을 모두 선택
-
-menuLinks.forEach(function (link) {
-  var linkHref = link.getAttribute('href');
-  if (linkHref && linkHref.includes(currentPage)) {
-    link.classList.add('current'); // 현재 페이지와 일치하는 메뉴 항목에 'current' 클래스 추가
-  }
-});
-
-
-var currentPage = "mypage_B"; // 현재 페이지의 식별자 (예: "likedRecipes")
-
-var menuLinks = document.querySelectorAll('.menu-link3'); // 해당 메뉴 항목을 모두 선택
-
-menuLinks.forEach(function (link) {
-  var linkHref = link.getAttribute('href');
-  if (linkHref && linkHref.includes(currentPage)) {
-    link.classList.add('current'); // 현재 페이지와 일치하는 메뉴 항목에 'current' 클래스 추가
-  }
-});
-
-var currentPage = "mypage_R"; // 현재 페이지의 식별자 (예: "likedRecipes")
-
-var menuLinks = document.querySelectorAll('.menu-link4'); // 해당 메뉴 항목을 모두 선택
-
-menuLinks.forEach(function (link) {
-  var linkHref = link.getAttribute('href');
-  if (linkHref && linkHref.includes(currentPage)) {
-    link.classList.add('current'); // 현재 페이지와 일치하는 메뉴 항목에 'current' 클래스 추가
-  }
-});
-
-var currentPage = "mypage_S"; // 현재 페이지의 식별자 (예: "likedRecipes")
-
-var menuLinks = document.querySelectorAll('.menu-link5'); // 해당 메뉴 항목을 모두 선택
-
-menuLinks.forEach(function (link) {
-  var linkHref = link.getAttribute('href');
-  if (linkHref && linkHref.includes(currentPage)) {
-    link.classList.add('current'); // 현재 페이지와 일치하는 메뉴 항목에 'current' 클래스 추가
-  }
-});	</script>
+	</script>
    
 </body>
 </html>

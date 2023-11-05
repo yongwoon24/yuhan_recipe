@@ -10,9 +10,13 @@ import org.springframework.stereotype.Component;
 import com.example.demo.entity.Board;
 import com.example.demo.entity.Love;
 import com.example.demo.entity.Recipe;
+import com.example.demo.entity.Today;
+import com.example.demo.entity.User;
 import com.example.demo.repository.BoardRepository;
 import com.example.demo.repository.LoveRepository;
 import com.example.demo.repository.RecipeRepository;
+import com.example.demo.repository.TodayRepository;
+import com.example.demo.repository.UserRepository;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -28,6 +32,10 @@ public class Aspectc {
 	private BoardRepository boardRepository;
 	@Autowired
 	HttpSession session;
+	@Autowired
+	private UserRepository userR;
+	@Autowired
+	private TodayRepository todayR;
 	
 	@Before("execution(* com.example.demo.controller..*.*(..))")
     public void beforeAlarmMethodExecution() {
@@ -49,6 +57,24 @@ public class Aspectc {
             } else {
                 session.setAttribute("alarm", 2);
                 System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+            }
+            
+            User user = userR.findbynickname(loggedInNickname);
+            Today today = todayR.findByUser(user);
+            if(today == null) {
+            	Today today1 = new Today();
+                today1.setUser(user);
+                today1.setNo1(0);
+                today1.setNo2(0);
+                today1.setNo3(0);
+                today1.setNo4(0);
+                today1.setNo5(0);
+                today1.setNo6(0);
+                today1.setNo7(0);
+                today1.setNo8(0);
+                today1.setNo9(0);
+                today1.setNo10(0);
+                todayR.save(today1);
             }
         }
     }

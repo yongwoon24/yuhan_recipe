@@ -1426,7 +1426,7 @@ li > a > img{
 	height: 90px;
 }
 body {
-    overflow-x: hidden; /* 가로 스크롤바 숨기기 */
+    
 }
 html, body {
     margin: 0;

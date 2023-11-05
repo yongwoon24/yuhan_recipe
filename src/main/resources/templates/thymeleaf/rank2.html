@@ -27,15 +27,21 @@
 			</div>
 		</div>
 		<div class=e2_5><span class="e2_6"><a class="mainicon" href="/">모두의 레시피</a></span>
-			<div class=e2_8><span class="e2_11"><a href="/recipe">분류</a></span><span class="e2_12"><a
-						href="/rank">랭킹</a></span><span class="e2_13"><a href="/board">게시판</a></span><span
-					class="e2_14"><a href="/mypage">마이페이지</a></span>
+			<div class=e2_8>
+			<span th:if="${session.loggedInNickname == '관리자'}" class="ad_1"><a href="/reviewRecipes">레시피 검토</a></span>
+			<span th:if="${session.loggedInNickname == '관리자'}" class="ad_2"><a href="/user">회원 관리</a></span>
+			<span class="e2_11"><a href="/recipe">레시피</a></span>
+			<span class="e2_12"><a href="/rank">랭킹</a></span>
+			<span class="e2_13"><a href="/board">게시판</a></span>
+			<span class="e2_14"><a href="/mypage">마이페이지</a></span>	
 				<div class="e2_22"><a href="/alarm" style="width:30px; height:30px;"><i th:if="${session.alarm != 1}" class="fas fa-bell"
 							style="width:30px; height:30px;"></i>
 							<i th:if="${session.alarm == 1}" class="fas fa-bell"
 							style="width:30px; height:30px; color: red;"></i></a></div>
 				<div class="e2_23"><a href="/createRecipe"><i class="fas fa-pencil-alt"></i></a></div>
-				<div class="e2_24"><a href="/logout"><i class="fas fa-sign-in-alt"></i></a></div>
+				
+				<div th:if="${session.loggedInNickname != null}" class="e2_24"><a href="/logout">로그아웃</a></div>
+				<div th:if="${session.loggedInNickname == null}" class="e2_24"><a href="/logout">로그인</a></div>
 			</div>
 			<div class=e3_172>
 				<form action="/search" method="get"> <!-- 검색창 주소 입력 -->
@@ -57,7 +63,7 @@
 		<div class="category-buttons">
 			    <form id="myForm" th:action="@{/rank}" method="get">
 			        <label for="categoryName">카테고리 선택:</label>
-			        <select id="categoryName" name="categoryName">
+			        <select id="categoryName" name="categoryName" style="font-size: 25px;">
 			            <option value="">전체</option>
 			            <option value="파티">파티용</option>
 			            <option value="혼밥">혼밥용</option>
@@ -67,7 +73,7 @@
 			            <option value="야식/안주">야식/안주용</option> 
 			        </select> &nbsp;&nbsp;
 			        <label for="categoryName">기간 선택:</label>
-			        <select id="period" name="period">
+			        <select id="period" name="period" style="font-size: 25px;">
 			            <option value="">전체</option>
 			            <option value="d">일간</option>
 			            <option value="w">주간</option>
@@ -78,23 +84,24 @@
 			    </form>
 			    
 			</div>
-
-				<ul class="img_slide">
-			    <li class="recipe-item" th:each="recipe, recipeIndex : ${topLove}">
-					<div class="recipe-container">
-						<div class="ranking">
-                			<span class="rank-number" th:text="${(currentPage * 20) + recipeIndex.index + 1}+'위'"></span>
-            			</div>
-				        <a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}"><img th:src="@{${recipe.main_photo_path}}">
-				        <span th:text="${recipe.title}">asd</span></a>
-				        <div class="likes">
-				            <i class="fas fa-heart"></i>
-				            <span th:text="${recipe.totalLove}"></span>
-				        </div>
-			        </div>  
-			    </li>
 			
-			</ul>
+			<div class="e56_23">
+					<div class=e56_24 th:each="recipe, recipeIndex : ${topLove}">
+						<div class="e56_25">
+							<span class="rank-number" th:text="${(currentPage * 20) + recipeIndex.index + 1}+'위'"></span>
+							<a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}">
+								<img th:src="@{${recipe.main_photo_path}}" width="100%" height="100%" style="border-radius: 10px;"></a>
+						</div>
+						<a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}"><span class="e56_26" th:text="${recipe.title}"></span></a>
+						<a th:href="@{'/userpage_R/'+${recipe.nickname}}"><div class="e56_27"><img th:src="${recipe.user.userphotopath}" width="100%" height="100%"
+							style="border-radius: 500px;"></div><span class="e56_28"
+							th:text="${recipe.nickname}"></span></a>
+						<div class="e56_34"><img src="img/좋아요.jpg" width="100%" height="100%" style="border-radius: 500px;">
+						</div><span class="e56_35" th:text="${recipe.totalLove}"></span>
+						<div class="e56_36"><img src="img/조회수.png" width="100%" height="100%" style="border-radius: 500px;">
+						</div><span class="e56_37" th:text="${recipe.view_count}"></span>
+					</div>
+				</div>
 				
 				<!-- 페이지네이션을 추가한 부분 -->
 

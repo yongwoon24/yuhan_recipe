@@ -50,23 +50,23 @@ public class LoveController {
     	
     	//오늘의 추천메뉴
 		
-		  List<Recipe> todayrecipes =new ArrayList<>(); Today today =
-		  todayR.findByUser(user);
+		  /*List<Recipe> todayrecipes =new ArrayList<>(); 
+		  Today today = todayR.findByUser(user);
 		  
 		  if (today != null) {
 		  todayrecipes.add(recipeRepository.findById(today.getNo1()));
 		  todayrecipes.add(recipeRepository.findById(today.getNo2()));
-			todayrecipes.add(recipeRepository.findById(today.getNo3()));
+		  todayrecipes.add(recipeRepository.findById(today.getNo3()));
 		  todayrecipes.add(recipeRepository.findById(today.getNo4()));
 		  todayrecipes.add(recipeRepository.findById(today.getNo5()));
-		  todayrecipes.add(recipeRepository.findById(today.getNo6()));
-		  todayrecipes.add(recipeRepository.findById(today.getNo7()));
-		  todayrecipes.add(recipeRepository.findById(today.getNo8()));
-		  todayrecipes.add(recipeRepository.findById(today.getNo9()));
-		  todayrecipes.add(recipeRepository.findById(today.getNo10()));
+		  //todayrecipes.add(recipeRepository.findById(today.getNo6()));
+		  //todayrecipes.add(recipeRepository.findById(today.getNo7()));
+		  //todayrecipes.add(recipeRepository.findById(today.getNo8()));
+		  //todayrecipes.add(recipeRepository.findById(today.getNo9()));
+		  //todayrecipes.add(recipeRepository.findById(today.getNo10()));
 		  
 		  model.addAttribute("todayrecipes", todayrecipes);
-		  }
+		  }*/
 		  
     	//최근본 레시피
     	List<Recipe> lastrecipes = loveRepository.findUserActivitiesWithdesc(user);
@@ -76,7 +76,7 @@ public class LoveController {
     	List<User> userRank = userR.findByOrderByUsertotallikes();
     	model.addAttribute("userRank",userRank);
     	
-    	return "index2";
+    	return "index2";	
 
     }
 }
