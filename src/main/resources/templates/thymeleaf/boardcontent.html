@@ -1,56 +1,49 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
-<meta content="text/html; charset=euc-kr">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>게시물 상세 페이지</title>
-<style type="text/css">
-			
-</style>
-<script src="https://kit.fontawesome.com/2636adf573.js" crossorigin="anonymous"></script>
-<link rel="stylesheet" type="text/css" th:href="@{/../css/style.css}" />
-<link rel="stylesheet" type="text/css" th:href="@{/../css/boardcontent.css}" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
+	<meta content="text/html; charset=euc-kr">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>게시물 상세 페이지	</title>
+	<style type="text/css">
+
+	</style>
+	<script src="https://kit.fontawesome.com/2636adf573.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" th:href="@{/../css/background.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/../css/boardcontent.css}" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
-<div class="body_wrapper">
-   <div class="body_content">
-      <div class="menubar"></div>
-      <span class="menu4"><a href="/mypage">마이페이지</a></span>
-      <span class="menu3"><a href="/recipe">분류</a></span>
-      <span class="menu2"><a href="/board">게시판</a></span>
-      <span class="menu1"><a href="/rank">랭킹</a></span>
-      <span><a class="mainicon" href="/">모두의레시피</a></span>
-      <!-- 마이페이지 주소 입력 --> 
-      <div class="alarm-icon"><a href="/alarm"><i class="fas fa-bell"></i></a><span th:if="${session.alarm == 1}" style="font-size: 80px; color: red;">.</span></div>
-      <div class="write-icon"><a href="/createRecipe"><i class="fas fa-pencil-alt"></i></a></div>
-      <div class="usericon"><a href="/mypage"><i class="fa-solid fa-user"></i></a></div>
-      <!-- 로그아웃 주소 입력 --> 
-      <div class="logout_icon"><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></div>
-        <div class="searchbar">   
-         <div class="searchradius">
-            <form action="" method=""> <!-- 검색창 주소 입력 --> 
-               <input type="text" class="search_txt">
-               <button type="submit" class="search_btn">
-                  <span class="searchicon">
-                     <i class="fa-solid fa-magnifying-glass"></i>
-                  </span>
-               </button>
-            </form>
-         </div>   
-      </div>
-      
-      <div th:if="${session.loggedInNickname == '관리자'}" class="confirm_btn">
+	<div class=e2_2>
+		<div class=e2_3>
+			<div class="e2_4"></div>
+			<div class=e2_5><span class="e2_6"><a class="mainicon" href="/1">모두의 레시피</a></span>
+				<div class=e2_8><span class="e2_11"><a href="/recipe">분류</a></span><span class="e2_12"><a
+							href="/rank">랭킹</a></span><span class="e2_13"><a href="/board">게시판</a></span><span
+						class="e2_14"><a href="/mypage">마이페이지</a></span>
+					<div class="e2_22"><a href="/alarm" style="width:30px; height:30px;"><i class="fas fa-bell" style="width:30px; height:30px;"></i></a></div>
+					<div class="e2_23"><a href="/createRecipe"><i class="fas fa-pencil-alt"></i></a></div>
+					<div class="e2_24"><a href="/logout"><i class="fas fa-sign-in-alt"></i></a></div>
+				</div>
+				<div class=e3_172>
+					<form action="/search" method="get"> <!-- 검색창 주소 입력 -->
+					<div class="e2_7"><input type="text" name="keyword" class="search_txt" required></div>
+					<div class="e3_171">
+						<button type="submit" class="search_btn">
+							<span class="searchicon">
+								<i class="fa-solid fa-magnifying-glass" style="max-width:25px; max-height:25px;"></i>
+							</span>
+						</button>
+					</div>
+					</form>
+				</div>
+			</div><span class="e2_26">모두의 레시피 </span><span class="e2_27">쉽고 간편하게 레시피를 공유해보세요</span>
+		</div>
+		<div th:if="${session.loggedInNickname == '관리자'}" class="confirm_btn">
         	<a href="/reviewRecipes">
             	<button>레시피 검토</button>
         	</a>
@@ -63,16 +56,15 @@
     	</div>
       
       <!-- 여기부터 body에 추가할 코드 입력 -->
-	<div class="contents">
-				
-    <h1 th:text="${board.title}">게시물 제목</h1>
+		<div class=e2_28>
+			<h1 th:text="${board.title}">게시물 제목</h1>
     <span th:text="${board.nickname}" class="writer">작성자</span>
     <span th:text="${#temporals.format(board.created_date, 'yyyy-MM-dd HH:mm')}" class="write_date">작성일</span><hr>
     <div th:text="${board.content}" class="content">게시물 내용</div><hr>
     <!-- 게시물 수정 버튼과 게시물 삭제 버튼 -->
 	<div th:if="${#strings.equals(board.nickname, session.loggedInNickname) or session.loggedInNickname == '관리자'}">
-	    <a th:href="@{'/edit/' + ${board.postId}}" class="button">수정</a>
-		<a th:href="@{'/delete/' + ${board.postId}}" class="button" onclick="return confirm('정말로 삭제하시겠습니까?');">삭제</a>
+	    <a th:href="@{'/edit/' + ${board.postId}}" class="button"><button class="btn_content">수정</button></a>
+		<a th:href="@{'/delete/' + ${board.postId}}" class="button" onclick="return confirm('정말로 삭제하시겠습니까?');"><button>삭제</button></a>
 	</div>
 	
 	<!-- 댓글 작성 폼 -->
@@ -87,13 +79,13 @@
 	
      <h2>댓글</h2>
 	<ul>
-	    <li th:each="comment : ${comment}">
+	    <li th:each="comment : ${comment}" style="list-style:none;">
 	        <div style="display: flex; align-items: center;">
 	            <!-- 댓글 내용 -->
 	            <div style="flex-grow: 1;">
 	                <p>
 	                    <span class="writer_comment" th:text="${comment.nickname}">작성자</span>
-	                    <span class="write_date" th:text="${#temporals.format(comment.created_date, 'yyyy-MM-dd HH:mm')}">작성일</span><br>
+	                    <span class="write_comment_date" th:text="${#temporals.format(comment.created_date, 'yyyy-MM-dd HH:mm')}">작성일</span><br>
 	                    <span class ="comment_content_a" th:text="${comment.content}">댓글 내용</span>
 	                </p>
 	            </div>
@@ -122,13 +114,8 @@
 	        }
     </script>
     
-   </div>
-       <!--</div>-->
-   <div class="footer">
-         <div class="footer_comment">@Yuhan University Group 3's Project</div>
-   </div>
-</div>
-
-   
+		</div>
+		<div class=e3_173><span class="e3_175">2023 yuhan University</span></div>
+	</div>
 </body>
 </html>
