@@ -2,7 +2,7 @@
 	background-image:linear-gradient(0deg, rgba(33.00000183284283, 33.00000183284283, 35.00000171363354, 1) 100%,rgba(33.00000183284283, 33.00000183284283, 35.00000171363354, 0.510869562625885) 0.625%,rgba(33.00000183284283, 33.00000183284283, 35.00000171363354, 0.03999999910593033) 0%) ;
 	background-color:rgba(0, 0, 0, 0.20000000298023224);
 	width:100%;
-	height:2625px;
+	height:1500px;
 	position:absolute;
 }
 .e2_3 { 
@@ -16,7 +16,7 @@
 	width:100%;
 	height:1500px;
 	position:absolute;
-	background-image:url(../img/rimg1_1.png);
+	background-image:url(../img/레시피.jpg);
 	background-repeat:no-repeat;
 	background-size:cover;
 }
@@ -158,18 +158,6 @@
 	top:15px;
 }
 
-.e2_27 { 
-	color:rgba(255, 255, 255, 1);
-	width:547px;
-	height:43px;
-	position:absolute;
-	left:135px;
-	top:341px;
-	font-family:Alumni Sans Collegiate One;
-	text-align:left;
-	font-size:25px;
-	letter-spacing:0;
-}
 .e3_32 { 
 	width:250px;
 	height:347px;
@@ -1279,7 +1267,7 @@
 	width:100%;
 	height:135px;
 	position:absolute;
-	top:2600px;
+	top:1500px;
 }
 .e3_175 { 
 	color:rgba(255, 255, 255, 1);
@@ -1348,58 +1336,60 @@ html, body {
 }
 
 .body_wrapper {
-	
-	position: relative;
 	margin: 0;
-	padding-top: 275px;
+	padding-top: 200px;
 }
 
-.login_wrapper { 
+.resetps_wrapper { 
 	background-color: rgb(255, 255, 255);
-	width:550px;
-	height:525px;
+	width:865px;
+	height:350px;
 	position:relative;
-	
 	border-radius: 8px;
 	margin:0 auto;
 }
 
 h2 {
-	padding-left: 25px;
-	padding-top: 20px;
-	letter-spacing:3px;
-	color:rgb(128, 128, 128);	
+	position: relative;
+	letter-spacing:10px;
+	color:rgb(255, 255, 255);
+	text-align: center;
+	font-size: 55px;
+	margin-bottom: 30px;
 }
 
 a {
 	text-decoration-line: none;
 }
 
-.login_form {
+.resetps_form {
 	position: relative;
 	text-align: center;
 	padding-bottom: 40px;
-	padding-top: 25px;
+	padding-top: 35px;
 }
+
+
+
 
 label {
 	margin-top: 50px;
 	font-size:22px;
 }
 
-label[for="user_id"] {
+label[for="password"] {
 	margin-right: 238px;
 	font-size: 24px;
 	letter-spacing:3px;
 }
 
-label[for="password"] {
+label[for="confirmpassword"] {
 	margin-right: 210px;
 	font-size: 24px;
 	letter-spacing:3px;
 }
 
-input {
+input[id="password"], input[id="confirmpassword"] {
 	margin-top: 10px;
 	margin-bottom: 20px;
 	width: 300px;
@@ -1408,8 +1398,8 @@ input {
 	font-size: 25px;
 }
 
-button {
-	background-color: rgb(192, 192, 192);
+button[id="resetps_button"] {
+	background-color: #3498db;
 	margin-top: 10px;
 	margin-bottom: 5px;
 	width: 308px;
@@ -1417,21 +1407,6 @@ button {
 	color: white;
 	border-radius: 5px;
 	font-size: 23px;
-	letter-spacing:5px;
+	letter-spacing:1px;
+	border: none;
 }
-
-hr {
-	margin-bottom: 18px;
-	position: relative;
-	width: 400px;
-}
-
-table {
-	margin: 0 auto;
-	text-align: center;
-}
-
-.a_id, .a_ps, .a_signup {
-	color:black;
-}
-	
