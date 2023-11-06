@@ -4,13 +4,13 @@
 <head>
 	<meta content="text/html; charset=euc-kr">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>게시글쓰기</title>
+	<title>모두의레시피</title>
 	<style type="text/css">
 
 	</style>
 	<script src="https://kit.fontawesome.com/2636adf573.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" th:href="@{/../css/background.css}" />
-	<link rel="stylesheet" type="text/css" th:href="@{/../css/createboard.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/../css/testboardcontent.css}" />
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
@@ -43,38 +43,43 @@
 				</div>
 			</div><span class="e2_26">모두의 레시피 </span><span class="e2_27">쉽고 간편하게 레시피를 공유해보세요</span>
 		</div>
-		<div th:if="${session.loggedInNickname == '관리자'}" class="confirm_btn">
-        	<a href="/reviewRecipes">
-            	<button>레시피 검토</button>
-        	</a>
-    	</div>
-
-		<div th:if="${session.loggedInNickname == '관리자'}" class="user_btn">
-		    <a href="/user">
-        		<button>회원 관리</button>
-        	</a>
-    	</div>
-      
-      <!-- 여기부터 body에 추가할 코드 입력 -->
 		<div class=e2_28>
-		<form action="/createboard" method="POST"> <!-- action을 "/createboard"로 수정 -->
-    	<h1>게시판 글쓰기</h1>
-    	<hr>
-        <label for="title">제목:</label>
-        <input type="text" id="title" name="title" spellcheck="false" required>
-        
-        <br>
-        
-        <label for="content">내용:</label>
-        <textarea id="content" name="content" spellcheck="false" rows="5" required></textarea>
-        
-        <br>
-        
-        <button type="submit" class="btn_submit">글쓰기</button>
-    </form>
-	</div>
-	</div>
+			<div class=e19_182><span  class="e19_183">게시물 제목</span>
+  <div class=e19_184>
+    <div class="e19_185"></div>
+    <div class="e19_186"></div><span  class="e19_187">작성자</span><span  class="e19_188">작성일</span>
+    <div class="e19_189"></div>
+    <div class=e19_190>
+      <div class="e19_191"></div>
+      <div class="e19_192"></div><span  class="e19_193">삭제</span><span  class="e19_194">수정</span>
+    </div>
+    <div class=e19_195>
+      <div class="e19_196"></div>
+      <div class="e19_197"></div><span  class="e19_198">댓글 작성</span><span  class="e19_199">댓글 작성</span><span  class="e19_200">댓글 내용</span>
+    </div>
+    <div class=e19_201>
+      <div class="e19_202"></div><span  class="e19_203">2021-01-01</span><span  class="e19_204">작성자명</span>
+      <div class="e19_205"></div><span  class="e19_206">삭제</span>
+    </div>
+    <div class=e19_207>
+      <div class="e19_208"></div><span  class="e19_209">2021-01-01</span><span  class="e19_210">작성자명</span>
+      <div class="e19_211"></div><span  class="e19_212">삭제</span>
+    </div>
+    <div class=e19_213>
+      <div class="e19_214"></div><span  class="e19_215">2021-01-01</span><span  class="e19_216">작성자명</span>
+      <div class="e19_217"></div><span  class="e19_218">삭제</span>
+    </div>
+  </div>
+</div>
+		</div>
 		<div class=e3_173><span class="e3_175">2023 yuhan University</span></div>
 	</div>
+	<script th:inline="javascript">
+		var sendMessage = /*[[${errorMessage}]]*/ "";
+		if (sendMessage) {
+			alert(sendMessage);
+		}
+	</script>
 </body>
+
 </html>
