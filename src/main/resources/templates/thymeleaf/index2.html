@@ -104,13 +104,13 @@
     </div>
       <div class="e3_99" >
 		<span class="e3_101">최근 본 레시피</span>
-			<div class="e3_103" th:each="recipe, iterStat : ${topLove}">
+			<div class="e3_103" th:each="recipe3, iterStat : ${recentlyAccessedRecipes}">
 				<div class="e3_104">
-					<img th:src="@{${recipe.main_photo_path}}" />
+					<img th:src="@{${recipe3.main_photo_path}}" />
 				</div>
-				<div class="e3_105" th:text="${recipe.title}">제목</div>
-				<div class="e3_106"><img th:src="@{${recipe.user.userphotopath}}" style="height: 100%; width: 100%;"></div><span class="e3_107" th:text="${recipe.user.nickname}">작성자</span>
-				<div class="e3_108">♥</div><span class="e3_109" th:text="${recipe.totalLove}">90</span>
+				<div class="e3_105" th:text="${recipe3.title}">제목</div>
+				<div class="e3_106"><img th:src="@{${recipe3.user.userphotopath}}" style="height: 100%; width: 100%;"></div><span class="e3_107" th:text="${recipe3.user.nickname}">작성자</span>
+				<div class="e3_108">♥</div><span class="e3_109" th:text="${recipe3.totalLove}">90</span>
 			</div>
 		</div>
 		<div class="button_div_left3">
@@ -120,8 +120,8 @@
       <button id="next-button" class="button-icon" onclick="prevSlide3()">&gt;</button>
     </div>
 		<div class=e3_131><span class="e3_132">유저 랭킹</span>
-			<div class=e3_134>
-				<div class="e3_135"></div><span class="e3_136">제목</span>
+			<div class=e3_134 th:each="userrank : ${userRank}">
+				<div class="e3_135"><img th:src="@{${userrank.userphotopath}}" style="height: 100%; width: 100%;"></div><span class="e3_136" th:text="${userrank.nickname}">제목</span>
 			</div>
 			
 		</div>

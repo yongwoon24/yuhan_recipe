@@ -73,12 +73,12 @@
       
  <div class=e0_23>
 	<div class=e3_93>
-		<span class="e3_94"><a th:href="@{'/userpage_R/' + ${nickname}}">유저 레시피</a></span>
-			<span class="e3_98"><a th:href="@{'/userpage_B/' + ${nickname}}">유저 게시글</a></span>
+		<span class="e3_94"><a th:href="@{'/userpage_R/' + ${nickname}}">작성한 레시피</a></span>
+			<span class="e3_98"><a th:href="@{'/userpage_B/' + ${nickname}}">작성한 게시글</a></span>
 		<span class="e3_102">유저페이지</span>
 	</div>
 	<div class=e3_196>
-		<span  class="e3_193">작성한 게시글</span>
+		<span  class="e3_193" th:text="${nickname}+'님의 게시글'" style="width: 1000px;"></span>
           <table class="table">
 			
             <thead>
@@ -98,7 +98,7 @@
                 </a>
             </td>
             	<td style=text-align:center;>
-					<a th:href="@{'/userpage/' + ${board.nickname}}">
+					<a th:href="@{'/userpage_R/' + ${board.nickname}}">
 	                <span th:text="${board.nickname}"></span>
                 </a>
 				</td>
@@ -112,12 +112,12 @@
             </tbody>    
          </table>    
          <div class="pagination">
-    <a th:if="${currentPage > firstPage}" th:href="@{|/mypage_B?page=${currentPage - 1}|}">&laquo; 이전</a>
+    <a th:if="${currentPage > firstPage}" th:href="@{|/userpage_B/${nickname}?page=${currentPage - 1}|}">&laquo; 이전</a>
     <span th:each="pageNumber : ${#numbers.sequence(currentPage - 5, currentPage + 4)}" th:if="${pageNumber >= firstPage && pageNumber <= lastPage}">
-	    <a th:href="@{|/mypage_B?page=${pageNumber}|}"
-	       th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber + 1}"></a>
-	</span>
-    <a th:if="${currentPage < lastPage}" th:href="@{|/mypage_B?page=${currentPage + 1}|}">&raquo; 다음</a>
+       <a th:href="@{|/userpage_B/${nickname}?page=${pageNumber}|}"
+          th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber + 1}"></a>
+   </span>
+    <a th:if="${currentPage < lastPage}" th:href="@{|/userpage_B/${nickname}?page=${currentPage + 1}|}">&raquo; 다음</a>
 </div> 
    </div>
    </div>

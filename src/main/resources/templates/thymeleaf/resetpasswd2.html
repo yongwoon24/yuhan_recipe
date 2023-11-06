@@ -5,16 +5,45 @@
 	<meta charset="UTF-8">
 	<meta content="text/html; charset=euc-kr">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>비밀번호 찾기</title>
+	<title>비밀번호 재설정</title>
 	<style type="text/css">
 
 	</style>
 	<script src="https://kit.fontawesome.com/2636adf573.js" crossorigin="anonymous"></script>
-	<link rel="stylesheet" type="text/css" th:href="@{/../css/findIdPs.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/../css/resetpasswd.css}" />
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	
+	<script>
+		         function psCheck() {
+		        var password = document.getElementById("password").value;
+		        var confirmPassword = document.getElementById("confirmpassword").value;
+		        var checkMsg = document.getElementById("checkMsg");
+		        
+		        if (password === confirmPassword) {
+		            checkMsg.style.color = "green";
+		            checkMsg.innerHTML = "비밀번호가 일치합니다.";
+		        } else {
+		            checkMsg.style.color = "red";
+		            checkMsg.innerHTML = "비밀번호가 일치하지 않습니다.";
+		        }
+		    }
+		    
+		     function validateForm() {
+		        var password = document.getElementById("password").value;
+		        var confirmPassword = document.getElementById("confirmpassword").value;
+		        
+		        if (password !== confirmPassword) {
+		            alert("비밀번호가 일치하지 않습니다!!");
+		            return false;
+		    }
+		    
+		    }
+	</script>
+
 </head>
 
 <body>
@@ -55,35 +84,34 @@
 					</form>
 				</div>
 		</div>
-	
+			
 	<div class="body_wrapper">
-		<h2>비밀번호 찾기</h2>
-		<div class="findps_wrapper">
-		    <div class="findps_form">
-			    <form th:action="@{/findps}" method="post">
-			        <label for="email">이메일</label>
-			        <input type="email" id="email" name="email" required><br>
+		<h2>비밀번호 재설정</h2>
+	    <div class="resetps_wrapper">
+			<div class="resetps_form">
+			    <form th:action="@{/resetpasswd}" method="post" onsubmit="return validateForm()">
+			        <input type="hidden" name="token" th:value="${token}">
 			        
-			        <button type="submit" id="findidps_button">인증하기</button>
+			        <label for="newPassword">새 비밀번호</label><br>
+			        <input type="password" id="password" name="newPassword" required><br>
+			        
+			        <label for="confirmPassword">새 비밀번호 확인</label><br>
+			        <input type="password" id="confirmpassword" name="confirmPassword" onkeyup="psCheck()" required>
+			        <span id="checkMsg"></span><br>
+			         
+			        <button type="submit" id="resetps_button">비밀번호 &nbsp;재설정</button>
 			    </form>
-		    </div><hr>
-		    <table>
-				<tr>
-				     <td><p><a class="a_login" href="/login">로그인&nbsp; / </a></p></td>
-				     <td><p><a class="a_id" href="/findid">&nbsp;아이디 찾기&nbsp; / </a></p></td>
-				     <td><p><a class="a_signup" href="/signup">&nbsp;회원가입</a></p></td>
-			     </tr>
-		    </table>
-		</div>
+		    </div>
+	    </div>
     </div>
     
-     <script th:inline="javascript">
+    <script th:inline="javascript">
         var errorMessage = /*[[${errorMessage}]]*/ "";
         if (errorMessage) {
             alert(errorMessage);
         }
-    </script>
-			
+    </script>	
+		
 		<div class=e3_173><span class="e3_175">2023 yuhan University</span></div>
 	</div>
 	<script th:inline="javascript">

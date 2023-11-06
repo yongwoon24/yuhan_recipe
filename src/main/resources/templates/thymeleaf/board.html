@@ -1,48 +1,48 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
-<meta content="text/html; charset=euc-kr">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>모두의레시피</title>
-<style type="text/css">   
-   
-</style>
-<script src="https://kit.fontawesome.com/2636adf573.js" crossorigin="anonymous"></script>
-<link rel="stylesheet" type="text/css" th:href="@{/../css/style.css}" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" type="text/css" th:href="@{/../css/board.css}">
-<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+	<meta content="text/html; charset=euc-kr">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>모두의 레시피 게시판</title>
+	<style type="text/css">
+
+	</style>
+	<script src="https://kit.fontawesome.com/2636adf573.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" th:href="@{/../css/background.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/../css/board.css}" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
-<div class="body_wrapper">
-   <div class="body_content">
-      <div class="menubar"></div>
-      <span class="menu4"><a href="/mypage">마이페이지</a></span>
-      <span class="menu3"><a href="/board">게시판</a></span>
-      <span class="menu2"><a href="/recipe">분류</a></span>
-      <span class="menu1"><a href="/rank">랭킹</a></span>
-      <span><a class="mainicon" href="/">모두의레시피</a></span>
-      <!-- 마이페이지 주소 입력 --> 
-      <div class="alarm-icon"><a href="/alarm"><i class="fas fa-bell"></i></a><span th:if="${session.alarm == 1}" style="font-size: 80px; color: red;">.</span></div>
-      <div class="write-icon"><a href="/createRecipe"><i class="fas fa-pencil-alt"></i></a></div>
-      <div class="usericon"><a href="/mypage"><i class="fa-solid fa-user"></i></a></div>
-      <!-- 로그아웃 주소 입력 --> 
-      <div class="logout_icon"><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></div>
-        <div class="searchbar">	
-			<div class="searchradius">
-				<form action="/search" method="get"> <!-- 검색창 주소 입력 --> 
-					<input type="text" name="keyword" class="search_txt" required>
-					<button type="submit" class="search_btn">
-						<span class="searchicon">
-							<i class="fa-solid fa-magnifying-glass"></i>
-						</span>
-					</button>
-				</form>
-			</div>	
+	<div class=e2_2>
+		<div class=e2_3>
+			<div class="e2_4"></div>
+			<div class=e2_5><span class="e2_6"><a class="mainicon" href="/1">모두의 레시피</a></span>
+				<div class=e2_8><span class="e2_11"><a href="/recipe">분류</a></span><span class="e2_12"><a
+							href="/rank">랭킹</a></span><span class="e2_13"><a href="/board">게시판</a></span><span
+						class="e2_14"><a href="/mypage">마이페이지</a></span>
+					<div class="e2_22"><a href="/alarm" style="width:30px; height:30px;"><i class="fas fa-bell" style="width:30px; height:30px;"></i></a></div>
+					<div class="e2_23"><a href="/createRecipe"><i class="fas fa-pencil-alt"></i></a></div>
+					<div class="e2_24"><a href="/logout"><i class="fas fa-sign-in-alt"></i></a></div>
+				</div>
+				<div class=e3_172>
+					<form action="/search" method="get"> <!-- 검색창 주소 입력 -->
+					<div class="e2_7"><input type="text" name="keyword" class="search_txt" required></div>
+					<div class="e3_171">
+						<button type="submit" class="search_btn">
+							<span class="searchicon">
+								<i class="fa-solid fa-magnifying-glass" style="max-width:25px; max-height:25px;"></i>
+							</span>
+						</button>
+					</div>
+					</form>
+				</div>
+			</div><span class="e2_26">모두의 레시피 </span><span class="e2_27">쉽고 간편하게 레시피를 공유해보세요</span>
 		</div>
-		
 		<div th:if="${session.loggedInNickname == '관리자'}" class="confirm_btn">
         	<a href="/reviewRecipes">
             	<button>레시피 검토</button>
@@ -54,42 +54,10 @@
         		<button>회원 관리</button>
         	</a>
     	</div>
-    	
-      	<!-- 검색 결과가 없을 때의 메시지를 추가 -->
-		<div class="search" th:if="${boardList.isEmpty()}">
-			<h2>검색 결과가 없습니다.</h2>
-			<div class="searchbar">
-			    <div class="searchradius">
-			        <form th:action="@{/board}" method="get" class="search-form">
-			            <div class="search-left">
-			                <label for="searchBy" class="search-label"></label>
-			                <select name="searchBy" id="searchBy" class="search-select">
-			                    <option value="title">제목</option>
-			                    <option value="nickname">작성자</option>
-			                </select>
-			            </div>
-			            <div class="search-right">
-			                <input type="text" th:value="${keyword}" name="keyword" class="search_txt" placeholder="검색어를 입력하세요" required>
-			                <button type="submit" class="search_btn">
-			                    <span class="searchicon">
-			                        <i class="fa-solid fa-magnifying-glass"></i>
-			                    </span>
-			                </button>
-			            </div>
-			        </form>
-			    </div>
-			</div>
-         <div class="button-container">
-         <a href="/createboard" class="button">글쓰기</a>
-         </div>
-         <div class="text-center">
-			<script th:src="@{/../js/rank.js}"></script>
-         </div>
-		</div>
-		
+      
       <!-- 여기부터 body에 추가할 코드 입력 -->
-<!--<div class="content">-->
-   <div class="table-container" th:if="${!boardList.isEmpty()}">
+		<div class=e2_28 th:if="${!boardList.isEmpty()}">
+			<h1>게시판</h1>
           <table class="table">
             <thead>
                <tr>
@@ -104,17 +72,17 @@
 	               <td th:if="${board.nickname != '관리자'}" style=text-align:center; th:text="${board.postId}"></td>
 	               <td th:if="${board.nickname == '관리자'}" style="text-align: center; color: red; font-size:18px">공지</td>
 	               <td th:if="${board.nickname != '관리자'}">
-		                <a th:href="@{'/board/' + ${board.postId}}">
+		                <a th:href="@{'/board/' + ${board.postId}}" style="color: black;">
 		                    <span th:text="${board.title}"></span>
 		                </a>
 				   </td>
 				   <td th:if="${board.nickname == '관리자'}">
-		                <a th:href="@{'/board/' + ${board.postId}}">
+		                <a th:href="@{'/board/' + ${board.postId}}" style="color: black;">
 		                    <span th:text="${board.title}" style="color:red; font-size:18px"></span>
 		                </a>
 				   </td>
               	   <td th:if="${board.nickname != '관리자'}" style=text-align:center;>
-		               <a th:href="@{'/userpage_R/' + ${board.nickname}}">
+		               <a th:href="@{'/userpage_R/' + ${board.nickname}}" style="color: black;">
 		                   <span th:text="${board.nickname}"></span>
 		               </a>
            		   </td>
@@ -138,7 +106,7 @@
                
             </tbody>    
          </table>
-         <hr/>
+         <hr>
 
 
 <div class="searchbar">
@@ -153,8 +121,8 @@
             </div>
             <div class="search-right">
                 <input type="text" th:value="${keyword}" name="keyword" class="search_txt" placeholder="검색어를 입력하세요" required>
-                <button type="submit" class="search_btn">
-                    <span class="searchicon">
+                <button type="submit" class="search_btn_a">
+                    <span class="searchicon_a">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </span>
                 </button>
@@ -167,29 +135,27 @@
          </div>
          <div class="text-center">
             <div class="pagination">
-    <a th:if="${currentPage > firstPage}" th:href="@{|/board?page=${currentPage - 1}&searchBy=${searchBy}&keyword=${keyword}|}">&laquo; 이전</a>
+    <a th:if="${currentPage > firstPage}" th:href="@{|/board?page=${currentPage - 1}&searchBy=${searchBy}&keyword=${keyword}|}" style="color: black;">&laquo; 이전</a>
     <span th:each="pageNumber : ${#numbers.sequence(currentPage - 5, currentPage + 4)}" th:if="${pageNumber >= firstPage && pageNumber <= lastPage}">
 	    <a th:href="@{|/board?page=${pageNumber}&searchBy=${searchBy}&keyword=${keyword == null ? '' : keyword}|}"
-	       th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber + 1}"></a>
+	       th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber + 1}" style="color: black;"></a>
 	</span>
-    <a th:if="${currentPage < lastPage}" th:href="@{|/board?page=${currentPage + 1}&searchBy=${searchBy}&keyword=${keyword == null ? '' : keyword}|}">&raquo; 다음</a>
+    <a th:if="${currentPage < lastPage}" th:href="@{|/board?page=${currentPage + 1}&searchBy=${searchBy}&keyword=${keyword == null ? '' : keyword}|}" style="color: black;">&raquo; 다음</a>
 </div>
 <script th:src="@{/../js/rank.js}"></script>
          </div>
    </div>
    </div>
-       <!--</div>-->
-   <div class="footer">
-         <div class="footer_comment">@Yuhan University Group 3's Project</div>
-   </div>
-</div>
-
-   <script th:inline="javascript">
+		</div>
+    
+		</div>
+		<div class=e3_173><span class="e3_175">2023 yuhan University</span></div>
+	</div>
+	   <script th:inline="javascript">
            var boarddeleteMessage = /*[[${boarddeleteMessage}]]*/ "";
            if (boarddeleteMessage) {
                alert(boarddeleteMessage);
            }
     </script>
-   
 </body>
 </html>

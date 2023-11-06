@@ -90,8 +90,18 @@ public class LoveController {
     	model.addAttribute("lastrecipes", lastrecipes);
     	
     	//유저랭킹
-    	List<User> userRank = userR.findByOrderByUsertotallikes();
+    	List<User> userRank = userR.findTop3ByOrderByUsertotallikes();
     	model.addAttribute("userRank",userRank);
+    	
+    	// 10개의 가장 최근에 접근한 레시피를 가져옵니다.
+        List<Love> recentlyAccessedActivities = loveRepository.findDistinctTop10ByActivityOrderByDateDesc(loggedInUserId);
+
+        // 이 활동에서 레시피를 추출할 수 있습니다.
+        List<Recipe> recentlyAccessedRecipes = recentlyAccessedActivities.stream()
+            .map(Love::getRecipe)
+            .collect(Collectors.toList());
+
+        model.addAttribute("recentlyAccessedRecipes", recentlyAccessedRecipes);
     	
     	return "index2";	
 
