@@ -1934,6 +1934,14 @@ a {
 	left:-10%;
 }
 
+.category-buttons select{
+	border-radius: 5px;
+	height: 40px;
+	border: 2px rgb(0, 0, 0) solid;
+	
+
+	}
+
 .img_slide{
 	display: grid;
     grid-template-columns: repeat(4, 1fr); /* 4열 그리드, 1fr은 동일한 너비로 설정 */
@@ -1952,11 +1960,14 @@ a {
 	max-width: 350px;
 }
 .rank-number{
+	left: 100px;
 	width: 310px;
-	height: 30px;
 	font-family: Alumni Sans Collegiate One;
 	text-align: left;
-	font-size: 16px;
+	font-size: 20px;
 	font-weight: bold;
 	letter-spacing: 0;
+	position: relative;
+	left: 45%;
+	top: -5px;
 }
