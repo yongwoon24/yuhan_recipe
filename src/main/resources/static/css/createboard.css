@@ -1,26 +1,27 @@
 
-.contents{
+.e2_28{
 	   margin-top: 300px;
 	   text-align: center;
-	   font-size: 30px;
+	   font-size: 20px;
    }
    hr {
 	   width: 65%;
 	   margin-bottom: 80px;
    }
    h1 {
+		margin-top: 100px;
 	   margin-bottom: 70px;
    }
    label[for="title"]{
 	   margin-right: 10px;
 	   margin-bottom: 20px;
 	   position: relative;
-	   top: -1.5px;
+	   top: -3.5px;
    }
    label[for="content"]{
 	   margin-right: 10px;
 	   position: relative;
-	   top: -480px;
+	   top: -485px;
    }
    input[type=text] {
 	   border-radius:5px;
@@ -45,22 +46,20 @@
 		resize: none;
 	}
 	.btn_submit {
-		font-family: 'Jua', sans-serif;	
 		margin-top: 30px;
 		position: relative;
 		left: 25%;
 		font-size: 25px;
 		height: 40px;
 		border-radius: 4px;
-		background-color: #01DFA5;
+		background-color: rgb(201, 201, 201);
 		color: white;
 		border: none;
 		border-radius: 10px;
-		box-shadow: 0px 0px 2px 2px rgb(174,248,223);
 	}
 	.btn_submit:hover {
-		color:#01DFA5;
+		color:rgb(201, 201, 201);
 		background-color: white;
+		box-shadow: 0px 0px 2px 2px rgb(192, 192, 192);
 	}
-	
 	

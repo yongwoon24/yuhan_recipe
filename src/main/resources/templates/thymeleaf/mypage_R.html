@@ -21,13 +21,13 @@
 		<div class=e2_3>
 			<div class="e2_4">
 				<div class="e2_4_1">
-					<img src="img/레시피.jpg" style="width: 100%; height: 100%;">
+					<img src="/img/레시피.jpg" style="width: 100%; height: 100%;">
 					<div class="t"><span class="e2_26">모두의 레시피 </span><span class="e2_27">쉽고 간편하게 레시피를 공유해보세요</span>
 				</div></div>
-				<div class="e2_4_1"><img src="img/크리스마스.png" style="width: 100%; height: 100%;">
+				<div class="e2_4_1"><img src="/img/크리스마스.png" style="width: 100%; height: 100%;">
 				<div class="t"><span class="e2_26_1">모두의 레시피 </span><a href="/search?keyword=크리스마스"><span class="e2_27_1">크리스마스 레시피 보러가기</span></a>
 				</div></div>
-				<div class="e2_4_1"><img src="img/할로윈5.jpg" style="width: 100%; height: 100%;">
+				<div class="e2_4_1"><img src="/img/할로윈5.jpg" style="width: 100%; height: 100%;">
 				<div class="t"><span class="e2_26_2">모두의 레시피 </span><a href="/search?keyword=할로윈"><span class="e2_27_2">할로윈 레시피 보러가기</span></a>
 				</div></div>
 			</div>
@@ -97,12 +97,13 @@
 								<img th:src="@{${recipe.main_photo_path}}" width="100%" height="100%" style="border-radius: 10px;"></a>
 						</div>
 						<a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}"><span class="e56_26" th:text="${recipe.title}"></span></a>
-						<a th:href="@{'/userpage_R/'+${recipe.nickname}}" style="white-space: pre-wrap;"><div class="e56_27"><img th:src="${recipe.user.userphotopath}" width="100%" height="100%"
-							style="border-radius: 500px;"></div><span class="e56_28"
-							th:text="${recipe.nickname}"></span></a>
-						<div class="e56_34"><img src="img/좋아요.jpg" width="100%" height="100%" style="border-radius: 500px;">
+						<a th:href="@{'/userpage_R/'+${recipe.nickname}}" style="white-space: pre-wrap;">
+							<div class="e56_27"><img th:src="${recipe.user.userphotopath}" width="100%" height="100%"
+									style="border-radius: 500px;"></div><span class="e56_28" th:text="${recipe.nickname}"></span>
+						</a>
+						<div class="e56_34"><img src="/img/좋아요.jpg" width="100%" height="100%" style="border-radius: 500px;">
 						</div><span class="e56_35" th:text="${recipe.totalLove}"></span>
-						<div class="e56_36"><img src="img/조회수.png" width="100%" height="100%" style="border-radius: 500px;">
+						<div class="e56_36"><img src="/img/조회수.png" width="100%" height="100%" style="border-radius: 500px;">
 						</div><span class="e56_37" th:text="${recipe.view_count}"></span>
 					</div>
 				</div>
@@ -110,14 +111,14 @@
 				<!-- 페이지네이션을 추가한 부분 -->
 
 				<div class="pagination">
-					<a th:if="${currentPage > firstPage}" th:href="@{|/mypage_R?page=${currentPage - 1}|}">&laquo;
+					<a th:if="${currentPage > firstPage}" th:href="@{|/mypage?page=${currentPage - 1}|}">&laquo;
 						이전</a>
 					<span th:each="pageNumber : ${#numbers.sequence(1, totalPages)}"
 						th:if="${pageNumber >= firstPage && pageNumber <= lastPage}">
-						<a th:href="@{|/mypage_R?page=${pageNumber}|}"
+						<a th:href="@{|/mypage?page=${pageNumber}|}"
 							th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber}"></a>
 					</span>
-					<a th:if="${hasNextPage}" th:href="@{|/mypage_R?page=${currentPage + 1}|}">다음 &raquo;</a>
+					<a th:if="${hasNextPage}" th:href="@{|/mypage?page=${currentPage + 1}|}">다음 &raquo;</a>
 				</div>
 
 			</div>

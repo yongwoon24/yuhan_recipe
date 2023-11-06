@@ -39,7 +39,7 @@ public class UserPageController {
 		 
 	       if (recipe != null) {
 	    	int totalRecipes = recipe.size();
-	   	    int pageSize = 20; // 페이지당 레시피 수
+	   	    int pageSize = 16; // 페이지당 레시피 수
 	   	    int totalPages = (int) Math.ceil((double) totalRecipes / pageSize);
 	   	    System.out.println(totalPages);
 	   	    System.out.println(totalRecipes);
@@ -95,7 +95,7 @@ public class UserPageController {
 	public String showUser_BPage(Model model, @PathVariable String nickname, @RequestParam(required = false, defaultValue = "0") int page) {
 		List<Board> boardList = boardRepository.findByNicknameOrderByPostIdDesc(nickname);
 	
-		 int pageSize = 20; // 페이지당 레시피 수 
+		 int pageSize = 16; // 페이지당 레시피 수 
 		 int startIndex = page * pageSize;
 		    int endIndex = Math.min(startIndex + pageSize, boardList.size());
 

@@ -469,21 +469,7 @@ a {
 	left:200px;
 	top:0px;
 }
-.e3_193 { 
-	color:rgba(0, 0, 0, 1);
-	width:180px;
-	height:36px;
-	position:absolute;
-	left:60px;
-	top:43px;
-	font-family:Alumni Sans Collegiate One;
-	text-align:left;
-	font-size:30px;
-	letter-spacing:0;
-	font-weight: bold;
-}
-
-																									/*레시피 목록 및 페이지네이션 css*/
+																								/*레시피 목록 및 페이지네이션 css*/
 																									
 .e3_193 { 
 	color:rgba(0, 0, 0, 1);
@@ -536,7 +522,6 @@ a {
 	position: absolute;
 	left: 10px;
 	top: -30px;
-	
 	background-repeat: no-repeat;
 	background-size: cover;
 }
@@ -611,7 +596,7 @@ a {
 	width: 27px;
 	height: 26px;
 	position: absolute;
-	left: 260px;
+	left: 240px;
 	top: 249px;
 }
 
@@ -620,7 +605,7 @@ a {
 	width: 27px;
 	height: 17px;
 	position: absolute;
-	left: 290px;
+	left: 270px;
 	top: 253px;
 	font-family: Almarai;
 	text-align: left;

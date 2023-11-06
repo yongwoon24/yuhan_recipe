@@ -156,7 +156,7 @@ public class RecipeController {
 	    
 	    
 	    int totalRecipes = recipes.size();
-	    int pageSize = 20; // 페이지당 레시피 수
+	    int pageSize = 16; // 페이지당 레시피 수
 	    int totalPages = (int) Math.ceil((double) totalRecipes / pageSize);
 	    
 	    // 현재 페이지가 유효한 범위 내에 있는지 확인
@@ -356,7 +356,10 @@ public class RecipeController {
 				response.addCookie(likeCookie);
 			} else {
 				// 이미 좋아요를 눌렀음을 사용자에게 알릴 수 있습니다.
-				redirectAttributes.addFlashAttribute("errorMessage", "이미 좋아요 누르셨습니다");
+			
+				Love love1 = loverepository.findByUserRecipeLike(user, recipe);
+				loverepository.delete(love1);
+				redirectAttributes.addFlashAttribute("errorMessage", "좋아요를 취소하셨습니다");
 			}
 		} catch (Exception e) {
 			// 예외가 발생하면 여기서 처리합니다.
@@ -403,7 +406,12 @@ public class RecipeController {
 				response.addCookie(likeCookie);
 			} else {
 				// 이미 좋아요를 눌렀음을 사용자에게 알릴 수 있습니다.
-				redirectAttributes.addFlashAttribute("errorMessage", "이미 스크랩을 하셨습니다");
+				
+				Scrap scrapId = scraprepository.findIdByRecipeAndUser(recipe, user);
+				Love loveId = loverepository.findByUserRecipeScrap(user, recipe);
+				loverepository.delete(loveId);
+				scraprepository.delete(scrapId);
+				redirectAttributes.addFlashAttribute("errorMessage", "스크랩 취소가 완료되었습니다");
 			}
 		} catch (Exception e) {
 			// 예외가 발생하면 여기서 처리합니다.
@@ -459,6 +467,8 @@ public class RecipeController {
 			
 			String activity = "조회";
 			recipe.setRecipe_id(recipe_id);
+			
+			
 
 			User user = new User();
 			String loggedInUserId = (String) session.getAttribute("loggedInUserId");
@@ -500,6 +510,9 @@ public class RecipeController {
 
 				loveservice.saveLove(love);
 				
+				Love love1 = loverepository.findByUserRecipeLike(user, recipe);
+				Scrap scrap1 = scraprepository.findIdByRecipeAndUser(recipe, user);
+				
 				model.addAttribute("pr",pr);
 				model.addAttribute("photo",photo);
 				model.addAttribute("recipeings",recipeing);
@@ -510,6 +523,8 @@ public class RecipeController {
 				model.addAttribute("Nickname", Nickname);
 				model.addAttribute("comment", recipecomment);
 				model.addAttribute("session",session);
+				model.addAttribute("scrap",scrap1);
+				model.addAttribute("like", love1);
 				return "userRecipe2"; // 레시피 페이지 템플릿
 			}
 		}
