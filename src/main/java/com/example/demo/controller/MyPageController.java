@@ -140,7 +140,7 @@ public class MyPageController {
 		 
 	       if (loggedInNickname != null) {
 	    	int totalRecipes = recipe.size();
-	   	    int pageSize = 20; // 페이지당 레시피 수
+	   	    int pageSize = 16; // 페이지당 레시피 수
 	   	    int totalPages = (int) Math.ceil((double) totalRecipes / pageSize);
 	   	    System.out.println(totalPages);
 	   	    System.out.println(totalRecipes);

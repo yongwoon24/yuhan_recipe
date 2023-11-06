@@ -79,7 +79,7 @@
 	</div>
 				<!-- 여기부터 body에 추가할 코드 입력 -->
 <div class=e56_22>
-	<span  class="e3_193">작성한 레시피
+	<span  class="e3_193" th:text="${nickname}+'님의 레시피'">
 	</span>
 				<div class="e56_23">
 					<div class=e56_24 th:each="recipe, recipeIndex : ${recipes}">
@@ -103,15 +103,15 @@
 				<!-- 페이지네이션을 추가한 부분 -->
 
 				<div class="pagination">
-					<a th:if="${currentPage > firstPage}" th:href="@{|/mypage_R?page=${currentPage - 1}|}">&laquo;
-						이전</a>
-					<span th:each="pageNumber : ${#numbers.sequence(1, totalPages)}"
-						th:if="${pageNumber >= firstPage && pageNumber <= lastPage}">
-						<a th:href="@{|/mypage_R?page=${pageNumber}|}"
-							th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber}"></a>
-					</span>
-					<a th:if="${hasNextPage}" th:href="@{|/mypage_R?page=${currentPage + 1}|}">다음 &raquo;</a>
-				</div>
+               <a th:if="${currentPage > firstPage}" th:href="@{|/userpage_R/${nickname}?page=${currentPage - 1}|}">&laquo;
+                  이전</a>
+               <span th:each="pageNumber : ${#numbers.sequence(1, totalPages)}"
+                  th:if="${pageNumber >= firstPage && pageNumber <= lastPage}">
+                  <a th:href="@{|/userpage_R/${nickname}?page=${pageNumber}|}"
+                     th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber}"></a>
+               </span>
+               <a th:if="${hasNextPage}" th:href="@{|/userpage_R/${nickname}?page=${currentPage + 1}|}">다음 &raquo;</a>
+            </div>
 
 			</div>
 			</div>

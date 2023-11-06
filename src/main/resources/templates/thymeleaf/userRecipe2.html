@@ -61,6 +61,11 @@
 	</div>
 	<div class=e2_28>
 		<!--			여기에 내용을 입력하세요-->
+		<form th:action="'/a/'+${recipe.recipe_id}" method="post">
+						<div th:if="${session.loggedInNickname == '관리자'}" class="confirm_btn">
+				            	<button type="submit">승인</button>
+				    	</div>
+						</form>	
 		<div class=e2_28_1>
 			<div>
 				<span class="e52_751" th:text="'작성일자 ' + ${#temporals.format(recipe.createddate, 'yyyy-MM-dd')}"></span>
