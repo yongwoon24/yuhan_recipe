@@ -33,15 +33,21 @@
 			</div>
 		</div>
 		<div class=e2_5><span class="e2_6"><a class="mainicon" href="/">모두의 레시피</a></span>
-			<div class=e2_8><span class="e2_11"><a href="/recipe">분류</a></span><span class="e2_12"><a
-						href="/rank">랭킹</a></span><span class="e2_13"><a href="/board">게시판</a></span><span
-					class="e2_14"><a href="/mypage">마이페이지</a></span>
+			<div class=e2_8>
+			<span th:if="${session.loggedInNickname == '관리자'}" class="ad_1"><a href="/reviewRecipes">레시피 검토</a></span>
+			<span th:if="${session.loggedInNickname == '관리자'}" class="ad_2"><a href="/user">회원 관리</a></span>
+			<span class="e2_11"><a href="/recipe">레시피</a></span>
+			<span class="e2_12"><a href="/rank">랭킹</a></span>
+			<span class="e2_13"><a href="/board">게시판</a></span>
+			<span class="e2_14"><a href="/mypage">마이페이지</a></span>	
 				<div class="e2_22"><a href="/alarm" style="width:30px; height:30px;"><i th:if="${session.alarm != 1}" class="fas fa-bell"
 							style="width:30px; height:30px;"></i>
 							<i th:if="${session.alarm == 1}" class="fas fa-bell"
 							style="width:30px; height:30px; color: red;"></i></a></div>
 				<div class="e2_23"><a href="/createRecipe"><i class="fas fa-pencil-alt"></i></a></div>
-				<div class="e2_24"><a href="/logout"><i class="fas fa-sign-in-alt"></i></a></div>
+				
+				<div th:if="${session.loggedInNickname != null}" class="e2_24"><a href="/logout">로그아웃</a></div>
+				<div th:if="${session.loggedInNickname == null}" class="e2_24"><a href="/logout">로그인</a></div>
 			</div>
 			<div class=e3_172>
 				<form action="/search" method="get"> <!-- 검색창 주소 입력 -->
@@ -62,7 +68,7 @@
 		<div class=e3_29><span class="e3_30">오늘의 추천 메뉴</span>
 			<div class=e3_36  th:each="recipe : ${todayrecipes}">
 				
-				<div class="e3_40"><img th:src="@{${recipe.main_photo_path}}" /></div>
+				<div class="e3_40"><img th:if="${recipe.main_photo_path == null}" src="/img/기본유저.jpg"> <img th:src="@{${recipe.main_photo_path}}" /></div>
 				<span class="e3_42" th:text="${recipe.title}">제목</span>
 				<div class="e3_43"><img th:src="@{${recipe.user.userphotopath}}" style="height: 100%; width: 100%;"></div>
 				<span class="e3_44" th:text="${recipe.user.nickname}">작성자</span>
@@ -98,13 +104,13 @@
     </div>
       <div class="e3_99" >
 		<span class="e3_101">최근 본 레시피</span>
-			<div class="e3_103" th:each="recipe, iterStat : ${topLove}">
+			<div class="e3_103" th:each="recipe3, iterStat : ${recentlyAccessedRecipes}">
 				<div class="e3_104">
-					<img th:src="@{${recipe.main_photo_path}}" />
+					<img th:src="@{${recipe3.main_photo_path}}" />
 				</div>
-				<div class="e3_105" th:text="${recipe.title}">제목</div>
-				<div class="e3_106"><img th:src="@{${recipe.user.userphotopath}}" style="height: 100%; width: 100%;"></div><span class="e3_107" th:text="${recipe.user.nickname}">작성자</span>
-				<div class="e3_108">♥</div><span class="e3_109" th:text="${recipe.totalLove}">90</span>
+				<div class="e3_105" th:text="${recipe3.title}">제목</div>
+				<div class="e3_106"><img th:src="@{${recipe3.user.userphotopath}}" style="height: 100%; width: 100%;"></div><span class="e3_107" th:text="${recipe3.user.nickname}">작성자</span>
+				<div class="e3_108">♥</div><span class="e3_109" th:text="${recipe3.totalLove}">90</span>
 			</div>
 		</div>
 		<div class="button_div_left3">
@@ -114,8 +120,8 @@
       <button id="next-button" class="button-icon" onclick="prevSlide3()">&gt;</button>
     </div>
 		<div class=e3_131><span class="e3_132">유저 랭킹</span>
-			<div class=e3_134>
-				<div class="e3_135"></div><span class="e3_136">제목</span>
+			<div class=e3_134 th:each="userrank : ${userRank}">
+				<div class="e3_135"><img th:src="@{${userrank.userphotopath}}" style="height: 100%; width: 100%;"></div><span class="e3_136" th:text="${userrank.nickname}">제목</span>
 			</div>
 			
 		</div>
