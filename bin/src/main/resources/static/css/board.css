@@ -41,6 +41,9 @@ th{
 	padding: 6px 15px;
 =======
 <<<<<<< HEAD
+	padding: 6px 15px;
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
    padding: 6px 15px;
@@ -62,6 +65,7 @@ th{
 >>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
 >>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
 >>>>>>> 50c25ad0400af2c974ed8121e680ce92b5ed8d9c
+>>>>>>> 2635114c7fb3f0ba032d4776b8e184a832ed6b1e
 }
 td {
   padding: 0 10px;
@@ -156,6 +160,8 @@ a.button:hover {
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -169,6 +175,7 @@ a.button:hover {
 >>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
 >>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
 >>>>>>> 50c25ad0400af2c974ed8121e680ce92b5ed8d9c
+>>>>>>> 2635114c7fb3f0ba032d4776b8e184a832ed6b1e
 }
 /* 검색 바 스타일 */
 .searchbar { 
@@ -247,12 +254,18 @@ a.button:hover {
 
 /* 나머지 검색 바 스타일 (검색어 입력 필드, 검색 버튼)는 이전과 동일하게 유지 */
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 2635114c7fb3f0ba032d4776b8e184a832ed6b1e
 
 
 .search {
   max-width: 1100px;
   margin: 0 auto;
   padding: 200px 20px 0; /* 위쪽 여백 추가 */
+<<<<<<< HEAD
+}
+=======
 }
 =======
 <<<<<<< HEAD
@@ -269,3 +282,4 @@ a.button:hover {
 >>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
 >>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
 >>>>>>> 50c25ad0400af2c974ed8121e680ce92b5ed8d9c
+>>>>>>> 2635114c7fb3f0ba032d4776b8e184a832ed6b1e

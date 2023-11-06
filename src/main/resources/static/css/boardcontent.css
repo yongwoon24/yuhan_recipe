@@ -1,13 +1,13 @@
  
-.contents{
+.e2_28{
 	   margin-top: 300px;
 	   text-align: center;
 	   font-size: 20px;
+	   height: auto;
    }
    .button-style {
 	   		  position: relative;
 			  right: 320%;
-	   		  font-family: 'Jua', sans-serif;
 		      display: inline-block;
 			  padding: 10px 20px;
 			  background-color: #f0f0f0;
@@ -26,9 +26,10 @@
 		}
 	h1 {
 		margin-bottom: 40px;
+		margin-top: 100px;
 	}
 	hr {
-		width: 65%;
+		width: 75%;
 	}
 	.write_date {
 		font-family: 'Gowun Batang', serif;
@@ -47,8 +48,14 @@
 		margin-bottom: 1px;
 		position: relative;
 		bottom: -25px;
+		left: -4%;
 	}
-	
+	.write_date {
+		font-size: 15px;
+		display: block;
+		position: relative;
+		right: -10%
+	}
 	.content {
 		word-wrap:break-word;/*영문,숫자 줄바꿈*/
 		word-break:break-all;
@@ -84,16 +91,26 @@
 		position: relative;
 		right: -25%;
 		text-align: left;
+		width: 50%;
 	}
-	.write_date {
+	.write_comment{
+		position: relative;
+		left: -10%
+	}
+	.write_comment_date {
+		margin-bottom: 10px;
 		font-size: 15px;
-		display: block;
+		position: relative;
+		right: -68%;
 	}
-	.comment_content {
-		display:block;
+	.comment_content_a {
+		font-size: 18px;
+		margin-top: 10px;
+		word-wrap:break-word;
+		word-break:break-all;
+		white-space: pre-wrap;
 	}
 	.btn_comment_submit {
-	   	font-family: 'Jua', sans-serif;
 		display: inline-block;
 		padding: 10px 20px;
 		background-color: #f0f0f0;

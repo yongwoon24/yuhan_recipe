@@ -33,15 +33,21 @@
 			</div>
 		</div>
 		<div class=e2_5><span class="e2_6"><a class="mainicon" href="/">모두의 레시피</a></span>
-			<div class=e2_8><span class="e2_11"><a href="/recipe">분류</a></span><span class="e2_12"><a
-						href="/rank">랭킹</a></span><span class="e2_13"><a href="/board">게시판</a></span><span
-					class="e2_14"><a href="/mypage">마이페이지</a></span>
+			<div class=e2_8>
+			<span th:if="${session.loggedInNickname == '관리자'}" class="ad_1"><a href="/reviewRecipes">레시피 검토</a></span>
+			<span th:if="${session.loggedInNickname == '관리자'}" class="ad_2"><a href="/user">회원 관리</a></span>
+			<span class="e2_11"><a href="/recipe">레시피</a></span>
+			<span class="e2_12"><a href="/rank">랭킹</a></span>
+			<span class="e2_13"><a href="/board">게시판</a></span>
+			<span class="e2_14"><a href="/mypage">마이페이지</a></span>	
 				<div class="e2_22"><a href="/alarm" style="width:30px; height:30px;"><i th:if="${session.alarm != 1}" class="fas fa-bell"
 							style="width:30px; height:30px;"></i>
 							<i th:if="${session.alarm == 1}" class="fas fa-bell"
 							style="width:30px; height:30px; color: red;"></i></a></div>
 				<div class="e2_23"><a href="/createRecipe"><i class="fas fa-pencil-alt"></i></a></div>
-				<div class="e2_24"><a href="/logout"><i class="fas fa-sign-in-alt"></i></a></div>
+				
+				<div th:if="${session.loggedInNickname != null}" class="e2_24"><a href="/logout">로그아웃</a></div>
+				<div th:if="${session.loggedInNickname == null}" class="e2_24"><a href="/logout">로그인</a></div>
 			</div>
 			<div class=e3_172>
 				<form action="/search" method="get"> <!-- 검색창 주소 입력 -->
@@ -60,84 +66,67 @@
 	<div class=e2_28>
 		<!--			여기에 내용을 입력하세요-->
 		<div class=e3_29><span class="e3_30">오늘의 추천 메뉴</span>
-			<div class=e3_36>
-				<div class="e3_40"></div><span class="e3_42">제목</span>
-				<div class="e3_43"><img src="../../static/img/rimg1_1.png" style="width: 100%; height: 100%;"></div>
-				<span class="e3_44">작성자</span>
-				<div class="e3_46">♥</div><span class="e3_47">90</span>
-			</div>
-			<div class=e3_48>
-				<div class="e3_49"></div><span class="e3_50">제목</span>
-				<div class="e3_51"></div><span class="e3_52">작성자</span>
-				<div class="e3_53"></div><span class="e3_54">90</span>
-			</div>
-			<div class=e3_62>
-				<div class="e3_63"></div><span class="e3_64">제목</span>
-				<div class="e3_65"></div><span class="e3_66">작성자</span>
-				<div class="e3_67"></div><span class="e3_68">90</span>
-			</div>
-			<div class=e3_55>
-				<div class="e3_56"></div><span class="e3_57">제목</span>
-				<div class="e3_58"></div><span class="e3_59">작성자</span>
-				<div class="e3_60"></div><span class="e3_61">90</span>
+			<div class=e3_36  th:each="recipe : ${todayrecipes}">
+				
+				<div class="e3_40"><img th:if="${recipe.main_photo_path == null}" src="/img/기본유저.jpg"> <img th:src="@{${recipe.main_photo_path}}" /></div>
+				<span class="e3_42" th:text="${recipe.title}">제목</span>
+				<div class="e3_43"><img th:src="@{${recipe.user.userphotopath}}" style="height: 100%; width: 100%;"></div>
+				<span class="e3_44" th:text="${recipe.user.nickname}">작성자</span>
+				<div class="e3_46">♥</div><span class="e3_47" th:text="${recipe.totalLove}">90</span>
 			</div>
 		</div>
-		<div class=slide_wrapper><span class="e3_70">랭킹</span>
-			<ul class="img_slide">
-				<li th:each="recipe : ${topLove}">
-					<a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}"><img
-							th:src="@{${recipe.main_photo_path}}"></a>
-					<a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}">
-						<ol th:text="${recipe.title}">asd</ol>
-					</a>
-					<ol class="likes">
-						<li>
-							<i class="fas fa-heart"></i>
-							<span th:text="${recipe.totalLove}"></span>
-						</li>
-					</ol>
-				</li>
-			</ul>
-
-		</div>
-		<div class=e3_100><span class="e3_101">최근 본 레시피</span>
-			<div class=e3_103>
-				<div class="e3_104"></div><span class="e3_105">제목</span>
-				<div class="e3_106"></div><span class="e3_107">작성자</span>
-				<div class="e3_108"></div><span class="e3_109">90</span>
-			</div>
-			<div class=e3_110>
-				<div class="e3_111"></div><span class="e3_112">제목</span>
-				<div class="e3_113"></div><span class="e3_114">작성자</span>
-				<div class="e3_115"></div><span class="e3_116">90</span>
-			</div>
-			<div class=e3_117>
-				<div class="e3_118"></div><span class="e3_119">제목</span>
-				<div class="e3_120"></div><span class="e3_121">작성자</span>
-				<div class="e3_122"></div><span class="e3_123">90</span>
-			</div>
-			<div class=e3_124>
-				<div class="e3_125"></div><span class="e3_126">제목</span>
-				<div class="e3_127"></div><span class="e3_128">작성자</span>
-				<div class="e3_129"></div><span class="e3_130">90</span>
+		<div class="button_div_left1">
+      <button id="next-button" class="button-icon" onclick="nextSlide1()">&lt;</button>
+    </div>
+    <div class="button_div_right1">
+      <button id="next-button" class="button-icon" onclick="prevSlide1()">&gt;</button>
+    </div>
+      
+		<div class="e3_69">
+      <span class="e3_70">랭킹</span>
+      
+      <div class="e3_72" th:each="recipe, iterStat : ${topLove}">
+        <div class="e3_73">
+          <img th:src="@{${recipe.main_photo_path}}" />
+        </div>
+        <div class="e3_74" th:text="${recipe.title}">제목</div>
+        <div class="e3_75"><img th:src="@{${recipe.user.userphotopath}}" style="height: 100%; width: 100%;"></div>
+        <div class="e3_76" th:text="${recipe.user.nickname}">작성자</div>
+        <div class="e3_77">♥</div>
+        <span class="e3_78" th:text="${recipe.totalLove}">90</span>
+      </div>
+      </div>
+      <div class="button_div_left2">
+      <button id="next-button" class="button-icon" onclick="nextSlide2()">&lt;</button>
+    </div>
+    <div class="button_div_right2">
+      <button id="next-button" class="button-icon" onclick="prevSlide2()">&gt;</button>
+    </div>
+      <div class="e3_99" >
+		<span class="e3_101">최근 본 레시피</span>
+			<div class="e3_103" th:each="recipe, iterStat : ${topLove}">
+				<div class="e3_104">
+					<img th:src="@{${recipe.main_photo_path}}" />
+				</div>
+				<div class="e3_105" th:text="${recipe.title}">제목</div>
+				<div class="e3_106"><img th:src="@{${recipe.user.userphotopath}}" style="height: 100%; width: 100%;"></div><span class="e3_107" th:text="${recipe.user.nickname}">작성자</span>
+				<div class="e3_108">♥</div><span class="e3_109" th:text="${recipe.totalLove}">90</span>
 			</div>
 		</div>
+		<div class="button_div_left3">
+      <button id="next-button" class="button-icon" onclick="nextSlide3()">&lt;</button>
+    </div>
+    <div class="button_div_right3">
+      <button id="next-button" class="button-icon" onclick="prevSlide3()">&gt;</button>
+    </div>
 		<div class=e3_131><span class="e3_132">유저 랭킹</span>
 			<div class=e3_134>
 				<div class="e3_135"></div><span class="e3_136">제목</span>
 			</div>
-			<div class=e3_162>
-				<div class="e3_163"></div><span class="e3_164">제목</span>
-			</div>
-			<div class=e3_165>
-				<div class="e3_166"></div><span class="e3_167">제목</span>
-			</div>
-			<div class=e3_168>
-				<div class="e3_169"></div><span class="e3_170">제목</span>
-			</div>
+			
 		</div>
 <!--		여기까지-->
-	</div>
+	
 	<div class=e3_173><span class="e3_175">2023 yuhan University</span></div>
 	</div>
 	<script th:inline="javascript">
@@ -172,6 +161,82 @@
 		}
 
 		setInterval(nextSlide, interval);
+		
+		const items = document.querySelectorAll('.e3_36');
+		const items2 = document.querySelectorAll('.e3_72');
+		const items3 = document.querySelectorAll('.e3_103');
+    let currentIndex1 = 0;
+    let currentIndex2 = 0;
+    let currentIndex3 = 0;
+    let leftValue1 = 0;
+    let leftValue2 = 0;
+    let leftValue3 = 0;
+
+	function prevSlide1() {
+      if (currentIndex1 == 0) {
+        currentIndex1++;
+        leftValue1 -= 1630; // 변경하고자 하는 이동 거리
+        updateSlide1();
+      }
+    }
+
+    function nextSlide1() {
+      if (currentIndex1 == 1) {
+        currentIndex1--;
+        leftValue1 += 1630; // 변경하고자 하는 이동 거리
+        updateSlide1();
+      }
+    }
+
+    function prevSlide2() {
+      if (currentIndex2 == 0) {
+        currentIndex2++;
+        leftValue2 -= 1630; // 변경하고자 하는 이동 거리
+        updateSlide2();
+      }
+    }
+
+    function nextSlide2() {
+      if (currentIndex2 == 1) {
+        currentIndex2--;
+        leftValue2 += 1630; // 변경하고자 하는 이동 거리
+        updateSlide2();
+      }
+    }
+    function prevSlide3() {
+      if (currentIndex3 == 0) {
+        currentIndex3++;
+        leftValue3 -= 1630; // 변경하고자 하는 이동 거리
+        updateSlide3();
+      }
+    }
+
+    function nextSlide3() {
+      if (currentIndex3 == 1) {
+        currentIndex3--;
+        leftValue3 += 1630; // 변경하고자 하는 이동 거리
+        updateSlide3();
+      }
+    }
+
+
+    function updateSlide1() {
+      items.forEach((item, index) => {
+        item.style.left = leftValue1 + 'px';
+      });
+    }
+    function updateSlide2() {
+      items2.forEach((item, index) => {
+        item.style.left = leftValue2 + 'px';
+      });
+    }
+    function updateSlide3() {
+      items3.forEach((item, index) => {
+        item.style.left = leftValue3 + 'px';
+      });
+    }
+
+    
 
 // 원하는 경우, "이전" 버튼을 클릭하면 previousSlide 함수를 호출하도록 추가할 수 있습니다.
 // 또는 사용자 입력(예: 화살표 키)에 반응할 수도 있습니다.
