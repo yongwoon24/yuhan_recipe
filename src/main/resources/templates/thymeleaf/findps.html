@@ -25,14 +25,23 @@
 					<img src="img/레시피.jpg" style="width: 100%; height: 100%;">
 				</div>
 			</div>
-			<div class=e2_5><span class="e2_6"><a class="mainicon" href="/1">모두의 레시피</a></span>
-				<div class=e2_8><span class="e2_11"><a href="/recipe">분류</a></span><span class="e2_12"><a
-							href="/rank">랭킹</a></span><span class="e2_13"><a href="/board">게시판</a></span><span
-						class="e2_14"><a href="/mypage">마이페이지</a></span>
-					<div class="e2_22"><a href="/alarm" style="width:30px; height:30px;"><i class="fas fa-bell" style="width:30px; height:30px;"></i></a></div>
-					<div class="e2_23"><a href="/createRecipe"><i class="fas fa-pencil-alt"></i></a></div>
-					<div class="e2_24"><a href="/logout"><i class="fas fa-sign-in-alt"></i></a></div>
-				</div>
+			<div class=e2_5><span class="e2_6"><a class="mainicon" href="/">모두의 레시피</a></span>
+				<div class=e2_8>
+			<span th:if="${session.loggedInNickname == '관리자'}" class="ad_1"><a href="/reviewRecipes">레시피 검토</a></span>
+			<span th:if="${session.loggedInNickname == '관리자'}" class="ad_2"><a href="/user">회원 관리</a></span>
+			<span class="e2_11"><a href="/recipe">레시피</a></span>
+			<span class="e2_12"><a href="/rank">랭킹</a></span>
+			<span class="e2_13"><a href="/board">게시판</a></span>
+			<span class="e2_14"><a href="/mypage">마이페이지</a></span>	
+				<div class="e2_22"><a href="/alarm" style="width:30px; height:30px;"><i th:if="${session.alarm != 1}" class="fas fa-bell"
+							style="width:30px; height:30px;"></i>
+							<i th:if="${session.alarm == 1}" class="fas fa-bell"
+							style="width:30px; height:30px; color: red;"></i></a></div>
+				<div class="e2_23"><a href="/createRecipe"><i class="fas fa-pencil-alt"></i></a></div>
+				
+				<div th:if="${session.loggedInNickname != null}" class="e2_24"><a href="/logout">로그아웃</a></div>
+				<div th:if="${session.loggedInNickname == null}" class="e2_24"><a href="/logout">로그인</a></div>
+			</div>
 				<div class=e3_172>
 					<form action="/search" method="get"> <!-- 검색창 주소 입력 -->
 					<div class="e2_7"><input type="text" name="keyword" class="search_txt" required></div>
