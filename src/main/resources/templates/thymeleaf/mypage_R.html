@@ -96,10 +96,12 @@
 							<a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}">
 								<img th:src="@{${recipe.main_photo_path}}" width="100%" height="100%" style="border-radius: 10px;"></a>
 						</div>
-						<a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}"><span class="e56_26" th:text="${recipe.title}"></span></a>
-						<a th:href="@{'/userpage_R/'+${recipe.nickname}}" style="white-space: pre-wrap;"><div class="e56_27"><img th:src="${recipe.user.userphotopath}" width="100%" height="100%"
-							style="border-radius: 500px;"></div><span class="e56_28"
-							th:text="${recipe.nickname}"></span></a>
+						<a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}"><span class="e56_26"
+								th:text="${recipe.title}"></span></a>
+						<a th:href="@{'/userpage_R/'+${recipe.nickname}}" style="white-space: pre-wrap;">
+							<div class="e56_27"><img th:src="${recipe.user.userphotopath}" width="100%" height="100%"
+									style="border-radius: 500px;"></div><span class="e56_28" th:text="${recipe.nickname}"></span>
+						</a>
 						<div class="e56_34"><img src="img/좋아요.jpg" width="100%" height="100%" style="border-radius: 500px;">
 						</div><span class="e56_35" th:text="${recipe.totalLove}"></span>
 						<div class="e56_36"><img src="img/조회수.png" width="100%" height="100%" style="border-radius: 500px;">
