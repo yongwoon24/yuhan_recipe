@@ -3,6 +3,7 @@ package com.example.demo.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -19,4 +20,11 @@ public interface ScrapRepository extends JpaRepository<Scrap, Long>{
 	List<Scrap> findByRecipe(Recipe recipe);
 	
 	void deleteByUser(User user);
+	
+	Scrap findIdByRecipeAndUser(Recipe recipe, User user);
+	
+	@Modifying
+	@Query("DELETE FROM Scrap s WHERE s.scrap_id = scrap_id")
+	void deleteByScrapId(int scrap_id);
+	
 }
