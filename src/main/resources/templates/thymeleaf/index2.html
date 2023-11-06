@@ -62,7 +62,7 @@
 		<div class=e3_29><span class="e3_30">오늘의 추천 메뉴</span>
 			<div class=e3_36  th:each="recipe : ${todayrecipes}">
 				
-				<div class="e3_40"><img th:src="@{${recipe.main_photo_path}}" /></div>
+				<div class="e3_40"><img th:if="${recipe.main_photo_path == null}" src="/img/기본유저.jpg"> <img th:src="@{${recipe.main_photo_path}}" /></div>
 				<span class="e3_42" th:text="${recipe.title}">제목</span>
 				<div class="e3_43"><img th:src="@{${recipe.user.userphotopath}}" style="height: 100%; width: 100%;"></div>
 				<span class="e3_44" th:text="${recipe.user.nickname}">작성자</span>
