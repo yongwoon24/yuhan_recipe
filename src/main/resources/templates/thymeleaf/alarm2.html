@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta content="text/html; charset=euc-kr">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>모두의레시피</title>
+	<style type="text/css">
+
+	</style>
+	<script src="https://kit.fontawesome.com/2636adf573.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" th:href="@{/../css/alarm2.css}" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+	  <div class=e2_2>
+		<div class=e2_3>
+			<div class="e2_4">
+				<div class="e2_4_1">
+					<img src="img/레시피.jpg" style="width: 100%; height: 100%;">
+					<div class="t"><span class="e2_26">모두의 레시피 </span><span class="e2_27">쉽고 간편하게 레시피를 공유해보세요</span>
+				</div></div>
+				
+			</div>
+		</div>
+		<div class=e2_5><span class="e2_6"><a class="mainicon" href="/">모두의 레시피</a></span>
+			<div class=e2_8>
+			<span th:if="${session.loggedInNickname == '관리자'}" class="ad_1"><a href="/reviewRecipes">레시피 검토</a></span>
+			<span th:if="${session.loggedInNickname == '관리자'}" class="ad_2"><a href="/user">회원 관리</a></span>
+			<span class="e2_11"><a href="/recipe">레시피</a></span>
+			<span class="e2_12"><a href="/rank">랭킹</a></span>
+			<span class="e2_13"><a href="/board">게시판</a></span>
+			<span class="e2_14"><a href="/mypage">마이페이지</a></span>	
+				<div class="e2_22"><a href="/alarm" style="width:30px; height:30px;"><i th:if="${session.alarm != 1}" class="fas fa-bell"
+							style="width:30px; height:30px;"></i>
+							<i th:if="${session.alarm == 1}" class="fas fa-bell"
+							style="width:30px; height:30px; color: red;"></i></a></div>
+				<div class="e2_23"><a href="/createRecipe"><i class="fas fa-pencil-alt"></i></a></div>
+				
+				<div th:if="${session.loggedInNickname != null}" class="e2_24"><a href="/logout">로그아웃</a></div>
+				<div th:if="${session.loggedInNickname == null}" class="e2_24"><a href="/logout">로그인</a></div>
+			</div>
+			<div class=e3_172>
+				<form action="/search" method="get"> <!-- 검색창 주소 입력 -->
+					<div class="e2_7"><input type="text" name="keyword" class="search_txt" required></div>
+					<div class="e3_171">
+						<button type="submit" class="search_btn">
+							<span class="searchicon">
+								<i class="fa-solid fa-magnifying-glass" style="max-width:25px; max-height:25px;"></i>
+							</span>
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	  
+	  <div class=e1_22>
+		<div class="table-container" th:if="${!loves.isEmpty()}">
+			<div class="table-container">
+				<table class="table">
+					<thead>
+						<tr>
+							<th style="width: 100%;"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="love : ${loves}">
+							<td th:if="${love.activity == '좋아요' && love.user.nickname != session.loggedInNickname}">
+								<a th:href="@{|/recipe/${love.recipe.recipe_id}|}" th:onclick="'confirmNotification('+${love.activityId}+')'"> 
+									<span th:if="${love.Token}" th:text="${love.user.nickname}+'님이 레시피에 '+${love.activity}+'를 누르셨습니다.'" style="color:darkgrey"></span>
+									<span th:if="${!love.Token}" th:text="${love.user.nickname}+'님이 레시피에 '+${love.activity}+'를 누르셨습니다.'"></span>
+								</a>
+							</td>
+							<td th:if="${love.activity == '댓글' && love.recipe != null && love.user.nickname != session.loggedInNickname}">
+								<a th:href="@{|/recipe/${love.recipe.recipe_id}|}" th:onclick="'confirmNotification('+${love.activityId}+')'"> 
+									<span th:if="${love.Token}" th:text="${love.user.nickname}+'님이 레시피에 '+${love.activity}+'를 달았습니다.'" style="color:darkgrey"></span>
+									<span th:if="${!love.Token}" th:text="${love.user.nickname}+'님이 레시피에 '+${love.activity}+'를 달았습니다.'"></span>
+								</a>
+							</td>
+							<td th:if="${love.activity == '댓글' && love.recipe == null && love.user.nickname != session.loggedInNickname}">
+								<a th:href="@{|/board/${love.board.postId}|}" th:onclick="'confirmNotification('+${love.activityId}+')'"> 
+									<span th:if="${love.Token}" th:text="${love.user.nickname}+'님이 게시물에 '+${love.activity}+'를 달았습니다.'" style="color:darkgrey"></span>
+									<span th:if="${!love.Token}" th:text="${love.user.nickname}+'님이 게시물에 '+${love.activity}+'를 달았습니다.'"></span>
+								</a>
+							</td>
+							<td th:if="${love.activity == '스크랩' && love.user.nickname != session.loggedInNickname}">
+								<a th:href="@{|/recipe/${love.recipe.recipe_id}|}" th:onclick="'confirmNotification('+${love.activityId}+')'"> 
+									<span th:if="${love.Token}" th:text="${love.user.nickname}+'님이 레시피에 '+${love.activity}+'을 누르셨습니다.'" style="color:darkgrey"></span>
+									<span th:if="${!love.Token}" th:text="${love.user.nickname}+'님이 레시피에 '+${love.activity}+'을 누르셨습니다.'"></span>
+								</a>
+							</td>
+							<td th:if="${love.activity == '레시피 승인' && love.user.nickname != session.loggedInNickname}">
+								<a th:href="@{|/recipe/${love.recipe.recipe_id}|}" th:onclick="'confirmNotification('+${love.activityId}+')'"> 
+									<span th:if="${love.Token}" th:text="${love.activity}+'이 되셨습니다.'" style="color:darkgrey"></span>
+									<span th:if="${!love.Token}" th:text="${love.activity}+'이 되셨습니다.'"></span>
+								</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<hr />
+			</div>
+			<form action="/updateToken" method="post"></form>
+			         <div class="text-center">
+			            <div class="pagination">
+			    <a th:if="${currentPage > firstPage}" th:href="@{|/alarm?page=${currentPage - 1}|}">&laquo; 이전</a>
+			    <span th:each="pageNumber : ${#numbers.sequence(currentPage - 5, currentPage + 4)}" th:if="${pageNumber >= firstPage && pageNumber <= lastPage}">
+				    <a th:href="@{|/alarm?page=${pageNumber}|}"
+				       th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber + 1}"></a>
+				</span>
+			    <a th:if="${currentPage < lastPage}" th:href="@{|/alarm?page=${currentPage + 1}|}">&raquo; 다음</a>
+			</div>
+			<script th:src="@{/../js/rank.js}"></script>
+			         </div>
+
+		</div>
+	    </div>
+	  <div class=e1_132><span  class="e1_133">2023 yuhan Univercity</span></div>
+	</div>
+	
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+	<script th:inline="javascript">
+		var boarddeleteMessage = /*[[${boarddeleteMessage}]]*/ "";
+		if (boarddeleteMessage) {
+			alert(boarddeleteMessage);
+		}
+	</script>
+	<script>
+        // AJAX 요청을 보내는 함수
+        function confirmNotification(notificationId, activity) {
+            // XMLHttpRequest 객체 생성
+            var xhr = new XMLHttpRequest();
+
+            // 요청 설정
+            xhr.open("POST", "/updateToken", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            // 요청 완료 시 실행할 함수 지정
+            xhr.onreadystatechange = function() {
+                
+            };
+
+            // 요청 보내기
+            xhr.send("notificationId=" + notificationId);
+        }
+    </script>
+</body>
+
+</html>
