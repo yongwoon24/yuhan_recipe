@@ -12,12 +12,12 @@
 	height: 270px;
 	position: absolute;
 	left: 0px;
-	top: 234px;
+	top: 255px;
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	/* 5개의 열을 동일한 너비로 만듭니다. */
 	grid-template-rows: repeat(5, 1fr); /* 4행 그리드 */
-	gap: 10px;
+	gap: 30px;
 	/* 열 사이의 간격을 설정합니다. */
 }
 
@@ -31,10 +31,10 @@
 
 .e56_25 {
 	width: 310px;
-	height: 160px;
+	height: 200px;
 	position: absolute;
 	left: 10px;
-	top: 16px;
+	top: -20px;
 	
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -137,7 +137,7 @@
 	width: 27px;
 	height: 26px;
 	position: absolute;
-	left: 150px;
+	left: 140px;
 	top: 249px;
 }
 
@@ -146,7 +146,7 @@
 	width: 27px;
 	height: 17px;
 	position: absolute;
-	left: 180px;
+	left: 170px;
 	top: 253px;
 	font-family: Almarai;
 	text-align: left;
@@ -155,22 +155,25 @@
 }
 
 .e56_36 {
-	width: 240px;
-	height: 348px;
+
+	width: 27px;
+	height: 26px;
 	position: absolute;
-	left: 727px;
-	top: 0px;
+	left: 240px;
+	top: 249px;
 }
 
 .e56_37 {
-	width: 220px;
-	height: 130px;
+	color: rgba(0, 0, 0, 1);
+	width: 27px;
+	height: 17px;
 	position: absolute;
-	left: 10px;
-	top: 76px;
-	background-image: url(images/rimg1_2.png);
-	background-repeat: no-repeat;
-	background-size: cover;
+	left: 270px;
+	top: 253px;
+	font-family: Almarai;
+	text-align: left;
+	font-size: 15px;
+	letter-spacing: 0;
 }
 
 .e56_38 {
@@ -1236,7 +1239,7 @@
 
 .e56_133 {
 
-	width: 70px;
+	width: 80px;
 	height: 21px;
 	position: absolute;
 	left: 121px;
@@ -1480,7 +1483,7 @@
 	height:1880px;
 	position:absolute;
 	left:15%;
-	top:80%;
+	top:962px;
 }
 
 .e2_2 { 
@@ -1497,4 +1500,114 @@
 	height:135px;
 	position:absolute;
 	top:3065px;
+}
+
+.ad_1 { 
+	color:rgba(255, 255, 255, 1);
+	width:110px;
+	height:24px;
+	position:absolute;
+	left:-260px;
+	top:10px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:left;
+	font-size:20px;
+	letter-spacing:0;
+}
+.ad_2 { 
+	color:rgba(255, 255, 255, 1);
+	width:100px;
+	height:24px;
+	position:absolute;
+	left:-120px;
+	top:10px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:left;
+	font-size:20px;
+	letter-spacing:0;
+}
+.e2_11 { 
+	color:rgba(255, 255, 255, 1);
+	width:70px;
+	height:24px;
+	position:absolute;
+	
+	top:10px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:left;
+	font-size:20px;
+	letter-spacing:0;
+}
+.e2_12 { 
+	color:rgba(255, 255, 255, 1);
+	width:70px;
+	height:24px;
+	position:absolute;
+	left:95px;
+	top:10px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:left;
+	font-size:20px;
+	letter-spacing:0;
+}
+.e2_13 { 
+	color:rgba(255, 255, 255, 1);
+	width:70px;
+	height:24px;
+	position:absolute;
+	left:174px;
+	top:10px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:left;
+	font-size:20px;
+	letter-spacing:0;
+}
+.e2_14 { 
+	color:rgba(255, 255, 255, 1);
+	width:100px;
+	height:24px;
+	position:absolute;
+	left:270px;
+	top:10px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:left;
+	font-size:20px;
+	letter-spacing:0;
+}
+.e2_22 { 
+	border-radius:500px;
+	color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width:49px;
+	height:30px;
+	position:absolute;
+	left:600px;
+	top:4px;
+	font-family:Font Awesome 5 Free;
+   text-align:center;
+   font-size:26px;
+   font-weight: lighter;
+}
+.e2_23 { 
+	border-radius:500px;
+	color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width:49px;
+	height:30px;
+	position:absolute;
+	left:520px;
+	top:4px;
+	font-family:Font Awesome 5 Free;
+   text-align:center;
+   font-size:26px;
+}
+.e2_24 { 
+	border-radius:500px;
+	color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width:120px;
+	height:30px;
+	position:absolute;
+	left:385px;
+	top:10px;
+	font-family:Font Awesome 5 Free;
+   text-align:center;
+   font-size:20px;
 }
