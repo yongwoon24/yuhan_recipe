@@ -76,18 +76,17 @@
 							style="border-radius:500px;"></a></div>
 					<a th:href="@{'/userpage_R/'+${recipe.nickname}}"><span class="e52_757" th:text="${recipe.nickname}"></span></a>
 					<div class="e52_760"><span class="e52_761" th:text="'View '+${recipe.view_count+1}"></span></div>
+					
+				
+				<form id="loveform" th:action="@{/like}" method="post"><span class="e52_764"><input type="hidden" id="recipe_id" name="recipe_id"
+								th:value="@{{recipeId}(recipeId=${recipe.recipe_id})}"><button th:onclick="'javascript:increaseLoves(\''+${recipe_id}+'\')'"
+								name="lovebtn" class="lbtn" value="좋아요"><img th:if="${like == null}" src="../img/회색하트.png" width="100%" height="100%"><img th:if="${like != null}" src="../img/하트.png" width="100%" height="100%"></button></span></form>
+				<form id="scapform" th:action="@{/scap}" method="post"><span class="e52_765">
+					<input type="hidden" id="recipe_id" name="recipe_id" th:value="@{{recipe_id}(recipe_id=${recipe.recipe_id})}">
+					<button name="scapbtn" class="lbtn" value="스크랩"><img th:if="${scrap == null}" src="../img/회색북마크.png" width="100%" height="100%"><img th:if="${scrap != null}" src="../img/북마크1.png" width="100%" height="100%"></button></span></form>
 				</div><span class="e52_763" th:text="'카테고리 : '+${recipe.categoryName}"></span><span class="e52_759"
 					th:text="${recipe.recipesubtxt}"></span><span class="e52_758" th:text="${recipe.title}"></span>
-				<div class="e52_764"><img src="../img/좋아요.jpg" width="100%" height="100%"></div>
-				<div class="e52_765"><img src="../img/북마크2.png" width="100%" height="100%"></div>
-				<form id="loveform" th:action="@{/like}" method="post"><span class="e52_766"><input type="hidden" id="recipe_id" name="recipe_id"
-								th:value="@{{recipeId}(recipeId=${recipe.recipe_id})}"><input type="submit" th:onclick="'javascript:increaseLoves(\''+${recipe_id}+'\')'"
-								name="lovebtn" class="lbtn" value="좋아요"></span></form>
-				<form id="scapform" th:action="@{/scap}" method="post"><span class="e52_767"><input type="hidden" id="recipe_id" name="recipe_id"
-							th:value="@{{recipe_id}(recipe_id=${recipe.recipe_id})}">
-						<span class="e17_1226"><input type="hidden" id="recipe_id" name="recipe_id"
-								th:value="@{{recipe_id}(recipe_id=${recipe.recipe_id})}"><input type="submit"
-								name="scapbtn" class="lbtn" value="스크랩"></span></span></form>
+				
 			</div>
 			<div class=e52_783><span class="e52_784">tag</span><span class="e52_785">태그</span></div>
 			<div class=e52_783_1>

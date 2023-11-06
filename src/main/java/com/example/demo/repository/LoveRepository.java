@@ -38,6 +38,12 @@ public interface LoveRepository extends JpaRepository<Love, Long>{
     @Query("SELECT COUNT(l) FROM Love l WHERE l.recipe.recipe_id = :recipe_id AND l.activity = '좋아요'")
     int countLovesByRecipeId(@Param("recipe_id") int recipe_id);
     
+    @Query("SELECT l FROM Love l WHERE l.user = :user AND l.activity = '스크랩' AND l.recipe = :recipe")
+    Love findByUserRecipeScrap(@Param("user") User user, @Param("recipe") Recipe recipe);
+    
+    @Query("SELECT l FROM Love l WHERE l.user = :user AND l.activity = '좋아요' AND l.recipe = :recipe")
+    Love findByUserRecipeLike(@Param("user") User user, @Param("recipe") Recipe recipe);
+    
     @Query("SELECT COUNT(l) FROM Love l WHERE l.recipe.recipe_id = :recipe_id AND l.activity = '좋아요' AND l.user = :user")
     int countLovesByRecipeId1(@Param("recipe_id") int recipe_id, User user);
     
@@ -58,5 +64,5 @@ public interface LoveRepository extends JpaRepository<Love, Long>{
     
     @Query("SELECT ua.recipe FROM Love ua WHERE ua.user = :user AND ua.activity = '조회' ORDER BY ua.date DESC")
     List<Recipe> findUserActivitiesWithdesc(User user);
-    
+    void deleteByActivityId(int id);
 }

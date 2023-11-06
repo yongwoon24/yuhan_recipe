@@ -313,7 +313,7 @@ public class UserController {
     	
     	
     	
-    	return "alarm";
+    	return "alarm2";
     	}else {
     		redirectAttributes.addFlashAttribute("errorMessage", "로그인 상태가 아닙니다!");
     		return "redirect:/";

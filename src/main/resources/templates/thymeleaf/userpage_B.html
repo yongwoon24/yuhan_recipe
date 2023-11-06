@@ -8,42 +8,57 @@
    
 </style>
 <script src="https://kit.fontawesome.com/2636adf573.js" crossorigin="anonymous"></script>
-<link rel="stylesheet" type="text/css" th:href="@{/../css/style.css}" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" type="text/css" th:href="@{/../css/mypage.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/../css/userpageTestB.css}">
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 </head>
 
 <body>
-<div class="body_wrapper">
-   <div class="body_content">
-      <div class="menubar"></div>
-      <span class="menu4"><a href="/mypage">마이페이지</a></span>
-      <span class="menu3"><a href="/recipe">분류</a></span>
-      <span class="menu2"><a href="/board">게시판</a></span>
-      <span class="menu1"><a href="/rank">랭킹</a></span>
-      <span><a class="mainicon" href="/">모두의레시피</a></span>
-      <!-- 마이페이지 주소 입력 --> 
-      <div class="alarm-icon"><a href="/alarm"><i class="fas fa-bell"></i></a><span th:if="${session.alarm == 1}" style="font-size: 80px; color: red;">.</span></div>
-      <div class="write-icon"><a href="/createRecipe"><i class="fas fa-pencil-alt"></i></a></div>
-      <div class="usericon"><a href="/mypage"><i class="fa-solid fa-user"></i></a></div>
-      <!-- 로그아웃 주소 입력 --> 
-      <div class="logout_icon"><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></div>
-        <div class="searchbar">	
-			<div class="searchradius">
-				<form action="/search" method="get"> <!-- 검색창 주소 입력 --> 
-					<input type="text" name="keyword" class="search_txt" required>
-					<button type="submit" class="search_btn">
-						<span class="searchicon">
-							<i class="fa-solid fa-magnifying-glass"></i>
-						</span>
-					</button>
-				</form>
-			</div>	
+  
+<div class=e2_2>
+		<div class=e2_3>
+			<div class="e2_4">
+				<div class="e2_4_1">
+					<img src="/img/레시피.jpg" style="width: 100%; height: 100%;">
+					<div class="t"><span class="e2_26">모두의 레시피 </span><span class="e2_27">쉽고 간편하게 레시피를 공유해보세요</span>
+				</div></div>
+				
+			</div>
 		</div>
-      
-      <div th:if="${session.loggedInNickname == '관리자'}" class="confirm_btn">
+<div class=e2_5><span class="e2_6"><a class="mainicon" href="/">모두의 레시피</a></span>
+			<div class=e2_8>
+         <span th:if="${session.loggedInNickname == '관리자'}" class="ad_1"><a href="/reviewRecipes">레시피 검토</a></span>
+         <span th:if="${session.loggedInNickname == '관리자'}" class="ad_2"><a href="/user">회원 관리</a></span>
+         <span class="e2_11"><a href="/recipe">레시피</a></span>
+         <span class="e2_12"><a href="/rank">랭킹</a></span>
+         <span class="e2_13"><a href="/board">게시판</a></span>
+         <span class="e2_14"><a href="/mypage">마이페이지</a></span>   
+            <div class="e2_22"><a href="/alarm" style="width:30px; height:30px;"><i th:if="${session.alarm != 1}" class="fas fa-bell"
+                     style="width:30px; height:30px;"></i>
+                     <i th:if="${session.alarm == 1}" class="fas fa-bell"
+                     style="width:30px; height:30px; color: red;"></i></a></div>
+            <div class="e2_23"><a href="/createRecipe"><i class="fas fa-pencil-alt"></i></a></div>
+            
+            <div th:if="${session.loggedInNickname != null}" class="e2_24"><a href="/logout">로그아웃</a></div>
+            <div th:if="${session.loggedInNickname == null}" class="e2_24"><a href="/logout">로그인</a></div>
+         </div>
+			<div class=e3_172>
+				<form action="/search" method="get"> <!-- 검색창 주소 입력 -->
+					<div class="e2_7"><input type="text" name="keyword" class="search_txt" required></div>
+					<div class="e3_171">
+						<button type="submit" class="search_btn">
+							<span class="searchicon">
+								<i class="fa-solid fa-magnifying-glass" style="max-width:25px; max-height:25px;"></i>
+							</span>
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+		
+		<div th:if="${session.loggedInNickname == '관리자'}" class="confirm_btn">
         	<a href="/reviewRecipes">
             	<button>레시피 검토</button>
         	</a>
@@ -54,12 +69,16 @@
         		<button>회원 관리</button>
         	</a>
     	</div>
-      <!-- 여기부터 body에 추가할 코드 입력 -->
-<div class="slide_wrapper">
-	<div class="menu-container">
-	  <span class="menu22"><a th:href="@{'/userpage_B/' + ${nickname}}">User Board</a></span>
-      <span class="menu11"><a th:href="@{'/userpage_R/' + ${nickname}}">User Recipe</a></span></div>
-   <div class="table-container">
+      
+      
+ <div class=e0_23>
+	<div class=e3_93>
+		<span class="e3_94"><a th:href="@{'/userpage_R/' + ${nickname}}">유저 레시피</a></span>
+			<span class="e3_98"><a th:href="@{'/userpage_B/' + ${nickname}}">유저 게시글</a></span>
+		<span class="e3_102">유저페이지</span>
+	</div>
+	<div class=e3_196>
+		<span  class="e3_193">작성한 게시글</span>
           <table class="table">
 			
             <thead>
@@ -79,7 +98,7 @@
                 </a>
             </td>
             	<td style=text-align:center;>
-					<a th:href="@{'/userpage_B/' + ${board.nickname}}">
+					<a th:href="@{'/userpage/' + ${board.nickname}}">
 	                <span th:text="${board.nickname}"></span>
                 </a>
 				</td>
@@ -93,21 +112,19 @@
             </tbody>    
          </table>    
          <div class="pagination">
-    <a th:if="${currentPage > firstPage}" th:href="@{|/userpage_B/${nickname}?page=${currentPage - 1}|}">&laquo; 이전</a>
+    <a th:if="${currentPage > firstPage}" th:href="@{|/mypage_B?page=${currentPage - 1}|}">&laquo; 이전</a>
     <span th:each="pageNumber : ${#numbers.sequence(currentPage - 5, currentPage + 4)}" th:if="${pageNumber >= firstPage && pageNumber <= lastPage}">
-	    <a th:href="@{|/userpage_B/${nickname}?page=${pageNumber}|}"
+	    <a th:href="@{|/mypage_B?page=${pageNumber}|}"
 	       th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber + 1}"></a>
 	</span>
-    <a th:if="${currentPage < lastPage}" th:href="@{|/userpage_B/${nickname}?page=${currentPage + 1}|}">&raquo; 다음</a>
+    <a th:if="${currentPage < lastPage}" th:href="@{|/mypage_B?page=${currentPage + 1}|}">&raquo; 다음</a>
 </div> 
    </div>
-   
-       </div>
-       </div>
-   <div class="footer">
-         <div class="footer_comment">@Yuhan University Group 3's Project</div>
    </div>
-</div>
+   
+   <div class=e0_133><span  class="e0_134">
+         @Yuhan University Group 3's Project</div></span>
+
 
 	<script th:inline="javascript">
 	        var boarddeleteMessage = /*[[${boarddeleteMessage}]]*/ "";

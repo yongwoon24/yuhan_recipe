@@ -36,7 +36,7 @@ public class BoardController {
    @GetMapping("/board")
    public String showBoard(Model model,@RequestParam(required = false, defaultValue = "0") int page, @RequestParam(required = false) String keyword,
 		    @RequestParam(required = false, defaultValue = "title") String searchBy) {
-	int pageSize = 10; // 페이지당 레시피 수  
+	int pageSize = 16; // 페이지당 레시피 수  
 	
 	List<Board> boardList;
 
