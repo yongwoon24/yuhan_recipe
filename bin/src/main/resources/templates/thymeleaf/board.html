@@ -100,6 +100,11 @@
                   <th style="width: 100px;">작성일</th>
 =======
 <<<<<<< HEAD
+                  <th style="width: 300px;">제목</th>
+                  <th style="width: 100px;">작성자</th>
+                  <th style="width: 100px;">작성일</th>
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                   <th style="width: 300px;">제목</th>
@@ -131,11 +136,15 @@
 >>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
 >>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
 >>>>>>> 50c25ad0400af2c974ed8121e680ce92b5ed8d9c
+>>>>>>> 2635114c7fb3f0ba032d4776b8e184a832ed6b1e
                </tr>
             </thead>
             <tbody>
               <tr th:each="board : ${boardList}">
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 2635114c7fb3f0ba032d4776b8e184a832ed6b1e
 	               <td th:if="${board.nickname != '관리자'}" style=text-align:center; th:text="${board.postId}"></td>
 	               <td th:if="${board.nickname == '관리자'}" style="text-align: center; color: red; font-size:18px">공지</td>
 	               <td th:if="${board.nickname != '관리자'}">
@@ -169,6 +178,9 @@
 		                <p th:if="${#temporals.format(board.created_date, 'yyyy-MM-dd') != #temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}"
 		                   th:text="${#temporals.format(board.created_date, 'MM-dd')}" style="color:red; font-size:18px"></p>
 		           </td>
+<<<<<<< HEAD
+              </tr>
+=======
               </tr>
 =======
 <<<<<<< HEAD
@@ -231,10 +243,13 @@
 >>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
 >>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
 >>>>>>> 50c25ad0400af2c974ed8121e680ce92b5ed8d9c
+>>>>>>> 2635114c7fb3f0ba032d4776b8e184a832ed6b1e
                
             </tbody>    
          </table>
          <hr/>
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -247,6 +262,7 @@
 >>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
 >>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
 >>>>>>> 50c25ad0400af2c974ed8121e680ce92b5ed8d9c
+>>>>>>> 2635114c7fb3f0ba032d4776b8e184a832ed6b1e
 
 
 <div class="searchbar">
@@ -273,6 +289,8 @@
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 >>>>>>> 48a1b7e7cdce8bc0fd9cb3c27b5ec6786e9f8be9
@@ -285,10 +303,13 @@
 >>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
 >>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
 >>>>>>> 50c25ad0400af2c974ed8121e680ce92b5ed8d9c
+>>>>>>> 2635114c7fb3f0ba032d4776b8e184a832ed6b1e
          <div class="button-container">
          <a href="/createboard" class="button">글쓰기</a>
          </div>
          <div class="text-center">
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -311,6 +332,7 @@
 >>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
 >>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
 >>>>>>> 50c25ad0400af2c974ed8121e680ce92b5ed8d9c
+>>>>>>> 2635114c7fb3f0ba032d4776b8e184a832ed6b1e
             <div class="pagination">
     <a th:if="${currentPage > firstPage}" th:href="@{|/board?page=${currentPage - 1}&searchBy=${searchBy}&keyword=${keyword}|}">&laquo; 이전</a>
     <span th:each="pageNumber : ${#numbers.sequence(currentPage - 5, currentPage + 4)}" th:if="${pageNumber >= firstPage && pageNumber <= lastPage}">
@@ -323,6 +345,8 @@
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
             <ul class="pagination">
@@ -341,6 +365,7 @@
 >>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
 >>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
 >>>>>>> 50c25ad0400af2c974ed8121e680ce92b5ed8d9c
+>>>>>>> 2635114c7fb3f0ba032d4776b8e184a832ed6b1e
          </div>
    </div>
    </div>
@@ -349,6 +374,8 @@
          <div class="footer_comment">@Yuhan University Group 3's Project</div>
    </div>
 </div>
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -361,6 +388,7 @@
 >>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
 >>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
 >>>>>>> 50c25ad0400af2c974ed8121e680ce92b5ed8d9c
+>>>>>>> 2635114c7fb3f0ba032d4776b8e184a832ed6b1e
 
    <script th:inline="javascript">
            var boarddeleteMessage = /*[[${boarddeleteMessage}]]*/ "";
@@ -369,6 +397,8 @@
            }
     </script>
    
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -384,5 +414,6 @@
 >>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
 >>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
 >>>>>>> 50c25ad0400af2c974ed8121e680ce92b5ed8d9c
+>>>>>>> 2635114c7fb3f0ba032d4776b8e184a832ed6b1e
 </body>
 </html>

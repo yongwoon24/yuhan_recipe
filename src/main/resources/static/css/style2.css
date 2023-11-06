@@ -325,15 +325,3 @@ html, body {
 	padding: 0;
 }
 
-
-.menu1 > a, .menu2 > a, .menu3 > a, .menu4 > a {
-	color: rgb(254, 255, 238);
-	text-shadow: 1px 1px 1px rgb(38, 193, 50);
-	letter-spacing:2px;
-}
-
-html, body {
-	height: 100%;
-	margin: 0;
-	padding: 0;
-}

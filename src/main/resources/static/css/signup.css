@@ -1,41 +1,1360 @@
+.e2_2 { 
+	background-image:linear-gradient(0deg, rgba(33.00000183284283, 33.00000183284283, 35.00000171363354, 1) 100%,rgba(33.00000183284283, 33.00000183284283, 35.00000171363354, 0.510869562625885) 0.625%,rgba(33.00000183284283, 33.00000183284283, 35.00000171363354, 0.03999999910593033) 0%) ;
+	background-color:rgba(0, 0, 0, 0.20000000298023224);
+	width:100%;
+	height:1500px;
+	position:absolute;
+}
+.e2_3 { 
+	background-color:rgba(255, 255, 255, 1);
+	width:100%;
+	height:1500px;
+	position:absolute;
+}
+.e2_4 { 
+	
+	width:100%;
+	height:1500px;
+	position:absolute;
+	display: flex;
+    width: 300%; /* 3개의 이미지를 표시하기 위해 전체 너비의 3배로 설정 */
+    transition: transform 0.5s ease-in-out;
+	background-repeat:no-repeat;
+	background-size:cover;
+}
+.e2_4_1{
+	flex: 0 0 33.33%; /* 각 이미지의 너비를 33.33%로 설정 (3개의 이미지가 보이도록) */
+	
+}
+
+.e2_5 { 
+	width:100%;
+	height:109px;
+	position:absolute;
+}
+.e2_6 { 
+	color:rgba(255, 255, 255, 1);
+	width:200px;
+	height:25px;
+	position:absolute;
+	left:43px;
+	top:24px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:left;
+	font-size:24px;
+	letter-spacing:0;
+}
+.e2_8 { 
+	width:659px;
+	height:45px;
+	position:absolute;
+	left:70%;
+	top:15px;
+}
+.e2_11 { 
+	color:rgba(255, 255, 255, 1);
+	width:70px;
+	height:24px;
+	position:absolute;
+	
+	top:10px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:left;
+	font-size:20px;
+	letter-spacing:0;
+}
+.e2_12 { 
+	color:rgba(255, 255, 255, 1);
+	width:70px;
+	height:24px;
+	position:absolute;
+	left:85px;
+	top:10px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:left;
+	font-size:20px;
+	letter-spacing:0;
+}
+.e2_13 { 
+	color:rgba(255, 255, 255, 1);
+	width:70px;
+	height:24px;
+	position:absolute;
+	left:174px;
+	top:10px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:left;
+	font-size:20px;
+	letter-spacing:0;
+}
+.e2_14 { 
+	color:rgba(255, 255, 255, 1);
+	width:100px;
+	height:24px;
+	position:absolute;
+	left:270px;
+	top:10px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:left;
+	font-size:20px;
+	letter-spacing:0;
+}
+.e2_22 { 
+	border-radius:500px;
+	color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width:49px;
+	height:30px;
+	position:absolute;
+	left:428px;
+	top:4px;
+	font-family:Font Awesome 5 Free;
+   text-align:center;
+   font-size:26px;
+   font-weight: lighter;
+}
+.e2_23 { 
+	border-radius:500px;
+	color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width:49px;
+	height:30px;
+	position:absolute;
+	left:497px;
+	top:4px;
+	font-family:Font Awesome 5 Free;
+   text-align:center;
+   font-size:26px;
+}
+.e2_24 { 
+	border-radius:500px;
+	color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width:49px;
+	height:30px;
+	position:absolute;
+	left:566px;
+	top:4px;
+	font-family:Font Awesome 5 Free;
+   text-align:center;
+   font-size:26px;
+}
+.e3_172 { 
+	width:700px;
+	height:59px;
+	position:absolute;
+	left:25%;
+	top:6px;
+}
+.e2_7 { 
+	background-color:rgba(255, 255, 255, 1);
+	width:700px;
+	height:33px;
+	position:absolute;
+	left:15px;
+	top:15px;
+	border-top-left-radius:20px;
+	border-top-right-radius:20px;
+	border-bottom-left-radius:20px;
+	border-bottom-right-radius:20px;
+}
+
+.e3_171 { 
+	width:28px;
+	height:23px;
+	position:absolute;
+	left:95%;
+	top:15px;
+}
+
+.e3_32 { 
+	width:250px;
+	height:347px;
+	position:absolute;
+	left:248px;
+	top:599px;
+}
+.e3_33 { 
+	width:227px;
+	height:347px;
+	position:absolute;
+	left:248px;
+	top:599px;
+}
+.e2_28 { 
+	border-top-left-radius:20px;
+	border-top-right-radius:20px;
+	border-bottom-left-radius:20px;
+	border-bottom-right-radius:20px;
+	background-color:rgba(255, 255, 255, 1);
+	width:1680px;
+	height:1640px;
+	position:absolute;
+	left:15%;
+	top:20%;
+}
+.e3_29 { 
+	width:100%;
+	height:410px;
+	position:absolute;
+	left:0px;
+	top:0px;
+}
+.e3_30 { 
+	color:rgba(0, 0, 0, 1);
+	width:170px;
+	height:24px;
+	position:absolute;
+	left:26px;
+	top:24px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:left;
+	font-size:20px;
+	letter-spacing:0;
+}
+.e3_31 { 
+	width:973px;
+	height:347px;
+	position:absolute;
+	left:0px;
+	top:63px;
+}
+.e3_36 { 
+	width:240px;
+	height:348px;
+	position:absolute;
+	left:9px;
+	top:62px;
+}
+.e3_40 { 
+	width:220px;
+	height:130px;
+	position:absolute;
+	left:10px;
+	top:76px;
+	background-image:url(../img/rimg1_1.png);
+	background-repeat:no-repeat;
+	background-size:cover;
+}
+.e3_42 { 
+	color:rgba(0, 0, 0, 1);
+	width:220px;
+	height:54px;
+	position:absolute;
+	left:10px;
+	top:217px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:left;
+	font-size:20px;
+	letter-spacing:0;
+}
+.e3_43 { 
+	border-radius:500px;
+	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width:25px;
+	height:24px;
+	position:absolute;
+	left:14px;
+	top:279px;
+}
+.e3_44 { 
+	color:rgba(0, 0, 0, 1);
+	width:100px;
+	height:18px;
+	position:absolute;
+	left:45px;
+	top:285px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:left;
+	font-size:15px;
+	letter-spacing:0;
+}
+.e3_46 { 
+
+	width:27px;
+	height:26px;
+	position:absolute;
+	left:150px;
+	top:277px;
+	font-size: 20px;
+	color: chocolate;
+}
+.e3_47 { 
+	color:rgba(0, 0, 0, 1);
+	width:27px;
+	height:17px;
+	position:absolute;
+	left:183px;
+	top:287px;
+	font-family:Almarai;
+	text-align:left;
+	font-size:15px;
+	letter-spacing:0;
+}
+.e3_48 { 
+	width:240px;
+	height:348px;
+	position:absolute;
+	left:249px;
+	top:62px;
+}
+.e3_49 { 
+	width:220px;
+	height:130px;
+	position:absolute;
+	left:10px;
+	top:76px;
+	background-image:url(images/rimg1_2.png);
+	background-repeat:no-repeat;
+	background-size:cover;
+}
+.e3_50 { 
+	color:rgba(0, 0, 0, 1);
+	width:220px;
+	height:54px;
+	position:absolute;
+	left:10px;
+	top:217px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:left;
+	font-size:20px;
+	letter-spacing:0;
+}
+.e3_51 { 
+	border-radius:500px;
+	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width:25px;
+	height:24px;
+	position:absolute;
+	left:14px;
+	top:279px;
+}
+.e3_52 { 
+	color:rgba(0, 0, 0, 1);
+	width:42px;
+	height:18px;
+	position:absolute;
+	left:45px;
+	top:285px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:left;
+	font-size:15px;
+	letter-spacing:0;
+}
+.e3_53 { 
+	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width:27px;
+	height:26px;
+	position:absolute;
+	left:150px;
+	top:277px;
+}
+.e3_54 { 
+	color:rgba(0, 0, 0, 1);
+	width:27px;
+	height:17px;
+	position:absolute;
+	left:183px;
+	top:287px;
+	font-family:Almarai;
+	text-align:left;
+	font-size:15px;
+	letter-spacing:0;
+}
+.e3_62 { 
+	width:240px;
+	height:348px;
+	position:absolute;
+	left:729px;
+	top:62px;
+}
+.e3_63 { 
+	width:220px;
+	height:130px;
+	position:absolute;
+	left:10px;
+	top:76px;
+	background-image:url(images/rimg1_2.png);
+	background-repeat:no-repeat;
+	background-size:cover;
+}
+.e3_64 { 
+	color:rgba(0, 0, 0, 1);
+	width:220px;
+	height:54px;
+	position:absolute;
+	left:10px;
+	top:217px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:left;
+	font-size:20px;
+	letter-spacing:0;
+}
+.e3_65 { 
+	border-radius:500px;
+	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width:25px;
+	height:24px;
+	position:absolute;
+	left:14px;
+	top:279px;
+}
+.e3_66 { 
+	color:rgba(0, 0, 0, 1);
+	width:42px;
+	height:18px;
+	position:absolute;
+	left:45px;
+	top:285px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:left;
+	font-size:15px;
+	letter-spacing:0;
+}
+.e3_67 { 
+	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width:27px;
+	height:26px;
+	position:absolute;
+	left:150px;
+	top:277px;
+}
+.e3_68 { 
+	color:rgba(0, 0, 0, 1);
+	width:27px;
+	height:17px;
+	position:absolute;
+	left:183px;
+	top:287px;
+	font-family:Almarai;
+	text-align:left;
+	font-size:15px;
+	letter-spacing:0;
+}
+.e3_55 { 
+	width:240px;
+	height:348px;
+	position:absolute;
+	left:489px;
+	top:62px;
+}
+.e3_56 { 
+	width:220px;
+	height:130px;
+	position:absolute;
+	left:10px;
+	top:76px;
+	background-image:url(images/rimg1_2.png);
+	background-repeat:no-repeat;
+	background-size:cover;
+}
+.e3_57 { 
+	color:rgba(0, 0, 0, 1);
+	width:220px;
+	height:54px;
+	position:absolute;
+	left:10px;
+	top:217px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:left;
+	font-size:20px;
+	letter-spacing:0;
+}
+.e3_58 { 
+	border-radius:500px;
+	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width:25px;
+	height:24px;
+	position:absolute;
+	left:14px;
+	top:279px;
+}
+.e3_59 { 
+	color:rgba(0, 0, 0, 1);
+	width:42px;
+	height:18px;
+	position:absolute;
+	left:45px;
+	top:285px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:left;
+	font-size:15px;
+	letter-spacing:0;
+}
+.e3_60 { 
+	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width:27px;
+	height:26px;
+	position:absolute;
+	left:150px;
+	top:277px;
+}
+.e3_61 { 
+	color:rgba(0, 0, 0, 1);
+	width:27px;
+	height:17px;
+	position:absolute;
+	left:183px;
+	top:287px;
+	font-family:Almarai;
+	text-align:left;
+	font-size:15px;
+	letter-spacing:0;
+}
+.e3_69 { 
+	width:973px;
+	height:410px;
+	position:absolute;
+	left:0px;
+	top:410px;
+}
+.e3_70 { 
+	color:rgba(0, 0, 0, 1);
+	width:60px;
+	height:24px;
+	position:absolute;
+	left:26px;
+	top:24px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:left;
+	font-size:20px;
+	letter-spacing:0;
+}
+.e3_71 { 
+	width:973px;
+	height:347px;
+	position:absolute;
+	left:0px;
+	top:63px;
+}
+.e3_72 { 
+	width:240px;
+	height:348px;
+	position:absolute;
+	left:9px;
+	top:62px;
+}
+.e3_73 { 
+	width:220px;
+	height:130px;
+	position:absolute;
+	left:10px;
+	top:76px;
+	background-image:url(images/rimg1_2.png);
+	background-repeat:no-repeat;
+	background-size:cover;
+}
+.e3_74 { 
+	color:rgba(0, 0, 0, 1);
+	width:220px;
+	height:54px;
+	position:absolute;
+	left:10px;
+	top:217px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:left;
+	font-size:20px;
+	letter-spacing:0;
+}
+.e3_75 { 
+	border-radius:500px;
+	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width:25px;
+	height:24px;
+	position:absolute;
+	left:14px;
+	top:279px;
+}
+.e3_76 { 
+	color:rgba(0, 0, 0, 1);
+	width:42px;
+	height:18px;
+	position:absolute;
+	left:45px;
+	top:285px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:left;
+	font-size:15px;
+	letter-spacing:0;
+}
+.e3_77 { 
+	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width:27px;
+	height:26px;
+	position:absolute;
+	left:150px;
+	top:277px;
+}
+.e3_78 { 
+	color:rgba(0, 0, 0, 1);
+	width:27px;
+	height:17px;
+	position:absolute;
+	left:183px;
+	top:287px;
+	font-family:Almarai;
+	text-align:left;
+	font-size:15px;
+	letter-spacing:0;
+}
+.e3_79 { 
+	width:240px;
+	height:348px;
+	position:absolute;
+	left:249px;
+	top:62px;
+}
+.e3_80 { 
+	width:220px;
+	height:130px;
+	position:absolute;
+	left:10px;
+	top:76px;
+	background-image:url(images/rimg1_2.png);
+	background-repeat:no-repeat;
+	background-size:cover;
+}
+.e3_81 { 
+	color:rgba(0, 0, 0, 1);
+	width:220px;
+	height:54px;
+	position:absolute;
+	left:10px;
+	top:217px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:left;
+	font-size:20px;
+	letter-spacing:0;
+}
+.e3_82 { 
+	border-radius:500px;
+	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width:25px;
+	height:24px;
+	position:absolute;
+	left:14px;
+	top:279px;
+}
+.e3_83 { 
+	color:rgba(0, 0, 0, 1);
+	width:42px;
+	height:18px;
+	position:absolute;
+	left:45px;
+	top:285px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:left;
+	font-size:15px;
+	letter-spacing:0;
+}
+.e3_84 { 
+	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width:27px;
+	height:26px;
+	position:absolute;
+	left:150px;
+	top:277px;
+}
+.e3_85 { 
+	color:rgba(0, 0, 0, 1);
+	width:27px;
+	height:17px;
+	position:absolute;
+	left:183px;
+	top:287px;
+	font-family:Almarai;
+	text-align:left;
+	font-size:15px;
+	letter-spacing:0;
+}
+.e3_86 { 
+	width:240px;
+	height:348px;
+	position:absolute;
+	left:729px;
+	top:62px;
+}
+.e3_87 { 
+	width:220px;
+	height:130px;
+	position:absolute;
+	left:10px;
+	top:76px;
+	background-image:url(images/rimg1_2.png);
+	background-repeat:no-repeat;
+	background-size:cover;
+}
+.e3_88 { 
+	color:rgba(0, 0, 0, 1);
+	width:220px;
+	height:54px;
+	position:absolute;
+	left:10px;
+	top:217px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:left;
+	font-size:20px;
+	letter-spacing:0;
+}
+.e3_89 { 
+	border-radius:500px;
+	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width:25px;
+	height:24px;
+	position:absolute;
+	left:14px;
+	top:279px;
+}
+.e3_90 { 
+	color:rgba(0, 0, 0, 1);
+	width:42px;
+	height:18px;
+	position:absolute;
+	left:45px;
+	top:285px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:left;
+	font-size:15px;
+	letter-spacing:0;
+}
+.e3_91 { 
+	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width:27px;
+	height:26px;
+	position:absolute;
+	left:150px;
+	top:277px;
+}
+.e3_92 { 
+	color:rgba(0, 0, 0, 1);
+	width:27px;
+	height:17px;
+	position:absolute;
+	left:183px;
+	top:287px;
+	font-family:Almarai;
+	text-align:left;
+	font-size:15px;
+	letter-spacing:0;
+}
+.e3_93 { 
+	width:240px;
+	height:348px;
+	position:absolute;
+	left:489px;
+	top:62px;
+}
+.e3_94 { 
+	width:220px;
+	height:130px;
+	position:absolute;
+	left:10px;
+	top:76px;
+	background-image:url(images/rimg1_2.png);
+	background-repeat:no-repeat;
+	background-size:cover;
+}
+.e3_95 { 
+	color:rgba(0, 0, 0, 1);
+	width:220px;
+	height:54px;
+	position:absolute;
+	left:10px;
+	top:217px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:left;
+	font-size:20px;
+	letter-spacing:0;
+}
+.e3_96 { 
+	border-radius:500px;
+	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width:25px;
+	height:24px;
+	position:absolute;
+	left:14px;
+	top:279px;
+}
+.e3_97 { 
+	color:rgba(0, 0, 0, 1);
+	width:42px;
+	height:18px;
+	position:absolute;
+	left:45px;
+	top:285px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:left;
+	font-size:15px;
+	letter-spacing:0;
+}
+.e3_98 { 
+	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width:27px;
+	height:26px;
+	position:absolute;
+	left:150px;
+	top:277px;
+}
+.e3_99 { 
+	color:rgba(0, 0, 0, 1);
+	width:27px;
+	height:17px;
+	position:absolute;
+	left:183px;
+	top:287px;
+	font-family:Almarai;
+	text-align:left;
+	font-size:15px;
+	letter-spacing:0;
+}
+.e3_100 { 
+	width:973px;
+	height:410px;
+	position:absolute;
+	left:0px;
+	top:820px;
+}
+.e3_101 { 
+	color:rgba(0, 0, 0, 1);
+	width:150px;
+	height:24px;
+	position:absolute;
+	left:26px;
+	top:24px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:left;
+	font-size:20px;
+	letter-spacing:0;
+}
+.e3_102 { 
+	width:973px;
+	height:347px;
+	position:absolute;
+	left:0px;
+	top:63px;
+}
+.e3_103 { 
+	width:240px;
+	height:348px;
+	position:absolute;
+	left:9px;
+	top:62px;
+}
+.e3_104 { 
+	width:220px;
+	height:130px;
+	position:absolute;
+	left:10px;
+	top:76px;
+	background-image:url(images/rimg1_2.png);
+	background-repeat:no-repeat;
+	background-size:cover;
+}
+.e3_105 { 
+	color:rgba(0, 0, 0, 1);
+	width:220px;
+	height:54px;
+	position:absolute;
+	left:10px;
+	top:217px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:left;
+	font-size:20px;
+	letter-spacing:0;
+}
+.e3_106 { 
+	border-radius:500px;
+	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width:25px;
+	height:24px;
+	position:absolute;
+	left:14px;
+	top:279px;
+}
+.e3_107 { 
+	color:rgba(0, 0, 0, 1);
+	width:42px;
+	height:18px;
+	position:absolute;
+	left:45px;
+	top:285px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:left;
+	font-size:15px;
+	letter-spacing:0;
+}
+.e3_108 { 
+	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width:27px;
+	height:26px;
+	position:absolute;
+	left:150px;
+	top:277px;
+}
+.e3_109 { 
+	color:rgba(0, 0, 0, 1);
+	width:27px;
+	height:17px;
+	position:absolute;
+	left:183px;
+	top:287px;
+	font-family:Almarai;
+	text-align:left;
+	font-size:15px;
+	letter-spacing:0;
+}
+.e3_110 { 
+	width:240px;
+	height:348px;
+	position:absolute;
+	left:249px;
+	top:62px;
+}
+.e3_111 { 
+	width:220px;
+	height:130px;
+	position:absolute;
+	left:10px;
+	top:76px;
+	background-image:url(images/rimg1_2.png);
+	background-repeat:no-repeat;
+	background-size:cover;
+}
+.e3_112 { 
+	color:rgba(0, 0, 0, 1);
+	width:220px;
+	height:54px;
+	position:absolute;
+	left:10px;
+	top:217px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:left;
+	font-size:20px;
+	letter-spacing:0;
+}
+.e3_113 { 
+	border-radius:500px;
+	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width:25px;
+	height:24px;
+	position:absolute;
+	left:14px;
+	top:279px;
+}
+.e3_114 { 
+	color:rgba(0, 0, 0, 1);
+	width:42px;
+	height:18px;
+	position:absolute;
+	left:45px;
+	top:285px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:left;
+	font-size:15px;
+	letter-spacing:0;
+}
+.e3_115 { 
+	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width:27px;
+	height:26px;
+	position:absolute;
+	left:150px;
+	top:277px;
+}
+.e3_116 { 
+	color:rgba(0, 0, 0, 1);
+	width:27px;
+	height:17px;
+	position:absolute;
+	left:183px;
+	top:287px;
+	font-family:Almarai;
+	text-align:left;
+	font-size:15px;
+	letter-spacing:0;
+}
+.e3_117 { 
+	width:240px;
+	height:348px;
+	position:absolute;
+	left:729px;
+	top:62px;
+}
+.e3_118 { 
+	width:220px;
+	height:130px;
+	position:absolute;
+	left:10px;
+	top:76px;
+	background-image:url(images/rimg1_2.png);
+	background-repeat:no-repeat;
+	background-size:cover;
+}
+.e3_119 { 
+	color:rgba(0, 0, 0, 1);
+	width:220px;
+	height:54px;
+	position:absolute;
+	left:10px;
+	top:217px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:left;
+	font-size:20px;
+	letter-spacing:0;
+}
+.e3_120 { 
+	border-radius:500px;
+	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width:25px;
+	height:24px;
+	position:absolute;
+	left:14px;
+	top:279px;
+}
+.e3_121 { 
+	color:rgba(0, 0, 0, 1);
+	width:42px;
+	height:18px;
+	position:absolute;
+	left:45px;
+	top:285px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:left;
+	font-size:15px;
+	letter-spacing:0;
+}
+.e3_122 { 
+	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width:27px;
+	height:26px;
+	position:absolute;
+	left:150px;
+	top:277px;
+}
+.e3_123 { 
+	color:rgba(0, 0, 0, 1);
+	width:27px;
+	height:17px;
+	position:absolute;
+	left:183px;
+	top:287px;
+	font-family:Almarai;
+	text-align:left;
+	font-size:15px;
+	letter-spacing:0;
+}
+.e3_124 { 
+	width:240px;
+	height:348px;
+	position:absolute;
+	left:489px;
+	top:62px;
+}
+.e3_125 { 
+	width:220px;
+	height:130px;
+	position:absolute;
+	left:10px;
+	top:76px;
+	background-image:url(images/rimg1_2.png);
+	background-repeat:no-repeat;
+	background-size:cover;
+}
+.e3_126 { 
+	color:rgba(0, 0, 0, 1);
+	width:220px;
+	height:54px;
+	position:absolute;
+	left:10px;
+	top:217px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:left;
+	font-size:20px;
+	letter-spacing:0;
+}
+.e3_127 { 
+	border-radius:500px;
+	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width:25px;
+	height:24px;
+	position:absolute;
+	left:14px;
+	top:279px;
+}
+.e3_128 { 
+	color:rgba(0, 0, 0, 1);
+	width:42px;
+	height:18px;
+	position:absolute;
+	left:45px;
+	top:285px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:left;
+	font-size:15px;
+	letter-spacing:0;
+}
+.e3_129 { 
+	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width:27px;
+	height:26px;
+	position:absolute;
+	left:150px;
+	top:277px;
+}
+.e3_130 { 
+	color:rgba(0, 0, 0, 1);
+	width:27px;
+	height:17px;
+	position:absolute;
+	left:183px;
+	top:287px;
+	font-family:Almarai;
+	text-align:left;
+	font-size:15px;
+	letter-spacing:0;
+}
+.e3_131 { 
+	width:973px;
+	height:410px;
+	position:absolute;
+	left:0px;
+	top:1230px;
+}
+.e3_132 { 
+	color:rgba(0, 0, 0, 1);
+	width:100px;
+	height:24px;
+	position:absolute;
+	left:26px;
+	top:24px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:left;
+	font-size:20px;
+	letter-spacing:0;
+}
+.e3_133 { 
+	width:973px;
+	height:347px;
+	position:absolute;
+	left:0px;
+	top:63px;
+}
+.e3_134 { 
+	width:240px;
+	height:348px;
+	position:absolute;
+	left:9px;
+	top:62px;
+}
+.e3_135 { 
+	width:126px;
+	height:130px;
+	position:absolute;
+	left:57px;
+	top:73px;
+	border-top-left-radius:200px;
+	border-top-right-radius:200px;
+	border-bottom-left-radius:200px;
+	border-bottom-right-radius:200px;
+	background-image:url(../img/기본유저1.jpg);
+	background-repeat:no-repeat;
+	background-size:cover;
+}
+.e3_136 { 
+	color:rgba(0, 0, 0, 1);
+	width:220px;
+	height:54px;
+	position:absolute;
+	left:10px;
+	top:217px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:center;
+	font-size:20px;
+	letter-spacing:0;
+}
+.e3_162 { 
+	width:240px;
+	height:348px;
+	position:absolute;
+	left:249px;
+	top:62px;
+}
+.e3_163 { 
+	width:126px;
+	height:130px;
+	position:absolute;
+	left:57px;
+	top:73px;
+	border-top-left-radius:200px;
+	border-top-right-radius:200px;
+	border-bottom-left-radius:200px;
+	border-bottom-right-radius:200px;
+	background-image:url(images/rimg1_2.png);
+	background-repeat:no-repeat;
+	background-size:cover;
+}
+.e3_164 { 
+	color:rgba(0, 0, 0, 1);
+	width:220px;
+	height:54px;
+	position:absolute;
+	left:10px;
+	top:217px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:center;
+	font-size:20px;
+	letter-spacing:0;
+}
+.e3_165 { 
+	width:240px;
+	height:348px;
+	position:absolute;
+	left:489px;
+	top:62px;
+}
+.e3_166 { 
+	width:126px;
+	height:130px;
+	position:absolute;
+	left:57px;
+	top:73px;
+	border-top-left-radius:200px;
+	border-top-right-radius:200px;
+	border-bottom-left-radius:200px;
+	border-bottom-right-radius:200px;
+	background-image:url(images/rimg1_2.png);
+	background-repeat:no-repeat;
+	background-size:cover;
+}
+.e3_167 { 
+	color:rgba(0, 0, 0, 1);
+	width:220px;
+	height:54px;
+	position:absolute;
+	left:10px;
+	top:217px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:center;
+	font-size:20px;
+	letter-spacing:0;
+}
+.e3_168 { 
+	width:240px;
+	height:348px;
+	position:absolute;
+	left:719px;
+	top:63px;
+}
+.e3_169 { 
+	width:126px;
+	height:130px;
+	position:absolute;
+	left:57px;
+	top:73px;
+	border-top-left-radius:200px;
+	border-top-right-radius:200px;
+	border-bottom-left-radius:200px;
+	border-bottom-right-radius:200px;
+	background-image:url(images/rimg1_2.png);
+	background-repeat:no-repeat;
+	background-size:cover;
+}
+.e3_170 { 
+	color:rgba(0, 0, 0, 1);
+	width:220px;
+	height:54px;
+	position:absolute;
+	left:10px;
+	top:217px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:center;
+	font-size:20px;
+	letter-spacing:0;
+}
+.e3_173 { 
+	background-color:rgba(75.43749645352364, 74.80885058641434, 74.80885058641434, 1);
+	width:100%;
+	height:135px;
+	position:absolute;
+	top:1500px;
+}
+.e3_175 { 
+	color:rgba(255, 255, 255, 1);
+	width:378px;
+	height:52px;
+	position:absolute;
+	left:481px;
+	top:56px;
+	font-family:Alumni Sans Collegiate One;
+	text-align:left;
+	font-size:20px;
+	letter-spacing:0;
+}
+.searchicon { 
+	color: rgb(33.00000183284283, 33.00000183284283, 35.00000171363354, 1);
+	max-width: 25px;
+	max-height: 25px;
+
+	top: 0%;
+
+	font-family:Font Awesome 5 Free;
+	text-align:center;
+	font-size:30px;
+	letter-spacing:0;
+}
+.search_txt{
+	position: relative;
+
+	left: 5%;
+	width: 600px;
+	padding: 0;
+	background: transparent;
+	border: none;
+	outline: none;
+	float: left;
+	font-size: 1rem;
+	line-height: 30px;
+}
+.search_btn{
+	width: 25px;
+	height: 25px;
+	top: 0%;
+	border: none;
+	background-color: white;
+}
+
+a {
+	color: cornsilk;
+    text-decoration: none;
+}
+
+
 html, body {
 	height: 100%;
 	margin: 0;
 	padding: 0;
-	font-family: 'Jua', sans-serif;
 	font-size: 20px;
 }
 
 .body_wrapper {
-	background: linear-gradient(#90E4B3, #DBFE74);
-	position: relative;
 	margin: 0;
-	padding-top: 15px;
-	height: 100%;
-}
-
-.mainicon {
-	color:rgba(23.58367010951042, 96.68749898672104, 11.683072540909052, 1);
-	width:253px;
-	height:100px;
-	position:relative;
-	font-size:40px;
-	letter-spacing:0;
-}
-
-.mainicon_wrapper {
-	text-align: center;
-	padding-bottom: 15px;
+	padding-top: 90px;
 }
 
 .signup_wrapper { 
-	background-color: rgb(244, 255, 245);
-	width:800px;
-	height:830px;
+	background-color: rgb(255, 255, 255);
+	width:865px;
+	height:740px;
 	position:relative;
-	border: 2px solid;
 	border-radius: 8px;
 	margin:0 auto;
+	padding-top: 30px;
+}
+
+h1 {
+	position: relative;
+	letter-spacing:10px;
+	color:rgb(255, 255, 255);
+	text-align: center;
+	font-size: 55px;
+	margin-bottom: 30px;
 }
 
 a {
@@ -45,7 +1364,7 @@ a {
 .signup_form {
 	position: relative;
 	/*text-align: center;*/
-	padding-left: 245px;
+	padding-left: 267px;
 }
 
 label {
@@ -63,24 +1382,14 @@ input {
 	font-size: 25px;
 }
 
-input[type="submit"] {
-	background-color: #44E0A7;
+input[id="signupButton"] {
+	background-color: #3498db;
 	margin-top: 10px;
 	margin-bottom: 7px;
 	width: 308px;
 	height: 40px;
 	color: white;
 	border-radius: 5px;
-	font-family: 'Jua', sans-serif;
 	font-size: 23px;
 	letter-spacing:5px;
-}
-
-h1 {
-	padding-left: 25px;
-	padding-top: 25px;
-	padding-bottom: 15px;
-	letter-spacing:3px;
-	color:rgb(34, 200, 138);
-	margin:0;
 }
