@@ -156,7 +156,7 @@ public class RecipeController {
 	    
 	    
 	    int totalRecipes = recipes.size();
-	    int pageSize = 20; // 페이지당 레시피 수
+	    int pageSize = 16; // 페이지당 레시피 수
 	    int totalPages = (int) Math.ceil((double) totalRecipes / pageSize);
 	    
 	    // 현재 페이지가 유효한 범위 내에 있는지 확인
