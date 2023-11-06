@@ -60,15 +60,22 @@
 	<div class=e2_28>
 		<!--			여기에 내용을 입력하세요-->
 		<div class=e3_29><span class="e3_30">오늘의 추천 메뉴</span>
-			<div class=e3_36  th:each="recipe : ${topLove}">
+			<div class=e3_36  th:each="recipe : ${todayrecipes}">
 				
 				<div class="e3_40"><img th:src="@{${recipe.main_photo_path}}" /></div>
 				<span class="e3_42" th:text="${recipe.title}">제목</span>
-				<div class="e3_43"></div>
-				<span class="e3_44" th:text="${recipe.user.user_id}">작성자</span>
+				<div class="e3_43"><img th:src="@{${recipe.user.userphotopath}}" style="height: 100%; width: 100%;"></div>
+				<span class="e3_44" th:text="${recipe.user.nickname}">작성자</span>
 				<div class="e3_46">♥</div><span class="e3_47" th:text="${recipe.totalLove}">90</span>
 			</div>
 		</div>
+		<div class="button_div_left1">
+      <button id="next-button" class="button-icon" onclick="nextSlide1()">&lt;</button>
+    </div>
+    <div class="button_div_right1">
+      <button id="next-button" class="button-icon" onclick="prevSlide1()">&gt;</button>
+    </div>
+      
 		<div class="e3_69">
       <span class="e3_70">랭킹</span>
       
@@ -77,12 +84,18 @@
           <img th:src="@{${recipe.main_photo_path}}" />
         </div>
         <div class="e3_74" th:text="${recipe.title}">제목</div>
-        <div class="e3_75"></div>
-        <div class="e3_76" th:text="${recipe.user.user_id}">작성자</div>
+        <div class="e3_75"><img th:src="@{${recipe.user.userphotopath}}" style="height: 100%; width: 100%;"></div>
+        <div class="e3_76" th:text="${recipe.user.nickname}">작성자</div>
         <div class="e3_77">♥</div>
         <span class="e3_78" th:text="${recipe.totalLove}">90</span>
       </div>
       </div>
+      <div class="button_div_left2">
+      <button id="next-button" class="button-icon" onclick="nextSlide2()">&lt;</button>
+    </div>
+    <div class="button_div_right2">
+      <button id="next-button" class="button-icon" onclick="prevSlide2()">&gt;</button>
+    </div>
       <div class="e3_99" >
 		<span class="e3_101">최근 본 레시피</span>
 			<div class="e3_103" th:each="recipe, iterStat : ${topLove}">
@@ -90,10 +103,16 @@
 					<img th:src="@{${recipe.main_photo_path}}" />
 				</div>
 				<div class="e3_105" th:text="${recipe.title}">제목</div>
-				<div class="e3_106"></div><span class="e3_107" th:text="${recipe.user.user_id}">작성자</span>
+				<div class="e3_106"><img th:src="@{${recipe.user.userphotopath}}" style="height: 100%; width: 100%;"></div><span class="e3_107" th:text="${recipe.user.nickname}">작성자</span>
 				<div class="e3_108">♥</div><span class="e3_109" th:text="${recipe.totalLove}">90</span>
 			</div>
 		</div>
+		<div class="button_div_left3">
+      <button id="next-button" class="button-icon" onclick="nextSlide3()">&lt;</button>
+    </div>
+    <div class="button_div_right3">
+      <button id="next-button" class="button-icon" onclick="prevSlide3()">&gt;</button>
+    </div>
 		<div class=e3_131><span class="e3_132">유저 랭킹</span>
 			<div class=e3_134>
 				<div class="e3_135"></div><span class="e3_136">제목</span>
@@ -136,6 +155,82 @@
 		}
 
 		setInterval(nextSlide, interval);
+		
+		const items = document.querySelectorAll('.e3_36');
+		const items2 = document.querySelectorAll('.e3_72');
+		const items3 = document.querySelectorAll('.e3_103');
+    let currentIndex1 = 0;
+    let currentIndex2 = 0;
+    let currentIndex3 = 0;
+    let leftValue1 = 0;
+    let leftValue2 = 0;
+    let leftValue3 = 0;
+
+	function prevSlide1() {
+      if (currentIndex1 == 0) {
+        currentIndex1++;
+        leftValue1 -= 1630; // 변경하고자 하는 이동 거리
+        updateSlide1();
+      }
+    }
+
+    function nextSlide1() {
+      if (currentIndex1 == 1) {
+        currentIndex1--;
+        leftValue1 += 1630; // 변경하고자 하는 이동 거리
+        updateSlide1();
+      }
+    }
+
+    function prevSlide2() {
+      if (currentIndex2 == 0) {
+        currentIndex2++;
+        leftValue2 -= 1630; // 변경하고자 하는 이동 거리
+        updateSlide2();
+      }
+    }
+
+    function nextSlide2() {
+      if (currentIndex2 == 1) {
+        currentIndex2--;
+        leftValue2 += 1630; // 변경하고자 하는 이동 거리
+        updateSlide2();
+      }
+    }
+    function prevSlide3() {
+      if (currentIndex3 == 0) {
+        currentIndex3++;
+        leftValue3 -= 1630; // 변경하고자 하는 이동 거리
+        updateSlide3();
+      }
+    }
+
+    function nextSlide3() {
+      if (currentIndex3 == 1) {
+        currentIndex3--;
+        leftValue3 += 1630; // 변경하고자 하는 이동 거리
+        updateSlide3();
+      }
+    }
+
+
+    function updateSlide1() {
+      items.forEach((item, index) => {
+        item.style.left = leftValue1 + 'px';
+      });
+    }
+    function updateSlide2() {
+      items2.forEach((item, index) => {
+        item.style.left = leftValue2 + 'px';
+      });
+    }
+    function updateSlide3() {
+      items3.forEach((item, index) => {
+        item.style.left = leftValue3 + 'px';
+      });
+    }
+
+    
 
 // 원하는 경우, "이전" 버튼을 클릭하면 previousSlide 함수를 호출하도록 추가할 수 있습니다.
 // 또는 사용자 입력(예: 화살표 키)에 반응할 수도 있습니다.
