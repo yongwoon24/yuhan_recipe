@@ -3,6 +3,8 @@
 	   margin-top: 300px;
 	   text-align: center;
 	   font-size: 20px;
+	   position: absolute;
+	   top: 19%;
 	   height: auto;
    }
    .button-style {
