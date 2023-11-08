@@ -29,6 +29,7 @@ import com.example.demo.repository.RecipeRepository;
 import com.example.demo.repository.ScrapRepository;
 import com.example.demo.repository.TodayRepository;
 import com.example.demo.repository.UserRepository;
+import com.example.demo.service.RecipeUpdateService;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.Session;
@@ -55,6 +56,8 @@ public class UserController {
     private JavaMailSender javaMailSender;
     @Autowired
     private TodayRepository todayrepository;
+    @Autowired
+    private RecipeUpdateService rus;
     
     @GetMapping("/user")
     public String listUsers(Model model, HttpSession session, RedirectAttributes redirectAttributes) {
@@ -100,6 +103,8 @@ public class UserController {
             today.setNo8(0);
             today.setNo9(0);
             today.setNo10(0);
+            
+            rus.updateToday2(today);
             
             userRepository.save(user);
             todayrepository.save(today);

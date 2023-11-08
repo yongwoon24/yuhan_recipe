@@ -90,7 +90,7 @@ public class LoveController {
     	model.addAttribute("lastrecipes", lastrecipes);
     	
     	//유저랭킹
-    	List<User> userRank = userR.findTop3ByOrderByUsertotallikes();
+    	List<User> userRank = userR.findTop3ByOrderByUsertotallikesDesc();
     	model.addAttribute("userRank",userRank);
     	
     	// 10개의 가장 최근에 접근한 레시피를 가져옵니다.

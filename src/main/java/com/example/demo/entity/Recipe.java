@@ -56,9 +56,11 @@ public class Recipe {
 	private String main_photo_path;
 	@Column(name = "recipe_subtext")
 	private String recipesubtxt;
-	
-	@OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Love> loves;
+	//@OneToMany
+	//@JoinColumn(name = "recipe_id")
 	
 	@OneToMany
 	@JoinColumn(name = "recipe_id")

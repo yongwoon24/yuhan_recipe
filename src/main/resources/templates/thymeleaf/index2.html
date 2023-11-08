@@ -68,10 +68,10 @@
 		<div class=e3_29><span class="e3_30">오늘의 추천 메뉴</span>
 			<div class=e3_36  th:each="recipe : ${todayrecipes}">
 				
-				<div class="e3_40"><img th:if="${recipe.main_photo_path == null}" src="/img/기본유저.jpg"> <img th:src="@{${recipe.main_photo_path}}" /></div>
-				<span class="e3_42" th:text="${recipe.title}">제목</span>
-				<div class="e3_43"><img th:src="@{${recipe.user.userphotopath}}" style="height: 100%; width: 100%;"></div>
-				<span class="e3_44" th:text="${recipe.user.nickname}">작성자</span>
+				<div class="e3_40"><img th:if="${recipe.main_photo_path == null}" src="/img/기본유저.jpg"> <a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}"><img th:src="@{${recipe.main_photo_path}}" /></a></div>
+				<a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}"><span class="e3_42" th:text="${recipe.title}">제목</span></a>
+				<div class="e3_43"><a th:href="@{'/userpage_R/'+${recipe.nickname}}"><img th:src="@{${recipe.user.userphotopath}}" style="height: 100%; width: 100%;"></a></div>
+				<a th:href="@{'/userpage_R/'+${recipe.nickname}}"><span class="e3_44" th:text="${recipe.user.nickname}">작성자</span></a>
 				<div class="e3_46">♥</div><span class="e3_47" th:text="${recipe.totalLove}">90</span>
 			</div>
 		</div>
@@ -87,11 +87,11 @@
       
       <div class="e3_72" th:each="recipe, iterStat : ${topLove}">
         <div class="e3_73">
-          <img th:src="@{${recipe.main_photo_path}}" />
+          <a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}"><img th:src="@{${recipe.main_photo_path}}" /></a>
         </div>
-        <div class="e3_74" th:text="${recipe.title}">제목</div>
-        <div class="e3_75"><img th:src="@{${recipe.user.userphotopath}}" style="height: 100%; width: 100%;"></div>
-        <div class="e3_76" th:text="${recipe.user.nickname}">작성자</div>
+        <a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}"><div class="e3_74" th:text="${recipe.title}">제목</div></a>
+        <div class="e3_75"><a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}"><a th:href="@{'/userpage_R/'+${recipe.nickname}}"><img th:src="@{${recipe.user.userphotopath}}" style="height: 100%; width: 100%;"></a></div>
+        <a th:href="@{'/userpage_R/'+${recipe.nickname}}"><div class="e3_76" th:text="${recipe.user.nickname}">작성자</div></a>
         <div class="e3_77">♥</div>
         <span class="e3_78" th:text="${recipe.totalLove}">90</span>
       </div>
@@ -104,13 +104,13 @@
     </div>
       <div class="e3_99" >
 		<span class="e3_101">최근 본 레시피</span>
-			<div class="e3_103" th:each="recipe3, iterStat : ${recentlyAccessedRecipes}">
+			<div class="e3_103" th:if="${recentlyAccessedRecipes != null}" th:each="recipe, iterStat : ${recentlyAccessedRecipes}">
 				<div class="e3_104">
-					<img th:src="@{${recipe3.main_photo_path}}" />
+					<a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}"><img th:src="@{${recipe.main_photo_path}}" /></a>
 				</div>
-				<div class="e3_105" th:text="${recipe3.title}">제목</div>
-				<div class="e3_106"><img th:src="@{${recipe3.user.userphotopath}}" style="height: 100%; width: 100%;"></div><span class="e3_107" th:text="${recipe3.user.nickname}">작성자</span>
-				<div class="e3_108">♥</div><span class="e3_109" th:text="${recipe3.totalLove}">90</span>
+				<a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}"><div class="e3_105" th:text="${recipe.title}">제목</div></a>
+				<div class="e3_106"><a th:href="@{'/userpage_R/'+${recipe.nickname}}"><img th:src="@{${recipe.user.userphotopath}}" style="height: 100%; width: 100%;"></a></div><a th:href="@{'/userpage_R/'+${recipe.nickname}}"><span class="e3_107" th:text="${recipe.user.nickname}">작성자</span></a>
+				<div class="e3_108">♥</div><span class="e3_109" th:text="${recipe.totalLove}">90</span>
 			</div>
 		</div>
 		<div class="button_div_left3">

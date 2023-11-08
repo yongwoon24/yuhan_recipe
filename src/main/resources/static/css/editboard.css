@@ -1,7 +1,9 @@
 .e2_28{
-	   margin-top: 300px;
+	  margin-top: 300px;
 	   text-align: center;
 	   font-size: 20px;
+	   position: absolute;
+	   top: 19%;
    }
    hr {
 	   width: 65%;
