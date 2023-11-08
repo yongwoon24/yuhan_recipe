@@ -18,6 +18,7 @@ import com.example.demo.entity.Board;
 import com.example.demo.entity.Comment;
 import com.example.demo.repository.BoardRepository;
 import com.example.demo.repository.CommentRepository;
+import com.example.demo.repository.LoveRepository;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
@@ -26,11 +27,13 @@ import jakarta.transaction.Transactional;
 public class BoardController {
     private final BoardRepository boardRepository; // final 키워드 추가
     private final CommentRepository commentRepository;
+    private final LoveRepository loveRepository;
 
    @Autowired
-   public BoardController(BoardRepository boardRepository, CommentRepository commentRepository) {
+   public BoardController(BoardRepository boardRepository, CommentRepository commentRepository, LoveRepository loveRepository) {
        this.boardRepository = boardRepository;
        this.commentRepository = commentRepository;
+       this.loveRepository = loveRepository;
    }
        
    @GetMapping("/board")
@@ -128,6 +131,7 @@ public class BoardController {
 	@Transactional // 트랜잭션 설정
 	public String deleteBoard(@PathVariable int postId, RedirectAttributes redirectAttributes) {
 		commentRepository.deleteByPostId(postId);
+		loveRepository.deleteByPostId(postId);
 		boardRepository.deleteByPostId(postId);
 		
 		redirectAttributes.addFlashAttribute("boarddeleteMessage", "게시물 삭제가 완료되었습니다!");
