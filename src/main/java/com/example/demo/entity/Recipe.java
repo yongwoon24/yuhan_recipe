@@ -57,9 +57,7 @@ public class Recipe {
 	@Column(name = "recipe_subtext")
 	private String recipesubtxt;
 	
-	//@OneToMany(mappedBy = "love", cascade = CascadeType.ALL, orphanRemoval = true)
-	@OneToMany
-	@JoinColumn(name = "recipe_id")
+	@OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
 	private List<Love> loves;
 	
 	@OneToMany
