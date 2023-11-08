@@ -8,6 +8,9 @@ import com.example.demo.entity.Today;
 import com.example.demo.repository.LoveRepository;
 import com.example.demo.repository.RecipeRepository;
 import com.example.demo.repository.TodayRepository;
+import com.example.demo.repository.UserRepository;
+
+import jakarta.servlet.http.HttpSession;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -20,6 +23,9 @@ public class RecipeUpdateService {
 
     @Autowired
     private RecipeRepository recipeRepository;
+    
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private LoveRepository loveRepository;
@@ -55,6 +61,45 @@ public class RecipeUpdateService {
     	int max = recipeRepository.maxRecipeId();
         int min = 1;
         
+        int usermax = todayrepository.maxTodayId();
+        //System.out.println("aaaaaaaaaaaaaaaaa"+max);
+        
+        for (int i = 1; i <= usermax; i++) {
+			Today today = todayrepository.findById(i);
+			int[] nums = new int[10];
+			 for (int j = 0; j < 10; j++) {
+			        int randomnum;
+			        Recipe recipe;
+			        
+			        do {
+			            randomnum = random.nextInt(max - min + 1) + min;
+			            recipe = recipeRepository.findById(randomnum);
+			        } while (recipe == null);
+			        
+			        nums[j] = randomnum;
+			    }
+			if(today != null) {
+			today.setNo1(nums[0]);
+			today.setNo2(nums[1]);
+			today.setNo3(nums[2]);
+			today.setNo4(nums[3]);
+			today.setNo5(nums[4]);
+			today.setNo6(nums[5]);
+			today.setNo7(nums[6]);
+			today.setNo8(nums[7]);
+			today.setNo9(nums[8]);
+			today.setNo10(nums[9]);
+			todayrepository.save(today);}
+			}
+			
+    }
+    
+    public void updateToday1(HttpSession session) {
+    	String loggedInUserId = (String) session.getAttribute("loggedInUserId");
+        Random random = new Random();
+    	int max = recipeRepository.maxRecipeId();
+        int min = 1;
+        User user = UserRepository
         int usermax = todayrepository.maxTodayId();
         //System.out.println("aaaaaaaaaaaaaaaaa"+max);
         
