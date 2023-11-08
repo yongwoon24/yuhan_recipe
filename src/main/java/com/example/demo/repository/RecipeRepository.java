@@ -148,5 +148,8 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
 	@Query("SELECT MAX(r.id) FROM Recipe r")
 	int maxRecipeId();
 	
+	@Query("SELECT MIN(r.id) FROM Recipe r")
+	int minRecipeId();
+	
 	
 }
