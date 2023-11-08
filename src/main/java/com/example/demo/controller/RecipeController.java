@@ -46,6 +46,7 @@ import com.example.demo.repository.TagRepository;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.LoveService;
 import com.example.demo.service.RecipeService;
+import com.example.demo.service.RecipeUpdateService;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
@@ -54,6 +55,9 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class RecipeController {
+	@Autowired
+	private RecipeUpdateService rus;
+	
 	@Autowired
 	private RecipeRepository recipeRepository;
 	@Autowired
@@ -639,8 +643,9 @@ public class RecipeController {
 	
 	
 	@GetMapping("/deleteRecipe/{recipe_id}")
-	public String deleteRecipe(@PathVariable int recipe_id, RedirectAttributes redirectAttributes) {		
+	public String deleteRecipe(@PathVariable int recipe_id, RedirectAttributes redirectAttributes, HttpSession session) {	
 		 recipeservice.deletePostWithImage(recipe_id);
+		 rus.updateToday1(session);
 		 redirectAttributes.addFlashAttribute("asd", "삭제되었습니다");
 				
 		return "redirect:/recipe";
