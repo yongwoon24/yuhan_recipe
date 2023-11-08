@@ -1483,7 +1483,7 @@
 	height:1880px;
 	position:absolute;
 	left:15%;
-	top:962px;
+	top:80%;
 }
 
 .e2_2 { 
@@ -1610,4 +1610,8 @@
 	font-family:Font Awesome 5 Free;
    text-align:center;
    font-size:20px;
+}
+
+body {
+    overflow-x: hidden; /* 가로 스크롤바 숨기기 */
 }
