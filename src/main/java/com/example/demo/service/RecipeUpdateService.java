@@ -139,4 +139,45 @@ public class RecipeUpdateService {
             }
         
     }
+    
+    public void updateToday2(Today today) {
+    	
+        Random random = new Random();
+        int max = recipeRepository.maxRecipeId();
+        int min = recipeRepository.minRecipeId();
+        
+        
+
+        
+            
+            int[] nums = new int[10];
+            Set<Integer> uniqueNums = new HashSet<>();
+
+            for (int j = 0; j < 10; j++) {
+                int randomnum;
+                Recipe recipe;
+                
+                do {
+                    randomnum = random.nextInt(max - min + 1) + min;
+                } while (uniqueNums.contains(randomnum) && (recipe = recipeRepository.findById(randomnum)) == null);
+                
+                uniqueNums.add(randomnum);
+                nums[j] = randomnum;
+            }
+
+            
+                today.setNo1(nums[0]);
+                today.setNo2(nums[1]);
+                today.setNo3(nums[2]);
+                today.setNo4(nums[3]);
+                today.setNo5(nums[4]);
+                today.setNo6(nums[5]);
+                today.setNo7(nums[6]);
+                today.setNo8(nums[7]);
+                today.setNo9(nums[8]);
+                today.setNo10(nums[9]);
+                //todayrepository.save(today);
+            
+        
+    }
 }
