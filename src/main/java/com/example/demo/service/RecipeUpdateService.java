@@ -1,6 +1,7 @@
 package com.example.demo.service;
 import java.time.LocalDateTime;
 import java.time.temporal.TemporalAdjusters;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
@@ -56,48 +57,49 @@ public class RecipeUpdateService {
         }
     }
     
-    @Scheduled(cron = "0 0 0 * * *") // 매일 자정에 실행
-    //@Scheduled(fixedRate = 10000) // 10초
+    //@Scheduled(cron = "0 0 0 * * *") // 매일 자정에 실행
+    @Scheduled(fixedRate = 10000) // 10초
     public void updateToday() {
         Random random = new Random();
         int max = recipeRepository.maxRecipeId();
         int min = recipeRepository.minRecipeId();
-        
+
         int usermax = todayrepository.maxTodayId();
 
         for (int i = 1; i <= usermax; i++) {
             Today today = todayrepository.findById(i);
-            int[] nums = new int[10];
-            Set<Integer> uniqueNums = new HashSet<>();
-
-            for (int j = 0; j < 10; j++) {
+            List<Integer> uniqueNums = new ArrayList<>();
+            
+            while (uniqueNums.size() < 10) {
                 int randomnum;
                 Recipe recipe;
-                
+
                 do {
                     randomnum = random.nextInt(max - min + 1) + min;
-                } while (uniqueNums.contains(randomnum) && (recipe = recipeRepository.findById(randomnum)) == null);
-                
+                } while (uniqueNums.contains(randomnum) || (recipe = recipeRepository.findById(randomnum)) == null);
+
                 uniqueNums.add(randomnum);
-                nums[j] = randomnum;
             }
 
             if (today != null) {
-                today.setNo1(nums[0]);
-                today.setNo2(nums[1]);
-                today.setNo3(nums[2]);
-                today.setNo4(nums[3]);
-                today.setNo5(nums[4]);
-                today.setNo6(nums[5]);
-                today.setNo7(nums[6]);
-                today.setNo8(nums[7]);
-                today.setNo9(nums[8]);
-                today.setNo10(nums[9]);
+                
+                    
+                    today.setNo1(uniqueNums.get(0));
+                    today.setNo2(uniqueNums.get(1));
+                    today.setNo3(uniqueNums.get(2));
+                    today.setNo4(uniqueNums.get(3));
+                    today.setNo5(uniqueNums.get(4));
+                    today.setNo6(uniqueNums.get(5));
+                    today.setNo7(uniqueNums.get(6));
+                    today.setNo8(uniqueNums.get(7));
+                    today.setNo9(uniqueNums.get(8));
+                    today.setNo10(uniqueNums.get(9));
+                
                 todayrepository.save(today);
             }
         }
     }
-    
+
     public void updateToday1(HttpSession session) {
     	String loggedInUserId = (String) session.getAttribute("loggedInUserId");
     	User user = userRepository.findByUser_id1(loggedInUserId);
@@ -110,8 +112,7 @@ public class RecipeUpdateService {
         
             Today today = todayrepository.findByUser(user);
             int[] nums = new int[10];
-            Set<Integer> uniqueNums = new HashSet<>();
-
+            List<Integer> uniqueNums = new ArrayList<>();
             for (int j = 0; j < 10; j++) {
                 int randomnum;
                 Recipe recipe;
@@ -121,20 +122,21 @@ public class RecipeUpdateService {
                 } while (uniqueNums.contains(randomnum) && (recipe = recipeRepository.findById(randomnum)) == null);
                 
                 uniqueNums.add(randomnum);
-                nums[j] = randomnum;
             }
 
             if (today != null) {
-                today.setNo1(nums[0]);
-                today.setNo2(nums[1]);
-                today.setNo3(nums[2]);
-                today.setNo4(nums[3]);
-                today.setNo5(nums[4]);
-                today.setNo6(nums[5]);
-                today.setNo7(nums[6]);
-                today.setNo8(nums[7]);
-                today.setNo9(nums[8]);
-                today.setNo10(nums[9]);
+                
+                    
+                    today.setNo1(uniqueNums.get(0));
+                    today.setNo2(uniqueNums.get(1));
+                    today.setNo3(uniqueNums.get(2));
+                    today.setNo4(uniqueNums.get(3));
+                    today.setNo5(uniqueNums.get(4));
+                    today.setNo6(uniqueNums.get(5));
+                    today.setNo7(uniqueNums.get(6));
+                    today.setNo8(uniqueNums.get(7));
+                    today.setNo9(uniqueNums.get(8));
+                    today.setNo10(uniqueNums.get(9));
                 todayrepository.save(today);
             }
         
@@ -151,7 +153,7 @@ public class RecipeUpdateService {
         
             
             int[] nums = new int[10];
-            Set<Integer> uniqueNums = new HashSet<>();
+            List<Integer> uniqueNums = new ArrayList<>();
 
             for (int j = 0; j < 10; j++) {
                 int randomnum;
@@ -162,20 +164,20 @@ public class RecipeUpdateService {
                 } while (uniqueNums.contains(randomnum) && (recipe = recipeRepository.findById(randomnum)) == null);
                 
                 uniqueNums.add(randomnum);
-                nums[j] = randomnum;
+               
             }
 
             
-                today.setNo1(nums[0]);
-                today.setNo2(nums[1]);
-                today.setNo3(nums[2]);
-                today.setNo4(nums[3]);
-                today.setNo5(nums[4]);
-                today.setNo6(nums[5]);
-                today.setNo7(nums[6]);
-                today.setNo8(nums[7]);
-                today.setNo9(nums[8]);
-                today.setNo10(nums[9]);
+            today.setNo1(uniqueNums.get(0));
+            today.setNo2(uniqueNums.get(1));
+            today.setNo3(uniqueNums.get(2));
+            today.setNo4(uniqueNums.get(3));
+            today.setNo5(uniqueNums.get(4));
+            today.setNo6(uniqueNums.get(5));
+            today.setNo7(uniqueNums.get(6));
+            today.setNo8(uniqueNums.get(7));
+            today.setNo9(uniqueNums.get(8));
+            today.setNo10(uniqueNums.get(9));
                 //todayrepository.save(today);
             
         
