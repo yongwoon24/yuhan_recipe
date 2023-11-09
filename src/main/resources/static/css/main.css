@@ -1543,54 +1543,61 @@ img{
 }
 
 .button-icon {
-    background-color: rgb(192, 192, 192);
-    color: #fff;
+    background-color: rgb(230, 230, 230);
+    color: gray;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
-    
+    font-size: 50px;
+    border-radius: 20px;
   }
 .button_div_left1{
 	position: absolute;
-	width: 100px;
-	height: 50px;
-	left: 40%;
-	top: 395px;
+    width: 100px;
+    height: 100px;
+    left: 0;
+    top: 150px;
+    opacity: 0.8;
 }
 .button_div_right1{
 	position: absolute;
-	width: 100px;
-	height: 50px;
-	left: 60%;
-	top: 395px;
+    width: 100px;
+    height: 50px;
+    left: 96%;
+    top: 150px;
+    opacity: 0.8;
 }
 .button_div_left2{
 	position: absolute;
-	width: 100px;
-	height: 50px;
-	left: 40%;
-	top: 818px;
+    width: 100px;
+    height: 50px;
+    left: 0;
+    top: 580px;
+    opacity: 0.8;
 }
 .button_div_right2{
 	position: absolute;
-	width: 100px;
-	height: 50px;
-	left: 60%;
-	top: 818px;
+    width: 100px;
+    height: 50px;
+    left: 96%;
+    top: 580px;
+    opacity: 0.8;
 }
 .button_div_left3{
 	position: absolute;
-	width: 100px;
-	height: 50px;
-	left: 40%;
-	top: 1260px;
+    width: 100px;
+    height: 50px;
+    left: 0;
+    top: 1020px;
+opacity: 0.8;
 }
 .button_div_right3{
 	position: absolute;
-	width: 100px;
-	height: 50px;
-	left: 60%;
-	top: 1260px;
+    width: 100px;
+    height: 50px;
+    left: 96%;
+    top: 1020px;
+    opacity: 0.8;
 }
 body {
     overflow-x: hidden; /* 가로 스크롤바 숨기기 */
@@ -1598,4 +1605,9 @@ body {
 html, body {
     margin: 0;
     padding: 0;
+}
+
+.page_nav{
+	position: absolute;
+	top: 50%;
 }
