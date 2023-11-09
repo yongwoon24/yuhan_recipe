@@ -1757,8 +1757,6 @@ body {
 }
 
 .e52_764 {
-
-	width: 45px;
 	height: 45px;
 	position: absolute;
 	left: 0%;
@@ -1767,11 +1765,11 @@ body {
 
 .e52_765 {
 
-	width: 45px;
-	height: 45px;
-	position: absolute;
-	left: 8%;
-	top: 90%;
+	width: 65px;
+    height: 60px;
+    position: absolute;
+    left: 8%;
+    top: 88.5%;
 }
 
 .e52_766 {
