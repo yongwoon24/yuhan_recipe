@@ -121,7 +121,7 @@
 			<div class="signup_form">
 				<form th:action="@{/signup}" th:object="${user}" method="post" onsubmit="return validateForm()">
 					<label>이름</label><br>
-					<input type="text" th:field="*{name}" required/><br>
+					<input type="text" th:field="*{name}" required autofocus/><br>
 			        
 			        <label for="user_id">아이디</label><br>
 			        <input type="text" th:field="*{user_id}" id="user_id" placeholder="4자이상" minlength="4" maxlength="15" required/>

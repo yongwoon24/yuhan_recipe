@@ -57,7 +57,7 @@ public interface LoveRepository extends JpaRepository<Love, Long>{
     @Query("SELECT COUNT(l) FROM Love l WHERE l.recipe.recipe_id = :recipe_id AND YEAR(l.date) = YEAR(:date) AND MONTH(l.date) = MONTH(:date) AND l.activity = '좋아요'")
     int countMonthlyLikesByRecipeIdAndMonth(@Param("recipe_id") int recipe_id, @Param("date") LocalDateTime date);
 
-    	//int countLovesByRecipe_id(int recipeId);
+       //int countLovesByRecipe_id(int recipeId);
     
     //Optional<Love> findByRecipeAndUser(Recipe recipe, User user);
     
@@ -66,4 +66,8 @@ public interface LoveRepository extends JpaRepository<Love, Long>{
     @Query("SELECT ua.recipe FROM Love ua WHERE ua.user = :user AND ua.activity = '조회' ORDER BY ua.date DESC")
     List<Recipe> findUserActivitiesWithdesc(User user);
     void deleteByActivityId(int id);
+    
+    @Query("SELECT l FROM Love l WHERE l.activity = '조회' AND l.user.user_id = :username GROUP BY l.recipe ORDER BY MAX(l.date) DESC LIMIT 10")
+    List<Love> findDistinctTop10ByActivityOrderByDateDesc(@Param("username") String username);
+    
 }
