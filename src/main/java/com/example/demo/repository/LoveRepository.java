@@ -12,6 +12,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.example.demo.entity.Board;
+import com.example.demo.entity.Comment;
 import com.example.demo.entity.Love;
 import com.example.demo.entity.Recipe;
 import com.example.demo.entity.User;

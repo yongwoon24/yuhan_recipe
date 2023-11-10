@@ -16,8 +16,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.entity.Board;
 import com.example.demo.entity.Comment;
+import com.example.demo.entity.Love;
 import com.example.demo.repository.BoardRepository;
 import com.example.demo.repository.CommentRepository;
+import com.example.demo.repository.LoveRepository;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
@@ -26,11 +28,13 @@ import jakarta.transaction.Transactional;
 public class BoardController {
     private final BoardRepository boardRepository; // final 키워드 추가
     private final CommentRepository commentRepository;
+    private final LoveRepository loveRepository;
 
    @Autowired
-   public BoardController(BoardRepository boardRepository, CommentRepository commentRepository) {
+   public BoardController(BoardRepository boardRepository, CommentRepository commentRepository, LoveRepository loveRepository) {
        this.boardRepository = boardRepository;
        this.commentRepository = commentRepository;
+       this.loveRepository = loveRepository;
    }
        
    @GetMapping("/board")
@@ -127,6 +131,8 @@ public class BoardController {
 	@GetMapping("/delete/{postId}")
 	@Transactional // 트랜잭션 설정
 	public String deleteBoard(@PathVariable int postId, RedirectAttributes redirectAttributes) {
+		
+		//loveRepository.deleteByPostId(postId);
 		commentRepository.deleteByPostId(postId);
 		boardRepository.deleteByPostId(postId);
 		
