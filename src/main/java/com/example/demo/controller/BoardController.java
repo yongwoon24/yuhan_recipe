@@ -132,7 +132,6 @@ public class BoardController {
 	@Transactional // 트랜잭션 설정
 	public String deleteBoard(@PathVariable int postId, RedirectAttributes redirectAttributes) {
 		
-		//loveRepository.deleteByPostId(postId);
 		commentRepository.deleteByPostId(postId);
 		boardRepository.deleteByPostId(postId);
 		

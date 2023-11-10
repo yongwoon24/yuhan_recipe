@@ -76,7 +76,7 @@ public class RecipeUpdateService {
 
                 do {
                     randomnum = random.nextInt(max - min + 1) + min;
-                } while (uniqueNums.contains(randomnum) || (recipe = recipeRepository.findById(randomnum)) == null);
+                } while (uniqueNums.contains(randomnum) && (recipe = recipeRepository.findById(randomnum)) != null);
 
                 uniqueNums.add(randomnum);
             }
