@@ -139,7 +139,7 @@ public class UserController {
     
     @GetMapping("/deleteUser/{nickname}")
     @Transactional // 트랜잭션 설정
-    public String deleteUser(@PathVariable String nickname) {
+    public String deleteUser(@PathVariable String nickname, HttpSession session) {
         User user = userRepository.findbynickname(nickname);
         List<Board> board = boardRepository.findByNickname(nickname);
         List<Integer> postIds = new ArrayList<>();
@@ -151,6 +151,7 @@ public class UserController {
 			int postId = postIds.get(i);
 			commentRepository.deleteByPostId(postId);
 		}
+        commentRepository.deleteByNickname(nickname);
         todayrepository.deleteByUser(user);
         boardRepository.deleteByNickname(nickname);
         scrapRepository.deleteByUser(user); // 사용자에 해당하는 스크랩 삭제
@@ -174,6 +175,7 @@ public class UserController {
 			int postId = postIds.get(i);
 			commentRepository.deleteByPostId(postId);
 		}
+        commentRepository.deleteByNickname(nickname);
         todayrepository.deleteByUser(user);
         boardRepository.deleteByNickname(nickname);
         scrapRepository.deleteByUser(user); // 사용자에 해당하는 스크랩 삭제
