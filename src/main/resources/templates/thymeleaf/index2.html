@@ -102,9 +102,9 @@
     <div class="button_div_right2">
       <button id="next-button" class="button-icon" onclick="prevSlide2()">&gt;</button>
     </div>
-      <div class="e3_99" >
+      <div class="e3_99">
 		<span class="e3_101">최근 본 레시피</span>
-			<div class="e3_103" th:if="${recentlyAccessedRecipes != null}" th:each="recipe, iterStat : ${recentlyAccessedRecipes}">
+			<div class="e3_103" th:if="${session.loggedInNickname != null}" th:each="recipe, iterStat : ${recentlyAccessedRecipes}">
 				<div class="e3_104">
 					<a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}"><img th:src="@{${recipe.main_photo_path}}" /></a>
 				</div>
@@ -112,7 +112,11 @@
 				<div class="e3_106"><a th:href="@{'/userpage_R/'+${recipe.nickname}}"><img th:src="@{${recipe.user.userphotopath}}" style="height: 100%; width: 100%;"></a></div><a th:href="@{'/userpage_R/'+${recipe.nickname}}"><span class="e3_107" th:text="${recipe.user.nickname}">작성자</span></a>
 				<div class="e3_108">♥</div><span class="e3_109" th:text="${recipe.totalLove}">90</span>
 			</div>
+			 <div class="check_login" th:if="${session.loggedInNickname == null}">
+        <div class="check_login_text">로그인이 필요한 기능입니다<br><br><a href="/login">로그인하기</a></div>
+    </div>
 		</div>
+		
 		<div class="button_div_left3">
       <button id="next-button" class="button-icon" onclick="nextSlide3()">&lt;</button>
     </div>
@@ -120,15 +124,19 @@
       <button id="next-button" class="button-icon" onclick="prevSlide3()">&gt;</button>
     </div>
 		<div class=e3_131><span class="e3_132">유저 랭킹</span>
-			<div class=e3_134 th:each="userrank : ${userRank}">
-				<div class="e3_135"><img th:src="@{${userrank.userphotopath}}" style="height: 100%; width: 100%;"></div><span class="e3_136" th:text="${userrank.nickname}">제목</span>
+			<div class=e3_134 th:each="userrank, iterStat : ${userRank}">
+				<span class="rank_num" th:text="${iterStat.count}+'위'">순위</span>
+				<div class="e3_135"><a th:href="@{'/userpage_R/'+${userrank.nickname}}"><img th:src="@{${userrank.userphotopath}}" style="height: 100%; width: 100%;"></a></div>
+				<a th:href="@{'/userpage_R/'+${userrank.nickname}}"><div class="e3_136" th:text="${userrank.nickname}">제목</div><div class="e3_137">♥</div><div class="e3_138" th:text="${userrank.usertotallikes}">90</div></a>
+				 
 			</div>
 			
 		</div>
 <!--		여기까지-->
 	
-	<div class=e3_173><span class="e3_175">2023 yuhan University</span></div>
+	
 	</div>
+	<div class=e3_173><span class="e3_175">2023 yuhan University</span></div>
 	<script th:inline="javascript">
 		var sendMessage = /*[[${errorMessage}]]*/ "";
 		if (sendMessage) {
