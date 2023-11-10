@@ -1,13 +1,10 @@
 package com.example.demo.repository;
 
-import java.awt.print.Pageable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -15,6 +12,8 @@ import com.example.demo.entity.Board;
 import com.example.demo.entity.Love;
 import com.example.demo.entity.Recipe;
 import com.example.demo.entity.User;
+
+import jakarta.transaction.Transactional;
 
 public interface LoveRepository extends JpaRepository<Love, Long>{
     //List<Love> findByOrderByActivityId();
@@ -66,7 +65,7 @@ public interface LoveRepository extends JpaRepository<Love, Long>{
     List<Recipe> findUserActivitiesWithdesc(User user);
     void deleteByActivityId(int id);
     
-    @Query("SELECT l FROM Love l WHERE l.activity = '조회' AND l.user.user_id = :username GROUP BY l.recipe ORDER BY l.date DESC LIMIT 10")
+    @Query("SELECT l FROM Love l WHERE l.activity = '조회' AND l.user.user_id = :username GROUP BY l.recipe ORDER BY MAX(l.date) DESC LIMIT 10")
     List<Love> findDistinctTop10ByActivityOrderByDateDesc(@Param("username") String username);
     
 }
