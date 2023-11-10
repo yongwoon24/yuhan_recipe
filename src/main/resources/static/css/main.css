@@ -1427,7 +1427,7 @@
 	left:481px;
 	top:56px;
 	font-family:Alumni Sans Collegiate One;
-	text-align:left;
+	text-align: center;
 	font-size:20px;
 	letter-spacing:0;
 }
@@ -1623,7 +1623,7 @@ html, body {
 .check_login{
 	position: relative;
     width: 97%;
-    height: 90%;
+    height: 80%;
     top: 20%;
     background-color: gray;
     border-radius: 20px;
@@ -1637,7 +1637,7 @@ html, body {
     font-size: 20px;
 }
 .e3_137{
-	top: 85px;
+	top: 98px;
     color: chocolate;
     position: relative;
     text-align: center;
@@ -1645,7 +1645,7 @@ html, body {
     font-size: 25px;
 }
 .e3_138{
-	top: 58px;
+	top: 70px;
     color: black;
     position: relative;
     text-align: center;
