@@ -58,7 +58,7 @@ public class RecipeUpdateService {
     }
     
     //@Scheduled(cron = "0 0 0 * * *") // 매일 자정에 실행
-    @Scheduled(fixedRate = 10000) // 10초
+    @Scheduled(fixedRate = 5000) // 10초
     public void updateToday() {
         Random random = new Random();
         int max = recipeRepository.maxRecipeId();
@@ -68,33 +68,34 @@ public class RecipeUpdateService {
 
         for (int i = 1; i <= usermax; i++) {
             Today today = todayrepository.findById(i);
-            List<Integer> uniqueNums = new ArrayList<>();
-            
+            Set<Integer> uniqueNums = new HashSet<>();
+
             while (uniqueNums.size() < 10) {
                 int randomnum;
                 Recipe recipe;
 
                 do {
                     randomnum = random.nextInt(max - min + 1) + min;
-                } while (uniqueNums.contains(randomnum) && (recipe = recipeRepository.findById(randomnum)) != null);
+                    recipe = recipeRepository.findById(randomnum);
+                } while (uniqueNums.contains(randomnum) || recipe == null);
 
                 uniqueNums.add(randomnum);
             }
 
             if (today != null) {
-                
-                    
-                    today.setNo1(uniqueNums.get(0));
-                    today.setNo2(uniqueNums.get(1));
-                    today.setNo3(uniqueNums.get(2));
-                    today.setNo4(uniqueNums.get(3));
-                    today.setNo5(uniqueNums.get(4));
-                    today.setNo6(uniqueNums.get(5));
-                    today.setNo7(uniqueNums.get(6));
-                    today.setNo8(uniqueNums.get(7));
-                    today.setNo9(uniqueNums.get(8));
-                    today.setNo10(uniqueNums.get(9));
-                
+                Integer[] uniqueNumsArray = uniqueNums.toArray(new Integer[0]);
+
+                today.setNo1(uniqueNumsArray[0]);
+                today.setNo2(uniqueNumsArray[1]);
+                today.setNo3(uniqueNumsArray[2]);
+                today.setNo4(uniqueNumsArray[3]);
+                today.setNo5(uniqueNumsArray[4]);
+                today.setNo6(uniqueNumsArray[5]);
+                today.setNo7(uniqueNumsArray[6]);
+                today.setNo8(uniqueNumsArray[7]);
+                today.setNo9(uniqueNumsArray[8]);
+                today.setNo10(uniqueNumsArray[9]);
+
                 todayrepository.save(today);
             }
         }
@@ -182,4 +183,45 @@ public class RecipeUpdateService {
             
         
     }
-}
+
+public void updateToday3() {
+    Random random = new Random();
+    int max = recipeRepository.maxRecipeId();
+    int min = recipeRepository.minRecipeId();
+
+    int usermax = todayrepository.maxTodayId();
+
+    for (int i = 1; i <= usermax; i++) {
+        Today today = todayrepository.findById(i);
+        Set<Integer> uniqueNums = new HashSet<>();
+
+        while (uniqueNums.size() < 10) {
+            int randomnum;
+            Recipe recipe;
+
+            do {
+                randomnum = random.nextInt(max - min + 1) + min;
+                recipe = recipeRepository.findById(randomnum);
+            } while (uniqueNums.contains(randomnum) || recipe == null);
+
+            uniqueNums.add(randomnum);
+        }
+
+        if (today != null) {
+            Integer[] uniqueNumsArray = uniqueNums.toArray(new Integer[0]);
+
+            today.setNo1(uniqueNumsArray[0]);
+            today.setNo2(uniqueNumsArray[1]);
+            today.setNo3(uniqueNumsArray[2]);
+            today.setNo4(uniqueNumsArray[3]);
+            today.setNo5(uniqueNumsArray[4]);
+            today.setNo6(uniqueNumsArray[5]);
+            today.setNo7(uniqueNumsArray[6]);
+            today.setNo8(uniqueNumsArray[7]);
+            today.setNo9(uniqueNumsArray[8]);
+            today.setNo10(uniqueNumsArray[9]);
+
+            todayrepository.save(today);
+        }
+    }
+}}
