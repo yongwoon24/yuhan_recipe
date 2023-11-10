@@ -69,7 +69,6 @@ public interface LoveRepository extends JpaRepository<Love, Long>{
     @Query("SELECT l FROM Love l WHERE l.activity = '조회' AND l.user.user_id = :username GROUP BY l.recipe ORDER BY MAX(l.date) DESC LIMIT 10")
     List<Love> findDistinctTop10ByActivityOrderByDateDesc(@Param("username") String username);
     
-    
     @Query(value = "DELETE * FROM Love WHERE post_id = :postId", nativeQuery = true)
     void deleteByPostId(int postId);
     
