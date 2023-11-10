@@ -38,7 +38,7 @@ public class Love {
     private Recipe recipe;
     
     @ManyToOne
-    @JoinColumn(name = "postId")
+    @JoinColumn(name = "post_id")
     private Board board;
     
     private boolean Token;

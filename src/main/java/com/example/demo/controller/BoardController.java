@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.entity.Board;
 import com.example.demo.entity.Comment;
+import com.example.demo.entity.Love;
 import com.example.demo.repository.BoardRepository;
 import com.example.demo.repository.CommentRepository;
 import com.example.demo.repository.LoveRepository;
@@ -130,6 +131,7 @@ public class BoardController {
 	@GetMapping("/delete/{postId}")
 	@Transactional // 트랜잭션 설정
 	public String deleteBoard(@PathVariable int postId, RedirectAttributes redirectAttributes) {
+		
 		commentRepository.deleteByPostId(postId);
 		loveRepository.deleteByPostId(postId);
 		boardRepository.deleteByPostId(postId);
