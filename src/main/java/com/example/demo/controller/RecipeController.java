@@ -589,13 +589,14 @@ public class RecipeController {
             @RequestParam("mensuration") List<String> mensuration,
             @RequestParam(name ="tags", required = false) String tags,
             @RequestParam("file") MultipartFile file,
-            @RequestParam(name = "deleteindex", required = false) List<Integer> deleteindex) throws Exception {
+            @RequestParam(name = "deleteindex", required = false) List<Integer> deleteindex,
+            @RequestParam(name="category_name") String categoryName) throws Exception {
 	    recipe.setRecipe_id(recipe_id); // Set the ID to the path variable value for updating the correct recipe
 	    Recipe recipe1 = recipeRepository.findById(recipe_id);
 	    String nickname = recipe1.getNickname();
 	    recipe.setNickname(nickname);
 	    recipe = recipe1;
-	    
+	    recipe.setCategory_name(categoryName);
 	    String Rphoto = recipe1.getMain_photo();
 	    String Rphotopath = recipe1.getMain_photo_path();
 	    if(Rphoto == null) {
@@ -603,6 +604,7 @@ public class RecipeController {
 	    	Rphotopath = "";
 	    }
 	    recipeservice.editwrite(recipe, file, Rphoto,Rphotopath);
+	    
 	    
 	    List<Love> loves = loverepository.findByRecipe(recipe1);
 	    recipe.setLoves(loves);
@@ -645,7 +647,7 @@ public class RecipeController {
 	@GetMapping("/deleteRecipe/{recipe_id}")
 	public String deleteRecipe(@PathVariable int recipe_id, RedirectAttributes redirectAttributes, HttpSession session) {	
 		 recipeservice.deletePostWithImage(recipe_id);
-		 rus.updateToday1(session);
+		 rus.updateToday1();
 		 redirectAttributes.addFlashAttribute("asd", "삭제되었습니다");
 				
 		return "redirect:/recipe";

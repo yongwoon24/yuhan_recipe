@@ -152,4 +152,25 @@
 // 원하는 경우, "이전" 버튼을 클릭하면 previousSlide 함수를 호출하도록 추가할 수 있습니다.
 // 또는 사용자 입력(예: 화살표 키)에 반응할 수도 있습니다.
 	</script>
+	<script>
+    // 세션 스토리지에 스크롤 위치 저장
+    function setScrollPosition() {
+        sessionStorage.setItem('scrollPosition', window.scrollY);
+    }
+
+    // 세션 스토리지에서 스크롤 위치 읽기
+    function getScrollPosition() {
+        return parseInt(sessionStorage.getItem('scrollPosition')) || 0;
+    }
+
+    // 페이지 로드 시 스크롤 위치 설정
+    window.onload = function () {
+        window.scrollTo(0, getScrollPosition());
+    }
+
+    // 페이지 언로드 시 스크롤 위치 저장
+    window.onbeforeunload = function () {
+        setScrollPosition();
+    }
+</script>
 </html>
