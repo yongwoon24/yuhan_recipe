@@ -57,8 +57,8 @@ public class RecipeUpdateService {
         }
     }
     
-    //@Scheduled(cron = "0 0 0 * * *") // 매일 자정에 실행
-    @Scheduled(fixedRate = 5000) // 10초
+    @Scheduled(cron = "0 0 0 * * *") // 매일 자정에 실행
+    //@Scheduled(fixedRate = 5000) // 10초
     public void updateToday() {
         Random random = new Random();
         int max = recipeRepository.maxRecipeId();
