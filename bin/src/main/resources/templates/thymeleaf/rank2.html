@@ -1,0 +1,176 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta content="text/html; charset=euc-kr">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>모두의레시피</title>
+	<style type="text/css">
+
+	</style>
+	<script src="https://kit.fontawesome.com/2636adf573.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" th:href="@{/../css/rank2.css}" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+	  <div class=e2_2>
+		<div class=e2_3>
+			<div class="e2_4">
+				<div class="e2_4_1">
+					<img src="img/레시피.jpg" style="width: 100%; height: 100%;">
+					<div class="t"><span class="e2_26">모두의 레시피 </span><span class="e2_27">쉽고 간편하게 레시피를 공유해보세요</span>
+				</div></div>
+				
+			</div>
+		</div>
+		<div class=e2_5><span class="e2_6"><a class="mainicon" href="/">모두의 레시피</a></span>
+			<div class=e2_8>
+			<span th:if="${session.loggedInNickname == '관리자'}" class="ad_1"><a href="/reviewRecipes">레시피 검토</a></span>
+			<span th:if="${session.loggedInNickname == '관리자'}" class="ad_2"><a href="/user">회원 관리</a></span>
+			<span class="e2_11"><a href="/recipe">레시피</a></span>
+			<span class="e2_12"><a href="/rank">랭킹</a></span>
+			<span class="e2_13"><a href="/board">게시판</a></span>
+			<span class="e2_14"><a href="/mypage">마이페이지</a></span>	
+				<div class="e2_22"><a href="/alarm" style="width:30px; height:30px;"><i th:if="${session.alarm != 1}" class="fas fa-bell"
+							style="width:30px; height:30px;"></i>
+							<i th:if="${session.alarm == 1}" class="fas fa-bell"
+							style="width:30px; height:30px; color: red;"></i></a></div>
+				<div class="e2_23"><a href="/createRecipe"><i class="fas fa-pencil-alt"></i></a></div>
+				
+				<div th:if="${session.loggedInNickname != null}" class="e2_24"><a href="/logout">로그아웃</a></div>
+				<div th:if="${session.loggedInNickname == null}" class="e2_24"><a href="/logout">로그인</a></div>
+			</div>
+			<div class=e3_172>
+				<form action="/search" method="get"> <!-- 검색창 주소 입력 -->
+					<div class="e2_7"><input type="text" name="keyword" class="search_txt" required></div>
+					<div class="e3_171">
+						<button type="submit" class="search_btn">
+							<span class="searchicon">
+								<i class="fa-solid fa-magnifying-glass" style="max-width:25px; max-height:25px;"></i>
+							</span>
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	  
+	  <div class=e1_22>
+		<div class="e56_22">
+		<div class="category-buttons">
+			    <form id="myForm" th:action="@{/rank}" method="get">
+			        <label for="categoryName">카테고리 선택:</label>
+			        <select id="categoryName" name="categoryName" style="font-size: 23px;">
+			            <option value="">전체</option>
+			            <option value="파티">파티용</option>
+			            <option value="혼밥">혼밥용</option>
+			            <option value="피크닉">피크닉용</option>
+			            <option value="가정">가정용</option>
+			            <option value="디저트">디저트용</option>
+			            <option value="야식/안주">야식/안주용</option> 
+			        </select> &nbsp;&nbsp;
+			        <label for="categoryName">기간 선택:</label>
+			        <select id="period" name="period" style="font-size: 23px;">
+			            <option value="">전체</option>
+			            <option value="d">일간</option>
+			            <option value="w">주간</option>
+			            <option value="m">월간</option>
+			        </select>
+			        <button id="submitBtn" type="submit" hidden>선택</button>
+
+			    </form>
+			    
+			</div>
+			
+			<div class="e56_23">
+					<div class=e56_24 th:each="recipe, recipeIndex : ${topLove}">
+						<div class="e56_25">
+							<span class="rank-number" th:text="${(currentPage * 20) + recipeIndex.index + 1}+'위'"></span>
+							<a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}">
+								<img th:src="@{${recipe.main_photo_path}}" width="100%" height="100%" style="border-radius: 10px;"></a>
+						</div>
+						<a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}"><span class="e56_26" th:text="${recipe.title}"></span></a>
+						<a th:href="@{'/userpage_R/'+${recipe.nickname}}"><div class="e56_27"><img th:src="${recipe.user.userphotopath}" width="100%" height="100%"
+							style="border-radius: 500px;"></div><span class="e56_28"
+							th:text="${recipe.nickname}"></span></a>
+						<div class="e56_34"><img src="img/좋아요.jpg" width="100%" height="100%" style="border-radius: 500px;">
+						</div><span class="e56_35" th:text="${recipe.totalLove}"></span>
+						<div class="e56_36"><img src="img/조회수.png" width="100%" height="100%" style="border-radius: 500px;">
+						</div><span class="e56_37" th:text="${recipe.view_count}"></span>
+					</div>
+				</div>
+				
+				<!-- 페이지네이션을 추가한 부분 -->
+
+				<div class="pagination">
+					<a th:if="${currentPage > firstPage}" th:href="@{|/rank?page=${currentPage - 1}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}">&laquo; 이전</a>
+				    <span th:each="pageNumber : ${#numbers.sequence(currentPage - 5, currentPage + 4)}" th:if="${pageNumber >= firstPage && pageNumber <= lastPage}">
+				     <a th:href="@{|/rank?page=${pageNumber}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}"
+				           th:class="${pageNumber == currentPage ? 'active' : ''}" th:text="${pageNumber + 1}"></a>
+				    </span>
+				    <a th:if="${currentPage < lastPage}" th:href="@{|/rank?page=${currentPage + 1}${(selectedCategory != null ? '&categoryName=' + selectedCategory : '')}|}">다음 &raquo;</a>
+				</div>
+		<script th:src="@{/../js/rank.js}"></script>
+	    </div>
+	    </div>
+	  <div class=e1_132><span  class="e1_133">2023 yuhan Univercity</span></div>
+	</div>
+	
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+
+<script>
+		const slider = document.querySelector(".e2_4");
+		const slides = document.querySelectorAll(".e2_4_1");
+		const slideWidth = slides[0].clientWidth; // 슬라이드 하나의 너비
+		let currentSlide = 0;
+		const interval = 5000; // 3초
+
+		function nextSlide() {
+			currentSlide = (currentSlide + 1) % slides.length;
+			const offset = -currentSlide * slideWidth;
+			slider.style.transition = "transform 1s ease-in-out";
+			slider.style.transform = `translateX(${offset}px)`;
+		}
+
+		function previousSlide() {
+			if (currentSlide === 0) {
+				currentSlide = slides.length - 1;
+			} else {
+				currentSlide--;
+			}
+			const offset = -currentSlide * slideWidth;
+			slider.style.transition = "transform 1s ease-in-out";
+			slider.style.transform = `translateX(${offset}px)`;
+		}
+
+		setInterval(nextSlide, interval);
+
+// 원하는 경우, "이전" 버튼을 클릭하면 previousSlide 함수를 호출하도록 추가할 수 있습니다.
+// 또는 사용자 입력(예: 화살표 키)에 반응할 수도 있습니다.
+	</script>
+	<script>
+    // 세션 스토리지에 스크롤 위치 저장
+    function setScrollPosition() {
+        sessionStorage.setItem('scrollPosition', window.scrollY);
+    }
+
+    // 세션 스토리지에서 스크롤 위치 읽기
+    function getScrollPosition() {
+        return parseInt(sessionStorage.getItem('scrollPosition')) || 0;
+    }
+
+    // 페이지 로드 시 스크롤 위치 설정
+    window.onload = function () {
+        window.scrollTo(0, getScrollPosition());
+    }
+
+    // 페이지 언로드 시 스크롤 위치 저장
+    window.onbeforeunload = function () {
+        setScrollPosition();
+    }
+</script>
+</html>
