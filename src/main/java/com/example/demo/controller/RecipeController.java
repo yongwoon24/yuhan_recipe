@@ -616,13 +616,16 @@ public class RecipeController {
             @RequestParam(name ="tags", required = false) String tags,
             @RequestParam("file") MultipartFile file,
             @RequestParam(name = "deleteindex", required = false) List<Integer> deleteindex,
-            @RequestParam(name="category_name") String categoryName) throws Exception {
+            @RequestParam(name="category_name") String categoryName,  @RequestParam(name="title") String title,  
+            @RequestParam(name="recipesubtxt") String recipesubtxt) throws Exception {
 	    recipe.setRecipe_id(recipe_id); // Set the ID to the path variable value for updating the correct recipe
 	    Recipe recipe1 = recipeRepository.findById(recipe_id);
 	    String nickname = recipe1.getNickname();
 	    recipe.setNickname(nickname);
 	    recipe = recipe1;
 	    recipe.setCategory_name(categoryName);
+	    recipe.setTitle(title);
+	    recipe.setRecipesubtxt(recipesubtxt);
 	    String Rphoto = recipe1.getMain_photo();
 	    String Rphotopath = recipe1.getMain_photo_path();
 	    if(Rphoto == null) {
@@ -690,16 +693,23 @@ public class RecipeController {
 	
 	    List<Recipe> recipes;
 	    boolean b = true;
+	    int sort1 = 0;
 	    
 	    
 	    if (keyword != null && !keyword.isEmpty()) {
 	    	
 	        if ("latest".equals(sort)) {
 	        	recipes = recipeRepository.findByTitleContainingAndRecipeVerifiedOrTagContentAndRecipeVerified(keyword,b, keyword, Sort.by(Sort.Order.desc("createddate")), b);
+	        	sort1=1;
+    	        model.addAttribute("sort1",sort1);
 	        } else if ("views".equals(sort)) {
 	        	recipes = recipeRepository.findByTitleContainingAndRecipeVerifiedOrTagContentAndRecipeVerified(keyword, b, keyword, Sort.by(Sort.Order.desc("viewcount")), b);
+	        	sort1=0;
+    	        model.addAttribute("sort1",sort1);
 	        } else {
 	        	recipes = recipeRepository.findByTitleContainingAndRecipeVerifiedOrTagContentAndRecipeVerified(keyword,b, keyword, Sort.by(Sort.Order.desc("createddate")), b);
+	        	sort1=1;
+    	        model.addAttribute("sort1",sort1);
 	        }
 	    } else {
 	    	recipes = recipeRepository.findByTitleContainingAndRecipeVerifiedOrTagContentAndRecipeVerified(keyword,b, keyword, Sort.by(Sort.Order.desc("createddate")), b);

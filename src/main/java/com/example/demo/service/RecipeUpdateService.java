@@ -58,7 +58,7 @@ public class RecipeUpdateService {
     }
     
     @Scheduled(cron = "0 0 0 * * *") // 매일 자정에 실행
-    //@Scheduled(fixedRate = 5000) // 10초
+  //@Scheduled(fixedRate = 5000) // 5초
     public void updateToday() {
         Random random = new Random();
         int max = recipeRepository.maxRecipeId();
@@ -104,28 +104,30 @@ public class RecipeUpdateService {
    
     
     public void updateToday2(Today today) {
-    	
+
         Random random = new Random();
         int max = recipeRepository.maxRecipeId();
         int min = recipeRepository.minRecipeId();
-        
-        
 
-        
-            
+
+
+
+
             int[] nums = new int[10];
             Set<Integer> uniqueNums = new HashSet<>();
 
-            for (int j = 0; j < 10; j++) {
+            while (uniqueNums.size() < 10) {
                 int randomnum;
                 Recipe recipe;
-                
+
                 do {
                     randomnum = random.nextInt(max - min + 1) + min;
-                } while (uniqueNums.contains(randomnum) && (recipe = recipeRepository.findById(randomnum)) == null);
-                
+                    recipe = recipeRepository.findById(randomnum);
+                } while (uniqueNums.contains(randomnum) || recipe == null);
+
                 uniqueNums.add(randomnum);
-               
+
+
             }
 
             Integer[] uniqueNumsArray = uniqueNums.toArray(new Integer[0]);
@@ -140,8 +142,8 @@ public class RecipeUpdateService {
             today.setNo9(uniqueNumsArray[8]);
             today.setNo10(uniqueNumsArray[9]);
                 //todayrepository.save(today);
-            
-        
+
+
     }
 
 public void updateToday1() {

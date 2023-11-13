@@ -69,8 +69,10 @@
 		<div class="e56_22">
 		<div class="e56_145" th:if="${not recipes.isEmpty()}">
 		 
-		   <span class="e8_2"><a th:href="@{|/search?sort=latest&keyword=${keyword}|}">최신순</a></span>
-		   <span class="e8_3"><a th:href="@{|/search?sort=views&keyword=${keyword}|}">조회순</a></span>
+		   <span class="e8_2" ><a th:href="@{|/search?sort=latest&keyword=${keyword}|}" th:if="${sort1==1}" style="font-weight: bold;">최신순</a>
+		   <a th:href="@{|/search?sort=latest&keyword=${keyword}|}" th:if="${sort1==0}" style="color:darkgray;">최신순</a></span>
+		   <span class="e8_3" ><a th:href="@{|/search?sort=views&keyword=${keyword}|}" th:if="${sort1==1}" style="color:darkgray;" >조회순</a>
+		   <a th:href="@{|/search?sort=views&keyword=${keyword}|}" th:if="${sort1==0}"  style="font-weight: bold;">조회순</a></span>
 		 
 		</div>
 		<!-- 검색 결과가 없을 때의 메시지를 추가 -->

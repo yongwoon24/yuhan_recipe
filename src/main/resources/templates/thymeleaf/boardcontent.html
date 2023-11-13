@@ -76,9 +76,9 @@
 			<h1 th:text="${board.title}">게시물 제목</h1>
     <span th:text="${board.nickname}" class="writer">작성자</span>
     <span th:text="${#temporals.format(board.created_date, 'yyyy-MM-dd HH:mm')}" class="write_date">작성일</span><hr>
-    <div th:text="${board.content}" class="content">게시물 내용</div><hr>
+    <div th:text="${board.content}" class="content">게시물 내용</div><hr style="margin-bottom: 200px;">
     <!-- 게시물 수정 버튼과 게시물 삭제 버튼 -->
-	<div th:if="${#strings.equals(board.nickname, session.loggedInNickname) or session.loggedInNickname == '관리자'}">
+	<div th:if="${#strings.equals(board.nickname, session.loggedInNickname) or session.loggedInNickname == '관리자'}" style="margin-bottom: 100px;">
 	    <a th:href="@{'/edit/' + ${board.postId}}" class="button"><button class="btn_content">수정</button></a>
 		<a th:href="@{'/delete/' + ${board.postId}}" class="button" onclick="return confirm('정말로 삭제하시겠습니까?');"><button class="btn_content">삭제</button></a>
 	</div>
@@ -89,7 +89,7 @@
    <form th:action="@{/addComment}" method="post">
        <!-- 게시물 ID를 숨은 필드로 전달 -->
        <input type="hidden" th:name="postId" th:value="${board.postId}" />
-       <textarea th:name="content" spellcheck="false" placeholder="댓글 내용"></textarea><br/>
+       <textarea th:name="content" spellcheck="false" placeholder="댓글 내용" required></textarea><br/>
        <button class="btn_comment_submit" type="submit">댓글 작성</button>
    </form>
 	
