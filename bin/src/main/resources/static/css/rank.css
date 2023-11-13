@@ -379,31 +379,6 @@ select {
 	position: relative;
 	top: -2px;
 }
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
-.pagination{
-	text-align: center;
-	position: relative;
-	font-size: 100px;
-	justify-content: center;
-}
-=======
-<<<<<<< HEAD
->>>>>>> c966e8d82e00050f2714d5d828d13bec97f02bd9
-=======
-=======
->>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
->>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
->>>>>>> 50c25ad0400af2c974ed8121e680ce92b5ed8d9c
->>>>>>> 2635114c7fb3f0ba032d4776b8e184a832ed6b1e
 .pagination {
     display: flex;
     justify-content: center;
@@ -423,10 +398,6 @@ select {
     color: #fff;
     border-radius: 50%;
 }
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 2635114c7fb3f0ba032d4776b8e184a832ed6b1e
 .write-icon{
    color:rgba(0, 0, 0, 1);
    width:64px;
@@ -439,28 +410,11 @@ select {
    font-size:40px;
    letter-spacing:0;
    
-<<<<<<< HEAD
 }
-=======
+
+.menu1 > a, .menu2 > a, .menu3 > a, .menu4 > a {
+	color: rgb(254, 255, 238);
+	text-shadow: 1px 1px 1px rgb(38, 193, 50);
+	letter-spacing:2px;
 }
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-.pagination{
-	text-align: center;
-	position: relative;
-	font-size: 100px;
-	justify-content: center;
-}
->>>>>>> 48a1b7e7cdce8bc0fd9cb3c27b5ec6786e9f8be9
-=======
->>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
->>>>>>> c966e8d82e00050f2714d5d828d13bec97f02bd9
-=======
->>>>>>> f01acf57149399c19b5c8a71beeea92f53bbe331
-=======
->>>>>>> 1907926c78fb8d28fb43d00a62e0a0a039d11607
->>>>>>> e74bf282930a2639990dd01d1c7e43f0a2b308a2
->>>>>>> 50c25ad0400af2c974ed8121e680ce92b5ed8d9c
->>>>>>> 2635114c7fb3f0ba032d4776b8e184a832ed6b1e
+

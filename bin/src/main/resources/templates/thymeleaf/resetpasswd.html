@@ -1,60 +1,125 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <title>비밀번호 재설정</title>
-     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <style>
+	<meta charset="UTF-8">
+	<meta content="text/html; charset=euc-kr">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>비밀번호 재설정</title>
+	<style type="text/css">
 
-   </style>
-     <script>
-         function psCheck() {
-        var password = document.getElementById("password").value;
-        var confirmPassword = document.getElementById("confirmpassword").value;
-        var checkMsg = document.getElementById("checkMsg");
-        
-        if (password === confirmPassword) {
-            checkMsg.style.color = "green";
-            checkMsg.innerHTML = "비밀번호가 일치합니다.";
-        } else {
-            checkMsg.style.color = "red";
-            checkMsg.innerHTML = "비밀번호가 일치하지 않습니다.";
-        }
-    }
-    
-     function validateForm() {
-        var password = document.getElementById("password").value;
-        var confirmPassword = document.getElementById("confirmpassword").value;
-        
-        if (password !== confirmPassword) {
-            alert("비밀번호가 일치하지 않습니다!!");
-            return false;
-    }
-    
-    }
-    </script>
+	</style>
+	<script src="https://kit.fontawesome.com/2636adf573.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" th:href="@{/../css/resetpasswd.css}" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	
+	<script>
+		         function psCheck() {
+		        var password = document.getElementById("password").value;
+		        var confirmPassword = document.getElementById("confirmpassword").value;
+		        var checkMsg = document.getElementById("checkMsg");
+		        
+		        if (password === confirmPassword) {
+		            checkMsg.style.color = "green";
+		            checkMsg.innerHTML = "비밀번호가 일치합니다.";
+		        } else {
+		            checkMsg.style.color = "red";
+		            checkMsg.innerHTML = "비밀번호가 일치하지 않습니다.";
+		        }
+		    }
+		    
+		     function validateForm() {
+		        var password = document.getElementById("password").value;
+		        var confirmPassword = document.getElementById("confirmpassword").value;
+		        
+		        if (password !== confirmPassword) {
+		            alert("비밀번호가 일치하지 않습니다!!");
+		            return false;
+		    }
+		    
+		    }
+	</script>
+
 </head>
-<body>
-    <h2>비밀번호 재설정</h2>
 
-    <form th:action="@{/resetpasswd}" method="post" onsubmit="return validateForm()">
-        <input type="hidden" name="token" th:value="${token}">
-        
-        <label for="newPassword">새 비밀번호:</label>
-        <input type="password" id="password" name="newPassword" required><br>
-        
-        <label for="confirmPassword">새 비밀번호 확인:</label>
-        <input type="password" id="confirmpassword" name="confirmPassword" onkeyup="psCheck()" required>
-         <span id="checkMsg"></span><br/>
-         
-        <button type="submit">비밀번호 재설정</button>
-    </form>
+<body>
+	<div class=e2_2>
+		<div class=e2_3>
+			<div class="e2_4">
+				<div class="e2_4_1">
+					<img src="/img/레시피.jpg" style="width: 100%; height: 100%;">
+				</div>
+			</div>
+			<div class=e2_5><span class="e2_6"><a class="mainicon" href="/">모두의 레시피</a></span>
+				<div class=e2_8>
+			<span th:if="${session.loggedInNickname == '관리자'}" class="ad_1"><a href="/reviewRecipes">레시피 검토</a></span>
+			<span th:if="${session.loggedInNickname == '관리자'}" class="ad_2"><a href="/user">회원 관리</a></span>
+			<span class="e2_11"><a href="/recipe">레시피</a></span>
+			<span class="e2_12"><a href="/rank">랭킹</a></span>
+			<span class="e2_13"><a href="/board">게시판</a></span>
+			<span class="e2_14"><a href="/mypage">마이페이지</a></span>	
+				<div class="e2_22"><a href="/alarm" style="width:30px; height:30px;"><i th:if="${session.alarm != 1}" class="fas fa-bell"
+							style="width:30px; height:30px;"></i>
+							<i th:if="${session.alarm == 1}" class="fas fa-bell"
+							style="width:30px; height:30px; color: red;"></i></a></div>
+				<div class="e2_23"><a href="/createRecipe"><i class="fas fa-pencil-alt"></i></a></div>
+				
+				<div th:if="${session.loggedInNickname != null}" class="e2_24"><a href="/logout">로그아웃</a></div>
+				<div th:if="${session.loggedInNickname == null}" class="e2_24"><a href="/logout">로그인</a></div>
+			</div>
+				<div class=e3_172>
+					<form action="/search" method="get"> <!-- 검색창 주소 입력 -->
+					<div class="e2_7"><input type="text" name="keyword" class="search_txt" required></div>
+					<div class="e3_171">
+						<button type="submit" class="search_btn">
+							<span class="searchicon">
+								<i class="fa-solid fa-magnifying-glass" style="max-width:25px; max-height:25px;"></i>
+							</span>
+						</button>
+					</div>
+					</form>
+				</div>
+		</div>
+			
+	<div class="body_wrapper">
+		<h2>비밀번호 재설정</h2>
+	    <div class="resetps_wrapper">
+			<div class="resetps_form">
+			    <form th:action="@{/resetpasswd}" method="post" onsubmit="return validateForm()">
+			        <input type="hidden" name="token" th:value="${token}">
+			        
+			        <label for="newPassword">새 비밀번호</label><br>
+			        <input type="password" id="password" name="newPassword" required><br>
+			        
+			        <label for="confirmPassword">새 비밀번호 확인</label><br>
+			        <input type="password" id="confirmpassword" name="confirmPassword" onkeyup="psCheck()" required>
+			        <span id="checkMsg"></span><br>
+			         
+			        <button type="submit" id="resetps_button">비밀번호 &nbsp;재설정</button>
+			    </form>
+		    </div>
+	    </div>
+    </div>
     
     <script th:inline="javascript">
         var errorMessage = /*[[${errorMessage}]]*/ "";
         if (errorMessage) {
             alert(errorMessage);
         }
-    </script>
+    </script>	
+		
+		<div class=e3_173><span class="e3_175">2023 yuhan University</span></div>
+	</div>
+	<script th:inline="javascript">
+		var sendMessage = /*[[${errorMessage}]]*/ "";
+		if (sendMessage) {
+			alert(sendMessage);
+		}
+	</script>
 </body>
+
 </html>
