@@ -73,11 +73,11 @@
       
  <div class=e0_23>
 	<div class=e3_93>
-			<span class="e3_94"><a href="/mypage">작성한 레시피</a></span>
-			<span class="e3_98"><a href="/mypage_B">작성한 게시글</a></span>
-		<span class="e3_99"><a href="/mypage_L">좋아요한 레시피</a></span>
-		<span class="e3_100"><a href="/mypage_S">스크랩한 레시피</a></span>
-		<span class="e3_101"><a href="/mypage_U">회원정보관리</a></span>
+			<span class="e3_94"><a href="/mypage" style="color: darkgray;">작성한 레시피</a></span>
+			<span class="e3_98"><a href="/mypage_B" style="font-weight: bold;">작성한 게시글</a></span>
+		<span class="e3_99"><a href="/mypage_L" style="color: darkgray;">좋아요한 레시피</a></span>
+		<span class="e3_100"><a href="/mypage_S" style="color: darkgray;">스크랩한 레시피</a></span>
+		<span class="e3_101"><a href="/mypage_U" style="color: darkgray;">회원정보관리</a></span>
 		<span class="e3_102">마이페이지</span>
 	</div>
 	<div class=e3_196>
@@ -135,6 +135,27 @@
 	            alert(boarddeleteMessage);
 	        }
     </script>
+    <script>
+    // 세션 스토리지에 스크롤 위치 저장
+    function setScrollPosition() {
+        sessionStorage.setItem('scrollPosition', window.scrollY);
+    }
+
+    // 세션 스토리지에서 스크롤 위치 읽기
+    function getScrollPosition() {
+        return parseInt(sessionStorage.getItem('scrollPosition')) || 0;
+    }
+
+    // 페이지 로드 시 스크롤 위치 설정
+    window.onload = function () {
+        window.scrollTo(0, getScrollPosition());
+    }
+
+    // 페이지 언로드 시 스크롤 위치 저장
+    window.onbeforeunload = function () {
+        setScrollPosition();
+    }
+</script>
    
 </body>
 </html>

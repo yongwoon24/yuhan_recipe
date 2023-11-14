@@ -1,0 +1,513 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta content="text/html; charset=euc-kr">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>모두의레시피</title>
+	<style type="text/css">
+
+	</style>
+	<script src="https://kit.fontawesome.com/2636adf573.js" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" type="text/css" th:href="@{/../css/editRecipe2.css}" />
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	<script>
+		function handleClick(event) {
+			event.preventDefault(); // 폼 제출 막기
+			// 원하는 작업 수행
+			console.log("Button clicked, but form submission prevented.");
+		}
+	</script>
+	<script>
+		const tr = document.querySelector('text-row');
+		let itemCount = 0;
+		const items = ['예 ) 감 자', '예 ) 소 금', '예 ) 돼 지 고 기', '예 ) 간 장', '예 ) 우 유'];
+		const info = ['예 ) 3 개', '예 ) 1 T', '예 ) 3 0 0 g', '예 ) 한 큰 술', '예 ) 5 0 0 ml'];
+		function handleClick(event) {
+			event.preventDefault(); // 폼 제출 막기
+
+			itemCount++;
+			if (itemCount == 5) {
+				itemCount = 0;
+			}
+
+			const textRow = document.createElement('div');
+			textRow.classList.add('text-row');
+
+			const text1 = document.createElement('input');
+			text1.classList.add('text');
+			text1.name = "ingredientName";
+			text1.textContent = '';
+			text1.style.width = '200px';
+			text1.style.height = '50px';
+			text1.placeholder = items[itemCount];
+			textRow.appendChild(text1);
+
+			const text2 = document.createElement('input');
+			text2.classList.add('text');
+			text2.name = "mensuration";
+			text2.textContent = '';
+			text2.style.width = '200px';
+			text2.style.height = '50px';
+			text2.placeholder = info[itemCount];
+			textRow.appendChild(text2);
+
+			const removeButton = document.createElement('button');
+			removeButton.classList.add('remove-button');
+			removeButton.textContent = '삭제';
+			removeButton.addEventListener('click', () => {
+				container.removeChild(textRow);
+				//adjustContainerHeight();
+			});
+			textRow.appendChild(removeButton);
+
+
+			container.appendChild(textRow);
+			//adjustContainerHeight();
+
+			removebutton1.addEventListener('click', () => {
+				container.removeChild(t1);
+				//adjustContainerHeight();
+			});
+			removebutton2.addEventListener('click', () => {
+				container.removeChild(t2);
+				//adjustContainerHeight();
+			}); removebutton3.addEventListener('click', () => {
+				container.removeChild(t3);
+				//adjustContainerHeight();
+			});
+
+			console.log("Button clicked, but form submission prevented.");
+		}
+
+		function handleClick2(event) {
+			event.preventDefault(); // 폼 제출 막기
+			console.log("Button clicked, but form submission prevented.");
+		}
+
+
+		function handleUploadClick2() {
+			const imageInput = document.getElementById('file');
+			const uploadButton = document.getElementById('uploadButton');
+			const preview = document.getElementById('preview');
+
+			uploadButton.addEventListener('click', () => {
+				imageInput.click();
+			});
+
+			imageInput.addEventListener('change', (event) => {
+				const file = event.target.files[0];
+				if (file) {
+					const reader = new FileReader();
+
+					reader.onload = (e) => {
+						const image = new Image();
+						image.src = e.target.result;
+						image.style.maxWidth = '360px';
+						image.style.maxHeight = '234px';
+						image.style.minWidth = '360px';
+						image.style.minHeight = '234px';
+						preview.innerHTML = '';
+						preview.appendChild(image);
+					};
+
+					reader.readAsDataURL(file);
+				}
+			});
+		}
+
+
+
+
+
+	</script>
+
+	<script>
+		// HTML 문서가 로드될 때 실행
+		document.addEventListener("DOMContentLoaded", function () {
+			// 모든 클래스가 text2, text3, text4를 가진 textarea 및 입력 요소를 찾음
+			var elements = document.querySelectorAll(".text2, .text3, .text4");
+
+			// 각 요소에 대해 이벤트 리스너를 추가
+			elements.forEach(function (element) {
+				// 요소가 포커스를 잃었을 때 이벤트를 리스닝
+				element.addEventListener("blur", function () {
+					// 요소의 값이 빈 문자열이라면 기본값 ""을 설정
+					if (element.value === "") {
+						element.value = "";
+					}
+				});
+			});
+		});
+	</script>
+	<script th:inline="javascript">
+		var stepCount = /*[[${stepssize}]]*/ 0;
+		function handleClick1(event) {
+			event.preventDefault(); // 폼 제출 막기
+			// 원하는 작업 수행
+			//요리스텝 스크립트
+
+
+			let steptxtindex = 1;
+			const steptext = ['예 ) 다 볶았으면 접시에 옮겨 담고 마지막으로 참깨가루를 뿌려주세요.',
+				'예 ) 김치 반 포기를 잘게 썰어주세요.',
+				'예 ) 양파, 대파을 썰고, 마늘은 다져주세요.',
+				'예 ) 프라이팬에 식용유를 2스푼정도 두르고 중불로 달궈주세요.',
+				'예 ) 김치와 양파를 넣고 5분정도 볶아주세요.',
+				'예 ) 볶았으면 밥 한 공기와, 다시다 1큰술, 물엿 2큰술을 넣고 5분정도 볶아주세요.',
+				'예 ) 볶은 뒤 참기름을 반큰술 넣고 1분만 볶아주세요.']
+
+			//const addButton1 = document.getElementById("addButton1");
+			const container2 = document.getElementById("container1");
+
+			// addButton1 클릭 이벤트 처리
+
+			//alert("Button clicked!"); // 버튼 클릭 시 경고 표시
+			stepCount++;
+
+			steptxtindex++;
+			if (steptxtindex == 7) {
+				steptxtindex = 0;
+			}
+
+			const newStep = document.createElement('div');
+			newStep.className = 'e56_212';
+			newStep.id = "r" + stepCount;
+
+			newStep.innerHTML = `
+        <label class="step">STEP ${stepCount}</label><br>
+								<div class="e56_213"><input type="button" class="remove-button1"
+										onclick="removeStep1('r${stepCount}',${stepCount})" value="삭제"></div>
+								<div class="e56_214">
+									<input multiple type="file" id="file${stepCount}" name="file1" style="display: none;">
+									<button id="uploadButton${stepCount}" name="uploadButton1" onclick="handleClick2(event); handleUploadClick(${stepCount})">
+										<div id="preview${stepCount}" name="preview1">
+											<img src="/img/대표이미지.PNG" style="width: 363px; height: 234px;">
+										</div>
+								</div>
+								<div class="e56_215"><textarea class='text2' name="SContent" placeholder="${steptext[steptxtindex]}" required></textarea></div>
+								<div class="e56_216"><input type="text" class="text3" name="Singtxt"
+									placeholder="재료에 대해 적어주세요! 예 ) 감자 1개, 소금 2큰술">
+									</div>
+								<div class="e56_217"><input type="text" class="text3" name="Stooltxt"
+									placeholder="재료도구에 대해 적어주세요! 예 ) 냄비, 프라이팬, 국자"></div>
+								<div class="e56_218"><input type="text" class="text3" name="Scontroltxt"
+									placeholder="불 세기나 도구 사용시간에 대해 적어주세요! 예 ) 약불"></div>
+								<div class="e56_219"><input type="text" class="text3" name="Stip"
+									placeholder="팁이 있다면 적어주세요! 예 ) 삶은 감자를 2분 정도 식혀주세요"></div>
+								<div class="e56_220"><img src="/img/carrot.png" style="width: 100%; height: 100%;"></div>
+								<div class="e56_221"><img src="/img/냄비.png" style="width: 100%; height: 100%;"></div>
+								<div class="e56_222"><img src="/img/불.png" style="width: 100%; height: 100%;"></div>
+								<div class="e56_223"><img src="/img/전구.png" style="width: 100%; height: 100%;"></div>
+    `;
+
+			container2.appendChild(newStep);
+			// adjustContainerHeight1(); // 이 함수를 호출하려면 함수 정의가 필요합니다.
+
+			//console.log("Button clicked, but form submission prevented.");
+
+		}
+
+
+
+
+		function reorganizeStepLabels() {
+			const stepLabels = document.querySelectorAll(".step");
+			stepLabels.forEach((label, index) => {
+				label.textContent = `STEP ${index + 1}`;
+			});
+		}
+
+		var nextId = /*[[${tagsize}]]*/ 0;
+
+		function handleDeleteClick(listItem, event) {
+			event.preventDefault(); // 폼 제출 막기
+			const listitem1 = document.getElementById(listItem);
+			listitem1.remove();
+		}
+
+
+		function createListItem(text) {
+			const id = `item-${nextId}`; // 다음 아이템의 id 계산
+
+			const listItem = document.createElement("div");
+			listItem.className = "list-item";
+			listItem.id = id;
+
+			nextId++; // 순번 증가
+
+			const inputHidden = document.createElement("input");
+			inputHidden.type = "hidden";
+			inputHidden.name = "tags";
+			inputHidden.id = "tags";
+			inputHidden.value = text;
+
+			const deleteButton = document.createElement("button");
+			deleteButton.className = "delete-button";
+			deleteButton.textContent = text; // 버튼 내용을 입력값(text)으로 설정
+			deleteButton.onclick = function () {
+				listItem.remove();
+			};
+
+			listItem.appendChild(deleteButton);
+			listItem.appendChild(inputHidden);
+			return listItem;
+		}
+
+		function handleInput(event) {
+			const textInput = document.getElementById("textInput");
+			const textList = document.getElementById("textList");
+			if (event.key === "Enter") {
+				event.preventDefault();
+				const text = textInput.value;
+
+				if (text.trim() !== "") {
+					const textArray = text.split(",");
+
+					textArray.forEach(item => {
+						const listItem = createListItem(item);
+						textList.appendChild(listItem);
+						textInput.value = "";
+					});
+				}
+			}
+		}
+
+
+		function handleUploadClick(stepNumber) {
+			const imageInput1 = document.getElementById(`file${stepNumber}`);
+			const uploadButton1 = document.getElementById(`uploadButton${stepNumber}`);
+			const preview1 = document.getElementById(`preview${stepNumber}`);
+
+			uploadButton1.addEventListener('click', () => {
+				imageInput1.click();
+			});
+
+
+
+			imageInput1.addEventListener('change', (event) => {
+				stepnum2 = stepNumber
+				var file1 = event.target.files[0];
+				if (file1) {
+					const reader = new FileReader();
+
+					reader.onload = (e) => {
+						const image1 = new Image();
+						image1.src = e.target.result;
+						image1.style.maxWidth = '363px';
+						image1.style.maxHeight = '234px';
+						image1.style.minWidth = '363px';
+						image1.style.minHeight = '234px';
+						preview1.innerHTML = '';
+						preview1.appendChild(image1);
+					};
+
+					reader.readAsDataURL(file1);
+				}
+			});
+
+
+		}
+	</script>
+</head>
+
+<body>
+	<div class=e2_2>
+		<div class=e2_3>
+			<div class="e2_4">
+
+				<img src="../img/레시피.jpg" style="width: 100%; height: 100%;">
+				<div class="t"><span class="e2_26">모두의 레시피 </span><span class="e2_27">쉽고 간편하게 레시피를 공유해보세요</span>
+
+				</div>
+			</div>
+		</div>
+		<div class=e2_5><span class="e2_6"><a class="mainicon" href="/">모두의 레시피</a></span>
+			<div class=e2_8>
+			<span th:if="${session.loggedInNickname == '관리자'}" class="ad_1"><a href="/reviewRecipes">레시피 검토</a></span>
+			<span th:if="${session.loggedInNickname == '관리자'}" class="ad_2"><a href="/user">회원 관리</a></span>
+			<span class="e2_11"><a href="/recipe">레시피</a></span>
+			<span class="e2_12"><a href="/rank">랭킹</a></span>
+			<span class="e2_13"><a href="/board">게시판</a></span>
+			<span class="e2_14"><a href="/mypage">마이페이지</a></span>	
+				<div class="e2_22"><a href="/alarm" style="width:30px; height:30px;"><i th:if="${session.alarm != 1}" class="fas fa-bell"
+							style="width:30px; height:30px;"></i>
+							<i th:if="${session.alarm == 1}" class="fas fa-bell"
+							style="width:30px; height:30px; color: red;"></i></a></div>
+				<div class="e2_23"><a href="/createRecipe"><i class="fas fa-pencil-alt"></i></a></div>
+				
+				<div th:if="${session.loggedInNickname != null}" class="e2_24"><a href="/logout">로그아웃</a></div>
+				<div th:if="${session.loggedInNickname == null}" class="e2_24"><a href="/logout">로그인</a></div>
+			</div>
+			<div class=e3_172>
+				<form action="/search" method="get"> <!-- 검색창 주소 입력 -->
+					<div class="e2_7"><input type="text" name="keyword" class="search_txt" required></div>
+					<div class="e3_171">
+						<button type="submit" class="search_btn">
+							<span class="searchicon">
+								<i class="fa-solid fa-magnifying-glass" style="max-width:25px; max-height:25px;"></i>
+							</span>
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<div class=e2_28>
+			<!--			여기에 내용을 입력하세요-->
+			<form th:action="'/editRecipe/'+${recipe.recipe_id}" method="post" enctype="multipart/form-data">
+				<div class=e56_171>
+					<div class=e56_172><span class="e56_173">레시피 수정</span>
+						<div class="e56_174"><input multiple type="file" id="file" name="file" style="display: none;">
+							<button id="uploadButton" name="uploadButton"
+								onclick="handleClick2(event); handleUploadClick2();" width="347px" height="234px"
+								style="border: 0px; background-color: white; cursor:pointer;">
+								<div id="preview" name="preview" width="360px" height="234px">
+									<img th:src="@{${recipe.main_photo_path}}" width="360px" height="234px">
+								</div>
+							</button>
+						</div>
+						<div class="e56_175"><textarea name="title" th:text="${recipe.title}" required></textarea></div>
+						<div class="e56_176"><textarea name="recipesubtxt" th:text="${recipe.recipesubtxt}"
+								required></textarea></div>
+						<span class="e56_177">제목</span>
+						<span class="e56_178">요리소개</span>
+						<span class="e56_179">카테고리</span>
+						<div class="e56_180"><select id="categoryName" name="category_name" class="cn">
+								<option value="파티" th:selected="${recipe.categoryName == '파티'}">파티용</option>
+								<option value="혼밥" th:selected="${recipe.categoryName == '혼밥'}">혼밥용</option>
+								<option value="피크닉" th:selected="${recipe.categoryName == '피크닉'}">피크닉용</option>
+								<option value="가정" th:selected="${recipe.categoryName == '가정'}">가정용</option>
+								<option value="디저트" th:selected="${recipe.categoryName == '디저트'}">디저트용</option>
+								<option value="야식/안주" th:selected="${recipe.categoryName == '야식/안주'}">야식/안주용
+								</option>
+							</select></div>
+						<span class="e56_181">*레시피 기본 정보를 입력 해주세요*</span>
+					</div>
+					<div class=e56_183><span class="e56_186">태그</span><br>
+						<span class="e56_189">*태그를 설정해주세요*</span><br> <br>
+						<div class=container2>
+							<div class="e56_206"><input type="text" id="textInput" placeholder="태그를 입력 후 엔터키를 누르세요."
+									onkeydown="handleInput(event)"
+									style="width: 100%; height: 100%; border: 1px solid #ccc;"></div>
+							<div class=e56_207>
+								<ul id="textList">
+									<div class="list-item" th:each="tag, status : ${tagss}"
+										th:id="'item-'+${status.index + 1}">
+										<input type="hidden" name="tags" id="tags" th:value="${tag.content}">
+										<button class="delete-button" onclick="" th:text="${tag.content}+'      X'"
+											th:onclick="'handleDeleteClick(\'item-' + ${status.index + 1} + '\', event);'"></button>
+									</div>
+								</ul>
+							</div>
+						</div><br><br>
+						<span class="e56_184">재료</span><br>
+						<span class="e56_187">*정확한 재료 정보를 입력 해주세요*</span>
+						<div id="container">
+							<button id="addButton" onclick="handleClick(event)" style="width:150px; height:50px;
+								cursor:pointer; margin-bottom: 20px;
+								background-color: rgb(192, 192, 192); color: #fff; border: 0;">재료 추가</button>
+
+							<div class='textRow' id="t1" th:each="ingredient : ${recipeings}"
+								th:if="${(ingredient.ingredient.ingredient_name != '')}">
+								<input type="text" class='text1' name="ingredientName"
+									th:value="${ingredient.ingredient.ingredient_name}">
+								<input type="text" class='text1' name="mensuration"
+									th:value="${ingredient.mensuration}">
+								<input type="button" id="removebutton" class="remove-button" value="삭제">
+							</div>
+						</div>
+						<span class="e56_185">조리단계</span><br>
+						<span class="e56_188">*조리단계를 상세히 입력 해주세요*</span>
+						<div id="container1">
+							<button id="addButton1" onclick="handleClick1(event)" style="width:150px; height:50px;
+								cursor:pointer; background-color: rgb(192, 192, 192);
+								color: #fff; border: 0;">스텝 추가</button>
+							<div class='e56_212' th:id="'r'+${status.index + 1}" th:each="step, status : ${steps}">
+								<label class="step" th:text="'STEP'+${status.index + 1}"></label><br>
+
+								<div class="e56_213"><input type="button" class="remove-button1"
+										th:onclick="'removeStep1(\'r' + ${status.index + 1} +'\','+ ${status.index + 1}+')'"
+										value="삭제"></div>
+
+								<div class="e56_214">
+									<input multiple type="file" th:id="'file'+${status.index + 1}" name="file1"
+										style="display: none;">
+									<button th:id="'uploadButton'+${status.index + 1}" name="uploadButton1"
+										th:onclick="'handleClick2(event); handleUploadClick('+${status.index + 1}+')'">
+										<div th:id="'preview'+${status.index + 1}" name="preview1">
+											<img th:src="@{${step.Sphotopath}}" style="width: 363px; height: 234px;">
+										</div>
+								</div>
+								<div class="e56_215"><textarea class='text2' name="SContent"
+										placeholder='예 ) 김치 반 포기를 잘게 썰어주세요.' th:text="${step.SContent}"
+										required></textarea></div>
+								<div class="e56_216"><input type="text" class="text3" name="Singtxt"
+										placeholder="재료에 대해 적어주세요! 예 ) 감자 1개, 소금 2큰술" th:value="${step.Singtxt}">
+								</div>
+								<div class="e56_217"><input type="text" class="text3" name="Stooltxt"
+										placeholder="재료도구에 대해 적어주세요! 예 ) 냄비, 프라이팬, 국자" th:value="${step.Stooltxt}">
+								</div>
+								<div class="e56_218"><input type="text" class="text3" name="Scontroltxt"
+										placeholder="불 세기나 도구 사용시간에 대해 적어주세요! 예 ) 약불" th:value="${step.Scontroltxt}">
+								</div>
+								<div class="e56_219"><input type="text" class="text3" name="Stip"
+										placeholder="팁이 있다면 적어주세요! 예 ) 삶은 감자를 2분 정도 식혀주세요" th:text="${step.Stip}"></div>
+								<div class="e56_220"><img src="/img/carrot.png" style="width: 100%; height: 100%;">
+								</div>
+								<div class="e56_221"><img src="/img/냄비.png" style="width: 100%; height: 100%;"></div>
+								<div class="e56_222"><img src="/img/불.png" style="width: 100%; height: 100%;"></div>
+								<div class="e56_223"><img src="/img/전구.png" style="width: 100%; height: 100%;"></div>
+							</div>
+						</div>
+						<div class="container4">
+							<div class="e56_204">
+								<input type="submit" class="Rsubmit" onclick="sendChangesToServer()" value="수정" style="width: 100%; height: 100%;
+							 background-color: rgb(192, 192, 192); color: #fff; border: 0;">
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+			<!--		여기까지입니다-->
+		</div>
+
+	</div>
+	<div class=e3_173><span class="e3_175">2023 yuhan University</span></div>
+	</div>
+	</div>
+	<script th:src="@{/../js/main.js}"></script>
+	<!--	<script th:src="@{/../js/editrecipe.js}"></script>-->
+	<script th:inline="javascript">
+		var deletedSteps = [];
+		function removeStep1(stepId, index) {
+			const stepToRemove = document.getElementById(stepId);
+			const con = document.getElementById("container1");
+			var input = document.createElement("input");
+			input.type = "hidden";
+			input.name = "deleteindex";
+			input.value = index
+			con.appendChild(input);
+			deletedSteps.push(index);
+			//alert(deletedSteps);
+			if (stepToRemove) {
+				stepToRemove.remove();
+				stepCount--;
+				// 중간의 스텝이 제거되면 다시 스텝 숫자를 정렬
+				reorganizeStepLabels();
+				//adjustContainerHeight1();
+			}
+		}
+
+
+
+	</script>
+</body>
+</body>
+
+</html>

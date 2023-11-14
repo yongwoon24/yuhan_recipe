@@ -33,7 +33,7 @@ public class Recipe {
 	
 	//private String user_id;
 	@ManyToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id" )
 	User user;
 	
 	@Column(name = "category_name")
@@ -56,14 +56,13 @@ public class Recipe {
 	private String main_photo_path;
 	@Column(name = "recipe_subtext")
 	private String recipesubtxt;
-	
-	@OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
+
+	@OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
 	private List<Love> loves;
 	//@OneToMany
 	//@JoinColumn(name = "recipe_id")
 	
-	@OneToMany
-	@JoinColumn(name = "recipe_id")
+	@OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
 	private List<Scrap> scraps;
 	
 	@OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)

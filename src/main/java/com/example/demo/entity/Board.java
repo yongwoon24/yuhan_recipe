@@ -19,6 +19,9 @@ public class Board {
    private LocalDateTime created_date;
    private String user_id;
    private String nickname;
+   
+   @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
+   private List<Love> userActivities; // 추가
     
    public int getPostId() {
       return postId;

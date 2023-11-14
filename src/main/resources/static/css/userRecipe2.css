@@ -1735,7 +1735,7 @@ body {
 	height: 27px;
 	position: absolute;
 	left: 203px;
-	top: 649px;
+	top: 690px;
 	font-family: Almarai;
 	text-align: left;
 	font-size: 15px;
@@ -1757,8 +1757,6 @@ body {
 }
 
 .e52_764 {
-
-	width: 45px;
 	height: 45px;
 	position: absolute;
 	left: 0%;
@@ -1767,11 +1765,11 @@ body {
 
 .e52_765 {
 
-	width: 45px;
-	height: 45px;
-	position: absolute;
-	left: 8%;
-	top: 90%;
+	width: 65px;
+    height: 60px;
+    position: absolute;
+    left: 8%;
+    top: 88.5%;
 }
 
 .e52_766 {
@@ -1903,7 +1901,7 @@ body {
 
 .e52_774 {
 	color: rgba(0, 0, 0, 1);
-	width: 128px;
+	width: 150px;
 	height: 36px;
 	position: absolute;
 	left: 47px;

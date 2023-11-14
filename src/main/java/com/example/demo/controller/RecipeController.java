@@ -97,6 +97,7 @@ public class RecipeController {
 	    String encodedingredientNames = encodeCategories(ingredientNames);
 	    List<Recipe> recipes;
 	    Boolean a = true;
+	    int sort1 = 0;
 	    
 	    
 	    
@@ -106,17 +107,25 @@ public class RecipeController {
         	if ((categories == null || categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty())) {
     	        // 카테고리와 재료 이름이 모두 제공되지 않은 경우 모든 레시피를 가져옵니다.
         		recipes = recipeRepository.findByRecipeVerifiedOrderByCreateddateDesc(a);
+        		sort1=0;
+    	        model.addAttribute("sort1",sort1);
     	    } else {
     	        // 카테고리와 재료 이름 중 하나라도 제공된 경우 검색을 수행합니다.
     	        if (categories != null && !categories.isEmpty() && ingredientNames != null && !ingredientNames.isEmpty()) {
     	            // 카테고리와 재료 이름 모두 제공된 경우
     	        	recipes = recipeRepository.findByRecipeVerifiedAndCategoryNameInAndRecipeIngredientsIngredientIngredientNameInOrderByCreateddateDesc(a, categories, ingredientNames);
+    	        	sort1=0;
+        	        model.addAttribute("sort1",sort1);
     	        } else if (categories != null && !categories.isEmpty()) {
     	            // 카테고리만 제공된 경우
     	        	recipes = recipeRepository.findByRecipeVerifiedAndCategoryNameInOrderByCreateddateDesc(a, categories);
+    	        	sort1=0;
+        	        model.addAttribute("sort1",sort1);
     	        } else {
     	            // 재료 이름만 제공된 경우
     	        	recipes = recipeRepository.findByRecipeVerifiedAndRecipeIngredientsIngredientIngredientNameInOrderByCreateddateDesc(a, ingredientNames);
+    	        	sort1=0;
+        	        model.addAttribute("sort1",sort1);
     	        }
     	    }
         } else if ("views".equals(sort)) {
@@ -124,17 +133,25 @@ public class RecipeController {
         	if ((categories == null || categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty())) {
     	        // 카테고리와 재료 이름이 모두 제공되지 않은 경우 모든 레시피를 가져옵니다.
     	        recipes = recipeRepository.findByRecipeVerifiedOrderByViewcountDesc(a);
+    	        sort1=1;
+    	        model.addAttribute("sort1",sort1);
     	    } else {
     	        // 카테고리와 재료 이름 중 하나라도 제공된 경우 검색을 수행합니다.
     	        if (categories != null && !categories.isEmpty() && ingredientNames != null && !ingredientNames.isEmpty()) {
     	            // 카테고리와 재료 이름 모두 제공된 경우
     	            recipes = recipeRepository.findByRecipeVerifiedAndCategoryNameInAndRecipeIngredientsIngredientIngredientNameInOrderByViewcountDesc(a, categories, ingredientNames);
+    	            sort1=1;
+        	        model.addAttribute("sort1",sort1);
     	        } else if (categories != null && !categories.isEmpty()) {
     	            // 카테고리만 제공된 경우
     	            recipes = recipeRepository.findByRecipeVerifiedAndCategoryNameInOrderByViewcountDesc(a, categories);
+    	            sort1=1;
+        	        model.addAttribute("sort1",sort1);
     	        } else {
     	            // 재료 이름만 제공된 경우
     	            recipes = recipeRepository.findByRecipeVerifiedAndRecipeIngredientsIngredientIngredientNameInOrderByViewcountDesc(a, ingredientNames);
+    	            sort1=1;
+        	        model.addAttribute("sort1",sort1);
     	        }
         }
         }
@@ -142,18 +159,27 @@ public class RecipeController {
         	if ((categories == null || categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty())) {
     	        // 카테고리와 재료 이름이 모두 제공되지 않은 경우 모든 레시피를 가져옵니다.
     	        recipes = recipeRepository.findByRecipeVerifiedOrderByCreateddateDesc(a);
+    	        sort1=0;
+    	        model.addAttribute("sort1",sort1);
     	    } else {
     	        // 카테고리와 재료 이름 중 하나라도 제공된 경우 검색을 수행합니다.
     	        if (categories != null && !categories.isEmpty() && ingredientNames != null && !ingredientNames.isEmpty()) {
     	            // 카테고리와 재료 이름 모두 제공된 경우
     	            recipes = recipeRepository.findByRecipeVerifiedAndCategoryNameInAndRecipeIngredientsIngredientIngredientNameInOrderByCreateddateDesc(a, categories, ingredientNames);
+    	            sort1=0;
+        	        model.addAttribute("sort1",sort1);
     	        } else if (categories != null && !categories.isEmpty()) {
     	            // 카테고리만 제공된 경우
     	            recipes = recipeRepository.findByRecipeVerifiedAndCategoryNameInOrderByCreateddateDesc(a, categories);
+    	            sort1=0;
+        	        model.addAttribute("sort1",sort1);
     	        } else {
     	            // 재료 이름만 제공된 경우
     	            recipes = recipeRepository.findByRecipeVerifiedAndRecipeIngredientsIngredientIngredientNameInOrderByCreateddateDesc(a, ingredientNames);
+    	            sort1=0;
+        	        model.addAttribute("sort1",sort1);
     	        }
+    	        
     	    }
         }
 	    
@@ -589,13 +615,17 @@ public class RecipeController {
             @RequestParam("mensuration") List<String> mensuration,
             @RequestParam(name ="tags", required = false) String tags,
             @RequestParam("file") MultipartFile file,
-            @RequestParam(name = "deleteindex", required = false) List<Integer> deleteindex) throws Exception {
+            @RequestParam(name = "deleteindex", required = false) List<Integer> deleteindex,
+            @RequestParam(name="category_name") String categoryName,  @RequestParam(name="title") String title,  
+            @RequestParam(name="recipesubtxt") String recipesubtxt) throws Exception {
 	    recipe.setRecipe_id(recipe_id); // Set the ID to the path variable value for updating the correct recipe
 	    Recipe recipe1 = recipeRepository.findById(recipe_id);
 	    String nickname = recipe1.getNickname();
 	    recipe.setNickname(nickname);
 	    recipe = recipe1;
-	    
+	    recipe.setCategory_name(categoryName);
+	    recipe.setTitle(title);
+	    recipe.setRecipesubtxt(recipesubtxt);
 	    String Rphoto = recipe1.getMain_photo();
 	    String Rphotopath = recipe1.getMain_photo_path();
 	    if(Rphoto == null) {
@@ -603,6 +633,7 @@ public class RecipeController {
 	    	Rphotopath = "";
 	    }
 	    recipeservice.editwrite(recipe, file, Rphoto,Rphotopath);
+	    
 	    
 	    List<Love> loves = loverepository.findByRecipe(recipe1);
 	    recipe.setLoves(loves);
@@ -645,7 +676,7 @@ public class RecipeController {
 	@GetMapping("/deleteRecipe/{recipe_id}")
 	public String deleteRecipe(@PathVariable int recipe_id, RedirectAttributes redirectAttributes, HttpSession session) {	
 		 recipeservice.deletePostWithImage(recipe_id);
-		 rus.updateToday1(session);
+		 rus.updateToday1();
 		 redirectAttributes.addFlashAttribute("asd", "삭제되었습니다");
 				
 		return "redirect:/recipe";
@@ -662,16 +693,23 @@ public class RecipeController {
 	
 	    List<Recipe> recipes;
 	    boolean b = true;
+	    int sort1 = 0;
 	    
 	    
 	    if (keyword != null && !keyword.isEmpty()) {
 	    	
 	        if ("latest".equals(sort)) {
 	        	recipes = recipeRepository.findByTitleContainingAndRecipeVerifiedOrTagContentAndRecipeVerified(keyword,b, keyword, Sort.by(Sort.Order.desc("createddate")), b);
+	        	sort1=1;
+    	        model.addAttribute("sort1",sort1);
 	        } else if ("views".equals(sort)) {
 	        	recipes = recipeRepository.findByTitleContainingAndRecipeVerifiedOrTagContentAndRecipeVerified(keyword, b, keyword, Sort.by(Sort.Order.desc("viewcount")), b);
+	        	sort1=0;
+    	        model.addAttribute("sort1",sort1);
 	        } else {
 	        	recipes = recipeRepository.findByTitleContainingAndRecipeVerifiedOrTagContentAndRecipeVerified(keyword,b, keyword, Sort.by(Sort.Order.desc("createddate")), b);
+	        	sort1=1;
+    	        model.addAttribute("sort1",sort1);
 	        }
 	    } else {
 	    	recipes = recipeRepository.findByTitleContainingAndRecipeVerifiedOrTagContentAndRecipeVerified(keyword,b, keyword, Sort.by(Sort.Order.desc("createddate")), b);

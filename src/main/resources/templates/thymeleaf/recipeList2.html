@@ -30,18 +30,19 @@
 		</div>
 		<div class=e2_5><span class="e2_6"><a class="mainicon" href="/">모두의 레시피</a></span>
 			<div class=e2_8>
-			<span th:if="${session.loggedInNickname == '관리자'}" class="ad_1"><a href="/reviewRecipes">레시피 검토</a></span>
-			<span th:if="${session.loggedInNickname == '관리자'}" class="ad_2"><a href="/user">회원 관리</a></span>
-			<span class="e2_11"><a href="/recipe">레시피</a></span>
-			<span class="e2_12"><a href="/rank">랭킹</a></span>
-			<span class="e2_13"><a href="/board">게시판</a></span>
-			<span class="e2_14"><a href="/mypage">마이페이지</a></span>	
-				<div class="e2_22"><a href="/alarm" style="width:30px; height:30px;"><i th:if="${session.alarm != 1}" class="fas fa-bell"
-							style="width:30px; height:30px;"></i>
-							<i th:if="${session.alarm == 1}" class="fas fa-bell"
+				<span th:if="${session.loggedInNickname == '관리자'}" class="ad_1"><a href="/reviewRecipes">레시피
+						검토</a></span>
+				<span th:if="${session.loggedInNickname == '관리자'}" class="ad_2"><a href="/user">회원 관리</a></span>
+				<span class="e2_11"><a href="/recipe">레시피</a></span>
+				<span class="e2_12"><a href="/rank">랭킹</a></span>
+				<span class="e2_13"><a href="/board">게시판</a></span>
+				<span class="e2_14"><a href="/mypage">마이페이지</a></span>
+				<div class="e2_22"><a href="/alarm" style="width:30px; height:30px;"><i th:if="${session.alarm != 1}"
+							class="fas fa-bell" style="width:30px; height:30px;"></i>
+						<i th:if="${session.alarm == 1}" class="fas fa-bell"
 							style="width:30px; height:30px; color: red;"></i></a></div>
 				<div class="e2_23"><a href="/createRecipe"><i class="fas fa-pencil-alt"></i></a></div>
-				
+
 				<div th:if="${session.loggedInNickname != null}" class="e2_24"><a href="/logout">로그아웃</a></div>
 				<div th:if="${session.loggedInNickname == null}" class="e2_24"><a href="/logout">로그인</a></div>
 			</div>
@@ -66,16 +67,20 @@
 				<div class=e56_24 th:each="recipe, recipeIndex : ${recipes}">
 					<div class="e56_25">
 						<a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}">
-							<img th:src="@{${recipe.main_photo_path}}" width="100%" height="100%" style="border-radius: 10px;"></a>
+							<img th:src="@{${recipe.main_photo_path}}" width="100%" height="100%"
+								style="border-radius: 10px;"></a>
 					</div>
-					<a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}"><span class="e56_26" th:text="${recipe.title}"></span></a>
-					<a th:href="@{'/userpage_R/'+${recipe.nickname}}"><div class="e56_27"><img th:src="${recipe.user.userphotopath}" width="100%" height="100%"
-							style="border-radius: 500px;"></div><span class="e56_28"
-						th:text="${recipe.nickname}"></span></a>
+					<a th:href="@{/recipe/{recipeId}(recipeId=${recipe.recipe_id})}"><span class="e56_26"
+							th:text="${recipe.title}"></span></a>
+					<a th:href="@{'/userpage_R/'+${recipe.nickname}}">
+						<div class="e56_27"><img th:src="${recipe.user.userphotopath}" width="100%" height="100%"
+								style="border-radius: 500px;"></div><span class="e56_28"
+							th:text="${recipe.nickname}"></span>
+					</a>
 					<div class="e56_34"><img src="img/좋아요.jpg" width="100%" height="100%" style="border-radius: 500px;">
 					</div><span class="e56_35" th:text="${recipe.totalLove}"></span>
 					<div class="e56_36"><img src="img/조회수.png" width="100%" height="100%" style="border-radius: 500px;">
-						</div><span class="e56_37" th:text="${recipe.view_count}"></span>
+					</div><span class="e56_37" th:text="${recipe.view_count}"></span>
 				</div>
 
 			</div>
@@ -185,56 +190,94 @@
 				</div>
 			</div>
 			<form action="/SearchRecipe" method="post">
-			<div class=e56_130>
-				<div class="e56_131">
-					<span class="e56_132">용도</span>
-					<div class="e56_133">
-						<input type="checkbox" id="picnic" name="categoryName" value="피크닉">
-						<label for="picnic" id="picnic-label">피크닉</label>
+				<div class=e56_130>
+					<div class="e56_131">
+						<span class="e56_132">용도</span>
+						<div class="e56_133">
+							<input type="checkbox" id="picnic" name="categoryName" value="피크닉">
+							<label for="picnic" id="picnic-label">피크닉</label>
+						</div>
+						<div class="e56_134">
+							<input type="checkbox" id="eating_alone" name="categoryName" value="혼밥">
+							<label for="eating_alone">혼밥</label>
+						</div>
+						<div class="e56_135">
+							<input type="checkbox" id="home_meal" name="categoryName" value="가정">
+							<label for="home_meal">가정</label>
+						</div>
+						<div class="e56_136">
+							<input type="checkbox" id="party" name="categoryName" value="파티">
+							<label for="party">파티</label>
+						</div>
+						<div class="e56_137">
+							<input type="checkbox" id="dessert" name="categoryName" value="디저트">
+							<label for="dessert">디저트</label>
+						</div>
+						<div class="e56_138">
+							<input type="checkbox" id="late_night_meal" name="categoryName" value="야식/안주">
+							<label for="late_night_meal">야식/안주</label>
+						</div>
 					</div>
-					<div class="e56_134">
-						<input type="checkbox" id="eating_alone" name="categoryName" value="혼밥">
-						<label for="eating_alone">혼밥</label>
+					<div class=e56_139>
+						<div class="e56_140"><input type="text" id="t1" class="t11" value="" onkeydown="checkEnter1(event)"></div>
+						<div class="e56_141"><input type="button" onclick="init()" id="btn" value="생성"></div><span
+							class="e56_142">재료</span>
+						<div class="e56_144"><input type="button" value="검색" onclick="submitForm()"></div>
+						<div class="ing_res" id="ing_res"></div>
 					</div>
-					<div class="e56_135">
-						<input type="checkbox" id="home_meal" name="categoryName" value="가정">
-						<label for="home_meal">가정</label>
-					</div>
-					<div class="e56_136">
-						<input type="checkbox" id="party" name="categoryName" value="파티">
-						<label for="party">파티</label>
-					</div>
-					<div class="e56_137">
-						<input type="checkbox" id="dessert" name="categoryName" value="디저트">
-						<label for="dessert">디저트</label>
-					</div>
-					<div class="e56_138">
-						<input type="checkbox" id="late_night_meal" name="categoryName" value="야식/안주">
-						<label for="late_night_meal">야식/안주</label>
+					<div class=e56_145><span class="e56_146"><a
+								th:if="${(categories != null && !categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty()) && (sort1 == 0)}"
+								th:href="@{|/recipe?&amp;categoryName=${categories}&amp;ingredientNames=${ingredientNames}&amp;sort=latest|}"
+								style="font-weight: bold;">최신순</a>
+							<a th:if="${(categories == null || categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty()) && (sort1 == 0)}"
+								th:href="@{|/recipe?&amp;ingredientNames=${ingredientNames}&amp;sort=latest|}"
+								style="font-weight: bold;">최신순</a>
+							<a th:if="${(categories != null && !categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty()) && (sort1 == 0)}"
+								th:href="@{|/recipe?&amp;categoryName=${categories}&amp;sort=latest|}"
+								style="font-weight: bold;">최신순</a>
+							<a th:if="${(categories == null || categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty()) && (sort1 == 0)}"
+								th:href="@{|/recipe?&amp;sort=latest|}" style="font-weight: bold;">최신순</a></span>
+
+						<span class="e56_146"><a
+								th:if="${(categories != null && !categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty()) && (sort1 == 1)}"
+								th:href="@{|/recipe?&amp;categoryName=${categories}&amp;ingredientNames=${ingredientNames}&amp;sort=latest|}"
+								style="color: darkgrey;">최신순</a>
+							<a th:if="${(categories == null || categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty()) && (sort1 == 1)}"
+								th:href="@{|/recipe?&amp;ingredientNames=${ingredientNames}&amp;sort=latest|}"
+								style="color: darkgrey;">최신순</a>
+							<a th:if="${(categories != null && !categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty()) && (sort1 == 1)}"
+								th:href="@{|/recipe?&amp;categoryName=${categories}&amp;sort=latest|}"
+								style="color: darkgrey;">최신순</a>
+							<a th:if="${(categories == null || categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty()) && (sort1 == 1)}"
+								th:href="@{|/recipe?&amp;sort=latest|}" style="color: darkgrey;">최신순</a></span>
+
+						<span class="e56_147"><a
+								th:if="${(categories != null && !categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty()) && (sort1 == 1)}"
+								th:href="@{|/recipe?&amp;categoryName=${categories}&amp;ingredientNames=${ingredientNames}&amp;sort=views|}"
+								style="font-weight: bold;">조회순</a>
+							<a th:if="${(categories == null || categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty()) && (sort1 == 1)}"
+								th:href="@{|/recipe?&amp;ingredientNames=${ingredientNames}&amp;sort=views|}"
+								style="font-weight: bold;">조회순</a>
+							<a th:if="${(categories != null && !categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty()) && (sort1 == 1)}"
+								th:href="@{|/recipe?&amp;categoryName=${categories}&amp;sort=views|}"
+								style="font-weight: bold;">조회순</a>
+							<a th:if="${(categories == null || categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty()) && (sort1 == 1)}"
+								th:href="@{|/recipe?&amp;sort=views|}" style="font-weight: bold;">조회순</a></span>
+
+						<span class="e56_147"><a
+								th:if="${(categories != null && !categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty()) && (sort1 == 0)}"
+								th:href="@{|/recipe?&amp;categoryName=${categories}&amp;ingredientNames=${ingredientNames}&amp;sort=views|}"
+								style="color: darkgrey;">조회순</a>
+							<a th:if="${(categories == null || categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty()) && (sort1 == 0)}"
+								th:href="@{|/recipe?&amp;ingredientNames=${ingredientNames}&amp;sort=views|}"
+								style="color: darkgrey;">조회순</a>
+							<a th:if="${(categories != null && !categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty()) && (sort1 == 0)}"
+								th:href="@{|/recipe?&amp;categoryName=${categories}&amp;sort=views|}"
+								style="color: darkgrey;">조회순</a>
+							<a th:if="${(categories == null || categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty()) && (sort1 == 0)}"
+								th:href="@{|/recipe?&amp;sort=views|}" style="color: darkgrey;">조회순</a></span>
 					</div>
 				</div>
-				<div class=e56_139>
-					<div class="e56_140"><input type="text" id="t1" class="t11" value=""></div>
-					<div class="e56_141"><input type="button" onclick="init()" id="btn" value="생성"></div><span class="e56_142">재료</span>
-					<div class="e56_144"><input type="button" value="검색" onclick="submitForm()"></div><div class="ing_res" id="ing_res"></div>
-				</div>
-				<div class=e56_145><span class="e56_146"><a th:if="${(categories != null && !categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty())}"
-							th:href="@{|/recipe?&amp;categoryName=${categories}&amp;ingredientNames=${ingredientNames}&amp;sort=latest|}">최신순</a>
-						<a th:if="${(categories == null || categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty())}"
-							th:href="@{|/recipe?&amp;ingredientNames=${ingredientNames}&amp;sort=latest|}">최신순</a>
-						<a th:if="${(categories != null && !categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty())}"
-							th:href="@{|/recipe?&amp;categoryName=${categories}&amp;sort=latest|}">최신순</a>
-						<a th:if="${(categories == null || categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty())}"
-							th:href="@{|/recipe?&amp;sort=latest|}">최신순</a></span>
-							<span class="e56_147"><a th:if="${(categories != null && !categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty())}"
-							th:href="@{|/recipe?&amp;categoryName=${categories}&amp;ingredientNames=${ingredientNames}&amp;sort=views|}">조회순</a>
-						<a th:if="${(categories == null || categories.isEmpty()) && (ingredientNames != null && !ingredientNames.isEmpty())}"
-							th:href="@{|/recipe?&amp;ingredientNames=${ingredientNames}&amp;sort=views|}">조회순</a>
-						<a th:if="${(categories != null && !categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty())}"
-							th:href="@{|/recipe?&amp;categoryName=${categories}&amp;sort=views|}">조회순</a>
-						<a th:if="${(categories == null || categories.isEmpty()) && (ingredientNames == null || ingredientNames.isEmpty())}"
-							th:href="@{|/recipe?&amp;sort=views|}">조회순</a></span></div>
-			</div>
 			</form>
 		</div>
 		<!--		여기까지입니다-->
@@ -247,43 +290,43 @@
 			alert(sendMessage);
 		}
 	</script>
-	
+
 	<script>
-			var ingredientNames = [];
+		var ingredientNames = [];
 
-			function init() {
-				var tags = document.getElementById("t1").value;
-				if (tags !== "") {
-					ingredientNames.push(tags);
-					createButton(tags);
-					document.getElementById("t1").value = "";
-				}
+		function init() {
+			var tags = document.getElementById("t1").value;
+			if (tags !== "") {
+				ingredientNames.push(tags);
+				createButton(tags);
+				document.getElementById("t1").value = "";
 			}
+		}
 
-			function createButton(ingredientName) {
-				var btns = document.createElement("input");
-				btns.type = "button";
-				btns.name = "ingredientName";
-				btns.value = ingredientName + "    X";
-				btns.id = ingredientName;
-				btns.style.cursor = "hand";
-				btns.style.width = "auto";
-				btns.style.marginRight = "5px";
-				btns.onclick = function () {hideInfo(this)};
-				//alert(ingredientNames);
+		function createButton(ingredientName) {
+			var btns = document.createElement("input");
+			btns.type = "button";
+			btns.name = "ingredientName";
+			btns.value = ingredientName + "    X";
+			btns.id = ingredientName;
+			btns.style.cursor = "hand";
+			btns.style.width = "auto";
+			btns.style.marginRight = "5px";
+			btns.onclick = function () {hideInfo(this)};
+			//alert(ingredientNames);
 
-				var hidns = document.createElement("input");
-				hidns.type = "hidden";
-				hidns.name = "ingredientName";
-				hidns.value = ingredientName;
-				hidns.id = ingredientName;
+			var hidns = document.createElement("input");
+			hidns.type = "hidden";
+			hidns.name = "ingredientName";
+			hidns.value = ingredientName;
+			hidns.id = ingredientName;
 
-				var clas = document.getElementById("ing_res");
-				clas.appendChild(btns);
-				clas.appendChild(hidns);
-			}
+			var clas = document.getElementById("ing_res");
+			clas.appendChild(btns);
+			clas.appendChild(hidns);
+		}
 
-			function hideInfo(e) {
+		function hideInfo(e) {
 				var clas1 = document.getElementById("ing_res");
 				//alert("삭제됨");
 				var i = 0;
@@ -302,6 +345,16 @@
 					hiddenInput.remove();
 				}
 			}
+
+
+			function checkEnter1(event) {
+				if (event.key === 'Enter') {
+					event.preventDefault();
+					init();
+				}
+			}
+
+
 
 			function submitForm() {
 				var form = document.createElement("form");
@@ -335,15 +388,36 @@
 
 
 
-		</script>
+	</script>
 
-		<script th:inline="javascript">
-			var successMessage = /*[[${asd}]]*/ "";
-			if (successMessage) {
-				alert(successMessage);
-			}
-		</script>
-	
+	<script th:inline="javascript">
+		var successMessage = /*[[${asd}]]*/ "";
+		if (successMessage) {
+			alert(successMessage);
+		}
+	</script>
+	<script>
+		// 세션 스토리지에 스크롤 위치 저장
+		function setScrollPosition() {
+			sessionStorage.setItem('scrollPosition', window.scrollY);
+		}
+
+		// 세션 스토리지에서 스크롤 위치 읽기
+		function getScrollPosition() {
+			return parseInt(sessionStorage.getItem('scrollPosition')) || 0;
+		}
+
+		// 페이지 로드 시 스크롤 위치 설정
+		window.onload = function () {
+			window.scrollTo(0, getScrollPosition());
+		}
+
+		// 페이지 언로드 시 스크롤 위치 저장
+		window.onbeforeunload = function () {
+			setScrollPosition();
+		}
+	</script>
+
 </body>
 
 </html>

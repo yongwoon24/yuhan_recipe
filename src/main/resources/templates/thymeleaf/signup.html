@@ -18,6 +18,7 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
     <script>
+	
         function psCheck() {
         var password = document.getElementById("password").value;
         var confirmPassword = document.getElementById("confirmPassword").value;
@@ -119,7 +120,7 @@
 		<h1>회원가입</h1>
 		<div class="signup_wrapper">
 			<div class="signup_form">
-				<form th:action="@{/signup}" th:object="${user}" method="post" onsubmit="return validateForm()">
+				<form action="/signup" th:object="${user}" method="post" onsubmit="return validateForm()">
 					<label>이름</label><br>
 					<input type="text" th:field="*{name}" required autofocus/><br>
 			        
@@ -148,7 +149,7 @@
 			        <label>핸드폰 번호</label><br>
 			        <input type="text" th:field="*{phone_number}" required/><br>
 			        
-			        <input type="submit" id="signupButton" value="회원가입" disabled  /> <!-- 버튼 비활성화 상태로 초기화 -->
+			        <input type="submit" id="signupButton" value="회원가입"  onclick="disableButton()" disabled> <!-- 버튼 비활성화 상태로 초기화 -->
 				</form>
 			</div>
 		</div>
@@ -161,6 +162,14 @@
 		if (sendMessage) {
 			alert(sendMessage);
 		}
+		
+		 function disableButton() {
+    var btn = document.getElementById("signupButton"); // 버튼 ID를 실제로 사용하는 ID로 변경
+    btn.disabled = true;
+    btn.form.submit();
+  }
+		
+
 	</script>
 </body>
 
