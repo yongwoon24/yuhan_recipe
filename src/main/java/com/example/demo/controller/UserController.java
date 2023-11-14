@@ -156,8 +156,10 @@ public class UserController {
         boardRepository.deleteByNickname(nickname);
         scrapRepository.deleteByUser(user); // 사용자에 해당하는 스크랩 삭제
         loveRepository.deleteByUser(user);
-        userRepository.deleteById(user.getUser_id());
         recipeRepository.deleteByNickname(nickname);
+        userRepository.deleteById(user.getUser_id());
+        session.removeAttribute("loggedInNickname");
+        session.removeAttribute("loggedInUserId");
         return "redirect:/user";
     }
     
@@ -180,8 +182,9 @@ public class UserController {
         boardRepository.deleteByNickname(nickname);
         scrapRepository.deleteByUser(user); // 사용자에 해당하는 스크랩 삭제
         loveRepository.deleteByUser(user);
-        userRepository.deleteById(user.getUser_id());
         recipeRepository.deleteByNickname(nickname);
+        userRepository.deleteById(user.getUser_id());
+        
         session.removeAttribute("loggedInNickname");
         session.removeAttribute("loggedInUserId");
         redirectAttributes.addFlashAttribute("deleteMessage", "회원탈퇴가 완료 되었습니다!");

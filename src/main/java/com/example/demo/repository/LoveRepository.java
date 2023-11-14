@@ -75,5 +75,7 @@ public interface LoveRepository extends JpaRepository<Love, Long>{
     @Query(value = "DELETE * FROM Love WHERE post_id = :postId", nativeQuery = true)
     void deleteByPostId(int postId);
     
+    Love findByBoard(Board board);
+    
     
 }

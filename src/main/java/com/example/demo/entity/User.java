@@ -34,11 +34,16 @@ public class User {
     
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Recipe> recipe;
+    
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<RecipeComment> commentR;
 
     @OneToOne
     @JoinColumn(name="tId")
     private Today today;
-    
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<Love> love;
     
     
 	public List<Recipe> getRecipe() {
