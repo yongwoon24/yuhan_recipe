@@ -217,8 +217,10 @@ imageInput.addEventListener('change', (event) => {
 		reader.onload = (e) => {
 			const image = new Image();
 			image.src = e.target.result;
-			image.style.maxWidth = '100px';
-			image.style.maxHeight = '100px';
+			image.style.maxWidth = '200px';
+			image.style.maxHeight = '200px';
+			image.style.minWidth = '200px';
+			image.style.minHeight = '200px';
 			preview.innerHTML = '';
 			preview.appendChild(image);
 		};

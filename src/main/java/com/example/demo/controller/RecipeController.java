@@ -306,6 +306,7 @@ public class RecipeController {
 		recipeservice.write(recipe, file);
 		recipeservice.createRecipe(recipe, ingredientName, mensuration);
 		recipeservice.createStep(recipe, SContent, Singtxt, Stooltxt, Stip, Scontroltxt,file1);
+		Thread.sleep(2000);
 		if(tags != null) {
 			 List<String> tagList = Arrays.asList(tags.split(","));
 			recipeservice.createtag(recipe, tagList);
@@ -579,6 +580,7 @@ public class RecipeController {
 		model.addAttribute("tagss",tagss);
 		model.addAttribute("recipeings",recipeing);
 		model.addAttribute("recipe", recipe);
+		
 		return "editRecipe2";
 	}
 	
@@ -654,6 +656,7 @@ public class RecipeController {
 		}
 	    
 	    recipeservice.editStep1(recipe, SContent, Singtxt, Stooltxt, Stip, Scontroltxt,file1);
+	    Thread.sleep(2000);
 	    steprepository.deleteAll(evsteps);
 	    
 	    List<Recipe_Ingredient> evrecipeings = recipeingredientrepository.findByRecipe(recipe1);
