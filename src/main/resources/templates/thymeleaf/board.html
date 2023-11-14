@@ -85,7 +85,7 @@
             <tbody>
               <tr th:each="board : ${boardList}">
 	               <td th:if="${board.nickname != '관리자'}" style=text-align:center; th:text="${board.postId}"></td>
-	               <td th:if="${board.nickname == '관리자'}" style="text-align: center; color: red; font-size:18px">공지</td>
+	               <td th:if="${board.nickname == '관리자'}" style="text-align: center; color: red; font-size:20px; font-weight: bold;">공지</td>
 	               <td th:if="${board.nickname != '관리자'}">
 		                <a th:href="@{'/board/' + ${board.postId}}" style="color: black;">
 		                    <span th:text="${board.title}"></span>
@@ -93,7 +93,7 @@
 				   </td>
 				   <td th:if="${board.nickname == '관리자'}">
 		                <a th:href="@{'/board/' + ${board.postId}}" style="color: black;">
-		                    <span th:text="${board.title}" style="color:red; font-size:18px"></span>
+		                    <span th:text="${board.title}" style="color:red; font-size:20px; font-weight:bold;"></span>
 		                </a>
 				   </td>
               	   <td th:if="${board.nickname != '관리자'}" style=text-align:center;>
@@ -102,7 +102,7 @@
 		               </a>
            		   </td>
            		    <td th:if="${board.nickname == '관리자'}" style=text-align:center;>
-		                   <span th:text="${board.nickname}" style="color:red; font-size:18px"></span>
+		                   <span th:text="${board.nickname}" style="color:red; font-size:20px; font-weight:bold;"></span>
 		               </a>
            		   </td>
                    <td th:if="${board.nickname != '관리자'}" style=text-align:center; >
@@ -113,9 +113,9 @@
 		           </td>
 		            <td th:if="${board.nickname == '관리자'}" style=text-align:center; >
 		                <p th:if="${#temporals.format(board.created_date, 'yyyy-MM-dd') == #temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}"
-		                   th:text="${#temporals.format(board.created_date, 'HH:mm')}" style="color:red; font-size:18px"></p>
+		                   th:text="${#temporals.format(board.created_date, 'HH:mm')}" style="color:red; font-size:20px; font-weight:bold;"></p>
 		                <p th:if="${#temporals.format(board.created_date, 'yyyy-MM-dd') != #temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}"
-		                   th:text="${#temporals.format(board.created_date, 'MM-dd')}" style="color:red; font-size:18px"></p>
+		                   th:text="${#temporals.format(board.created_date, 'MM-dd')}" style="color:red; font-size:20px; font-weight:bold;"></p>
 		           </td>
               </tr>
                

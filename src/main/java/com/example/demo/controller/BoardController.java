@@ -133,6 +133,7 @@ public class BoardController {
 	public String deleteBoard(@PathVariable int postId, RedirectAttributes redirectAttributes) {
 		
 		commentRepository.deleteByPostId(postId);
+		loveRepository.deleteByPostId(postId);
 		boardRepository.deleteByPostId(postId);
 		
 		redirectAttributes.addFlashAttribute("boarddeleteMessage", "게시물 삭제가 완료되었습니다!");

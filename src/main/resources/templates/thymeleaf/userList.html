@@ -29,6 +29,7 @@
             <th>생일</th>
             <th>핸드폰</th>
             <th>회원탈퇴</th>
+         
         </tr>
         <tr th:each="user : ${users}">
             <td th:text="${user.user_id}"></td>
@@ -39,7 +40,9 @@
             <td th:text="${user.birthdate}"></td>
             <td th:text="${user.phone_number}"></td>
             <td><a th:href="@{/deleteUser/{nickname}(nickname=${user.nickname})}" onclick="return confirm('회원탈퇴 처리 하시겠습니까?');">회원탈퇴</a></td>
+            
         </tr>
     </table>
+    <div><a href="/">모두의 레시피</a></div> 
 </body>
 </html>

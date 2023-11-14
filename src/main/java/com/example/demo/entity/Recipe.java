@@ -33,7 +33,7 @@ public class Recipe {
 	
 	//private String user_id;
 	@ManyToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id" )
 	User user;
 	
 	@Column(name = "category_name")
@@ -62,8 +62,7 @@ public class Recipe {
 	//@OneToMany
 	//@JoinColumn(name = "recipe_id")
 	
-	@OneToMany
-	@JoinColumn(name = "recipe_id")
+	@OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
 	private List<Scrap> scraps;
 	
 	@OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
