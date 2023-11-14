@@ -32,7 +32,7 @@ public class Love {
     
     @Column(name="date")
     private LocalDateTime date;
-
+    
     @ManyToOne
     @JoinColumn(name = "recipe_id")
     private Recipe recipe;

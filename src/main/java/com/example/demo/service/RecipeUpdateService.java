@@ -34,7 +34,7 @@ public class RecipeUpdateService {
     private LoveRepository loveRepository;
     @Autowired
     private TodayRepository todayrepository;
-
+//    @Scheduled(fixedRate = 5000) // 5초
     @Scheduled(cron = "0 0 0 * * *") // 매일 자정에 실행
     public void updateRecipeStats() {
         LocalDateTime currentDate = LocalDateTime.now();
@@ -45,7 +45,7 @@ public class RecipeUpdateService {
         // 모든 레시피의 daily, weekly, monthly 좋아요 수 업데이트
         List<Recipe> allRecipes = recipeRepository.findAll();
         for (Recipe recipe : allRecipes) {
-            int dailyLikes = loveRepository.countDailyLikesByRecipeIdAndDate(recipe.getRecipe_id(), currentDate);
+            int dailyLikes = loveRepository.countDailyLikesByRecipeIdAndDate(recipe.getRecipe_id(), currentDate.toLocalDate());
             int weeklyLikes = loveRepository.countWeeklyLikesByRecipeIdAndDateRange(recipe.getRecipe_id(), weekStart, weekEnd);
             int monthlyLikes = loveRepository.countMonthlyLikesByRecipeIdAndMonth(recipe.getRecipe_id(), currentDate);
 
