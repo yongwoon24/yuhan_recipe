@@ -84,7 +84,7 @@ public class LoveService {
     }
 	
 	private void updatePeriodLikes(int recipeId, LocalDateTime date) {
-        int dailyLikes = loverepository.countDailyLikesByRecipeIdAndDate(recipeId, date);
+        int dailyLikes = loverepository.countDailyLikesByRecipeIdAndDate(recipeId, date.toLocalDate());
 
         LocalDateTime weekStart = date.minusDays(date.getDayOfWeek().getValue() - 1);
         LocalDateTime weekEnd = weekStart.plusDays(6);

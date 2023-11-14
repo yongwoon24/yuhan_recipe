@@ -64,6 +64,7 @@ public class MyPageController {
 		 model.addAttribute("birthdate", birthdate);
 		 model.addAttribute("photo", photo);
 		 model.addAttribute("pr", pr);
+		 
 		 return "mypage_U";
 	 }
 	 
@@ -78,12 +79,14 @@ public class MyPageController {
 		 User user = userRepository.findbynickname(loggedInNickname);
 		 if(!file.isEmpty()) {
 		 recipeservice.userwrite(user, file);}
+		 
 		 user.setUserpr(pr);
 		 if(password.equals(user.getPassword())) {
 			 if(newpassword.equals(confirmnewpassword)) {
 				 user.setPassword(newpassword);
 				 
 				 userRepository.save(user);
+				 Thread.sleep(2000);
 				 redirectAttributes.addFlashAttribute("errorMessage3", "회원정보 수정이 완료되었습니다!");
 			 }else {
 				 redirectAttributes.addFlashAttribute("errorMessage2", "새 비밀번호가 일치하지 않습니다!");

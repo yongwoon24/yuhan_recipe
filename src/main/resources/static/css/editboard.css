@@ -24,7 +24,7 @@
 	   position: relative;
 	   top: -485px;
    }
-   input[type=text] {
+   .title_text_a {
 	   border-radius:5px;
 	   font-family: 'Gowun Batang', serif;
 	   font-family: 'Noto Sans KR', sans-serif;
