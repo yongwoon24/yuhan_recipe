@@ -130,9 +130,10 @@ public class BoardController {
 	@GetMapping("/delete/{postId}")
 	@Transactional // 트랜잭션 설정
 	public String deleteBoard(@PathVariable int postId, RedirectAttributes redirectAttributes) {
+		
 		commentRepository.deleteByPostId(postId);
-		loveRepository.deleteByPostId(postId);
 		boardRepository.deleteByPostId(postId);
+		loveRepository.deleteByPostId(postId);
 		
 		redirectAttributes.addFlashAttribute("boarddeleteMessage", "게시물 삭제가 완료되었습니다!");
 	    return "redirect:/board"; // 글쓰기 성공 후 게시판 목록 페이지로 리다이렉트

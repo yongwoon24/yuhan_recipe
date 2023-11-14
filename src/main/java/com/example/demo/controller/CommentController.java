@@ -134,6 +134,7 @@ public class CommentController {
     public String deleteComment(@PathVariable int commentId, @PathVariable int postId, RedirectAttributes redirectAttributes) {
       
         commentRepository.deleteByCommentId(commentId);
+        //loverepository.deleteByPostId(postId);
         redirectAttributes.addFlashAttribute("commentdeleteMessage", "댓글 삭제가 완료되었습니다!");
 
         return "redirect:/board/" + postId; // 댓글 삭제 후 해당 게시물 페이지로 리다이렉트
