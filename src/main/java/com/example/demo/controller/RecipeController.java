@@ -298,7 +298,7 @@ public class RecipeController {
             @RequestParam("file1") List<MultipartFile> file1,
             @RequestParam(name ="tags", required = false) String tags)
 			throws Exception {
-		recipe.setRecipeVerified(true);//레시피 검토 안해도 되도록 임시@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@22
+		recipe.setRecipeVerified(false);//레시피 검토 안해도 되도록 임시@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@22
 		String loggedInNickname = (String) session.getAttribute("loggedInNickname");
 		User user = userrepository.findbynickname(loggedInNickname);
 		recipe.setUser(user);
@@ -365,6 +365,8 @@ public class RecipeController {
 			String activity = "좋아요";
 			Recipe recipe = new Recipe();
 			recipe.setRecipe_id(recipe_id);
+			Recipe recipe1 = recipeRepository.findById(recipe_id);
+			String nick = recipe1.getNickname();
 
 			User user = new User();
 			String loggedInUserId = (String) session.getAttribute("loggedInUserId");
@@ -389,7 +391,8 @@ public class RecipeController {
 				// 이미 좋아요를 눌렀음을 사용자에게 알릴 수 있습니다.
 			
 				Love love1 = loverepository.findByUserRecipeLike(user, recipe);
-				loverepository.delete(love1);
+				loveservice.saveLove2(love1);
+				
 				redirectAttributes.addFlashAttribute("errorMessage", "좋아요를 취소하셨습니다");
 			}
 		} catch (Exception e) {

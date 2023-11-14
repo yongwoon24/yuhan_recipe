@@ -46,11 +46,20 @@ public class LoveService {
     }*/
 	
 	public void saveLove(Love love) {
-		
+		loverepository.save(love);
 		updateTotalLikes(love.getRecipe().getRecipe_id());
 		updatePeriodLikes(love.getRecipe().getRecipe_id(), LocalDateTime.now());
 		updateUserTotalLikes(love.getRecipe().getNickname());
-		loverepository.save(love);
+		
+		//updateAllPeriodLikes(love.getDate());
+	}
+	public void saveLove2(Love love) {
+		Love love1 = love;
+		loverepository.delete(love);
+		updateTotalLikes(love1.getRecipe().getRecipe_id());
+		updatePeriodLikes(love1.getRecipe().getRecipe_id(), LocalDateTime.now());
+		updateUserTotalLikes(love1.getRecipe().getNickname());
+		
 		//updateAllPeriodLikes(love.getDate());
 	}
 	
@@ -58,7 +67,7 @@ public class LoveService {
         int totalLikes = loverepository.countLovesByRecipeId(recipeId);
         reciperepository.updateTotalLoves(recipeId, totalLikes);
     }
-	private void updateUserTotalLikes(String nickname) {
+	public void updateUserTotalLikes(String nickname) {
 		int totalLikes = 0;
 		List<Recipe> recipes = reciperepository.findByNickname(nickname);
 		for (Recipe recipe : recipes) {
