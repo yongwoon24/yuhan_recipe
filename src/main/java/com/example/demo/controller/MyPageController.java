@@ -86,7 +86,7 @@ public class MyPageController {
 				 user.setPassword(newpassword);
 				 
 				 userRepository.save(user);
-				 Thread.sleep(2000);
+				 Thread.sleep(3000);
 				 redirectAttributes.addFlashAttribute("errorMessage3", "회원정보 수정이 완료되었습니다!");
 			 }else {
 				 redirectAttributes.addFlashAttribute("errorMessage2", "새 비밀번호가 일치하지 않습니다!");
