@@ -116,15 +116,17 @@ public class RecipeUpdateService {
             int[] nums = new int[10];
             Set<Integer> uniqueNums = new HashSet<>();
 
-            for (int j = 0; j < 10; j++) {
+            while (uniqueNums.size() < 10) {
                 int randomnum;
                 Recipe recipe;
                 
                 do {
                     randomnum = random.nextInt(max - min + 1) + min;
-                } while (uniqueNums.contains(randomnum) && (recipe = recipeRepository.findById(randomnum)) == null);
-                
+                    recipe = recipeRepository.findById(randomnum);
+                } while (uniqueNums.contains(randomnum) || recipe == null);
+
                 uniqueNums.add(randomnum);
+            
                
             }
 
