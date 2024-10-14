@@ -50,21 +50,24 @@ Yuhan Recipe는 1인 가구 및 배달비 문제를 해결하기 위해, 사용�
 ## 웹 페이지 구조
 
 ### 메인페이지
-![image](https://github.com/user-attachments/assets/9ab1d065-f8a5-46d4-ad66-359bc9dbe4ee)
+![image](https://github.com/user-attachments/assets/d8ad8170-05f2-45c6-a49a-0c1509dd5afb)
 
 ### 로그인/회원가입/ID,PW찾기페이지
-![image](https://github.com/user-attachments/assets/8df1b937-6619-4a28-a516-b2cde226dc1d)
-![image](https://github.com/user-attachments/assets/e04e586c-d914-4672-8045-672088a5b174)
-![image](https://github.com/user-attachments/assets/b11377b9-837f-41ba-966d-aeb26cbde8a5)
+![image](https://github.com/user-attachments/assets/0825a07c-33be-44a9-a591-625deb12a36e)
+![image](https://github.com/user-attachments/assets/a2479e37-706d-4b4e-8a8e-fed10e1b6055)
+![image](https://github.com/user-attachments/assets/df213106-679f-45d2-ac80-aa4380f9a4b2)
 
 ### 랭킹페이지
-![image](https://github.com/user-attachments/assets/529df5f2-8801-4a61-a1d1-6042b0547e92)
+![image](https://github.com/user-attachments/assets/f6b688a1-2ea1-468c-8989-bb1f0d097927)
 
 ### 레시피 목록
-![image](https://github.com/user-attachments/assets/63576bbb-25a8-452a-9403-86690bb059a9)
+![image](https://github.com/user-attachments/assets/9160a6ee-bc85-470e-9fc0-5b28c6cecbd0)
 
 ### 레시피 페이지
-![image](https://github.com/user-attachments/assets/1d6d35e2-0171-42f9-87ce-c65a0fd2d4ce)
+![image](https://github.com/user-attachments/assets/cb442a7d-11f7-44ae-b572-027dd0fba2e8)
+
+### 레시피 작성 페이지
+![image](https://github.com/user-attachments/assets/ca7e8681-a369-4da6-bcac-3d47f499f19b)
 
 ### 마이페이지
 ![image](https://github.com/user-attachments/assets/0eb2c729-5fc6-4c94-983f-dcab149fc596)
