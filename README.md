@@ -47,7 +47,12 @@ Yuhan Recipe는 1인 가구 및 배달비 문제를 해결하기 위해, 사용�
 - **프로그래밍 언어**: Java(Spring Boot), JavaScript, HTML, CSS
 - **데이터베이스**: MySQL, AWS RDS
 
-## 웹 페이지 구조
+
+
+
+
+
+### 웹 페이지 구조
 
 ## 메인페이지
 ![image](https://github.com/user-attachments/assets/d8ad8170-05f2-45c6-a49a-0c1509dd5afb)
