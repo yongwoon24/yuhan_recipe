@@ -49,25 +49,25 @@ Yuhan Recipe는 1인 가구 및 배달비 문제를 해결하기 위해, 사용�
 
 ## 웹 페이지 구조
 
-### 메인페이지
+## 메인페이지
 ![image](https://github.com/user-attachments/assets/d8ad8170-05f2-45c6-a49a-0c1509dd5afb)
 
-### 로그인/회원가입/ID,PW찾기페이지
+## 로그인/회원가입/ID,PW찾기페이지
 ![image](https://github.com/user-attachments/assets/0825a07c-33be-44a9-a591-625deb12a36e)
 ![image](https://github.com/user-attachments/assets/a2479e37-706d-4b4e-8a8e-fed10e1b6055)
 ![image](https://github.com/user-attachments/assets/df213106-679f-45d2-ac80-aa4380f9a4b2)
 
-### 랭킹페이지
+## 랭킹페이지
 ![image](https://github.com/user-attachments/assets/f6b688a1-2ea1-468c-8989-bb1f0d097927)
 
-### 레시피 목록
+## 레시피 목록
 ![image](https://github.com/user-attachments/assets/9160a6ee-bc85-470e-9fc0-5b28c6cecbd0)
 
-### 레시피 페이지
+## 레시피 페이지
 ![image](https://github.com/user-attachments/assets/cb442a7d-11f7-44ae-b572-027dd0fba2e8)
 
-### 레시피 작성 페이지
+## 레시피 작성 페이지
 ![image](https://github.com/user-attachments/assets/ca7e8681-a369-4da6-bcac-3d47f499f19b)
 
-### 마이페이지
+## 마이페이지
 ![image](https://github.com/user-attachments/assets/0eb2c729-5fc6-4c94-983f-dcab149fc596)
