@@ -75,4 +75,5 @@ Yuhan Recipe는 1인 가구 및 배달비 문제를 해결하기 위해, 사용�
 ![image](https://github.com/user-attachments/assets/ca7e8681-a369-4da6-bcac-3d47f499f19b)
 
 ## 마이페이지
-![image](https://github.com/user-attachments/assets/0eb2c729-5fc6-4c94-983f-dcab149fc596)
+![image](https://github.com/user-attachments/assets/0017aab9-b2f3-492e-9e2f-821b2c036493)
+
