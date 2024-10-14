@@ -46,3 +46,25 @@ Yuhan Recipe는 1인 가구 및 배달비 문제를 해결하기 위해, 사용�
 
 - **프로그래밍 언어**: Java(Spring Boot), JavaScript, HTML, CSS
 - **데이터베이스**: MySQL, AWS RDS
+
+## 웹 페이지 구조
+
+### 메인페이지
+![image](https://github.com/user-attachments/assets/9ab1d065-f8a5-46d4-ad66-359bc9dbe4ee)
+
+### 로그인/회원가입/ID,PW찾기페이지
+![image](https://github.com/user-attachments/assets/8df1b937-6619-4a28-a516-b2cde226dc1d)
+![image](https://github.com/user-attachments/assets/e04e586c-d914-4672-8045-672088a5b174)
+![image](https://github.com/user-attachments/assets/b11377b9-837f-41ba-966d-aeb26cbde8a5)
+
+### 랭킹페이지
+![image](https://github.com/user-attachments/assets/529df5f2-8801-4a61-a1d1-6042b0547e92)
+
+### 레시피 목록
+![image](https://github.com/user-attachments/assets/63576bbb-25a8-452a-9403-86690bb059a9)
+
+### 레시피 페이지
+![image](https://github.com/user-attachments/assets/1d6d35e2-0171-42f9-87ce-c65a0fd2d4ce)
+
+### 마이페이지
+![image](https://github.com/user-attachments/assets/0eb2c729-5fc6-4c94-983f-dcab149fc596)
